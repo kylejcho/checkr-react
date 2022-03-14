@@ -1,1 +1,1 @@
-Live preview: https://kylejcho.github.io/todo-list-react/
+Live preview: https://kylejcho.github.io/checkr-react/
