@@ -1,5 +1,5 @@
 {
-  "name": "todo-list-react",
+  "name": "checkr-react",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -24,9 +24,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kylejcho/todo-list-react.git"
+    "url": "git+https://github.com/kylejcho/checkr-react.git"
   },
-  "homepage": "https://kylejcho.github.io/todo-list-react",
+  "homepage": "https://kylejcho.github.io/checkr-react",
   "eslintConfig": {
     "extends": [
       "react-app",

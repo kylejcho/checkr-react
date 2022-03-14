@@ -27,7 +27,7 @@ export default function Navbar({ addTask, tasks }) {
         <nav id = "navbar">
             <div id="pageTitle">
             <Logo className="logo"/>
-                <p>todo.</p>
+                <p>checkr.</p>
             </div>
             <div id="searchAddContainer">
                 <div id="searchContainer">
