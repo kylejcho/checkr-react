@@ -1,7 +1,7 @@
 import React from "react";
 import './index.css'
 
-export default function Nav() {
+export default function Navbar() {
     return (
         <>
             <nav id = "navbar">
@@ -15,7 +15,7 @@ export default function Nav() {
                             <ion-icon name="search-outline" id="searchIcon"></ion-icon>
                             <input id="searchBar" type="text" placeholder="Search tasks..."></input>
                         </div>
-                        <div id="searchResultsContainer" class="hidden"></div>
+                        <div id="searchResultsContainer" className="hidden"></div>
                     </div>
                     <ion-icon name="add-outline" id="addButton"></ion-icon>
                 </div>

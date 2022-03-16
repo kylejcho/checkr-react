@@ -259,8 +259,10 @@ nav {
 }
 
 #contentContainer {
+    min-height: calc(100vh - 50px);
+    height: max-content;
     display: flex;
-    height: calc(100vh - 50px);
+    height: max-content;
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -282,7 +284,7 @@ nav {
 #sidebar {
     position: absolute;
     font-size: clamp(13px, 1.2vw, 16px);
-    height: calc(100% - 95px);
+    height: calc(100% - 90px);
     padding: 40px 10px 0 20px;
     color: var(--secondary-text-color);
     background-color: var(--secondary-bg-color);
@@ -428,10 +430,11 @@ nav {
 /* TASKS CONTAINER */
 
 .tasksContainer {
-    height: auto;
-    width: 25%;
-    position: relative;
-    margin: 40px auto;
+    height: calc(100vh - 200px);
+    width: 25vw;
+    position: absolute;
+    top: 90px;
+    left: calc(50vw - 12.5vw);
     transition: all 0.3s cubic-bezier(0.5, 0, 0.5, 1);
     animation: bottomTopBounce 0.5s cubic-bezier(0, 0.5, 0.5, 1);
 }

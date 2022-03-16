@@ -1,12 +1,17 @@
-import React from "react";
-import Nav from "./Nav";
+import React, { useState } from "react";
+import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
+import ContainerContainer from "./ContentContainer";
+import TasksContainer from "./TasksContainer";
 
 function App() {
+  const [tasks, setTasks] = useState([{name: 'Something', description: 'Do this thing', id: 0}])
+  console.log(tasks)
   return (
     <>
-      <Nav />
+      <Navbar />
       <Sidebar />
+      <ContainerContainer tasks={tasks}/>
     </>
   )
 }
