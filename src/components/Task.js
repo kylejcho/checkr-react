@@ -18,6 +18,5 @@ export default function Task({ task }) {
             </div>
             <div className="descriptionContainer">{task.description}</div>
         </div>
-
     )
 }
