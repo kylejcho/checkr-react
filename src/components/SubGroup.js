@@ -13,7 +13,6 @@ export default function SubGroup({ tasks }) {
                 <p className="subGroupTitle">Today</p>
                 {tasks.map(task=>{
                     if (isToday(task.dueDate)) {
-                        updateSubHeight('today');
                         return <Task task={task} key={task.id}/>
                     }
                 })}
@@ -48,8 +47,11 @@ export function checkEmptyGroups(tasks) {
     document.querySelector('#upcoming').classList.toggle('empty', isUpcoming)
 }
 
-export function updateSubHeight(day) {
-    const subGroup = document.querySelector(`#today`)
-    //const subGroupHeight = subGroup.children.length * 60
-    subGroup.style.height = `${subGroup.children.length * 60 - 60}px `
+export function updateSubHeight() {
+    const subGroup = document.querySelectorAll('.subGroup');
+    subGroup.forEach(sub => {
+        if (sub.children.length > 1) {
+            sub.style.height = `${sub.children.length * 60 - 60}px `;
+        }
+    })
 }
