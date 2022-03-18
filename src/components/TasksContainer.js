@@ -9,7 +9,6 @@ export default function TasksContainer({ tasks }) {
             <div className="tasksContainer" id="homeContainer">
                 <div id="titleContainer" className="tasksTitle">Good Afternoon, User</div>
                 <SubGroup tasks={tasks}/>
-                
             </div>
         </>
     )

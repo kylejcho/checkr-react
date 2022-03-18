@@ -9,7 +9,7 @@ export default function App() {
   const [tasks, setTasks] = useState([])
 
   useEffect(()=>{ 
-    setTasks([{name: 'Something', description: 'Do this thing', dueDate: new Date(), id: 0}, {name: 'Thing', description: 'Do this', dueDate: new Date(), id: 1}])
+    setTasks([{name: 'Something', description: 'Do this thing', dueDate: new Date(), id: 0}, {name: 'Thing', description: 'Do this', dueDate: new Date(), id: 1}, {name: 'Things', description: 'Do these', dueDate: new Date(), id: 2}])
   },[])
   
   useEffect(()=>{
