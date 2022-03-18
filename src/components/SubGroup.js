@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { isToday, isTomorrow, isAfter, addDays} from "date-fns";
 import Task from "./Task";
 
@@ -13,6 +13,7 @@ export default function SubGroup({ tasks }) {
                 <p className="subGroupTitle">Today</p>
                 {tasks.map(task=>{
                     if (isToday(task.dueDate)) {
+                        updateSubHeight('today');
                         return <Task task={task} key={task.id}/>
                     }
                 })}
@@ -47,6 +48,8 @@ export function checkEmptyGroups(tasks) {
     document.querySelector('#upcoming').classList.toggle('empty', isUpcoming)
 }
 
-export function updateSubHeight() {
-    
+export function updateSubHeight(day) {
+    const subGroup = document.querySelector(`#today`)
+    //const subGroupHeight = subGroup.children.length * 60
+    subGroup.style.height = `${subGroup.children.length * 60 - 60}px `
 }
