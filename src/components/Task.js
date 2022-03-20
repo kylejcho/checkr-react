@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Task({ task }) {
     return (
-        <div className="taskContainer" id="task.id" style={{opacity: '1'}}>
+        <div className="taskContainer" id={task.id} style={{opacity: '1'}}>
             <div className="checkContainer">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512">
                     <title>ionicons-v5-q</title>
@@ -21,6 +21,11 @@ export default function Task({ task }) {
     )
 }
 
-function updateTaskPosition() {
-    
+export function updateTaskPosition() {
+    const tasks = document.querySelectorAll('.taskContainer');   
+    let position = 0; 
+    tasks.forEach(task => {
+        task.style.transform = `translateY(${position}px)`;
+        position += 60;
+    })
 }

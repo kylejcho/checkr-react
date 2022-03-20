@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import Main from "./components/Main";
 import { checkEmptyGroups, updateSubHeight } from "./components/SubGroup";
+import { updateTaskPosition } from "./components/Task";
 
 export default function App() {
   const [tasks, setTasks] = useState([])
@@ -15,6 +16,7 @@ export default function App() {
   useEffect(()=>{
     checkEmptyGroups(tasks);
     updateSubHeight();
+    updateTaskPosition();
   }, [tasks])
   
   console.log(tasks)

@@ -51,7 +51,7 @@ export function updateSubHeight() {
     const subGroup = document.querySelectorAll('.subGroup');
     subGroup.forEach(sub => {
         if (sub.children.length > 1) {
-            sub.style.height = `${sub.children.length * 60 - 60}px `;
+            sub.style.height = `${sub.children.length * 60}px `;
         }
     })
 }
