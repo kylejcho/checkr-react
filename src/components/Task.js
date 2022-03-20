@@ -20,3 +20,7 @@ export default function Task({ task }) {
         </div>
     )
 }
+
+function updateTaskPosition() {
+    
+}
