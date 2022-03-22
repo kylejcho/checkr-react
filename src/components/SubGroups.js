@@ -8,14 +8,7 @@ export default function SubGroups({ tasks }) {
             <div className="subGroup" id="overdue" style={{height: '0px', opacity: '0', marginTop: '0px'}}>
                 <p className="subGroupTitle overdue">Overdue</p>
             </div>
-            <div className="subGroup" id="today">
-                <p className="subGroupTitle">Today</p>
-                {tasks.map(task=>{
-                    if (isToday(task.dueDate)) {
-                        return <Task task={task} key={task.id}/>
-                    }
-                })}
-            </div>
+            <SubGroup type = "today" tasks={tasks}/>
             <div className="subGroup" id="tomorrow">
                 <p className="subGroupTitle">Tomorrow</p>
                 {tasks.map(task=>{
@@ -37,6 +30,7 @@ export default function SubGroups({ tasks }) {
 }
 
 export function checkEmptyGroups(tasks) {
+    /*
     const emptyToday = tasks.every(task=> !isToday(task.dueDate))
     const emptyTomorrow = tasks.every(task=> !isTomorrow(task.dueDate))
     const isUpcoming = tasks.every(task=> !isAfter(task.dueDate, addDays(new Date(),1)))
@@ -44,6 +38,7 @@ export function checkEmptyGroups(tasks) {
     document.querySelector('#today').classList.toggle('empty', emptyToday)
     document.querySelector('#tomorrow').classList.toggle('empty', emptyTomorrow)
     document.querySelector('#upcoming').classList.toggle('empty', isUpcoming)
+    */
 }
 
 export function updateSubHeight() {
@@ -55,8 +50,39 @@ export function updateSubHeight() {
     })
 }
 
-function subGroup(type) {
-    <div className="subGroup" id={type}>
-        <p className="subGroupTitle">{type}</p>
-    </div>
+
+
+function SubGroup( { type, tasks }) {
+
+    function taskGroup() {
+        if (type === 'today') {
+            console.log(tasks)
+            tasks.map(task=>{
+                if (isToday(task.dueDate)) {
+                    return <Task task={task} key={task.id}/>
+                }
+            })
+        } else if (type === 'tomorrow') {
+            tasks.map(task=>{
+                if (isTomorrow(task.dueDate)) {
+                    return <Task task={task} key={task.id}/>
+                }
+            })
+        } else {
+            tasks.map(task=>{
+                if (isAfter(task.dueDate, addDays(new Date(),1))) {
+                    return <Task task={task} key={task.id}/>
+                }
+            })
+        }
+    
+    }
+
+
+    return (
+        <div className="subGroup" >
+            <p className="subGroupTitle">{type[0].toUpperCase() + type.slice(1)}</p>
+            {taskGroup()}
+        </div>
+    )
 }

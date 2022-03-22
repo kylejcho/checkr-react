@@ -3,7 +3,7 @@ import './index.css'
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import Main from "./components/Main";
-import { checkEmptyGroups, updateSubHeight } from "./components/SubGroup";
+import { checkEmptyGroups, updateSubHeight } from "./components/SubGroups";
 import { updateTaskPosition } from "./components/Task";
 
 export default function App() {
