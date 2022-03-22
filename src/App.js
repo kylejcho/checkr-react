@@ -5,12 +5,13 @@ import Sidebar from "./components/Sidebar";
 import Main from "./components/Main";
 import { checkEmptyGroups, updateSubHeight } from "./components/SubGroup";
 import { updateTaskPosition } from "./components/Task";
+import { addDays } from "date-fns";
 
 export default function App() {
   const [tasks, setTasks] = useState([])
 
   useEffect(()=>{ 
-    setTasks([{name: 'Something', description: 'Do this thing', dueDate: new Date(), id: 0}, {name: 'Thing', description: 'Do this', dueDate: new Date(), id: 1}, {name: 'Things', description: 'Do these', dueDate: new Date(), id: 2}])
+    setTasks([{name: 'Something', description: 'Do this thing', dueDate: addDays(new Date(), 1), id: 0}, {name: 'Thing', description: 'Do this', dueDate: new Date(), id: 1}, {name: 'Things', description: 'Do these', dueDate: new Date(), id: 2}])
   },[])
   
   useEffect(()=>{

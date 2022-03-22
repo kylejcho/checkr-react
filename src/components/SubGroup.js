@@ -20,7 +20,7 @@ export default function SubGroup({ tasks, type }) {
                     if (checkType(task.dueDate)) {
                         return <Task task={task} key={task.id}/>
                     }
-                })}
+                 })}
         </div>
     )
 }
@@ -38,7 +38,7 @@ export function checkEmptyGroups(tasks) {
 export function updateSubHeight() {
     const subGroup = document.querySelectorAll('.subGroup');
     subGroup.forEach(sub => {
-        if (sub.children.length > 1) {
+        if (sub.children.length - 1  > 0) {
             sub.style.height = `${sub.children.length * 60}px `;
         }
     })

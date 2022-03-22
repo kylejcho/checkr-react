@@ -22,10 +22,16 @@ export default function Task({ task }) {
 }
 
 export function updateTaskPosition() {
-    const tasks = document.querySelectorAll('.taskContainer');   
-    let position = 0; 
-    tasks.forEach(task => {
-        task.style.transform = `translateY(${position}px)`;
-        position += 60;
+    const subGroups = document.querySelectorAll('.subGroup');
+    const tasks = document.querySelectorAll('.taskContainer');
+    
+    subGroups.forEach(subGroup=>{
+        if (subGroup.children.length > 1) {
+            let position = 0; 
+            for (let i = 1; i < subGroup.children.length; i++) {
+                subGroup.children[i].style.transform = `translateY(${position}px)`
+                position += 60;
+            }
+        }
     })
 }
