@@ -14,21 +14,18 @@ export default function SubGroup({ tasks, type }) {
     }
     
     return (
-        <>
-            <div className="subGroup" id={type}>
-                <p className="subGroupTitle">{type[0].toUpperCase() + type.slice(1)}</p>
+        <div className="subGroup" id={type}>
+            <p className="subGroupTitle">{type[0].toUpperCase() + type.slice(1)}</p>
                 {tasks.map(task=>{
                     if (checkType(task.dueDate)) {
                         return <Task task={task} key={task.id}/>
                     }
                 })}
-            </div>
-        </>
+        </div>
     )
 }
 
 export function checkEmptyGroups(tasks) {
-    /*
     const emptyToday = tasks.every(task=> !isToday(task.dueDate))
     const emptyTomorrow = tasks.every(task=> !isTomorrow(task.dueDate))
     const isUpcoming = tasks.every(task=> !isAfter(task.dueDate, addDays(new Date(),1)))
@@ -36,28 +33,7 @@ export function checkEmptyGroups(tasks) {
     document.querySelector('#today').classList.toggle('empty', emptyToday)
     document.querySelector('#tomorrow').classList.toggle('empty', emptyTomorrow)
     document.querySelector('#upcoming').classList.toggle('empty', isUpcoming)
-    */
 }
-
-/*
-            <div className="subGroup" id="tomorrow">
-                <p className="subGroupTitle">Tomorrow</p>
-                {tasks.map(task=>{
-                    if (isTomorrow(task.dueDate)) {
-                        return <Task task={task} key={task.id}/>
-                    }
-                })}
-            </div>
-            <div className="subGroup" id="upcoming">
-                <p className="subGroupTitle">Upcoming</p>
-                {tasks.map(task=>{
-                    if (isAfter(task.dueDate, addDays(new Date(),1))) {
-                        return <Task task={task} key={task.id}/>
-                    }
-                })}
-            </div>
-
-*/
 
 export function updateSubHeight() {
     const subGroup = document.querySelectorAll('.subGroup');
