@@ -2,7 +2,7 @@ import React from "react";
 import { isToday, isTomorrow, isAfter, addDays} from "date-fns";
 import Task from "./Task";
 
-export default function SubGroup({ tasks }) {
+export default function SubGroups({ tasks }) {
     return (
         <>
             <div className="subGroup" id="overdue" style={{height: '0px', opacity: '0', marginTop: '0px'}}>
@@ -53,4 +53,10 @@ export function updateSubHeight() {
             sub.style.height = `${sub.children.length * 60}px `;
         }
     })
+}
+
+function subGroup(type) {
+    <div className="subGroup" id={type}>
+        <p className="subGroupTitle">{type}</p>
+    </div>
 }
