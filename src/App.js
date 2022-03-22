@@ -11,7 +11,14 @@ export default function App() {
   const [tasks, setTasks] = useState([])
 
   useEffect(()=>{ 
-    setTasks([{name: 'Something', description: 'Do this thing', dueDate: addDays(new Date(), 1), id: 0}, {name: 'Thing', description: 'Do this', dueDate: new Date(), id: 1}, {name: 'Things', description: 'Do these', dueDate: new Date(), id: 2}])
+    setTasks([
+      {name: 'Something', description: 'Do this thing', dueDate: addDays(new Date(), 1), id: 0}, 
+      {name: 'Something', description: 'Do this thing', dueDate: addDays(new Date(), 1), id: 8}, 
+      {name: 'Thing', description: 'Do this', dueDate: new Date(), id: 1}, 
+      {name: 'Things', description: 'Do these', dueDate: new Date(), id: 2},
+      {name: 'Somethingy', description: 'Do this thingy', dueDate: addDays(new Date(), 1), id: 3}, 
+      {name: 'Thing', description: 'Do this', dueDate: addDays(new Date(), 2), id: 4}, 
+      {name: 'Thingies', description: 'Do these thingies', dueDate: addDays(new Date(), 2), id: 5}])
   },[])
   
   useEffect(()=>{
@@ -19,8 +26,6 @@ export default function App() {
     updateSubHeight();
     updateTaskPosition();
   }, [tasks])
-  
-  console.log(tasks)
 
   return (
     <>
