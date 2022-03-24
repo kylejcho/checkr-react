@@ -1,7 +1,7 @@
 import './index.css'
 import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
-import Form from './components/Form';
+import Form from './components/Form/Form';
 import Main from "./components/Main";
 import { checkEmptyGroups, updateSubHeight } from "./components/SubGroup";
 import { updateTaskPosition } from "./components/Task";
