@@ -16,10 +16,10 @@ export default function Form({addTask}) {
             id: uuidv4()
         };
         addTask(task);
-        handleCancelClick() 
+        closeForm() 
     }
 
-    function handleCancelClick() {
+    function closeForm() {
         formContainerRef.current.classList.add('hidden');
         form.current.classList.add('hidden')
     }
@@ -34,7 +34,7 @@ export default function Form({addTask}) {
         if (e.clientX>left && e.clientX<right && e.clientY<bottom && e.clientY>top) {
             return
         } 
-        handleCancelClick()
+        closeForm()
     }
 
     return (
