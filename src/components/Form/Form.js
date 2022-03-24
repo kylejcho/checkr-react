@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import InputCalendarOptions from "./InputCalendarOptions";
 import { v4 as uuidv4 } from 'uuid';
 
@@ -9,7 +9,12 @@ export default function Form({addTask}) {
     const form = useRef();
 
     function handleAddTaskClick() {
-        const task = {name: taskNameRef.current.value, description: taskDescriptionRef.current.value, dueDate: new Date(), id: uuidv4()};
+        const task = {
+            name: taskNameRef.current.value, 
+            description: taskDescriptionRef.current.value, 
+            dueDate: new Date(), 
+            id: uuidv4()
+        };
         addTask(task);
         handleCancelClick() 
     }
@@ -19,8 +24,21 @@ export default function Form({addTask}) {
         form.current.classList.add('hidden')
     }
 
+    const handleOutsideClick = (e) => {
+        const offset = form.current.getBoundingClientRect();
+        const left = offset.left;
+        const right = offset.right;
+        const top = offset.top;
+        const bottom = offset.bottom;
+
+        if (e.clientX>left && e.clientX<right && e.clientY<bottom && e.clientY>top) {
+            return
+        } 
+        handleCancelClick()
+    }
+
     return (
-        <div id="taskFormContainer" className="hidden" ref={formContainerRef}>
+        <div id="taskFormContainer" className="hidden" ref={formContainerRef} onClick={(e)=>handleOutsideClick(e)}>
             <div id="taskForm" className="hidden" ref={form}>
                 <input ref={taskNameRef} id="inputTaskName" type="text" placeholder="I want to..." required=""></input>
                 <textarea ref={taskDescriptionRef} id="inputTaskDescription" name="description" rows="2" placeholder="Description..."></textarea>
