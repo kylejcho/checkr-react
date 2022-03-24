@@ -30,9 +30,7 @@ export default function App() {
   }, [tasks])
 
   function addTask(task) {
-    setTasks(prevTasks=> {
-      return [...prevTasks, task]
-    })
+    setTasks(prevTasks => [...prevTasks, task])
   }
 
   return (

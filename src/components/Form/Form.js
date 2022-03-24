@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import InputCalendarOptions from "./InputCalendarOptions";
 import { v4 as uuidv4 } from 'uuid';
 
@@ -11,16 +11,16 @@ export default function Form({addTask}) {
     function handleAddTaskClick() {
         const task = {name: taskNameRef.current.value, description: taskDescriptionRef.current.value, dueDate: new Date(), id: uuidv4()};
         addTask(task);
-        console.log(task)
+        handleCancelClick() 
     }
 
     function handleCancelClick() {
-        //formContainerRef.current.classList.add('hidden');
-        //form.current.classList.add('hidden')
+        formContainerRef.current.classList.add('hidden');
+        form.current.classList.add('hidden')
     }
 
     return (
-        <div id="taskFormContainer" className="hidden" ref={formContainerRef} onClick={handleCancelClick}>
+        <div id="taskFormContainer" className="hidden" ref={formContainerRef}>
             <div id="taskForm" className="hidden" ref={form}>
                 <input ref={taskNameRef} id="inputTaskName" type="text" placeholder="I want to..." required=""></input>
                 <textarea ref={taskDescriptionRef} id="inputTaskDescription" name="description" rows="2" placeholder="Description..."></textarea>
