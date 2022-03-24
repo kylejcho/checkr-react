@@ -776,7 +776,6 @@ nav {
 /* TASK FORM */
 
 #taskFormContainer {
-    visibility: hidden;
     position: fixed;
     display: flex;
     align-items: center;
@@ -789,18 +788,24 @@ nav {
     z-index: 3;
 }
 
+#taskFormContainer.hidden {
+    visibility: hidden;
+}
+
 #taskForm {
-    opacity: 0;
     background-color: white;
     min-width: 450px;
     width: max-content;
     height: max-content;
-    transform: scale(0);
     border-radius: 10px;
     box-shadow: 0 5px 40px rgba(0, 0, 0, 0.3);
     padding: 15px 15px 25px 15px;
     transition: all ease 0.2s;
+}
 
+#taskForm.hidden {
+    opacity: 0;
+    transform: scale(0);
 }
 
 #taskForm input {
@@ -1114,9 +1119,6 @@ nav {
     border-top-right-radius: 5px;
 }
 
-.hidden {
-    display: none;
-}
 
 #createListButton {
     cursor: pointer;

@@ -2,8 +2,9 @@ import React from "react";
 
 export default function Navbar() {
     function handleAddFormClick() {
-        
-    }
+        document.querySelector('#taskFormContainer').classList.remove('hidden')
+        document.querySelector('#taskForm').classList.remove('hidden')
+    }   
 
     return (
         <>
