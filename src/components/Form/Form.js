@@ -9,6 +9,7 @@ export default function Form({addTask}) {
     const form = useRef();
 
     function handleAddTaskClick() {
+        if (taskNameRef.current.value === '') return
         const task = {
             name: taskNameRef.current.value, 
             description: taskDescriptionRef.current.value, 
@@ -16,22 +17,23 @@ export default function Form({addTask}) {
             id: uuidv4()
         };
         addTask(task);
-        closeForm() 
+        closeForm();
     }
 
     function closeForm() {
+        taskNameRef.current.value = null;
+        taskDescriptionRef.current.value = null;
         formContainerRef.current.classList.add('hidden');
-        form.current.classList.add('hidden')
+        form.current.classList.add('hidden');
     }
 
     const handleOutsideClick = (e) => {
         const offset = form.current.getBoundingClientRect();
-        const left = offset.left;
-        const right = offset.right;
-        const top = offset.top;
-        const bottom = offset.bottom;
+        const x = e.clientX;
+        const y = e.clientY;
 
-        if (e.clientX>left && e.clientX<right && e.clientY<bottom && e.clientY>top) {
+
+        if (x>offset.left && x<offset.right && y<offset.bottom && y>offset.top) {
             return
         } 
         closeForm()
