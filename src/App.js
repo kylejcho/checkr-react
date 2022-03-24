@@ -1,9 +1,8 @@
-import './index.css'
 import Sidebar from "./components/Sidebar";
-import Navbar from "./components/Navbar";
+import Content from "./components/Content";
 import Form from './components/Form/Form';
-import Main from "./components/Main";
-import { checkEmptyGroups, updateSubHeight } from "./components/SubGroup";
+import Navbar from "./components/Navbar";
+import { updateSubLayout } from "./components/SubGroup";
 import { updateTaskPosition } from "./components/Task";
 import React, { useState, useEffect} from "react";
 import { v4 as uuidv4 } from 'uuid';
@@ -24,8 +23,7 @@ export default function App() {
   },[])
   
   useEffect(()=>{
-    checkEmptyGroups(tasks);
-    updateSubHeight();
+    updateSubLayout(tasks)
     updateTaskPosition();
   }, [tasks])
 
@@ -37,7 +35,7 @@ export default function App() {
     <>
       <Navbar />
       <Sidebar />
-      <Main tasks={tasks} />
+      <Content tasks={tasks} />
       <Form addTask={addTask}/>
     </>
   )

@@ -3,16 +3,16 @@ import InputCalendarOptions from "./InputCalendarOptions";
 import { v4 as uuidv4 } from 'uuid';
 
 export default function Form({addTask}) {
-    const taskNameRef = useRef();
-    const taskDescriptionRef = useRef();
-    const formContainerRef = useRef();
+    const nameRef = useRef();
+    const descRef = useRef();
+    const formContRef = useRef();
     const form = useRef();
 
     function handleAddTaskClick() {
-        if (taskNameRef.current.value === '') return
+        if (nameRef.current.value === '') return
         const task = {
-            name: taskNameRef.current.value, 
-            description: taskDescriptionRef.current.value, 
+            name: nameRef.current.value, 
+            description: descRef.current.value, 
             dueDate: new Date(), 
             id: uuidv4()
         };
@@ -21,9 +21,9 @@ export default function Form({addTask}) {
     }
 
     function closeForm() {
-        taskNameRef.current.value = null;
-        taskDescriptionRef.current.value = null;
-        formContainerRef.current.classList.add('hidden');
+        nameRef.current.value = null;
+        descRef.current.value = null;
+        formContRef.current.classList.add('hidden');
         form.current.classList.add('hidden');
     }
 
@@ -32,18 +32,15 @@ export default function Form({addTask}) {
         const x = e.clientX;
         const y = e.clientY;
 
-
-        if (x>offset.left && x<offset.right && y<offset.bottom && y>offset.top) {
-            return
-        } 
+        if (x<offset.left && x>offset.right && y>offset.bottom && y<offset.top) return
         closeForm()
     }
 
     return (
-        <div id="taskFormContainer" className="hidden" ref={formContainerRef} onClick={(e)=>handleOutsideClick(e)}>
+        <div id="taskFormContainer" className="hidden" ref={formContRef} onClick={(e)=>handleOutsideClick(e)}>
             <div id="taskForm" className="hidden" ref={form}>
-                <input ref={taskNameRef} id="inputTaskName" type="text" placeholder="I want to..." required=""></input>
-                <textarea ref={taskDescriptionRef} id="inputTaskDescription" name="description" rows="2" placeholder="Description..."></textarea>
+                <input ref={nameRef} id="inputTaskName" type="text" placeholder="I want to..." required=""></input>
+                <textarea ref={descRef} id="inputTaskDescription" name="description" rows="2" placeholder="Description..."></textarea>
                 <div id="inputDueDateContainer">
                     <div className="inputDueDate selected" id="inputToday"><ion-icon name="calendar-number-outline" role="img" className="md hydrated" aria-label="calendar number outline"></ion-icon>Today</div>
                     <div className="inputDueDate" id="inputTomorrow"><ion-icon name="today-outline" role="img" className="md hydrated" aria-label="today outline"></ion-icon>Tomorrow</div>

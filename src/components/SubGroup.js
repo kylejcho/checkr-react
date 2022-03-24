@@ -27,7 +27,13 @@ export default function SubGroup({ tasks, type }) {
     )
 }
 
-export function checkEmptyGroups(tasks) {
+
+export function updateSubLayout(tasks) {
+    checkEmptyGroups(tasks);
+    updateSubHeight();
+}
+
+function checkEmptyGroups(tasks) {
     const emptyToday = tasks.every(task=> !isToday(task.dueDate))
     const emptyTomorrow = tasks.every(task=> !isTomorrow(task.dueDate))
     const emptyUpcoming = tasks.every(task=> !isAfter(task.dueDate, addDays(new Date(),1)))
@@ -37,7 +43,7 @@ export function checkEmptyGroups(tasks) {
     document.querySelector('#upcoming').classList.toggle('empty', emptyUpcoming)
 }
 
-export function updateSubHeight() {
+function updateSubHeight() {
     const subGroup = document.querySelectorAll('.subGroup');
     subGroup.forEach(sub => {
         if (sub.children.length - 1  > 0) {
