@@ -28,12 +28,20 @@ export default function App() {
     updateTaskPosition();
   }, [tasks])
 
+  function addTask(task) {
+    console.log(task)
+    setTasks(prevTasks=> {
+      return [...prevTasks, task]
+    })
+  }
+
+
   return (
     <>
       <Navbar />
       <Sidebar />
       <Main tasks={tasks} />
-      <Form />
+      <Form addTask={addTask}/>
     </>
   )
 }
