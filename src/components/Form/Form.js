@@ -13,8 +13,6 @@ export default function Form({addTask}) {
         addTask(task);
     }
 
-    
-
     return (
         <div id="taskFormContainer" style={{visibility: 'visible'}}>
             <div id="taskForm" style={{opacity: '1', transform: 'scale(1)'}}>
