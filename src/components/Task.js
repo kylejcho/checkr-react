@@ -23,8 +23,6 @@ export default function Task({ task }) {
 
 export function updateTaskPosition() {
     const subGroups = document.querySelectorAll('.subGroup');
-    const tasks = document.querySelectorAll('.taskContainer');
-    
     subGroups.forEach(subGroup=>{
         if (subGroup.children.length > 1) {
             let position = 0; 

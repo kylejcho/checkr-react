@@ -6,7 +6,7 @@ export default function SubGroup({ tasks, type }) {
     function checkType(dueDate) {
         if (type === 'today') {
             return isToday(dueDate);
-        } else if (type == 'tomorrow') {
+        } else if (type === 'tomorrow') {
             return isTomorrow(dueDate)
         } else {
             return isAfter(dueDate, addDays(new Date(),1))
@@ -19,8 +19,10 @@ export default function SubGroup({ tasks, type }) {
                 {tasks.map(task=>{
                     if (checkType(task.dueDate)) {
                         return <Task task={task} key={task.id}/>
+                    } else {
+                        return null
                     }
-                 })}
+                })}
         </div>
     )
 }
@@ -28,11 +30,11 @@ export default function SubGroup({ tasks, type }) {
 export function checkEmptyGroups(tasks) {
     const emptyToday = tasks.every(task=> !isToday(task.dueDate))
     const emptyTomorrow = tasks.every(task=> !isTomorrow(task.dueDate))
-    const isUpcoming = tasks.every(task=> !isAfter(task.dueDate, addDays(new Date(),1)))
+    const emptyUpcoming = tasks.every(task=> !isAfter(task.dueDate, addDays(new Date(),1)))
 
     document.querySelector('#today').classList.toggle('empty', emptyToday)
     document.querySelector('#tomorrow').classList.toggle('empty', emptyTomorrow)
-    document.querySelector('#upcoming').classList.toggle('empty', isUpcoming)
+    document.querySelector('#upcoming').classList.toggle('empty', emptyUpcoming)
 }
 
 export function updateSubHeight() {

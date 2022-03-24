@@ -1,6 +1,10 @@
 import React from "react";
 
 export default function Navbar() {
+    function handleAddFormClick() {
+        
+    }
+
     return (
         <>
             <nav id = "navbar">
@@ -16,7 +20,7 @@ export default function Navbar() {
                         </div>
                         <div id="searchResultsContainer" className="hidden"></div>
                     </div>
-                    <ion-icon name="add-outline" id="addButton"></ion-icon>
+                    <ion-icon name="add-outline" id="addButton" onClick={handleAddFormClick}></ion-icon>
                 </div>
                 <div id="navSettingsContainer">
                     <div id="darkLightModeContainer">
