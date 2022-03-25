@@ -1,14 +1,10 @@
 import React from "react";
+import CheckCircle from "./CheckCircle";
 
 export default function Task({ task }) {
     return (
         <div className="taskContainer" id={task.id} style={{opacity: '1'}}>
-            <div className="checkContainer">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512">
-                    <title>ionicons-v5-q</title>
-                    <circle cx="256" cy="256" r="192" style={{fill:'none',stroke:'#000',strokeLineCap:'round',strokeLineJoin:'round',strokeWidth:'32px'}}/>
-                </svg>
-            </div>
+            <CheckCircle />
             <div className="nameContainer">{task.name}</div>
             <div className="deleteContainer">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512">
