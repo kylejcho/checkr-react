@@ -32,7 +32,7 @@ export default function Form({addTask}) {
         const x = e.clientX;
         const y = e.clientY;
 
-        if (x<offset.left && x>offset.right && y>offset.bottom && y<offset.top) return
+        if (x>offset.left && x<offset.right && y<offset.bottom && y>offset.top) return
         closeForm()
     }
 

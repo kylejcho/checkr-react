@@ -12,21 +12,18 @@ export default function SubGroup({ tasks, type }) {
             return isAfter(dueDate, addDays(new Date(),1))
         }
     }
-    
     return (
         <div className="subGroup" id={type}>
             <p className="subGroupTitle">{type[0].toUpperCase() + type.slice(1)}</p>
                 {tasks.map(task=>{
                     if (checkType(task.dueDate)) {
                         return <Task task={task} key={task.id}/>
-                    } else {
-                        return null
-                    }
+                    } 
+                    return null
                 })}
         </div>
     )
 }
-
 
 export function updateSubLayout(tasks) {
     checkEmptyGroups(tasks);
@@ -46,11 +43,8 @@ function checkEmptyGroups(tasks) {
 function updateSubHeight() {
     const subGroup = document.querySelectorAll('.subGroup');
     subGroup.forEach(sub => {
-        if (sub.children.length - 1  > 0) {
+        if (sub.children.length - 1 > 0) {
             sub.style.height = `${sub.children.length * 60}px `;
         }
     })
 }
-
-
-
