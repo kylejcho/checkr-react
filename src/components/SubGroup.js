@@ -17,7 +17,7 @@ export default function SubGroup({ tasks, type, removeTask }) {
             <p className="subGroupTitle">{type[0].toUpperCase() + type.slice(1)}</p>
                 {tasks.map(task=>{
                     if (checkType(task.dueDate)) {
-                        return <Task tasks={tasks} task={task} key={task.id} removeTask={removeTask}/>
+                        return <Task tasks={tasks} task={task} key={task.id} removeTask={removeTask} type = {type}/>
                     } 
                     return null
                 })}

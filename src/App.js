@@ -32,24 +32,22 @@ export default function App() {
   }
 
   function removeTask(task) {
-    console.log(task)
     let prevTasks = [...tasks];
     prevTasks.forEach(item=>{
       if (item.id === task) {
         const index = prevTasks.indexOf(item)
         prevTasks.splice(index, 1);
-        console.log(prevTasks)
+        setTasks([...prevTasks])
         return 
       }
     })
-    setTasks([...prevTasks])
   }
 
   return (
     <>
       <Navbar />
       <Sidebar />
-      <Content tasks={tasks} removeTask={removeTask}/>
+      <Content tasks={tasks} removeTask={removeTask} />
       <Form addTask={addTask}/>
     </>
   )
