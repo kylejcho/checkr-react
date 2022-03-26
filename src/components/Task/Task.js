@@ -1,6 +1,6 @@
 import React from "react";
-import CheckCircle from "../CheckCircle";
-import DeleteCircle from "../DeleteCircle";
+import CheckCircle from "./CheckCircle";
+import DeleteCircle from "./DeleteCircle";
 
 export default function Task({ task }) {
     return (
