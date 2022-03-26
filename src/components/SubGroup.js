@@ -45,6 +45,8 @@ function updateSubHeight() {
     subGroup.forEach(sub => {
         if (sub.children.length - 1 > 0) {
             sub.style.height = `${sub.children.length * 60}px `;
+        } else {
+            sub.style.height = '80px';
         }
     })
 }
