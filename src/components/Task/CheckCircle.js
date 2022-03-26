@@ -28,6 +28,7 @@ export default function CheckCircle({tasks, task, type, removeTask} ) {
             }
         }
 
+        task.current.style.transition = 'all 0.3s ease-in-out';
         setTimeout(() => {
             task.current.style.transform = `translate(0,${(subLength-1)*60}px)`
             let distance;
@@ -40,7 +41,12 @@ export default function CheckCircle({tasks, task, type, removeTask} ) {
                 subGroup.children[i].style.transform = `translateY(${distance}px)`;
                 distance += 60;
             }    
-        }, 0);
+        }, 300);
+
+        setTimeout(() => {
+            subGroup.append(task.current);
+            task.current.style.transition = 'all ease-in-out 0.2s';
+        }, 600);
 
 
     
