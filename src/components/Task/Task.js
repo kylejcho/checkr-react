@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useRef } from "react";
 import CheckCircle from "./CheckCircle";
 import DeleteCircle from "./DeleteCircle";
 
 export default function Task({ task }) {
+    const id = useRef();
+
+    function openTaskView() {
+        console.log(id.current.id)
+    }
     return (
-        <div className="taskContainer" id={task.id} style={{opacity: '1'}}>
+        <div className="taskContainer" id={task.id} style={{opacity: '1'}} onClick={openTaskView} ref={id}>
             <CheckCircle />
             <div className="nameContainer">{task.name}</div>
             <DeleteCircle />
