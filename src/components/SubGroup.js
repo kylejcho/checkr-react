@@ -1,6 +1,6 @@
 import React from "react";
 import { isToday, isTomorrow, isAfter, addDays} from "date-fns";
-import Task from "./Task";
+import Task from "./Task/Task";
 
 export default function SubGroup({ tasks, type }) {
     function checkType(dueDate) {

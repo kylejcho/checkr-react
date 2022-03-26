@@ -1,5 +1,5 @@
 import React from 'react'
-import SubGroup from './SubGroup';
+import SubGroup from '../SubGroup';
 
 export default function TasksContainer({ tasks }) {
     return (

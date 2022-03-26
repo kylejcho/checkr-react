@@ -3,7 +3,7 @@ import Content from "./components/Content";
 import Form from './components/Form/Form';
 import Navbar from "./components/Navbar";
 import { updateSubLayout } from "./components/SubGroup";
-import { updateTaskPosition } from "./components/Task";
+import { updateTaskPosition } from "./components/Task/Task";
 import React, { useState, useEffect} from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { addDays } from "date-fns";
