@@ -5,14 +5,15 @@ import DeleteCircle from "./DeleteCircle";
 export default function Task({ task }) {
     const id = useRef();
 
-    function openTaskView() {
+    function handleAddTaskClick() {
         console.log(id.current.id)
     }
+
     return (
-        <div className="taskContainer" id={task.id} style={{opacity: '1'}} onClick={openTaskView} ref={id}>
-            <CheckCircle />
+        <div className="taskContainer" id={task.id} style={{opacity:'1'}} onClick={handleAddTaskClick} ref={id}>
+            <CheckCircle task={id} />
             <div className="nameContainer">{task.name}</div>
-            <DeleteCircle />
+            <DeleteCircle task={id} />
             <div className="descriptionContainer">{task.description}</div>
         </div>
     )
