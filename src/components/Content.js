@@ -1,10 +1,10 @@
 import React from "react";
 import TasksContainer from "./Task/TasksContainer";
 
-export default function Content({ tasks }) {
+export default function Content({ tasks, removeTask}) {
     return (
         <div id="contentContainer">
-            <TasksContainer tasks={tasks}/>
+            <TasksContainer tasks={tasks} removeTask={removeTask}/>
         </div>
     )
 }

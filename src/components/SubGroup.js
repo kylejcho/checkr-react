@@ -2,7 +2,7 @@ import React from "react";
 import { isToday, isTomorrow, isAfter, addDays} from "date-fns";
 import Task from "./Task/Task";
 
-export default function SubGroup({ tasks, type }) {
+export default function SubGroup({ tasks, type, removeTask }) {
     function checkType(dueDate) {
         if (type === 'today') {
             return isToday(dueDate);
@@ -17,7 +17,7 @@ export default function SubGroup({ tasks, type }) {
             <p className="subGroupTitle">{type[0].toUpperCase() + type.slice(1)}</p>
                 {tasks.map(task=>{
                     if (checkType(task.dueDate)) {
-                        return <Task task={task} key={task.id}/>
+                        return <Task tasks={tasks} task={task} key={task.id} removeTask={removeTask}/>
                     } 
                     return null
                 })}

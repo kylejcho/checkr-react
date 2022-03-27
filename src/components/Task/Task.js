@@ -2,18 +2,18 @@ import React, { useRef } from "react";
 import CheckCircle from "./CheckCircle";
 import DeleteCircle from "./DeleteCircle";
 
-export default function Task({ task }) {
+export default function Task({ tasks, task, removeTask}) {
     const id = useRef();
 
     function handleAddTaskClick() {
-        console.log(id.current.id)
+        //console.log(id.current.id)
     }
 
     return (
         <div className="taskContainer" id={task.id} style={{opacity:'1'}} onClick={handleAddTaskClick} ref={id}>
-            <CheckCircle task={id} />
+            <CheckCircle tasks={tasks} task={id} />
             <div className="nameContainer">{task.name}</div>
-            <DeleteCircle task={id} />
+            <DeleteCircle tasks={tasks} task={id} removeTask={removeTask} />
             <div className="descriptionContainer">{task.description}</div>
         </div>
     )
