@@ -6,7 +6,7 @@ export default function Task({ tasks, task, removeTask, type }) {
     const id = useRef();
 
     function handleAddTaskClick() {
-        //console.log(id.current.id)
+        
     }
 
     return (

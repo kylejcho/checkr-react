@@ -1,7 +1,7 @@
 import React from "react";
 import { ReactComponent as DeleteCircleIcon } from "../../icons/deleteCircle.svg";
 
-export default function DeleteCircle( {tasks, task, removeTask} ) {
+export default function DeleteCircle({ task, removeTask }) {
     function handleClick() {
         deleteAnimation(task.current)
         removeTask(task.current.id)
