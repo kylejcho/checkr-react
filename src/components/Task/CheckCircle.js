@@ -1,9 +1,10 @@
 import React from "react";
 import { ReactComponent as CheckCircleEmptyIcon } from "../../icons/checkCircleEmpty.svg"
 
-export default function CheckCircle({ task, type }) {
+export default function CheckCircle({ task, type, checkTask}) {
     function handleClick() {
-        checkAnimation(task, type)
+        checkTask(task.current.id)
+        checkAnimation(task, type);
     }
 
     return (

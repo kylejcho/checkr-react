@@ -13,13 +13,13 @@ export default function App() {
 
   useEffect(()=>{
     setTasks([
-      {name: 'Something', description: 'Do this thing', dueDate: addDays(new Date(), 1), id: uuidv4()}, 
-      {name: 'Something', description: 'Do this thing', dueDate: addDays(new Date(), 1), id: uuidv4()}, 
-      {name: 'Thing', description: 'Do this', dueDate: new Date(), id: uuidv4()}, 
-      {name: 'Things', description: 'Do these', dueDate: new Date(), id: uuidv4()},
-      {name: 'Somethingy', description: 'Do this thingy', dueDate: addDays(new Date(), 1), id: uuidv4()}, 
-      {name: 'Thing', description: 'Do this', dueDate: addDays(new Date(), 2), id: uuidv4()}, 
-      {name: 'Thingies', description: 'Do these thingies', dueDate: addDays(new Date(), 2), id: uuidv4()}])
+      {name: 'Something', description: 'Do this thing', dueDate: addDays(new Date(), 1), complete: false, id: uuidv4()}, 
+      {name: 'Something', description: 'Do this thing', dueDate: addDays(new Date(), 1), complete: false,  id: uuidv4()}, 
+      {name: 'Thing', description: 'Do this', dueDate: new Date(), complete: false, id: uuidv4()}, 
+      {name: 'Things', description: 'Do these', dueDate: new Date(), complete: false, id: uuidv4()},
+      {name: 'Somethingy', description: 'Do this thingy', dueDate: addDays(new Date(), 1), complete: false, id: uuidv4()}, 
+      {name: 'Thing', description: 'Do this', dueDate: addDays(new Date(), 2), complete: false,  id: uuidv4()}, 
+      {name: 'Thingies', description: 'Do these thingies', dueDate: addDays(new Date(), 2), complete: false, id: uuidv4()}])
   },[])
   
   useEffect(()=>{
@@ -31,13 +31,25 @@ export default function App() {
     setTasks(prevTasks => [...prevTasks, task])
   }
 
+  function checkTask(task) {
+    let prevTasks = [...tasks];
+    prevTasks.forEach(item => {
+      if (item.id === task) {
+        item.complete = true;
+        setTasks([...prevTasks]);
+        console.log(tasks)
+        return 
+      }
+    })
+  } 
+
   function removeTask(task) {
     let prevTasks = [...tasks];
     prevTasks.forEach(item => {
       if (item.id === task) {
         const index = prevTasks.indexOf(item)
         prevTasks.splice(index, 1);
-        setTasks([...prevTasks])
+        setTasks([...prevTasks]);
         return 
       }
     })
@@ -47,7 +59,7 @@ export default function App() {
     <>
       <Navbar />
       <Sidebar />
-      <Content tasks={tasks} removeTask={removeTask} />
+      <Content tasks={tasks} checkTask={checkTask} removeTask={removeTask} />
       <Form addTask={addTask}/>
     </>
   )

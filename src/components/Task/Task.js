@@ -2,16 +2,16 @@ import React, { useRef } from "react";
 import CheckCircle from "./CheckCircle";
 import DeleteCircle from "./DeleteCircle";
 
-export default function Task({ tasks, task, removeTask, type }) {
+export default function Task({ tasks, task, checkTask, removeTask, type }) {
     const id = useRef();
 
     function handleAddTaskClick() {
-        
+
     }
 
     return (
         <div className="taskContainer" id={task.id}  onClick={handleAddTaskClick} ref={id}>
-            <CheckCircle tasks={tasks} task={id} type={type} removeTask={removeTask}/>
+            <CheckCircle tasks={tasks} task={id} type={type} checkTask={checkTask} />
             <div className="nameContainer">{task.name}</div>
             <DeleteCircle tasks={tasks} task={id} removeTask={removeTask} />
             <div className="descriptionContainer">{task.description}</div>
@@ -30,4 +30,8 @@ export function updateTaskPosition() {
             }
         }
     })
+}
+
+export function updateTaskCompletion() {
+    
 }
