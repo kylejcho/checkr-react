@@ -11,7 +11,7 @@ import { addDays } from "date-fns";
 export default function App() {
   const [tasks, setTasks] = useState([])
 
-  useEffect(()=>{ 
+  useEffect(()=>{
     setTasks([
       {name: 'Something', description: 'Do this thing', dueDate: addDays(new Date(), 1), id: uuidv4()}, 
       {name: 'Something', description: 'Do this thing', dueDate: addDays(new Date(), 1), id: uuidv4()}, 
@@ -23,7 +23,7 @@ export default function App() {
   },[])
   
   useEffect(()=>{
-    updateSubLayout(tasks)
+    updateSubLayout(tasks);
     updateTaskPosition();
   }, [tasks])
 
@@ -33,7 +33,7 @@ export default function App() {
 
   function removeTask(task) {
     let prevTasks = [...tasks];
-    prevTasks.forEach(item=>{
+    prevTasks.forEach(item => {
       if (item.id === task) {
         const index = prevTasks.indexOf(item)
         prevTasks.splice(index, 1);

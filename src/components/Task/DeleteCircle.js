@@ -3,7 +3,6 @@ import { ReactComponent as DeleteCircleIcon } from "../../icons/deleteCircle.svg
 
 export default function DeleteCircle({ task, removeTask }) {
     function handleClick() {
-        deleteAnimation(task.current)
         removeTask(task.current.id)
     }
     
@@ -12,8 +11,4 @@ export default function DeleteCircle({ task, removeTask }) {
             <DeleteCircleIcon />
         </div>
     )
-}
-
-function deleteAnimation(task) {
-    task.style.opacity = "0"
 }
