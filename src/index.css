@@ -568,7 +568,7 @@ nav {
     transition: all ease-in-out 0.2s;
 }
 
-.checkContainer.completed {
+.taskContainer.completed .checkContainer {
     filter: var(--secondary-svg-color);
 }
 
@@ -602,7 +602,7 @@ nav {
     transition: 0.5s ease;
 }
 
-.nameContainer.completed {
+.taskContainer.completed .nameContainer {
     background-size: 100% 100%;
 }
 
@@ -617,7 +617,7 @@ nav {
     transition: opacity ease-in-out 0.2s;
 }
 
-.deleteContainer.completed {
+.taskContainer.completed .deleteContainer {
     opacity: 1;
 }
 
