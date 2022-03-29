@@ -55,5 +55,5 @@ function checkAnimation(task, type) {
 
 export function updateTaskCompletion(task) {
     console.log(task.current)
-    task.current.classList.add('completed')
+    task.current.classList.toggle('completed')
 }

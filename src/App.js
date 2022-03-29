@@ -36,7 +36,7 @@ export default function App() {
     let prevTasks = [...tasks];
     prevTasks.forEach(item => {
       if (item.id === task.current.id) {
-        item.complete = true;
+        item.complete = !item.complete;
         setTasks([...prevTasks]);
         console.log(tasks);
         updateTaskCompletion(task);
