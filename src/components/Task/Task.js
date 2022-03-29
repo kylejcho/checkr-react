@@ -32,6 +32,3 @@ export function updateTaskPosition() {
     })
 }
 
-export function updateTaskCompletion() {
-    
-}
