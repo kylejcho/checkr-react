@@ -3,7 +3,6 @@ import Content from "./components/Content";
 import Form from './components/Form/Form';
 import Navbar from "./components/Navbar";
 import { updateTaskPosition } from "./components/Task/Task";
-import { updateTaskCompletion } from "./components/Task/CheckCircle";
 import { updateSubLayout } from "./components/SubGroup";
 import React, { useState, useEffect} from "react";
 import { v4 as uuidv4 } from 'uuid';
@@ -37,8 +36,6 @@ export default function App() {
     const checkedTask = prevTasks.find(item => item.id === task.current.id);
     checkedTask.complete = !checkedTask.complete;
     setTasks([...prevTasks]);
-    console.log(tasks);
-    updateTaskCompletion(task);
   } 
 
   function removeTask(task) {

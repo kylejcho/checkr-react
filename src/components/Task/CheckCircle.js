@@ -5,6 +5,7 @@ export default function CheckCircle({ task, type, checkTask}) {
     function handleClick() {
         checkTask(task)
         checkAnimation(task, type);
+        task.current.classList.toggle('completed')
     }
 
     return (
@@ -51,9 +52,4 @@ function checkAnimation(task, type) {
         subGroup.append(task.current);
         task.current.style.transition = 'all ease-in-out 0.2s';
     }, 600);
-}
-
-export function updateTaskCompletion(task) {
-    console.log(task.current)
-    task.current.classList.toggle('completed')
 }
