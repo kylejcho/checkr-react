@@ -58,28 +58,4 @@ function updateSubHeight() {
  
     tomorrow.style.transform = `translateY(${todayLength + 26}px)`;
     upcoming.style.transform = `translateY(${todayLength + tomorrowLength + 52}px)`;
-
-
-
-    
-    
-
-    /*
-    const subGroup = document.querySelectorAll('.subGroup');
-
-    subGroup.forEach(sub => {
-        let position;
-        if (sub.children.length - 1 > 0) {
-           position = `${sub.children.length * 60}px `;
-        } 
-        else {
-            sub.style.height = '80px';
-        }
-       if (sub.id === 'tomorrow') {
-           sub.style.transform = 'translateY(200px)';
-       } else if (sub.id === 'upcoming') {
-        sub.style.transform = 'translateY(600px)';
-       }
-    })
-    */
 }
