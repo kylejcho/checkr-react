@@ -54,8 +54,6 @@ function updateSubHeight() {
         tomorrowLength = 26;
     }
 
-
- 
     tomorrow.style.transform = `translateY(${todayLength + 26}px)`;
     upcoming.style.transform = `translateY(${todayLength + tomorrowLength + 52}px)`;
 }

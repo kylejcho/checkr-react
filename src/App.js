@@ -34,15 +34,11 @@ export default function App() {
 
   function checkTask(task) {
     let prevTasks = [...tasks];
-    prevTasks.forEach(item => {
-      if (item.id === task.current.id) {
-        item.complete = !item.complete;
-        setTasks([...prevTasks]);
-        console.log(tasks);
-        updateTaskCompletion(task);
-        return 
-      }
-    })
+    const checkedTask = prevTasks.find(item => item.id === task.current.id);
+    checkedTask.complete = !checkedTask.complete;
+    setTasks([...prevTasks]);
+    console.log(tasks);
+    updateTaskCompletion(task);
   } 
 
   function removeTask(task) {
