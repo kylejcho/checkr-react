@@ -471,10 +471,6 @@ nav {
     transition: all 0.2s ease-in-out;
 }
 
-.subGroup.empty {
-    height: 60px;
-}
-
 .subGroup.empty .subGroupTitle::after {
     font-weight: 500;
     content: '-No tasks-';

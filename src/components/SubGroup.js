@@ -41,12 +41,45 @@ function checkEmptyGroups(tasks) {
 }
 
 function updateSubHeight() {
+    const today = document.querySelector('#today');
+    const tomorrow  = document.querySelector('#tomorrow');
+    const upcoming  = document.querySelector('#upcoming');
+    let todayLength = (today.children.length - 1) * 60;
+    let tomorrowLength = (tomorrow.children.length - 1) * 60;
+
+    if (todayLength === 0) {
+       todayLength = 26;
+    }
+    if (tomorrowLength === 0) {
+        tomorrowLength = 26;
+    }
+
+
+ 
+    tomorrow.style.transform = `translateY(${todayLength + 26}px)`;
+    upcoming.style.transform = `translateY(${todayLength + tomorrowLength + 52}px)`;
+
+
+
+    
+    
+
+    /*
     const subGroup = document.querySelectorAll('.subGroup');
+
     subGroup.forEach(sub => {
+        let position;
         if (sub.children.length - 1 > 0) {
-            sub.style.height = `${sub.children.length * 60}px `;
-        } else {
+           position = `${sub.children.length * 60}px `;
+        } 
+        else {
             sub.style.height = '80px';
         }
+       if (sub.id === 'tomorrow') {
+           sub.style.transform = 'translateY(200px)';
+       } else if (sub.id === 'upcoming') {
+        sub.style.transform = 'translateY(600px)';
+       }
     })
+    */
 }
