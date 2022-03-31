@@ -33,21 +33,16 @@ export default function App() {
 
   function checkTask(task) {
     let prevTasks = [...tasks];
-    const checkedTask = prevTasks.find(item => item.id === task.current.id);
+    const checkedTask = prevTasks.find(item => item.id === task);
     checkedTask.complete = !checkedTask.complete;
     setTasks([...prevTasks]);
   } 
 
   function removeTask(task) {
     let prevTasks = [...tasks];
-    prevTasks.forEach(item => {
-      if (item.id === task) {
-        const index = prevTasks.indexOf(item)
-        prevTasks.splice(index, 1);
-        setTasks([...prevTasks]);
-        return 
-      }
-    })
+    const removedTask = prevTasks.findIndex(item => item.id === task);
+    prevTasks.splice(removedTask, 1);
+    setTasks([...prevTasks]);
   }
 
   return (
