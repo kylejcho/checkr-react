@@ -36,12 +36,12 @@ export default function App() {
     const checkedTask = prevTasks.find(item => item.id === task);
     checkedTask.complete = !checkedTask.complete;
     setTasks([...prevTasks]);
-  } 
+  }
 
   function removeTask(task) {
     let prevTasks = [...tasks];
-    const removedTask = prevTasks.findIndex(item => item.id === task);
-    prevTasks.splice(removedTask, 1);
+    const taskIndex = prevTasks.findIndex(item => item.id === task);
+    prevTasks.splice(taskIndex, 1);
     setTasks([...prevTasks]);
   }
 
@@ -50,7 +50,7 @@ export default function App() {
       <Navbar />
       <Sidebar />
       <Content tasks={tasks} checkTask={checkTask} removeTask={removeTask} />
-      <Form addTask={addTask}/>
+      <Form addTask={addTask} />
     </>
   )
 }
