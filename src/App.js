@@ -15,7 +15,7 @@ export default function App() {
     setTasks([
       {name: 'Something', description: 'Do this thing', dueDate: addDays(new Date(), 1), complete: false, id: uuidv4()}, 
       {name: 'Something', description: 'Do this thing', dueDate: addDays(new Date(), 1), complete: false,  id: uuidv4()}, 
-      {name: 'Thing', description: 'Do this', dueDate: new Date(), complete: false, id: uuidv4()}, 
+      {name: 'Thing', description: 'Do this', dueDate: new Date(), complete: true, id: uuidv4()}, 
       {name: 'Things', description: 'Do these', dueDate: new Date(), complete: false, id: uuidv4()},
       {name: 'Somethingy', description: 'Do this thingy', dueDate: addDays(new Date(), 1), complete: false, id: uuidv4()}, 
       {name: 'Thing', description: 'Do this', dueDate: addDays(new Date(), 2), complete: false,  id: uuidv4()}, 

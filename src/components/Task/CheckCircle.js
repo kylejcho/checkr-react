@@ -1,16 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ReactComponent as CheckCircleEmptyIcon } from "../../icons/checkCircleEmpty.svg"
+import { ReactComponent as CheckCircleIcon } from "../../icons/checkmark-circle.svg"
 
-export default function CheckCircle({ task, type, checkTask }) {
+export default function CheckCircle({ task, taskContainer, type, checkTask }) {
     function handleClick() {
-        checkTask(task.current.id)
-        checkAnimation(task, type);
-        task.current.classList.toggle('completed')
+        checkTask(taskContainer.current.id)
+        checkAnimation(taskContainer, type);
+        taskContainer.current.classList.toggle('completed');
+        setComplete(!complete)
+        console.log(task)
     }
+
+    const [complete, setComplete] = useState();
+
+    useEffect (()=>{
+        if (task.complete) {
+            setComplete(true)
+            taskContainer.current.classList.toggle('completed');
+        } else {
+            setComplete(false)
+        }
+    },[])
 
     return (
         <div className="checkContainer" onClick={handleClick}>
-            <CheckCircleEmptyIcon />
+            { complete ? <CheckCircleIcon /> : <CheckCircleEmptyIcon />}
         </div>
     )
 }

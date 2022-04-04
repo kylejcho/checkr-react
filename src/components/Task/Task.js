@@ -3,17 +3,17 @@ import CheckCircle from "./CheckCircle";
 import DeleteCircle from "./DeleteCircle";
 
 export default function Task({ tasks, task, checkTask, removeTask, type }) {
-    const id = useRef();
+    const taskContainer = useRef();
 
     function handleAddTaskClick() {
 
     }
 
     return (
-        <div className="taskContainer" id={task.id}  onClick={handleAddTaskClick} ref={id}>
-            <CheckCircle tasks={tasks} task={id} type={type} checkTask={checkTask} />
+        <div className="taskContainer" id={task.id}  onClick={handleAddTaskClick} ref={taskContainer}>
+            <CheckCircle task={task} taskContainer={taskContainer} type={type} checkTask={checkTask} />
             <div className="nameContainer">{task.name}</div>
-            <DeleteCircle tasks={tasks} task={id} removeTask={removeTask} />
+            <DeleteCircle task={taskContainer} removeTask={removeTask} />
             <div className="descriptionContainer">{task.description}</div>
         </div>
     )
