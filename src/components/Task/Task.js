@@ -28,7 +28,7 @@ export function updateTaskPosition() {
                 subGroup.children[i].children[0].style.pointerEvents = 'none';
                 subGroup.children[i].style.transform = `translateY(${position}px)`;
                 position += 60;
-                setTimeout(() => subGroup.children[i].children[0].style.pointerEvents = 'auto', 500);
+                setTimeout(()=> subGroup.children[i].children[0].style.pointerEvents = 'auto', 500);
             }
         }
     })
