@@ -42,7 +42,6 @@ function checkAnimation(taskContainer, type) {
     }
     
     if (taskContainer.current.className.includes('completed')) {
-        console.log(taskContainer.current.className)
         taskContainer.current.style.transition = 'all 0.3s ease-in-out';
         setTimeout(() => {
             taskContainer.current.style.transform = `translate(0,${(subLength-1)*60}px)`
@@ -63,12 +62,10 @@ function checkAnimation(taskContainer, type) {
             taskContainer.current.style.transition = 'all ease-in-out 0.2s';
         }, 600);
     } else {
-        console.log('hi')
         taskContainer.current.style.transition = 'all 0.3s ease-in-out';
         setTimeout(()=> {
             taskContainer.current.style.transform = `translate(0,0px)`
             let distance2 = 60;
-            console.log(startingPoint)
             for (let i = 1; i < startingPoint; i++) {
                 subGroup.children[i].style.transform = `translateY(${distance2}px)`;
                 distance2 += 60;

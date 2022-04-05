@@ -13,11 +13,11 @@ export default function App() {
 
   useEffect(()=>{
     setTasks([
-      {name: 'Something', description: 'Do this thing', dueDate: addDays(new Date(), 1), complete: false, id: uuidv4()}, 
-      {name: 'Something', description: 'Do this thing', dueDate: addDays(new Date(), 1), complete: false,  id: uuidv4()}, 
-      {name: 'Thing', description: 'Do this', dueDate: new Date(), complete: true, id: uuidv4()}, 
-      {name: 'Things', description: 'Do these', dueDate: new Date(), complete: false, id: uuidv4()},
-      {name: 'Somethingy', description: 'Do this thingy', dueDate: addDays(new Date(), 1), complete: false, id: uuidv4()}, 
+      {name: 'Read Animal Farm', description: 'Read two chapter', dueDate: addDays(new Date(), 1), complete: false, id: uuidv4()}, 
+      {name: 'Learn sign language', description: 'Practice english alphabet', dueDate: addDays(new Date(), 1), complete: false,  id: uuidv4()}, 
+      {name: 'Baking class', description: 'Bring homemade pie', dueDate: new Date(), complete: true, id: uuidv4()}, 
+      {name: 'Coffee with friend', description: 'Starbucks', dueDate: new Date(), complete: false, id: uuidv4()},
+      {name: 'Exercise', description: 'Workout out for 45 minutes', dueDate: new Date(), complete: false, id: uuidv4()},
       {name: 'Thing', description: 'Do this', dueDate: addDays(new Date(), 2), complete: false,  id: uuidv4()}, 
       {name: 'Thingies', description: 'Do these thingies', dueDate: addDays(new Date(), 2), complete: false, id: uuidv4()}])
   },[])
@@ -28,7 +28,7 @@ export default function App() {
   }, [tasks])
 
   function addTask(task) {
-    setTasks(prevTasks => [...prevTasks, task])
+    setTasks(prevTasks => [task, ...prevTasks])
   }
 
   function checkTask(task) {

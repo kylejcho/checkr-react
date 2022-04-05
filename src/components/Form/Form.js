@@ -14,6 +14,7 @@ export default function Form({addTask}) {
             name: nameRef.current.value, 
             description: descRef.current.value, 
             dueDate: new Date(), 
+            complete: false,
             id: uuidv4()
         };
         addTask(task);
