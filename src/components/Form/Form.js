@@ -1,8 +1,36 @@
 import React, { useRef } from "react";
 import InputCalendarOptions from "./InputCalendarOptions";
+import { motion } from "framer-motion";
 import { v4 as uuidv4 } from 'uuid';
 
-export default function Form({addTask}) {
+const dropIn = {
+    initial: {
+      x: "12vw",
+      y: "-55vh",
+      opacity: 0,
+      scale: 0
+    },
+    animate: {
+      x: "0",
+      y: "0",
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.4
+      },
+    },
+    exit: {
+      x: "12vw",
+      y: "-55vh",
+      opacity: 0,
+      scale: 0,
+      transition: {
+        duration: 0.3
+      },
+    }
+  };
+
+export default function Form({ handleClose, addTask}) {
     const nameRef = useRef();
     const descRef = useRef();
     const formContRef = useRef();
@@ -18,28 +46,18 @@ export default function Form({addTask}) {
             id: uuidv4()
         };
         addTask(task);
-        closeForm();
+        handleClose()
     }
-
-    function closeForm() {
-        nameRef.current.value = null;
-        descRef.current.value = null;
-        formContRef.current.classList.add('hidden');
-        form.current.classList.add('hidden');
-    }
-
-    const handleOutsideClick = (e) => {
-        const offset = form.current.getBoundingClientRect();
-        const x = e.clientX;
-        const y = e.clientY;
-
-        if (x>offset.left && x<offset.right && y<offset.bottom && y>offset.top) return
-        closeForm()
-    }
-
+    
     return (
-        <div id="taskFormContainer" className="hidden" ref={formContRef} onClick={(e)=>handleOutsideClick(e)}>
-            <div id="taskForm" className="hidden" ref={form}>
+        <div id="taskFormContainer" ref={formContRef} onClick={handleClose}>
+            <motion.div id="taskForm" ref={form}
+                onClick={(e) => e.stopPropagation()}  
+                variants={dropIn}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+            >
                 <input ref={nameRef} id="inputTaskName" type="text" placeholder="I want to..." required=""></input>
                 <textarea ref={descRef} id="inputTaskDescription" name="description" rows="2" placeholder="Description..."></textarea>
                 <div id="inputDueDateContainer">
@@ -64,7 +82,7 @@ export default function Form({addTask}) {
                     </div>
                 </div>
                 <button id="taskFormAddButton" onClick={handleAddTaskClick}><ion-icon name="arrow-forward-circle-outline" role="img" className="md hydrated" aria-label="arrow forward circle outline"></ion-icon>Add task</button>
-            </div>
+            </motion.div>
         </div>
     )
 }

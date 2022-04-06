@@ -49,10 +49,9 @@ export default function App() {
 
   return (
     <>
-      <Navbar />
+      <Navbar addTask={addTask} />
       <Sidebar />
       <Content tasks={tasks} checkTask={checkTask} removeTask={removeTask} />
-      <Form addTask={addTask} />
     </>
   )
 }
