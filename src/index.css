@@ -519,8 +519,8 @@ nav {
     padding-left: 12px;
     padding-right: 5px;
     transition: all ease-in-out 0.2s;
-    opacity: 1;
 }
+
 
 .taskContainer::after {
     z-index: -1;

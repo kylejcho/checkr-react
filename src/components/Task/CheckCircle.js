@@ -59,6 +59,7 @@ function checkAnimation(taskContainer, type) {
     
         setTimeout(() => {
             subGroup.append(taskContainer.current);
+            taskContainer.current.style.animation = 'none';
             taskContainer.current.style.transition = 'all ease-in-out 0.2s';
         }, 600);
     } else {
