@@ -26,7 +26,7 @@ export default function App() {
     updateSubLayout(tasks);
     updateTaskPosition();
     console.log(tasks)
-  }, [tasks])
+  },[tasks])
 
   function addTask(task) {
     setTasks(prevTasks => [task, ...prevTasks])

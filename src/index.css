@@ -223,17 +223,18 @@ nav {
 
 #addButton {
     cursor: pointer;
-    font-size: 1.5rem;
-    border-radius: 5px;
     width: 30px;
     height: 30px;
-    color: var(--secondary-text-color);
+    stroke: var(--secondary-text-color);
     transition: all ease-in-out 0.2s;
 }
 
+
+
 #addButton:hover {
-    color: var(--primary-text-color);
+    stroke: var(--primary-blue);
 }
+
 
 #navSettingsContainer {
     display: flex;
@@ -519,13 +520,9 @@ nav {
     padding-left: 12px;
     padding-right: 5px;
     transition: all ease-in-out 0.2s;
-    animation: appear ease-in-out 0.4s forwards;
+ 
 }
 
-@keyframes appear {
-    from { opacity: 0 }
-    to { opacity: 1 }
-}
 
 .taskContainer::after {
     z-index: -1;
