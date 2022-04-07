@@ -22,7 +22,7 @@ export default function Navbar({ addTask }) {
                 <motion.div 
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.9 }}
-                    onClick={() => formOpen ? setFormOpen(false):setFormOpen(true)}
+                    onClick={() => !formOpen && setFormOpen(true)}
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" id="addButton" viewBox="0 0 512 512"><title>ionicons-v5-a</title>
                         <line x1="400" y1="256" x2="112" y2="256" style={{fill:'none',strokeLinecap:'round',strokeLinejoin:'round',strokeWidth:'32px'}}/>
@@ -42,7 +42,7 @@ export default function Navbar({ addTask }) {
                 initial={false}
                 exitBeforeEnter={true}
                 onExitComplete={() => null}
-                >
+            >
                 {formOpen && <Form addTask={addTask} handleClose={()=>setFormOpen(false)}/>}
             </AnimatePresence>
         </nav>
