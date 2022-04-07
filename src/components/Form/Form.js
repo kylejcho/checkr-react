@@ -33,8 +33,6 @@ const dropIn = {
 export default function Form({ handleClose, addTask}) {
     const nameRef = useRef();
     const descRef = useRef();
-    const formContRef = useRef();
-    const form = useRef();
 
     function handleAddTaskClick() {
         if (nameRef.current.value === '') return
@@ -50,8 +48,8 @@ export default function Form({ handleClose, addTask}) {
     }
     
     return (
-        <div id="taskFormContainer" ref={formContRef} onClick={handleClose}>
-            <motion.div id="taskForm" ref={form}
+        <div id="taskFormContainer" onClick={handleClose}>
+            <motion.div id="taskForm" 
                 onClick={(e) => e.stopPropagation()}  
                 variants={dropIn}
                 initial="initial"

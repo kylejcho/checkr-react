@@ -4,12 +4,7 @@ import Form from "./Form/Form";
 
 export default function Navbar({ addTask }) {
     const [formOpen, setFormOpen] = useState(false);
-
-    function handleAddFormClick() {
-        document.querySelector('#taskFormContainer').classList.remove('hidden')
-        document.querySelector('#taskForm').classList.remove('hidden')
-    }   
-
+    
     return (
         <nav id = "navbar">
             <div id="pageTitle">
@@ -27,7 +22,7 @@ export default function Navbar({ addTask }) {
                 <motion.div 
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.9 }}
-                    onClick={() => formOpen ? setFormOpen(false): setFormOpen(true)}
+                    onClick={() => formOpen ? setFormOpen(false):setFormOpen(true)}
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" id="addButton" viewBox="0 0 512 512"><title>ionicons-v5-a</title>
                         <line x1="400" y1="256" x2="112" y2="256" style={{fill:'none',strokeLinecap:'round',strokeLinejoin:'round',strokeWidth:'32px'}}/>
@@ -48,7 +43,7 @@ export default function Navbar({ addTask }) {
                 exitBeforeEnter={true}
                 onExitComplete={() => null}
                 >
-                {formOpen && <Form formOpen={formOpen} addTask={addTask} handleClose={()=>setFormOpen(false)}/>}
+                {formOpen && <Form addTask={addTask} handleClose={()=>setFormOpen(false)}/>}
             </AnimatePresence>
         </nav>
     )
