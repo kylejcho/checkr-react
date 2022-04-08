@@ -468,7 +468,6 @@ nav {
 
 .subGroup {
     margin-top: clamp(5px,1vw,20px);
-    transition: all 0.2s ease-in-out;
     height: max-content;
 }
 
@@ -492,6 +491,7 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 29px;
     width: max-content;
     padding: 0px 12px;
     font-weight: 700;
@@ -523,6 +523,17 @@ nav {
     padding-right: 5px;
     /*transition: all ease-in-out 0.2s;*/
 }
+
+ul,
+li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+}
+
 
 /*
 .taskContainer::after {
@@ -598,7 +609,7 @@ nav {
     );
     background-size: 0 100%;
     background-repeat: no-repeat;
-    transition: 0.5s ease;
+    transition: 0.4s ease;
 }
 
 .taskContainer.completed .nameContainer {

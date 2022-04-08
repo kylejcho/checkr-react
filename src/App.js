@@ -19,12 +19,11 @@ export default function App() {
       {name: 'Learn sign language', description: 'Practice english alphabet', dueDate: addDays(new Date(), 1), complete: false,  id: uuidv4()}, 
       {name: 'Thing', description: 'Do this', dueDate: addDays(new Date(), 2), complete: false,  id: uuidv4()}, 
       {name: 'Thingies', description: 'Do these thingies', dueDate: addDays(new Date(), 2), complete: false, id: uuidv4()},
-      {name: 'Baking class', description: 'Bring homemade pie', dueDate: new Date(), complete: false, id: uuidv4()}])
+      {name: 'Baking class', description: 'Bring homemade pie', dueDate: new Date(), complete: true, id: uuidv4()}])
   },[])
   
   useEffect(()=>{
     updateSubLayout(tasks);
-    updateTaskPosition();
     console.log(tasks)
   },[tasks])
 
@@ -43,11 +42,8 @@ export default function App() {
     } else {
       prevTasks.unshift(prevTasks.splice(index,1)[0])
     }
-    
-    
-    setTimeout(() => {
-      setTasks([...prevTasks]);
-    }, 300); 
+
+    setTasks([...prevTasks]);
   }
 
   function removeTask(task) {
