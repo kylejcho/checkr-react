@@ -2,7 +2,7 @@ import React from 'react'
 import SubGroup from '../SubGroup';
 import { motion } from 'framer-motion';
 
-export default function TasksContainer({ tasks, checkTask, removeTask }) {
+export default function TasksContainer({ tasks, checkTask, removeTask, reorderTasks}) {
     const slideUp = {
         initial: {
             opacity: 0,
@@ -33,9 +33,9 @@ export default function TasksContainer({ tasks, checkTask, removeTask }) {
             exit="exit"
         >
             <div id="titleContainer" className="tasksTitle">Good Afternoon, User</div>
-            <SubGroup tasks={tasks} checkTask={checkTask} removeTask={removeTask} type="today" />
-            <SubGroup tasks={tasks} checkTask={checkTask} removeTask={removeTask} type="tomorrow" />
-            <SubGroup tasks={tasks} checkTask={checkTask} removeTask={removeTask} type="upcoming" />
+            <SubGroup tasks={tasks} checkTask={checkTask} removeTask={removeTask} reorderTasks={reorderTasks} type="today" />
+            <SubGroup tasks={tasks} checkTask={checkTask} removeTask={removeTask} reorderTasks={reorderTasks} type="tomorrow" />
+            <SubGroup tasks={tasks} checkTask={checkTask} removeTask={removeTask} reorderTasks={reorderTasks} type="upcoming" />
         </motion.div> 
     )
 }

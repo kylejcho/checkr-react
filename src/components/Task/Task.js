@@ -3,7 +3,7 @@ import CheckCircle from "./CheckCircle";
 import DeleteCircle from "./DeleteCircle";
 import { motion, Reorder } from "framer-motion";
 
-export default function Task({ item, task, checkTask, removeTask, type }) {
+export default function Task({ task, checkTask, removeTask, type }) {
     const taskContainer = useRef();
 
     return (

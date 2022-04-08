@@ -3,7 +3,7 @@ import { isToday, isTomorrow, isAfter, addDays} from "date-fns";
 import Task from "./Task/Task";
 import { motion, Reorder} from "framer-motion";
 
-export default function SubGroup({ tasks, type, checkTask, removeTask }) {
+export default function SubGroup({ tasks, type, checkTask, removeTask, reorderTasks}) {
     function checkType(dueDate) {
         if (type === 'today') {
             return isToday(dueDate);
@@ -14,19 +14,22 @@ export default function SubGroup({ tasks, type, checkTask, removeTask }) {
         }
     }
 
+    /*
     const [items, setItems] = useState([])
     useEffect(() => {
       setItems([...tasks])
     }, [tasks])
     console.log(items)
+*/
+
 
     return (
         <motion.div layout className="subGroup" id={type}>
             <motion.p layout className="subGroupTitle">{type[0].toUpperCase() + type.slice(1)}</motion.p>
-            <Reorder.Group values={items} onReorder={setItems}>
-            {items.map(item=>{
-                if (checkType(item.dueDate)) {
-                    return <Task tasks={tasks} task={item} key={item.id} checkTask={checkTask} removeTask={removeTask} type={type}/>
+            <Reorder.Group values={tasks} onReorder={reorderTasks}>
+            {tasks.map(task=>{
+                if (checkType(task.dueDate)) {
+                    return <Task tasks={tasks} task={task} key={task.id} checkTask={checkTask} removeTask={removeTask} type={type}/>
                 } 
                 return null
             })}
