@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import CheckCircle from "./CheckCircle";
 import DeleteCircle from "./DeleteCircle";
+import { motion } from "framer-motion";
 
 export default function Task({ tasks, task, checkTask, removeTask, type }) {
     const taskContainer = useRef();
@@ -10,16 +11,17 @@ export default function Task({ tasks, task, checkTask, removeTask, type }) {
     }
 
     return (
-        <div className="taskContainer" id={task.id}  onClick={handleAddTaskClick} ref={taskContainer}>
+        <motion.div layout className="taskContainer" id={task.id}  onClick={handleAddTaskClick} ref={taskContainer}>
             <CheckCircle task={task} taskContainer={taskContainer} type={type} checkTask={checkTask} />
             <div className="nameContainer">{task.name}</div>
             <DeleteCircle taskContainer={taskContainer} removeTask={removeTask} />
             <div className="descriptionContainer">{task.description}</div>
-        </div>
+        </motion.div>
     )
 }
 
 export function updateTaskPosition() {
+    /*
     const subGroups = document.querySelectorAll('.subGroup');
     subGroups.forEach(subGroup=>{
         if (subGroup.children.length > 1) {
@@ -32,5 +34,6 @@ export function updateTaskPosition() {
             }
         }
     })
+    */
 }
 

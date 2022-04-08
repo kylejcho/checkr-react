@@ -19,7 +19,7 @@ export default function App() {
       {name: 'Learn sign language', description: 'Practice english alphabet', dueDate: addDays(new Date(), 1), complete: false,  id: uuidv4()}, 
       {name: 'Thing', description: 'Do this', dueDate: addDays(new Date(), 2), complete: false,  id: uuidv4()}, 
       {name: 'Thingies', description: 'Do these thingies', dueDate: addDays(new Date(), 2), complete: false, id: uuidv4()},
-      {name: 'Baking class', description: 'Bring homemade pie', dueDate: new Date(), complete: true, id: uuidv4()}])
+      {name: 'Baking class', description: 'Bring homemade pie', dueDate: new Date(), complete: false, id: uuidv4()}])
   },[])
   
   useEffect(()=>{
@@ -37,7 +37,17 @@ export default function App() {
     let prevTasks = [...tasks];
     const checkedTask = prevTasks.find(item => item.id === task);
     checkedTask.complete = !checkedTask.complete;
-    setTasks([...prevTasks]);
+    const index = prevTasks.indexOf(checkedTask);
+    if (checkedTask.complete) {
+      prevTasks.push(prevTasks.splice(index,1)[0])
+    } else {
+      prevTasks.unshift(prevTasks.splice(index,1)[0])
+    }
+    
+    
+    setTimeout(() => {
+      setTasks([...prevTasks]);
+    }, 300); 
   }
 
   function removeTask(task) {
