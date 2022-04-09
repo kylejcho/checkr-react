@@ -24,7 +24,7 @@ export default function SubGroup({ tasks, type, checkTask, removeTask, reorderTa
 
 
     return (
-        <motion.div layout className="subGroup" id={type}>
+        <motion.div layout transition={{delay:0.1}} className="subGroup" id={type}>
             <motion.p layout className="subGroupTitle">{type[0].toUpperCase() + type.slice(1)}</motion.p>
             <Reorder.Group values={tasks} onReorder={reorderTasks}>
             {tasks.map(task=>{

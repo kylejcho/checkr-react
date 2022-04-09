@@ -510,18 +510,13 @@ nav {
 /* TASK CONTAINER */
 
 .taskContainer {
-    /*
-    position: absolute;
-    */
     cursor: pointer;
     display: grid;
     height: 60px;
-    width: max(90%, 250px);
-    grid-template: 30px 30px/25px auto 25px;
+    width: max(100%, 250px);
+    grid-template: 30px 30px/40px auto 40px;
     border-radius: 5px;
-    padding-left: 12px;
-    padding-right: 5px;
-    /*transition: all ease-in-out 0.2s;*/
+    transition: box-shadow ease-in-out 0.2s;
 }
 
 ul,
@@ -529,9 +524,12 @@ li {
   list-style: none;
   padding: 0;
   margin: 0;
-  font-family: "Poppins", sans-serif;
-  font-weight: 500;
-  font-size: 24px;
+}
+ul {
+    width: max(90%, 250px);
+}
+li {
+
 }
 
 
@@ -575,6 +573,7 @@ li {
 .checkContainer {
     display: flex;
     align-items: center;
+    justify-content: center;
     transition: all ease-in-out 0.2s;
 }
 
@@ -589,7 +588,6 @@ li {
 .checkContainer svg:hover {
     filter: var(--secondary-svg-color);
 }
-
 
 .nameContainer {
     pointer-events: none;
@@ -621,10 +619,9 @@ li {
     opacity: 0;
     display: flex;
     align-items: center;
-    right: 5px;
-    top: 4px;
+    justify-content: center;
     filter: var(--secondary-svg-color);
-    transition: opacity ease-in-out 0.2s;
+    transition: opacity ease-in-out 0.3s;
 }
 
 .taskContainer.completed .deleteContainer {
@@ -633,6 +630,7 @@ li {
 
 .descriptionContainer {
     pointer-events: none;
+
     grid-column-start: 2;
     width: auto;
     height: 30px;
