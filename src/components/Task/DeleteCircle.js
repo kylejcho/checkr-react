@@ -1,7 +1,8 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { ReactComponent as DeleteCircleIcon } from "../../icons/deleteCircle.svg";
 
-export default function DeleteCircle({taskContainer, removeTask }) {
+export default function DeleteCircle({ taskContainer, removeTask, variants }) {
     function handleClick() {
         taskContainer.current.style.transition = "ease-in-out 0.2s all";
         taskContainer.current.style.opacity = '0';
@@ -9,8 +10,11 @@ export default function DeleteCircle({taskContainer, removeTask }) {
     }
     
     return (
-        <div className="deleteContainer" onClick={handleClick}>
+        <motion.div 
+            className="deleteContainer" 
+            onClick={handleClick}
+        >
             <DeleteCircleIcon />
-        </div>
+        </motion.div>
     )
 }

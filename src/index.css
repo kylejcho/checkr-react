@@ -516,7 +516,7 @@ nav {
     width: max(100%, 250px);
     grid-template: 30px 30px/40px auto 40px;
     border-radius: 5px;
-    transition: box-shadow ease-in-out 0.2s;
+    /*transition: box-shadow ease-in-out 0.2s;*/
 }
 
 ul,
@@ -527,9 +527,6 @@ li {
 }
 ul {
     width: max(90%, 250px);
-}
-li {
-
 }
 
 
@@ -548,7 +545,7 @@ li {
     border: 1.5px solid rgba(255, 255, 255, 0);
 }
 */
-
+/*
 .taskContainer:hover {
     box-shadow: 0px 1px 6px 0px rgba(0,0,0,0.17);
 }
@@ -557,10 +554,11 @@ li {
     opacity: 1;
 }
 
+/*
 .taskContainer:hover::after {
      opacity: 1;
 }
-
+*/
 .taskContainer.viewing::after {
     opacity: 1;
     border: 1.5px solid var(--primary-blue);
@@ -616,18 +614,16 @@ li {
 
 .deleteContainer {
     /*position: absolute;*/
-    opacity: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     filter: var(--secondary-svg-color);
     transition: opacity ease-in-out 0.3s;
-}
-
+}/*
 .taskContainer.completed .deleteContainer {
     opacity: 1;
 }
-
+*/
 .descriptionContainer {
     pointer-events: none;
 
