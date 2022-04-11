@@ -14,18 +14,29 @@ export default function SubGroup({ tasks, type, checkTask, removeTask, reorderTa
         }
     }
 
-    /*
-    const [items, setItems] = useState([])
-    useEffect(() => {
-      setItems([...tasks])
-    }, [tasks])
-    console.log(items)
-*/
+    const [mounted, setmounted] = useState(false)
 
+    useEffect(() => {
+        setmounted(true)
+        setTimeout(() => setmounted(false), 310);
+    }, [])
+    
 
     return (
-        <motion.div layout transition={{delay:0.1}} className="subGroup" id={type}>
-            <motion.p layout className="subGroupTitle">{type[0].toUpperCase() + type.slice(1)}</motion.p>
+        <motion.div  className="subGroup" id={type}>
+            <motion.div 
+                layout 
+                transition={{
+                    type:'tween',
+                    layout: {
+                        duration: mounted ? 0 : 0.3
+                    }
+                }} 
+                initial={false} 
+                className="subGroupTitle"
+            >
+                {type[0].toUpperCase() + type.slice(1)}
+            </motion.div>
             <Reorder.Group values={tasks} onReorder={reorderTasks}>
             {tasks.map(task=>{
                 if (checkType(task.dueDate)) {

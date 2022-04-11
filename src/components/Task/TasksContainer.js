@@ -14,12 +14,13 @@ export default function TasksContainer({ tasks, checkTask, removeTask, reorderTa
             transition: {
                 duration: 0.3,
                 type: "spring",
-                damping: 30,
+                damping: 25,
                 stiffness: 400,
             }
         },
         exit: {
-            opacity: 0
+            opacity: 0,
+            y: '120vh'
         }
     }
 

@@ -468,7 +468,6 @@ nav {
 
 .subGroup {
     margin-top: clamp(5px,1vw,20px);
-    height: max-content;
 }
 
 .subGroup.empty .subGroupTitle::after {

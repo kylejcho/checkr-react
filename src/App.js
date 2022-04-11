@@ -42,8 +42,7 @@ export default function App() {
     } else {
       prevTasks.unshift(prevTasks.splice(index,1)[0])
     }
-
-    setTasks([...prevTasks]);
+    setTimeout(() => setTasks([...prevTasks]), 300);
   }
 
   function removeTask(task) {
