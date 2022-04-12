@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { ReactComponent as CheckCircleEmptyIcon } from "../../icons/checkCircleEmpty.svg"
 import { ReactComponent as CheckCircleIcon } from "../../icons/checkmark-circle.svg"
 
-export default function CheckCircle({ task, taskContainer, checkTask}) {
+export default function CheckCircle({ task, taskContainer, checkTask }) {
     useEffect(()=>{
         taskContainer.current.classList.toggle('completed', task.complete);
     },[])
