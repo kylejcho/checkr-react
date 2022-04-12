@@ -19,7 +19,7 @@ export default function Task({ task, checkTask, removeTask, type }) {
                     value={task} 
                     id={task}
                     transition={{duration: 0.3}}
-                    whileTap={{scale:1.05}}
+                    whileDrag={{scale:1.04}}
                     exit={{opacity: 0, transition: {duration: 0.15}}}
                 >
                     <motion.div 
