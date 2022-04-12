@@ -522,7 +522,7 @@ nav {
 
 
 .taskContainer.dragging {
-    border-color: var(--primary-blue);
+    /*border-color: var(--primary-blue);*/
     background-color: rgba(255, 255, 255, 0.762);
 }
 
