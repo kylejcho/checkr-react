@@ -51,18 +51,11 @@ export default function App() {
     setTasks([...prevTasks]);
   }
 
-  function reorderTasks(items) {
-    let prevTasks = [...tasks];
-    const newTasks = prevTasks.filter((task)=> !items.includes(task));
-    newTasks.push(...items)
-    setTasks(newTasks)
-  }
-
   return (
     <>
       <Navbar addTask={addTask} />
       <Sidebar />
-      <Content tasks={tasks} checkTask={checkTask} removeTask={removeTask} reorderTasks={reorderTasks} />
+      <Content tasks={tasks} checkTask={checkTask} removeTask={removeTask} />
     </>
   )
 }

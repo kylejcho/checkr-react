@@ -4,7 +4,7 @@ import { motion, useMotionValue, Reorder, AnimatePresence} from "framer-motion";
 import { RaisedShadow } from "./RaisedShadow";
 import { ReactComponent as DeleteCircleIcon } from "../../icons/deleteCircle.svg";
 
-export default function Task({ task, checkTask, removeTask, type }) {
+export default function Task({ task, checkTask, removeTask }) {
     const [showTask, setShowTask] = useState(true)
     const taskContainer = useRef();
     
@@ -33,13 +33,13 @@ export default function Task({ task, checkTask, removeTask, type }) {
                         className="taskContainer" 
                         whileDrag={{backgroundColor: '#b4cfff'}}
                         whileHover={{
-                            boxShadow: "0px 1px 6px 0px rgba(0,0,0,0.17)",
-                            transition:{duration:0.2}
+                            transition:{duration:0.2},
+                            boxShadow: "0px 1px 6px 0px rgba(0,0,0,0.17)"
                         }}
                         whileTap={()=>taskContainer.current.classList.add('dragging')}
                         onMouseUp={()=>taskContainer.current.classList.remove('dragging')}
                     >
-                        <CheckCircle task={task} taskContainer={taskContainer} type={type} checkTask={checkTask} />
+                        <CheckCircle task={task} taskContainer={taskContainer} checkTask={checkTask} />
                         <motion.div className="nameContainer">{task.name}</motion.div>
                         <div className="deleteContainer" onClick={handleDeleteClick}>
                             <DeleteCircleIcon />
