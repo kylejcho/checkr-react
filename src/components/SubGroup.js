@@ -38,12 +38,11 @@ export default function SubGroup({ tasks, type, checkTask, removeTask, reorderTa
                 {type[0].toUpperCase() + type.slice(1)}
             </motion.div>
             <Reorder.Group values={tasks} onReorder={reorderTasks}>
-            {tasks.map(task=>{
-                if (checkType(task.dueDate)) {
-                    return <Task tasks={tasks} task={task} key={task.id} checkTask={checkTask} removeTask={removeTask} type={type}/>
-                } 
-                return null
-            })}
+                {tasks.map(task=>{
+                    if (checkType(task.dueDate)) {
+                        return <Task tasks={tasks} task={task} key={task.id} checkTask={checkTask} removeTask={removeTask} type={type}/>
+                    } 
+                })}
             </Reorder.Group>
         </motion.div>
     )

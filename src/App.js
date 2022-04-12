@@ -42,7 +42,7 @@ export default function App() {
     } else {
       prevTasks.unshift(prevTasks.splice(index,1)[0])
     }
-    setTimeout(() => setTasks([...prevTasks]), 300);
+    setTimeout(() => setTasks([...prevTasks]), 100);
   }
 
   function removeTask(task) {
@@ -53,6 +53,7 @@ export default function App() {
   }
 
   function reorderTasks(items) {
+    console.log(items)
     let prevTasks = [...tasks];
     const newTasks = prevTasks.filter((task)=> !items.includes(task));
     newTasks.push(...items)
