@@ -18,7 +18,11 @@ export default function Task({ task, checkTask, removeTask, type }) {
                 <Reorder.Item 
                     id={task}
                     value={task} 
-                    whileDrag={{scale: 1.04}}
+                    whileDrag={{
+                        scale: 1.04,
+                        transition: {duration: 0.2},
+                        boxShadow: "0px 4px 25px 0px rgba(0,0,0,0.15)"
+                    }}
                     transition={{duration: 0.3}}
                     exit={{opacity: 0, transition: {duration: 0.15}}}
                 >
@@ -27,7 +31,11 @@ export default function Task({ task, checkTask, removeTask, type }) {
                         id={task.id} 
                         ref={taskContainer}
                         className="taskContainer" 
-                        whileHover={{boxShadow: "0px 1px 6px 0px rgba(0,0,0,0.17)"}}
+                        whileDrag={{backgroundColor: '#b4cfff'}}
+                        whileHover={{
+                            boxShadow: "0px 1px 6px 0px rgba(0,0,0,0.17)",
+                            transition:{duration:0.3}
+                        }}
                         whileTap={()=>taskContainer.current.classList.add('dragging')}
                         onMouseUp={()=>taskContainer.current.classList.remove('dragging')}
                     >
