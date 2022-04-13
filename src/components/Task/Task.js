@@ -10,7 +10,7 @@ export default function Task({ task, checkTask, removeTask }) {
     
     function handleDeleteClick() {
         setShowTask(false)
-        setTimeout(() => removeTask(taskContainer.current.id), 110); 
+        setTimeout(() => removeTask(taskContainer.current.id), 150); 
     }
 
     const y = useMotionValue(0);
@@ -22,16 +22,17 @@ export default function Task({ task, checkTask, removeTask }) {
                 <Reorder.Item 
                     id={task}
                     value={task} 
-                    style ={{boxShadow, y}}
+                    style={{boxShadow, y}}
+                    whileDrag={{scale:1.04}}
                     transition={{duration: 0.3}}
-                    exit={{opacity: 0, transition: {duration: 0.15}}}
+                    exit={{opacity: 0, transition: {duration: 0.3}}}
                 >
                     <motion.div 
                         layout 
                         id={task.id} 
                         ref={taskContainer}
                         className="taskContainer" 
-                        whileDrag={{backgroundColor: '#b4cfff'}}
+                        whileDrag={{backgroundColor:'#b4cfff'}}
                         whileHover={{
                             transition:{duration:0.2},
                             boxShadow: "0px 1px 6px 0px rgba(0,0,0,0.17)"

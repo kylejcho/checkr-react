@@ -47,7 +47,7 @@ svg path {
 nav {
     display: flex;
     align-items: center;
-    height: 50px;
+    height: 55px;
     background-color: var(--secondary-bg-color);
     padding: 0 31px;
 }
@@ -85,7 +85,7 @@ nav {
 #searchContainer {
     position: relative;
     background-color: var(--tertiary-bg-color);
-    height: 32px;
+    height: 35px;
     padding-left: 10px;
     border-radius: 5px;
     margin-right: 10px;
@@ -221,16 +221,26 @@ nav {
     transition: opacity 0.2s ease-in-out;
 }
 
-#addButton {
+#addButtonContainer {
     cursor: pointer;
-    width: 30px;
-    height: 30px;
-    stroke: var(--secondary-text-color);
-    transition: all ease-in-out 0.2s;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--tertiary-bg-color);
+    border-radius: 5px;
+    width: 35px;
+    height: 35px;
+    transition: box-shadow 0.2s ease-in-out;
 }
 
-#addButton:hover {
+#addButtonContainer:hover #addButton {
     stroke: var(--primary-blue);
+}
+
+
+#addButton {
+
 }
 
 
@@ -287,6 +297,7 @@ nav {
     padding: 40px 10px 0 20px;
     color: var(--secondary-text-color);
     background-color: var(--secondary-bg-color);
+    border-right: 1.5px solid #eceef0;
 }
 
 
@@ -522,7 +533,7 @@ nav {
 
 
 .taskContainer.dragging {
-    /*border-color: var(--primary-blue);*/
+    border-color: var(--primary-blue);
     background-color: rgba(255, 255, 255, 0.762);
 }
 
@@ -557,28 +568,43 @@ li {
 }
 
 .checkContainer {
+    position: relative;
+    box-sizing: border-box;
     align-items: center;
+    justify-content: center;
     align-self: center;
     justify-self: center;
     padding: 0;
-    margin: 0;
     transition: all ease-in-out 0.2s;
     border-radius: 50px;
-    width: 20px;
-    height: 20px;
+    width: 17px;
+    height: 17px;
+    background-color: #ffffff;
+    overflow: visible;
 }
 
 .taskContainer.completed .checkContainer {
-    filter: var(--secondary-svg-color);
+    /*filter: var(--secondary-svg-color);*/
+    background-color: #abb4c3;
+    animation: completedCircle 0.3s 
+}
+
+@keyframes completeCircle {
+    
 }
 
 
 .checkContainer svg {
+    position: absolute;
+    display: flex;
+    align-self: center;
+    justify-self: center;
+    transform: translate(-1.5px,-1.5px);
     transition: all ease-in-out 0.2s;
 }
 
 .checkContainer svg:hover {
-    filter: var(--secondary-svg-color);
+    /*filter: var(--secondary-svg-color);*/
 }
 
 .nameContainer {

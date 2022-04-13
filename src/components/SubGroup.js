@@ -8,7 +8,6 @@ export default function SubGroup({ subTasks, type, checkTask, removeTask }) {
     
     useEffect(()=> {
         setTasks([...subTasks])
-        console.log(subTasks)
     },[subTasks])
     
     useEffect(() => {
