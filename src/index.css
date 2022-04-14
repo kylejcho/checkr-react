@@ -234,37 +234,60 @@ nav {
     transition: box-shadow 0.2s ease-in-out;
 }
 
+#addButton {
+    transition: stroke 0.2s ease-in-out
+}
+
 #addButtonContainer:hover #addButton {
     stroke: var(--primary-blue);
 }
 
-
-#addButton {
-
-}
-
-
-#navSettingsContainer {
+#darkModeContainer {
+    cursor: pointer;
     display: flex;
+    box-sizing: border-box;
+    justify-content: center;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0 10px;
-    border-radius: 5px;
-    height: 32px;
     background-color: var(--tertiary-bg-color);
+    border-radius: 5px;
+    width: 35px;
+    height: 35px;
+    transition: box-shadow 0.2s ease-in-out;
+    margin: 0 10px;
 }
 
-#navSettingsContainer ion-icon {
+#darkModeContainer svg {
+    stroke: #697384;
+}
+
+#darkModeContainer:hover svg {
+    stroke: var(--primary-blue);
+}
+
+
+
+#profileContainer {
+    cursor: pointer;
     display: flex;
+    box-sizing: border-box;
+    justify-content: center;
     align-items: center;
-    width: 25px;
-    height: 25px;
-    color: var(--secondary-text-color);
-    transition: color ease-in-out 0.2s;
+    background-color: var(--tertiary-bg-color);
+    border-radius: 5px;
+    width: 35px;
+    height: 35px;
+    transition: box-shadow 0.2s ease-in-out;
+    margin-right: 10px;
 }
 
-#navSettingsContainer ion-icon:hover {
-    color: var(--primary-text-color)
+#profileContainer svg {
+    fill: #697384;
+    stroke-width: 40px;
+    transition: fill 0.2s ease-in-out;
+}
+
+#profileContainer:hover svg {
+    fill: var(--primary-blue);
 }
 
 #contentContainer {
@@ -297,7 +320,6 @@ nav {
     padding: 40px 10px 0 20px;
     color: var(--secondary-text-color);
     background-color: var(--secondary-bg-color);
-    border-right: 1.5px solid #eceef0;
 }
 
 
@@ -441,12 +463,10 @@ nav {
 
 .tasksContainer {
     height: calc(100vh - 200px);
-    width: 25vw;
+    width: 27vw;
     position: absolute;
     top: 90px;
     left: calc(50vw - 12.5vw);
-    /*transition: all 0.3s cubic-bezier(0.5, 0, 0.5, 1);
-    animation: bottomTopBounce 0.5s cubic-bezier(0, 0.5, 0.5, 1);*/
 }
 
 .tasksTitle {
@@ -456,18 +476,6 @@ nav {
     margin-bottom: 15px;
     white-space: nowrap;
 }
-/*
-@keyframes bottomTopBounce {
-    0% {
-        opacity: 0;
-        transform:translateY(10vh); 
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-*/
 
 @keyframes tasksContainerShiftLeft {
     0% {transform:translateX(30%)}
@@ -590,10 +598,6 @@ li {
     align-self: center;
     justify-self: center;
     transform: translate(-1.5px,-1.5px);
-}
-
-.checkContainer svg:hover {
-    /*filter: var(--secondary-svg-color);*/
 }
 
 .nameContainer {
