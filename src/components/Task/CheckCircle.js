@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 
 export default function CheckCircle({ task, taskContainer, checkTask }) {
     useEffect(()=>{
         taskContainer.current.classList.toggle('completed', task.complete);
     })
+
+    const checkContainer = useRef()
 
     const [complete, setComplete] = useState(task.complete)
 
@@ -17,41 +19,71 @@ export default function CheckCircle({ task, taskContainer, checkTask }) {
     const pathVariants = {
         initial: {
             opacity: 0,
-            pathLength: 0
+            pathLength: 0,
+            stroke: "#3880ff"
         },
         animate: {
+            stroke: complete ? ["#3880ff","#3880ff",'#979fac'] : '#979fac',
+            scale:complete ? [1.6,1.6,1] : 1,
             opacity: complete ? 1 : 0,
             pathLength: complete ? 1 : 0,
             transition: {
+                times: [0,0.9, 1],
                 duration: 0.4,
-                ease: "easeInOut"
+                ease: "easeOut"
             }
         }
     }
-
     const svgVariants = {
         initial: {
-            stroke: complete ? '#abb4c3' : '#000',
-
+            stroke: '#000',
         },
         animate: {
-            stroke: complete ? '#abb4c3' : '#000',
-            strokeWidth: '70px',
-            pathLength: complete ? 0 : 1,
+            stroke: '#979fac',
+            pathLength: complete ? 1 : 0,
             transition: {
-                duration: 0.4,
+                delay: 0.6,
+                duration: 0.3,
+                ease: "easeInOut"
+            }
+        }
+    }
+    const circleVariants = {
+        initial: {
+            opacity: complete ? 1 : 0,
+        },
+        animate: {
+            opacity: complete ? 1 : 0,
+            transition: {
+                delay: 0.6,
+                duration: 0.3,
                 ease: "easeInOut"
             }
         }
     }
 
-
-
-
     return (
-        <motion.div className="checkContainer" onClick={handleClick}>
+        <motion.div className="checkContainer" onClick={handleClick} ref={checkContainer}>
             <motion.svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512">
                 <title>ionicons-v5-e</title>
+                <circle 
+                    style={{
+                        fill:'none',
+                        stroke:'#000',
+                        opacity: complete ? 0:1,
+                        strokeLinecap:'round',
+                        strokeLinejoin:'round',
+                        strokeWidth:'40px'
+                    }}
+                    cx="256" cy="256" r="192" 
+                />
+                <motion.path
+                    style={{fill:'#e9ebf1'}}
+                    variants={circleVariants}
+                    initial='initial'
+                    animate='animate'
+                    d="M256,464C141.31,464,48,370.69,48,256S141.31,48,256,48s208,93.31,208,208S370.69,464,256,464Z"
+                />
                 <motion.path
                     variants={svgVariants}
                     initial='initial'
@@ -68,7 +100,6 @@ export default function CheckCircle({ task, taskContainer, checkTask }) {
                     animate='animate'
                     variants={pathVariants}
                     style={{
-                        stroke: 'white',
                         fill: 'none',
                         strokeLinecap:'round',
                         strokeLinejoin:'round',

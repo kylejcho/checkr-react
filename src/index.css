@@ -17,7 +17,7 @@
     --primary-text-color: #171c24;
     --secondary-text-color: #697384;
     --tertiary-text-color: #979fac;
-    --primary-bg-color: #ffffff;
+    --primary-bg-color: rgb(255, 255, 255);
     --secondary-bg-color: #f8f8fb;
     --tertiary-bg-color: #e9ebf1;
     --primary-blue: #3880ff;
@@ -567,6 +567,7 @@ li {
     color: var(--tertiary-text-color);
 }
 
+
 .checkContainer {
     position: relative;
     box-sizing: border-box;
@@ -583,24 +584,12 @@ li {
     overflow: visible;
 }
 
-.taskContainer.completed .checkContainer {
-    /*filter: var(--secondary-svg-color);*/
-    background-color: #abb4c3;
-    animation: completedCircle 0.3s 
-}
-
-@keyframes completeCircle {
-    
-}
-
-
 .checkContainer svg {
     position: absolute;
     display: flex;
     align-self: center;
     justify-self: center;
     transform: translate(-1.5px,-1.5px);
-    transition: all ease-in-out 0.2s;
 }
 
 .checkContainer svg:hover {
@@ -635,13 +624,21 @@ li {
 .deleteContainer {
     position: relative;
     display: flex;
+    align-self: center;
+    justify-self: center;
+    height: 17px;
+    width: 17px;
+    background-color: #e9ebf1; 
+    border-radius: 50px;
     opacity: 0;
     align-items: center;
     justify-content: center;
-    filter: var(--secondary-svg-color);
-    transition: opacity ease-in-out 0.3s;
+    transition: opacity ease-in-out 0.3s, background-color ease-in-out 0.2s;
 }
 
+.deleteContainer:hover {
+    background-color: #e2e4ea; 
+}
 
 .taskContainer.dragging .deleteContainer{
     opacity: 1;

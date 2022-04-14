@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import CheckCircle from "./CheckCircle";
 import { motion, useMotionValue, Reorder, AnimatePresence} from "framer-motion";
 import { RaisedShadow } from "./RaisedShadow";
-import { ReactComponent as DeleteCircleIcon } from "../../icons/deleteCircle.svg";
 
 export default function Task({ task, checkTask, removeTask }) {
     const [showTask, setShowTask] = useState(true)
@@ -25,6 +24,8 @@ export default function Task({ task, checkTask, removeTask }) {
                     style={{boxShadow, y}}
                     whileDrag={{scale:1.04}}
                     transition={{duration: 0.3}}
+                    onDragStart={()=>taskContainer.current.classList.add('dragging')}
+                    onDragEnd={()=>taskContainer.current.classList.remove('dragging')}
                     exit={{opacity: 0, transition: {duration: 0.3}}}
                 >
                     <motion.div 
@@ -32,18 +33,23 @@ export default function Task({ task, checkTask, removeTask }) {
                         id={task.id} 
                         ref={taskContainer}
                         className="taskContainer" 
-                        whileDrag={{backgroundColor:'#b4cfff'}}
                         whileHover={{
                             transition:{duration:0.2},
                             boxShadow: "0px 1px 6px 0px rgba(0,0,0,0.17)"
                         }}
-                        whileTap={()=>taskContainer.current.classList.add('dragging')}
-                        onMouseUp={()=>taskContainer.current.classList.remove('dragging')}
                     >
                         <CheckCircle task={task} taskContainer={taskContainer} checkTask={checkTask} />
                         <motion.div className="nameContainer">{task.name}</motion.div>
                         <div className="deleteContainer" onClick={handleDeleteClick}>
-                            <DeleteCircleIcon />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512">
+                                <title>ionicons-v5-l</title>
+                                <line x1="368" y1="368" x2="144" y2="144" 
+                                    style={{fill:'none',stroke:'#697384',strokeLinecap:'round',strokeLinejoin:'round',strokeWidth:'32px'}}
+                                />
+                                <line x1="368" y1="144" x2="144" y2="368" 
+                                    style={{fill:'none',stroke:'#697384',strokeLinecap:'round',strokeLinejoin:'round',strokeWidth:'32px'}}
+                                />
+                            </svg>
                         </div>
                         <div className="descriptionContainer">{task.description}</div>
                     </motion.div>
