@@ -19,7 +19,9 @@ export default function Task({ task, checkTask, removeTask }) {
         <AnimatePresence>
             {showTask && (
                 <Reorder.Item 
-                    id={task}
+                    id={task.id} 
+                    ref={taskContainer}
+                    className="taskContainer" 
                     value={task} 
                     style={{boxShadow, y}}
                     whileDrag={{scale:1.04}}
@@ -28,18 +30,8 @@ export default function Task({ task, checkTask, removeTask }) {
                     onDragEnd={()=>taskContainer.current.classList.remove('dragging')}
                     exit={{opacity: 0, transition: {duration: 0.3}}}
                 >
-                    <motion.div 
-                        layout 
-                        id={task.id} 
-                        ref={taskContainer}
-                        className="taskContainer" 
-                        whileHover={{
-                            transition:{duration:0.2},
-                            boxShadow: "0px 1px 6px 0px rgba(0,0,0,0.17)"
-                        }}
-                    >
                         <CheckCircle task={task} taskContainer={taskContainer} checkTask={checkTask} />
-                        <motion.div className="nameContainer">{task.name}</motion.div>
+                        <div className="nameContainer">{task.name}</div>
                         <div className="deleteContainer" onClick={handleDeleteClick}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512">
                                 <title>ionicons-v5-l</title>
@@ -52,7 +44,7 @@ export default function Task({ task, checkTask, removeTask }) {
                             </svg>
                         </div>
                         <div className="descriptionContainer">{task.description}</div>
-                    </motion.div>
+       
                 </Reorder.Item>
             )}
         </AnimatePresence>
