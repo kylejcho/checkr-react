@@ -31,19 +31,6 @@ export default function App() {
     //console.log(tasks)
   }
 
-  function checkTask(task) {
-    let prevTasks = [...tasks];
-    const checkedTask = prevTasks.find(item => item.id === task);
-    checkedTask.complete = !checkedTask.complete;
-    const index = prevTasks.indexOf(checkedTask);
-    if (checkedTask.complete) {
-      prevTasks.push(prevTasks.splice(index,1)[0])
-    } else {
-      prevTasks.unshift(prevTasks.splice(index,1)[0])
-    }
-    setTimeout(() => setTasks([...prevTasks]), 100);
-  }
-
   function removeTask(task) {
     let prevTasks = [...tasks];
     const taskIndex = prevTasks.findIndex(item => item.id === task);
@@ -55,7 +42,7 @@ export default function App() {
     <>
       <Navbar addTask={addTask} />
       <Sidebar />
-      <Content tasks={tasks} checkTask={checkTask} removeTask={removeTask} />
+      <Content tasks={tasks} removeTask={removeTask} />
     </>
   )
 }

@@ -3,7 +3,7 @@ import CheckCircle from "./CheckCircle";
 import { motion, useMotionValue, Reorder, AnimatePresence} from "framer-motion";
 import { RaisedShadow } from "./RaisedShadow";
 
-export default function Task({ task, checkTask, removeTask }) {
+function Task({ task, checkTask, removeTask }) {
     const [showTask, setShowTask] = useState(true)
     const taskContainer = useRef();
     
@@ -51,3 +51,4 @@ export default function Task({ task, checkTask, removeTask }) {
     )
 }
 
+export default React.memo(Task)
