@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, memo } from "react";
 import CheckCircle from "./CheckCircle";
 import { motion, useMotionValue, Reorder, AnimatePresence} from "framer-motion";
 import { RaisedShadow } from "./RaisedShadow";
@@ -15,6 +15,13 @@ export default function Task({ task, checkTask, removeTask }) {
     const y = useMotionValue(0);
     const boxShadow = RaisedShadow(y);
 
+    function unclickable() {
+        console.log(y.get())
+        if (y.get() > 0 || y.get() < 0 ) {
+            console.log('yes')
+        }
+    }
+
     return (
         <AnimatePresence>
             {showTask && (
@@ -25,10 +32,11 @@ export default function Task({ task, checkTask, removeTask }) {
                     value={task} 
                     style={{boxShadow, y}}
                     whileDrag={{scale:1.04}}
-                    transition={{duration: 0.3}}
+                    transition={{duration: 0.25}}
                     onDragStart={()=>taskContainer.current.classList.add('dragging')}
                     onDragEnd={()=>taskContainer.current.classList.remove('dragging')}
                     exit={{opacity: 0, transition: {duration: 0.3}}}
+                    dragTransition={{ bounceStiffness: 1000, bounceDamping:70 }}
                 >
                         <CheckCircle task={task} taskContainer={taskContainer} checkTask={checkTask} />
                         <div className="nameContainer">{task.name}</div>
@@ -44,10 +52,8 @@ export default function Task({ task, checkTask, removeTask }) {
                             </svg>
                         </div>
                         <div className="descriptionContainer">{task.description}</div>
-       
                 </Reorder.Item>
             )}
         </AnimatePresence>
     )
 }
-

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Task from "./Task/Task";
 import { motion, Reorder} from "framer-motion";
 
@@ -19,9 +19,15 @@ export default function SubGroup({ subTasks, type }) {
         setTasks([...prevTasks])
     }
 
-    function removeTask(task) {
-        setTasks(prevTasks => prevTasks.filter(item => item.id !== task))
-    }
+    //function removeTask(task) {
+    //    setTasks(prevTasks => prevTasks.filter(item => item.id !== task))
+   // }
+
+    const removeTask = useCallback((task) => {
+        setTasks(tasks => tasks.filter(item => item.id !== task))
+        console.log(tasks)
+    }, []);
+
 
     useEffect(()=> {
         setTasks([...subTasks])
@@ -39,7 +45,7 @@ export default function SubGroup({ subTasks, type }) {
                 layout 
                 transition={{
                     type:'tween',
-                    layout: {duration: mounted ? 0 : 0.3}
+                    duration: mounted ? 0 : 0.3
                 }} 
             >
                 {type[0].toUpperCase() + type.slice(1)}
