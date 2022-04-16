@@ -13,7 +13,7 @@ export default function CheckCircle({ task, taskContainer, checkTask }) {
     function handleClick() {
         setComplete(!complete)
         setTimeout(() => taskContainer.current.classList.toggle('completed'),0); 
-        setTimeout(() => checkTask(taskContainer.current.id), 200);
+        setTimeout(() => checkTask(taskContainer.current.id), 300);
     }
 
     const pathVariants = {
@@ -63,8 +63,8 @@ export default function CheckCircle({ task, taskContainer, checkTask }) {
     }
 
     return (
-        <motion.div className="checkContainer" onClick={handleClick} ref={checkContainer}>
-            <motion.svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512">
+        <div className="checkContainer" onClick={handleClick} ref={checkContainer}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512">
                 <title>ionicons-v5-e</title>
                 <circle 
                     style={{
@@ -107,7 +107,7 @@ export default function CheckCircle({ task, taskContainer, checkTask }) {
                     }}
                     points="352 176 217.6 336 160 272" 
                 />
-            </motion.svg>
-        </motion.div>
+            </svg>
+        </div>
     )
 }

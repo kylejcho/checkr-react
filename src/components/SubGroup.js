@@ -16,14 +16,11 @@ export default function SubGroup({ subTasks, type }) {
         } else {
           prevTasks.unshift(prevTasks.splice(index,1)[0])
         }
-        setTimeout(() => setTasks([...prevTasks]), 100);
+        setTasks([...prevTasks])
     }
 
     function removeTask(task) {
-        let prevTasks = [...tasks];
-        const taskIndex = prevTasks.findIndex(item => item.id === task);
-        prevTasks.splice(taskIndex, 1);
-        setTasks([...prevTasks]);
+        setTasks(prevTasks => prevTasks.filter(item => item.id !== task))
     }
 
     useEffect(()=> {
