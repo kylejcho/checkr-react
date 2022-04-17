@@ -3,7 +3,7 @@ import CheckCircle from "./CheckCircle";
 import { motion, useMotionValue, Reorder, AnimatePresence} from "framer-motion";
 import { RaisedShadow } from "./RaisedShadow";
 
-export default function Task({ task, checkTask, removeTask }) {
+export default function Task({ task, checkTask, removeTask, viewTask }) {
     const [showTask, setShowTask] = useState(true)
     const taskContainer = useRef();
     
@@ -14,13 +14,6 @@ export default function Task({ task, checkTask, removeTask }) {
 
     const y = useMotionValue(0);
     const boxShadow = RaisedShadow(y);
-
-    function unclickable() {
-        console.log(y.get())
-        if (y.get() > 0 || y.get() < 0 ) {
-            console.log('yes')
-        }
-    }
 
     return (
         <AnimatePresence>
@@ -37,6 +30,9 @@ export default function Task({ task, checkTask, removeTask }) {
                     onDragEnd={()=>taskContainer.current.classList.remove('dragging')}
                     exit={{opacity: 0, transition: {duration: 0.3}}}
                     dragTransition={{ bounceStiffness: 1000, bounceDamping:70 }}
+                    onClick={()=> {
+                        viewTask(task)
+                    }}
                 >
                         <CheckCircle task={task} taskContainer={taskContainer} checkTask={checkTask} />
                         <div className="nameContainer">{task.name}</div>
