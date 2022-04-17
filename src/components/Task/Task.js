@@ -13,7 +13,7 @@ export default function Task({ tasks, task, checkTask, removeTask, type }) {
         <div className="taskContainer" id={task.id}  onClick={handleAddTaskClick} ref={taskContainer}>
             <CheckCircle task={task} taskContainer={taskContainer} type={type} checkTask={checkTask} />
             <div className="nameContainer">{task.name}</div>
-            <DeleteCircle task={taskContainer} removeTask={removeTask} />
+            <DeleteCircle taskContainer={taskContainer} removeTask={removeTask} />
             <div className="descriptionContainer">{task.description}</div>
         </div>
     )
@@ -25,8 +25,10 @@ export function updateTaskPosition() {
         if (subGroup.children.length > 1) {
             let position = 0; 
             for (let i = 1; i < subGroup.children.length; i++) {
-                subGroup.children[i].style.transform = `translateY(${position}px)`
+                subGroup.children[i].children[0].style.pointerEvents = 'none';
+                subGroup.children[i].style.transform = `translateY(${position}px)`;
                 position += 60;
+                setTimeout(() => subGroup.children[i].children[0].style.pointerEvents = 'auto', 500);
             }
         }
     })
