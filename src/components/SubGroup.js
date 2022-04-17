@@ -45,7 +45,7 @@ export default function SubGroup({ subTasks, type }) {
                 layout 
                 transition={{
                     type:'tween',
-                    duration: mounted ? 0 : 0.3
+                    duration: mounted ? 0 : 0.25
                 }} 
             >
                 {type[0].toUpperCase() + type.slice(1)}

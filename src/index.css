@@ -28,13 +28,15 @@
 }
 
 
-
 body {
     width: 100vw;
     height: 100vh;
     background-color: var(--main-bg-color);
     line-height: 1.6;
+    overflow: hidden;
 }
+
+
 
 body.stop-transitions * {
     transition: none !important;
@@ -45,11 +47,14 @@ svg path {
 }
 
 nav {
+    position: sticky;
+    top: 0;
     display: flex;
     align-items: center;
     height: 55px;
     background-color: var(--secondary-bg-color);
     padding: 0 31px;
+    z-index: 3;
 }
 
 #pageTitle {
@@ -111,8 +116,6 @@ nav {
     display: flex;
     align-items: center;
 }
-
-
 
 #searchIcon {
     font-size: 1.5rem;
@@ -291,10 +294,12 @@ nav {
 }
 
 #contentContainer {
-    min-height: calc(100vh - 50px);
-    height: max-content;
+    position: absolute;
+    top: 55px;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
     display: flex;
-    height: max-content;
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -308,15 +313,17 @@ nav {
 }
    
 #contentContainer::-webkit-scrollbar-thumb {
-    background-color: #f8f8fb;
-    border-radius: 50px;
+    background-color: #d4d4d8;
+    border-radius: 5px;
     animation: fadeInScrollBar 0.3s ease-in-out;
 }
 
 #sidebar {
-    position: absolute;
+    position: sticky;
+    top: 55px;
     font-size: clamp(13px, 1.2vw, 16px);
-    height: calc(100% - 90px);
+    height: calc(100vh - 95px);
+    width: max-content;
     padding: 40px 10px 0 20px;
     color: var(--secondary-text-color);
     background-color: var(--secondary-bg-color);
@@ -462,11 +469,12 @@ nav {
 /* TASKS CONTAINER */
 
 .tasksContainer {
-    height: calc(100vh - 200px);
+    height: max-content;
     width: 27vw;
     position: absolute;
-    top: 90px;
+    top: 37px;
     left: calc(50vw - 12.5vw);
+    padding-bottom: 150px;
 }
 
 .tasksTitle {
@@ -828,7 +836,6 @@ nav {
     border-radius: 10px;
     box-shadow: 0 5px 40px rgba(0, 0, 0, 0.3);
     padding: 15px 15px 25px 15px;
-    transform: scale(0);
 }
 
 

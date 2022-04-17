@@ -6,9 +6,9 @@ import { v4 as uuidv4 } from 'uuid';
 const dropIn = {
     initial: {
       x: "12vw",
-      y: "-55vh",
+      y: "-50vh",
       opacity: 0,
-      scale: 0
+      scale: 0,
     },
     animate: {
       x: "0",
@@ -21,7 +21,7 @@ const dropIn = {
     },
     exit: {
       x: "12vw",
-      y: "-55vh",
+      y: "-50vh",
       opacity: 0,
       scale: 0,
       transition: {
