@@ -31,18 +31,12 @@ export default function App() {
     //console.log(tasks)
   }
 
-  function removeTask(task) {
-    let prevTasks = [...tasks];
-    const taskIndex = prevTasks.findIndex(item => item.id === task);
-    prevTasks.splice(taskIndex, 1);
-    setTasks([...prevTasks]);
-  }
 
   return (
     <>
       <Navbar addTask={addTask} />
       <Sidebar />
-      <Content tasks={tasks} removeTask={removeTask} />
+      <Content tasks={tasks} />
     </>
   )
 }
