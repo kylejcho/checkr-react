@@ -17,7 +17,7 @@ export default function SubGroup({ tasks, type, checkTask, removeTask }) {
             <p className="subGroupTitle">{type[0].toUpperCase() + type.slice(1)}</p>
                 {tasks.map(task=>{
                     if (checkType(task.dueDate)) {
-                        return <Task tasks={tasks} task={task} key={task.id} checkTask={checkTask} removeTask={removeTask} type = {type}/>
+                        return <Task tasks={tasks} task={task} key={task.id} checkTask={checkTask} removeTask={removeTask} type={type}/>
                     } 
                     return null
                 })}
@@ -41,6 +41,7 @@ function checkEmptyGroups(tasks) {
 }
 
 function updateSubHeight() {
+    /*
     const today = document.querySelector('#today');
     const tomorrow  = document.querySelector('#tomorrow');
     const upcoming  = document.querySelector('#upcoming');
@@ -56,4 +57,5 @@ function updateSubHeight() {
 
     tomorrow.style.transform = `translateY(${todayLength + 26}px)`;
     upcoming.style.transform = `translateY(${todayLength + tomorrowLength + 52}px)`;
+    */
 }

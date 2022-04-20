@@ -16,8 +16,8 @@ const dropIn = {
       opacity: 1,
       scale: 1,
       transition: {
-        duration: 0.4
-      },
+          duration: 0.4
+        }
     },
     exit: {
       x: "12vw",
@@ -25,10 +25,10 @@ const dropIn = {
       opacity: 0,
       scale: 0,
       transition: {
-        duration: 0.3
-      },
+          duration: 0.3
+        }
     }
-  };
+};
 
 export default function Form({ handleClose, addTask}) {
     const nameRef = useRef();

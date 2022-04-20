@@ -434,8 +434,8 @@ nav {
     position: absolute;
     top: 90px;
     left: calc(50vw - 12.5vw);
-    transition: all 0.3s cubic-bezier(0.5, 0, 0.5, 1);
-    animation: bottomTopBounce 0.5s cubic-bezier(0, 0.5, 0.5, 1);
+    /*transition: all 0.3s cubic-bezier(0.5, 0, 0.5, 1);
+    animation: bottomTopBounce 0.5s cubic-bezier(0, 0.5, 0.5, 1);*/
 }
 
 .tasksTitle {
@@ -445,7 +445,7 @@ nav {
     margin-bottom: 15px;
     white-space: nowrap;
 }
-
+/*
 @keyframes bottomTopBounce {
     0% {
         opacity: 0;
@@ -456,6 +456,7 @@ nav {
         transform: translateY(0);
     }
 }
+*/
 
 @keyframes tasksContainerShiftLeft {
     0% {transform:translateX(30%)}
@@ -468,6 +469,7 @@ nav {
 .subGroup {
     margin-top: clamp(5px,1vw,20px);
     transition: all 0.2s ease-in-out;
+    height: max-content;
 }
 
 .subGroup.empty .subGroupTitle::after {
@@ -508,20 +510,21 @@ nav {
 /* TASK CONTAINER */
 
 .taskContainer {
+    /*
     position: absolute;
+    */
     cursor: pointer;
     display: grid;
-    height: 57px;
+    height: 60px;
     width: max(90%, 250px);
     grid-template: 30px 30px/25px auto 25px;
     border-radius: 5px;
     padding-left: 12px;
     padding-right: 5px;
-    transition: all ease-in-out 0.2s;
- 
+    /*transition: all ease-in-out 0.2s;*/
 }
 
-
+/*
 .taskContainer::after {
     z-index: -1;
     content: '';
@@ -529,15 +532,16 @@ nav {
     height: 100%;
     position: absolute;
     border-radius: 5px;
-    box-shadow: 0px 1px 6px 0px rgba(0,0,0,0.17);
+
     opacity: 0;
     background-color: white;
     transition: all 0.2s ease-in-out;
     border: 1.5px solid rgba(255, 255, 255, 0);
 }
+*/
 
 .taskContainer:hover {
-    transform: scale(1.00);
+    box-shadow: 0px 1px 6px 0px rgba(0,0,0,0.17);
 }
 
 .taskContainer:hover > .deleteContainer {
@@ -602,7 +606,7 @@ nav {
 }
 
 .deleteContainer {
-    position: absolute;
+    /*position: absolute;*/
     opacity: 0;
     display: flex;
     align-items: center;
