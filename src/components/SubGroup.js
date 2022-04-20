@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import Task from "./Task/Task";
 import { motion, Reorder} from "framer-motion";
 
-export default function SubGroup({ subTasks, type, viewTask}) {
+export default function SubGroup({ subTasks, type }) {
     const [tasks, setTasks] = useState([])
     const [mounted, setmounted] = useState(false)
     
@@ -52,7 +52,7 @@ export default function SubGroup({ subTasks, type, viewTask}) {
             </motion.div>
             <Reorder.Group values={tasks} onReorder={setTasks}>
                 {tasks.map(task=>{
-                    return <Task subTasks={subTasks} task={task} key={task.id} checkTask={checkTask} removeTask={removeTask} viewTask = {viewTask} />
+                    return <Task subTasks={subTasks} task={task} key={task.id} checkTask={checkTask} removeTask={removeTask} />
                 })}
             </Reorder.Group>
         </div>

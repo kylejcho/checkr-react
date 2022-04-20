@@ -10,7 +10,7 @@ export default function TaskView({ task, viewTask }) {
         <AnimatePresence exitBeforeEnter>
             {viewTask && (
                 <motion.div 
-                    id={'taskView' + task.id} 
+                    id={'TV' + task.id} 
                     className="taskViewContainer"
                     ref={taskView}
                     animate = {{x: -300}}

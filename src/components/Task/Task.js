@@ -6,7 +6,7 @@ import TaskView, { viewTask } from "./TaskView";
 
 export default function Task({ task, checkTask, removeTask }) {
     const [showTask, setShowTask] = useState(true)
-    const [viewTask, setViewTask] = useState(false)
+    const [viewTask, setViewTask] = useState(null)
     const taskContainer = useRef();
     
     function handleDeleteClick() {
@@ -34,11 +34,10 @@ export default function Task({ task, checkTask, removeTask }) {
                         exit={{opacity: 0, transition: {duration: 0.3}}}
                         dragTransition={{ bounceStiffness: 1000, bounceDamping:70 }}
                         onClick={()=> {
-                            const taskView = document.querySelector('.taskViewContainer')
-                            if (taskView ) {
-                                taskView.remove()
-                            }
-                            setViewTask(!viewTask)
+                            setViewTask(false)
+                            openTask();
+                            taskContainer.current.classList.add('viewing');
+                            setViewTask(true)
                         }}
                     >
                             <CheckCircle task={task} taskContainer={taskContainer} checkTask={checkTask} />
@@ -61,4 +60,12 @@ export default function Task({ task, checkTask, removeTask }) {
             <TaskView task={task} viewTask={viewTask} />
         </>
     )
+}
+
+function openTask() {
+    const taskContainers = document.querySelectorAll('.taskContainer');
+    taskContainers.forEach(task=>{
+        task.classList.remove('viewing')
+    })
+
 }

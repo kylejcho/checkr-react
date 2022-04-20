@@ -572,7 +572,7 @@ nav {
 
 .taskContainer.viewing::after {
     opacity: 1;
-    border: 1.5px solid var(--primary-blue);
+    border: 2px solid var(--primary-blue);
 }
 
 .completed div{
