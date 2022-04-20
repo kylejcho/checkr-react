@@ -3,7 +3,7 @@ import SubGroup from '../SubGroup';
 import { LayoutGroup, motion } from 'framer-motion';
 import { isToday, isTomorrow, isAfter, addDays} from "date-fns";
 
-export default function TasksContainer({ tasks }) {
+export default function TasksContainer({ tasks, updateTasks }) {
     const todayTasks = tasks.filter(task=> isToday(task.dueDate))
     const tomorrowTasks = tasks.filter(task=> isTomorrow(task.dueDate))
     const upcomingTasks = tasks.filter(task=> isAfter(task.dueDate, addDays(new Date(),1)))
@@ -27,9 +27,9 @@ export default function TasksContainer({ tasks }) {
         >
             <div id="titleContainer" className="tasksTitle">Good Afternoon, User</div>
             <LayoutGroup>
-                <SubGroup subTasks={todayTasks} tasks={tasks} type="today" />
-                <SubGroup subTasks={tomorrowTasks} tasks={tasks} type="tomorrow" />
-                <SubGroup subTasks={upcomingTasks} tasks={tasks} type="upcoming" />
+                <SubGroup subTasks={todayTasks} allTasks={tasks} updateTasks={updateTasks} type="today" />
+                <SubGroup subTasks={tomorrowTasks} allTasks={tasks} updateTasks={updateTasks} type="tomorrow" />
+                <SubGroup subTasks={upcomingTasks} allTasks={tasks} updateTasks={updateTasks} type="upcoming" />
             </LayoutGroup>
         </motion.div> 
     )

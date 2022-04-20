@@ -31,12 +31,16 @@ export default function App() {
     //console.log(tasks)
   }
 
+  function updateTasks(subTasks) {
+    const prevTasks = tasks.filter(task => !subTasks.includes(task))
+    setTasks([...prevTasks,...subTasks])
+  }
 
   return (
     <>
       <Navbar addTask={addTask} />
       <Sidebar />
-      <Content tasks={tasks} />
+      <Content tasks={tasks} updateTasks={updateTasks} />
     </>
   )
 }

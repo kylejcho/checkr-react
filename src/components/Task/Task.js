@@ -4,7 +4,7 @@ import { motion, useMotionValue, Reorder, AnimatePresence} from "framer-motion";
 import { RaisedShadow } from "./RaisedShadow";
 import TaskView, { viewTask } from "./TaskView";
 
-export default function Task({ task, checkTask, removeTask }) {
+export default function Task({ task, tasks, checkTask, removeTask, allTasks, updateTasks}) {
     const [showTask, setShowTask] = useState(true)
     const [viewTask, setViewTask] = useState(null)
     const taskContainer = useRef();
@@ -16,6 +16,8 @@ export default function Task({ task, checkTask, removeTask }) {
 
     const y = useMotionValue(0);
     const boxShadow = RaisedShadow(y);
+
+
 
     return (
         <>
@@ -30,14 +32,17 @@ export default function Task({ task, checkTask, removeTask }) {
                         whileDrag={{scale:1.04}}
                         transition={{duration: 0.25}}
                         onDragStart={()=>taskContainer.current.classList.add('dragging')}
-                        onDragEnd={()=>taskContainer.current.classList.remove('dragging')}
+                        onDragEnd={()=>{
+                            taskContainer.current.classList.remove('dragging');
+                            updateTasks(tasks)
+                        }}
                         exit={{opacity: 0, transition: {duration: 0.3}}}
                         dragTransition={{ bounceStiffness: 1000, bounceDamping:70 }}
                         onClick={()=> {
-                            setViewTask(false)
-                            openTask();
-                            taskContainer.current.classList.add('viewing');
-                            setViewTask(true)
+                            //setViewTask(false)
+                            //openTask();
+                            //taskContainer.current.classList.add('viewing');
+                            //setViewTask(true)
                         }}
                     >
                             <CheckCircle task={task} taskContainer={taskContainer} checkTask={checkTask} />
@@ -57,7 +62,7 @@ export default function Task({ task, checkTask, removeTask }) {
                     </Reorder.Item>
                 )}
             </AnimatePresence>
-            <TaskView task={task} viewTask={viewTask} />
+           
         </>
     )
 }
