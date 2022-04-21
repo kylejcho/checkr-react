@@ -1,9 +1,8 @@
 import React, { useRef, useState, memo } from "react";
 import CheckCircle from "./CheckCircle";
-import { motion, useMotionValue, Reorder, AnimatePresence} from "framer-motion";
+import { useMotionValue, Reorder, AnimatePresence} from "framer-motion";
 import { RaisedShadow } from "./RaisedShadow";
-import TaskView, { viewTask } from "./TaskView";
-import { createTaskView } from "../Content";
+
 
 export default function Task({ task, tasks, checkTask, removeTask, updateTasks, viewTask, constraintsRef }) {
     const [showTask, setShowTask] = useState(true)

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Form from "./Form/Form";
+import {ReactComponent as Logo} from '../icons/document-text-outline.svg'
+import {ReactComponent as SearchIcon} from '../icons/search-outline.svg'
 
 export default function Navbar({ addTask }) {
     const [formOpen, setFormOpen] = useState(false);
@@ -24,13 +26,13 @@ export default function Navbar({ addTask }) {
     return (
         <nav id = "navbar">
             <div id="pageTitle">
-                <ion-icon name="document-text-outline" class="logo"></ion-icon>
+            <Logo className="logo"/>
                 <p>todo.</p>
             </div>
             <div id="searchAddContainer">
                 <div id="searchContainer">
                     <div id="searchItemsContainer">
-                        <ion-icon name="search-outline" id="searchIcon"></ion-icon>
+                        <SearchIcon id="searchIcon" />
                         <input id="searchBar" type="text" placeholder="Search tasks..."></input>
                     </div>
                     <div id="searchResultsContainer" className="hidden"></div>

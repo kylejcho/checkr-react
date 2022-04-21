@@ -68,9 +68,10 @@ nav {
 }
 
 .logo {
-    color: var(--primary-blue);
-    font-size: 1.75rem;
-    --ionicon-stroke-width: 50px;
+    stroke: var(--primary-blue);
+    width: 28px;
+    height: 28px;
+    stroke-width: 50px;
 }
 
 #pageTitle p {
@@ -118,8 +119,9 @@ nav {
 }
 
 #searchIcon {
-    font-size: 1.5rem;
-    color: var(--secondary-text-color);
+    width: 25px;
+    height: 25px;
+    stroke: var(--secondary-text-color);
 }
 
 #searchBar {
@@ -330,9 +332,10 @@ nav {
 }
 
 
-#sidebar ion-icon {
+#sidebar svg {
     margin: 0 1rem 0 15px;
     font-size: 1.5rem;
+    stroke: var(--secondary-text-color);
 }
 
 #sidebarHome ion-icon {
@@ -360,10 +363,6 @@ nav {
 .todayIconNumber {
     font-weight: 600;
 }
-
-#sidebarShortcutsToday p:nth-child(2) {
-    margin-left: 1rem;
-}   
 
 
 .sidebarTabsContainer {
