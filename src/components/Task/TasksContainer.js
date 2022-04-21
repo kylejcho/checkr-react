@@ -24,7 +24,7 @@ export default function TasksContainer({ tasks, updateTasks, removeTask, checkTa
                 opacity: 1,
                 transition: {
                     type: "spring",
-                    stiffness: 400,
+                    stiffness: 350,
                     damping: 25,
                     duration: 0.3
                 }

@@ -16,12 +16,12 @@ export default function TaskView({ openTask }) {
                     initial={{ opacity: 0}}
                     exit={{ 
                         opacity: 0, 
-                        y: 100,
+                        x: -200,
                         transition: {
                             duration: 0.15
                         }
                     }}
-                    transition={{ type:'spring',duration: 0.30 }}
+                    transition={{ type:'spring',duration: 0.50 }}
                 >
                     <div className="taskViewNameContainer">
                         <div className="taskViewCheckContainer completed" >

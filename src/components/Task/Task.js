@@ -54,7 +54,11 @@ export default function Task({ task, tasks, checkTask, removeTask, updateTasks, 
                     >
                             <CheckCircle task={task} taskContainer={taskContainer} checkTask={checkTask} />
                             <div className="nameContainer">{task.name}</div>
-                            <div className="deleteContainer" onClick={handleDeleteClick}>
+                            <div className="deleteContainer" 
+                                onClick={(e)=> {
+                                    handleDeleteClick()
+                                    e.stopPropagation();
+                                    }}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512">
                                     <title>ionicons-v5-l</title>
                                     <line x1="368" y1="368" x2="144" y2="144" 
