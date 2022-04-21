@@ -55,7 +55,6 @@ export default function App() {
   }
 
   function viewTask(task) {
-    console.log(task)
     setOpenTask(task)
   }
 

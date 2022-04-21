@@ -8,10 +8,6 @@ export default function TasksContainer({ tasks, updateTasks, removeTask, checkTa
     const tomorrowTasks = tasks.filter(task=> isTomorrow(task.dueDate))
     const upcomingTasks = tasks.filter(task=> isAfter(task.dueDate, addDays(new Date(),1)))
 
-    const variants = {
-
-    }
-
     return (
         <motion.div 
             id="homeContainer"

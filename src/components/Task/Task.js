@@ -5,7 +5,7 @@ import { RaisedShadow } from "./RaisedShadow";
 import TaskView, { viewTask } from "./TaskView";
 import { createTaskView } from "../Content";
 
-export default function Task({ task, tasks, checkTask, removeTask, updateTasks, viewTask, openTask }) {
+export default function Task({ task, tasks, checkTask, removeTask, updateTasks, viewTask, constraintsRef }) {
     const [showTask, setShowTask] = useState(true)
     const taskContainer = useRef();
     
@@ -28,6 +28,7 @@ export default function Task({ task, tasks, checkTask, removeTask, updateTasks, 
                         value={task} 
                         style={{boxShadow, y}}
                         whileDrag={{scale:1.04}}
+                        dragConstraints={constraintsRef}
                         transition={{duration: 0.25}}
                         onDragStart={()=>taskContainer.current.classList.add('dragging')}
                         onDragEnd={()=>{
