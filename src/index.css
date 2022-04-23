@@ -469,7 +469,7 @@ nav {
 
 .tasksContainer {
     height: max-content;
-    width: 27vw;
+    width: 25vw;
     position: absolute;
     top: 37px;
     left: calc(50vw - 12.5vw);
@@ -620,7 +620,7 @@ nav {
     );
     background-size: 0 100%;
     background-repeat: no-repeat;
-    transition: 0.4s ease;
+    transition: background-size 0.4s ease;
 }
 
 .taskContainer.completed .nameContainer {
@@ -676,14 +676,30 @@ nav {
 
 .taskViewContainer {
     position: fixed;
-    top: 160px;
-    right: 0px;
+    top: 100px;
+    right: 150px;
     height: max(20vw,300px);
     width: clamp(250px, 22vw, 370px);
     font-size: clamp(14px, 1.1vw, 16px);
     border-radius: 10px;
     box-shadow: -2px 2px 6px 0px rgba(0,0,0,0.15);
     padding: 20px;
+}
+
+.taskViewCheckContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    justify-self: center;
+    padding: 0;
+    transition: all ease-in-out 0.2s;
+    border-radius: 50px;
+    width: 25px;
+    height: 25px;
+    background-color: #ffffff;
+    overflow: visible;
 }
 
 @keyframes slideOutTaskView {
@@ -693,17 +709,11 @@ nav {
     }
 }
 
-.taskViewCheckContainer.completed {
-    filter: var(--secondary-svg-color);
-}
+
 
 .taskViewCheckContainer svg {
     cursor: pointer;
     transition: all ease-in-out 0.1s;
-}
-
-.taskViewCheckContainer svg:hover {
-    filter: var(--secondary-svg-color)
 }
 
 .taskViewNameContainer {
@@ -713,8 +723,6 @@ nav {
     background-size: 0% 100%;
     border-radius: 5px;
 }
-
-
 
 .taskViewNameContainer svg {
     display: flex;
@@ -726,7 +734,7 @@ nav {
     align-items: center;
     font-size: clamp(22px, 1.5vw, 28px);
     font-weight: 700;
-    width: max-content;
+    width: 80%;
     height: 20px;
     margin: 12px 25px 12px 10px;
     border-radius: 5px;
@@ -742,12 +750,10 @@ nav {
     transition: background-size 0.4s ease, color 0.4s ease, background-color 0.4s ease-in-out;
 }
 
-
-.taskViewName.completed {
+.taskViewContainer.completed .taskViewName {
     background-size: 100% 100%;
-    color:var(--tertiary-text-color);
-    pointer-events: none;
 }
+
 
 .taskViewDescriptionContainer {
     font-weight: 700;

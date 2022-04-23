@@ -1,18 +1,17 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 
-export default function CheckCircle({ task, taskContainer, checkTask, complete, checkClickAnimation }) {
+export default function TaskViewCheckCircle({ task, taskContainer, checkTask, complete, checkClickAnimation }) {
     useEffect(()=>{
-        taskContainer.current.classList.toggle('completed', task.complete);
+        //taskContainer.current.classList.toggle('completed', task.complete);
     })
 
     const checkContainer = useRef()
 
     function handleClick() {
         checkClickAnimation()
-        const taskView = document.querySelector('.taskViewContainer')
-        if (taskView && taskView.id.slice(2) === task.id) {
-            taskView.classList.toggle('completed')
+        if (document.querySelector('.taskViewContainer')) {
+            document.querySelector('.taskViewContainer').classList.toggle('completed')
         }
         setTimeout(() => taskContainer.current.classList.toggle('completed'),0); 
         setTimeout(() => checkTask(taskContainer.current.id), 300);
@@ -26,7 +25,7 @@ export default function CheckCircle({ task, taskContainer, checkTask, complete, 
         },
         animate: {
             stroke: complete ? ["#3880ff","#3880ff",'#979fac'] : '#979fac',
-            scale:complete ? [1.6,1.6,1] : 1,
+            scale: 1,
             opacity: complete ? 1 : 0,
             pathLength: complete ? 1 : 0,
             transition: {
@@ -65,13 +64,13 @@ export default function CheckCircle({ task, taskContainer, checkTask, complete, 
     }
 
     return (
-        <div className="checkContainer" ref={checkContainer} 
+        <div className="taskViewCheckContainer" ref={checkContainer} 
             onClick={(e) => {
                 e.stopPropagation()
                 handleClick()
             }}  
         >
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512">
+            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 512 512">
                 <title>ionicons-v5-e</title>
                 <circle 
                     style={{

@@ -12,7 +12,7 @@ export default function Content({ tasks, checkTask, updateTasks, removeTask, ope
                 })
             }}>
             <TasksContainer tasks={tasks} checkTask={checkTask} updateTasks={updateTasks} removeTask={removeTask} viewTask={viewTask} openTask={openTask} />
-            <TaskView openTask={openTask} />
+            
         </div>
     )
 }

@@ -1,36 +1,34 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { format, isToday, isTomorrow } from 'date-fns';
 import {ReactComponent as Caret} from '../../icons/caret-forward.svg'
+import TaskViewCheckCircle from "./TaskViewCheckCircle";
 
-export default function TaskView({ openTask }) {
+export default function TaskView({ openTask, task, checkTask, taskContainer, complete, checkClickAnimation }) {
+    const taskViewContainer = useRef()
 
     return (
         <AnimatePresence exitBeforeEnter>
-            {openTask &&  (
+            {openTask && openTask.id === task.id && (
                 <motion.div 
-                
-                    key={'TV' + openTask.id} 
-                    className="taskViewContainer"
-                    animate={{ opacity: 1, x: -300 }}
-                    initial={{ opacity: 0}}
+                    key={'TvMotion' + openTask.id} 
+                    className={`taskViewContainer ${task.complete && 'completed'}`}
+                    id = {'Tv' + openTask.id}
+                    ref={taskViewContainer}
+                    animate={{ opacity: 1, x: -250 }}
+                    initial={{ opacity: 0, right: -800}}
                     exit={{ 
                         opacity: 0, 
-                        x: -200,
-                        transition: {
-                            duration: 0.15
-                        }
+                        x: -50,
+                        transition: { duration: 0.16 }
                     }}
-                    transition={{ type:'spring',duration: 0.50 }}
+                    transition={{ type:'spring',duration: 0.6, delay: 0.05}}
                 >
                     <div className="taskViewNameContainer">
-                        <div className="taskViewCheckContainer completed" >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 512 512">
-                                <title>ionicons-v5-e</title>
-                                <path d="M256,48C141.31,48,48,141.31,48,256s93.31,208,208,208,208-93.31,208-208S370.69,48,256,48ZM364.25,186.29l-134.4,160a16,16,0,0,1-12,5.71h-.27a16,16,0,0,1-11.89-5.3l-57.6-64a16,16,0,1,1,23.78-21.4l45.29,50.32L339.75,165.71a16,16,0,0,1,24.5,20.58Z"></path>
-                            </svg>
+                        <div className={`taskViewCheckContainer`} >
+                            <TaskViewCheckCircle task={task} checkTask={checkTask} taskContainer={taskContainer} complete={complete} checkClickAnimation={checkClickAnimation}/>
                         </div>
-                        <p className="taskViewName completed">{openTask.name}</p>
+                        <p className={`taskViewName`}>{openTask.name}</p>
                     </div>
                     <div className="taskViewDescriptionContainer">
                         Description:
