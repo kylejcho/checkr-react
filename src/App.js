@@ -56,6 +56,11 @@ export default function App() {
 
   function viewTask(task) {
     setOpenTask(task)
+    if (!openTask) {
+      document.querySelectorAll('.taskContainer').forEach(task=>{
+        task.classList.remove('viewing')
+      })
+    }
   }
 
   return (

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React from 'react'
 import SubGroup from '../SubGroup';
 import { LayoutGroup, motion } from 'framer-motion';
 import { isToday, isTomorrow, isAfter, addDays} from "date-fns";
@@ -28,9 +28,9 @@ export default function TasksContainer({ tasks, updateTasks, removeTask, checkTa
         >
             <div id="titleContainer" className="tasksTitle">Good Afternoon, User</div>
             <LayoutGroup>
-                <SubGroup subTasks={todayTasks} allTasks={tasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTask={openTask} type="today"  />
-                <SubGroup subTasks={tomorrowTasks} allTasks={tasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTask={openTask} type="tomorrow" />
-                <SubGroup subTasks={upcomingTasks} allTasks={tasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTask={openTask} type="upcoming" />
+                <SubGroup subTasks={todayTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTask={openTask} type="today" />
+                <SubGroup subTasks={tomorrowTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTask={openTask} type="tomorrow" />
+                <SubGroup subTasks={upcomingTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTask={openTask} type="upcoming" />
             </LayoutGroup>
         </motion.div> 
     )

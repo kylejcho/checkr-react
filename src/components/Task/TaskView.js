@@ -11,9 +11,9 @@ export default function TaskView({ openTask, task, checkTask, taskContainer, com
         <AnimatePresence exitBeforeEnter >
             {openTask && openTask.id === task.id && (
                 <motion.div 
-                    key={'TvMotion' + openTask.id} 
+                    key={'TvMotion' + task.id} 
                     className={`taskViewContainer ${task.complete && 'completed'}`}
-                    id = {'Tv' + openTask.id}
+                    id = {'Tv' + task.id}
                     ref={taskViewContainer}
                     animate={{ opacity: 1, x: -250 }}
                     initial={{ opacity: 0, right: -800}}
@@ -26,27 +26,27 @@ export default function TaskView({ openTask, task, checkTask, taskContainer, com
                 >
                     <div className="taskViewNameContainer">
                         <div className={`taskViewCheckContainer`} >
-                            <TaskViewCheckCircle task={task} checkTask={checkTask} taskContainer={taskContainer} complete={complete} checkClickAnimation={checkClickAnimation}/>
+                            <TaskViewCheckCircle taskContainer={taskContainer} checkTask={checkTask} complete={complete} checkClickAnimation={checkClickAnimation}/>
                         </div>
-                        <p className={`taskViewName`}>{openTask.name}</p>
+                        <p className={`taskViewName`}>{task.name}</p>
                     </div>
                     <div className="taskViewDescriptionContainer">
                         Description:
-                        <p className="taskViewDescription">{openTask.description}</p>
+                        <p className="taskViewDescription">{task.description}</p>
                     </div>
                     <div className="taskViewDueDateContainer">
                         Due:
                         <div className="taskViewDueDate">
                         
-                            {formatDate(openTask.dueDate)}
+                            {formatDate(task.dueDate)}
                         </div>
                     </div>
-                    {openTask.list && (
+                    {task.list && (
                         <div className="taskViewListContainer">
                             List:
                             <div className="taskViewList">
                                 <div className="dot"></div>
-                                {openTask.list}
+                                {task.list}
                             </div>
                         </div>    
                     )}

@@ -2,18 +2,11 @@ import React, { useState, useEffect, useRef } from "react";
 import Task from "./Task/Task";
 import { motion, Reorder} from "framer-motion";
 
-export default function SubGroup({ subTasks, allTasks, type, updateTasks, removeTask, checkTask, viewTask, openTask }) {
+export default function SubGroup({ subTasks, type, updateTasks, removeTask, checkTask, viewTask, openTask }) {
     const [tasks, setTasks] = useState([])
     const [mounted, setmounted] = useState(false)
     
     const constraintsRef = useRef(null)
-
-    //function removeTask(task) {
-    //    setTasks(prevTasks => prevTasks.filter(item => item.id !== task))
-   // }
-
-
-
 
     useEffect(()=> {
         setTasks([...subTasks])
@@ -37,8 +30,18 @@ export default function SubGroup({ subTasks, allTasks, type, updateTasks, remove
                 {type[0].toUpperCase() + type.slice(1)}
             </motion.div>
             <Reorder.Group values={tasks} onReorder={setTasks}>
-                {tasks.map(task=>{
-                    return <Task tasks={tasks} task={task} alltasks={allTasks} key={task.id} checkTask={checkTask} removeTask={removeTask} updateTasks={updateTasks} viewTask={viewTask} openTask={openTask} constraintsRef={constraintsRef}/>
+                {tasks.map(task=> {
+                    return <Task 
+                                key={task.id} 
+                                task={task} 
+                                tasks={tasks} 
+                                viewTask={viewTask} 
+                                openTask={openTask} 
+                                checkTask={checkTask} 
+                                removeTask={removeTask} 
+                                updateTasks={updateTasks} 
+                                constraintsRef={constraintsRef}
+                            />
                 })}
             </Reorder.Group>
         </div>

@@ -1,19 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-export default function TaskViewCheckCircle({ task, taskContainer, checkTask, complete, checkClickAnimation }) {
-    useEffect(()=>{
-        //taskContainer.current.classList.toggle('completed', task.complete);
-    })
-
-    const checkContainer = useRef()
-
+export default function TaskViewCheckCircle({ taskContainer, checkTask, complete, checkClickAnimation }) {
     function handleClick() {
         checkClickAnimation()
         if (document.querySelector('.taskViewContainer')) {
             document.querySelector('.taskViewContainer').classList.toggle('completed')
         }
-        setTimeout(() => taskContainer.current.classList.toggle('completed'),0); 
+        setTimeout(() => taskContainer.current.classList.toggle('completed'), 0); 
         setTimeout(() => checkTask(taskContainer.current.id), 300);
     }
 
@@ -65,7 +59,7 @@ export default function TaskViewCheckCircle({ task, taskContainer, checkTask, co
 
     return (
         <AnimatePresence initial={false}>
-        <div className="taskViewCheckContainer" ref={checkContainer} 
+        <div className="taskViewCheckContainer"
             onClick={(e) => {
                 e.stopPropagation()
                 handleClick()

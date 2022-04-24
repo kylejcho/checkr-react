@@ -4,7 +4,7 @@ import { useMotionValue, Reorder, AnimatePresence, motion } from "framer-motion"
 import { RaisedShadow } from "./RaisedShadow";
 import TaskView from "./TaskView";
 
-export default function Task({ task, tasks, checkTask, removeTask, updateTasks, viewTask, constraintsRef, openTask}) {
+export default function Task({ task, tasks, checkTask, removeTask, updateTasks, viewTask, constraintsRef, openTask }) {
     const [showTask, setShowTask] = useState(true)
     const [complete, setComplete] = useState(task.complete)
     
