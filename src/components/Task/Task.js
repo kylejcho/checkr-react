@@ -7,7 +7,7 @@ import TaskView from "./TaskView";
 export default function Task({ task, tasks, checkTask, removeTask, updateTasks, viewTask, constraintsRef, openTask }) {
     const [showTask, setShowTask] = useState(true)
     const [complete, setComplete] = useState(task.complete)
-    
+    const [dragging, setDragging] = useState(false)
     const taskContainer = useRef();
     
     function checkClickAnimation() {
@@ -35,14 +35,19 @@ export default function Task({ task, tasks, checkTask, removeTask, updateTasks, 
                         whileDrag={{scale:1.04}}
                         dragConstraints={constraintsRef}
                         transition={{duration: 0.25}}
-                        onDragStart={()=>taskContainer.current.classList.add('dragging')}
+                        onDragStart={()=>{
+                            taskContainer.current.classList.add('dragging')
+                            setDragging(true)
+                        }}
                         onDragEnd={()=>{
                             updateTasks(tasks)
                             taskContainer.current.classList.remove('dragging');
+                            setTimeout(() => setDragging(false), 100);
                         }}
                         exit={{opacity: 0, transition: {duration: 0.3}}}
                         dragTransition={{ bounceStiffness: 1000, bounceDamping:70 }}
                         onClick={(e)=> {
+                            if (dragging) return
                             e.stopPropagation()
                             viewTask(task)
                         }}

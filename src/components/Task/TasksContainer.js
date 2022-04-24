@@ -25,6 +25,9 @@ export default function TasksContainer({ tasks, updateTasks, removeTask, checkTa
                     duration: 0.3
                 }
              }}
+             onClick={(e)=>{
+                 e.stopPropagation();
+             }}
         >
             <div id="titleContainer" className="tasksTitle">Good Afternoon, User</div>
             <LayoutGroup>
