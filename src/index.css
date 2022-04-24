@@ -620,7 +620,7 @@ nav {
     );
     background-size: 0 100%;
     background-repeat: no-repeat;
-    transition: background-size 0.4s ease;
+    transition: background-size 0.4s ease, color 0.3s ease;
 }
 
 .taskContainer.completed .nameContainer {
@@ -669,6 +669,7 @@ nav {
     color: var(--secondary-text-color);
     white-space: nowrap;
     overflow-X: hidden;
+    transition: color 0.3s ease-in-out;
 }
 
 

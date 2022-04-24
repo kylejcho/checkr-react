@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { format, isToday, isTomorrow } from 'date-fns';
 import {ReactComponent as Caret} from '../../icons/caret-forward.svg'

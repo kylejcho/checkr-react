@@ -1,4 +1,4 @@
-import React, { useRef, useState, memo } from "react";
+import React, { useRef, useState } from "react";
 import CheckCircle from "./CheckCircle";
 import { useMotionValue, Reorder, AnimatePresence, motion } from "framer-motion";
 import { RaisedShadow } from "./RaisedShadow";
@@ -29,7 +29,7 @@ export default function Task({ task, tasks, checkTask, removeTask, updateTasks, 
                     <Reorder.Item 
                         id={task.id} 
                         ref={taskContainer}
-                        className="taskContainer" 
+                        className={`taskContainer ${openTask && task.id === openTask.id && 'viewing'}`}
                         value={task} 
                         style={{boxShadow, y}}
                         whileDrag={{scale:1.04}}
@@ -37,27 +37,18 @@ export default function Task({ task, tasks, checkTask, removeTask, updateTasks, 
                         transition={{duration: 0.25}}
                         onDragStart={()=>taskContainer.current.classList.add('dragging')}
                         onDragEnd={()=>{
-                            taskContainer.current.classList.remove('dragging');
                             updateTasks(tasks)
+                            taskContainer.current.classList.remove('dragging');
                         }}
                         exit={{opacity: 0, transition: {duration: 0.3}}}
                         dragTransition={{ bounceStiffness: 1000, bounceDamping:70 }}
                         onClick={(e)=> {
                             e.stopPropagation()
                             viewTask(task)
-                            document.querySelectorAll('.taskContainer').forEach(task=>{
-                                task.classList.remove('viewing')
-                            })
-                            e.target.classList.add('viewing');
                         }}
                     >
                         <CheckCircle task={task} taskContainer={taskContainer} checkTask={checkTask} complete={complete} checkClickAnimation={checkClickAnimation} />
-                        <motion.div 
-                            className="nameContainer"
-                            animate={()=> {
-
-                            }}
-                        >
+                        <motion.div className="nameContainer">
                             {task.name}
                         </motion.div>
                         <div className="deleteContainer" 

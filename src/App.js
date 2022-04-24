@@ -9,8 +9,7 @@ export default function App() {
   const [tasks, setTasks] = useState([])
   const [openTask, setOpenTask] = useState(null)
 
-  useEffect(()=>{
-    setTasks([
+  useEffect(() => {setTasks([
       {name: 'Coffee with friend', description: 'Starbucks', dueDate: new Date(), complete: false, id: uuidv4()},
       {name: 'Exercise', description: 'Workout out for 45 minutes', dueDate: new Date(), complete: false, id: uuidv4()},
       {name: 'Read Animal Farm', description: 'Read two chapter', dueDate: addDays(new Date(), 1), complete: false, id: uuidv4()}, 
@@ -23,8 +22,7 @@ export default function App() {
       {name: 'Learn sign language', description: 'Practice english alphabet', dueDate: addDays(new Date(), 1), complete: false,  id: uuidv4()}, 
       {name: 'Thing', description: 'Do this', dueDate: addDays(new Date(), 2), complete: false,  id: uuidv4()}, 
       {name: 'Thingies', description: 'Do these thingies', dueDate: addDays(new Date(), 2), complete: false, id: uuidv4()},
-      {name: 'Baking class', description: 'Bring homemade pie', dueDate: new Date(), complete: true, id: uuidv4()}
-    ])
+      {name: 'Baking class', description: 'Bring homemade pie', dueDate: new Date(), complete: true, id: uuidv4()}])
   },[])
 
   function addTask(task) {
@@ -56,11 +54,6 @@ export default function App() {
 
   function viewTask(task) {
     setOpenTask(task)
-    if (!openTask) {
-      document.querySelectorAll('.taskContainer').forEach(task=>{
-        task.classList.remove('viewing')
-      })
-    }
   }
 
   return (

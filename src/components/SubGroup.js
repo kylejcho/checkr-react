@@ -8,9 +8,7 @@ export default function SubGroup({ subTasks, type, updateTasks, removeTask, chec
     
     const constraintsRef = useRef(null)
 
-    useEffect(()=> {
-        setTasks([...subTasks])
-    },[subTasks])
+    useEffect(()=> setTasks([...subTasks]),[subTasks])
     
     useEffect(() => {
         setmounted(true)
