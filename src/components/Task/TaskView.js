@@ -8,7 +8,7 @@ export default function TaskView({ openTask, task, checkTask, taskContainer, com
     const taskViewContainer = useRef()
 
     return (
-        <AnimatePresence exitBeforeEnter>
+        <AnimatePresence exitBeforeEnter >
             {openTask && openTask.id === task.id && (
                 <motion.div 
                     key={'TvMotion' + openTask.id} 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function CheckCircle({ task, taskContainer, checkTask, complete, checkClickAnimation }) {
     useEffect(()=>{
@@ -65,6 +65,7 @@ export default function CheckCircle({ task, taskContainer, checkTask, complete, 
     }
 
     return (
+        <AnimatePresence initial={false}>
         <div className="checkContainer" ref={checkContainer} 
             onClick={(e) => {
                 e.stopPropagation()
@@ -116,5 +117,6 @@ export default function CheckCircle({ task, taskContainer, checkTask, complete, 
                 />
             </svg>
         </div>
+        </AnimatePresence>
     )
 }
