@@ -13,17 +13,6 @@ export default function Form({ handleClose, addTask}) {
     const tomorrow = endOfDay(addDays(new Date(),1))
 
     const [dateSelection, setDateSelection] = useState(today)
-
-    useEffect(() => {
-        console.log(dateSelection === today)
-        if (dateSelection === today) {
-            todayInput.current.classList.add('selected')
-            tomorrowInput.current.classList.remove('selected')
-        } else if (dateSelection === tomorrow)  {
-            tomorrowInput.current.classList.add('selected')
-            todayInput.current.classList.remove('selected')
-        }
-    }, [dateSelection])
    
     function handleAddTaskClick() {
         if (nameRef.current.value === '') return
