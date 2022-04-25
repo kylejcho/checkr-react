@@ -1,24 +1,40 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import InputCalendarOptions from "./InputCalendarOptions";
 import { motion } from "framer-motion";
 import { v4 as uuidv4 } from 'uuid';
-import { addDays } from "date-fns";
+import { addDays, endOfDay } from "date-fns";
 
 export default function Form({ handleClose, addTask}) {
     const nameRef = useRef();
     const descRef = useRef();
+    const todayInput = useRef();
+    const tomorrowInput = useRef();
+    const today = endOfDay(new Date());
+    const tomorrow = endOfDay(addDays(new Date(),1))
 
-    const [dueDate, setDueDate] = useState(new Date())
+    const [dateSelection, setDateSelection] = useState(today)
 
+    useEffect(() => {
+        console.log(dateSelection === today)
+        if (dateSelection === today) {
+            todayInput.current.classList.add('selected')
+            tomorrowInput.current.classList.remove('selected')
+        } else if (dateSelection === tomorrow)  {
+            tomorrowInput.current.classList.add('selected')
+            todayInput.current.classList.remove('selected')
+        }
+    }, [dateSelection])
+   
     function handleAddTaskClick() {
         if (nameRef.current.value === '') return
         const task = {
             name: nameRef.current.value, 
             description: descRef.current.value, 
-            dueDate: dueDate, 
+            dueDate: dateSelection, 
             complete: false,
             id: uuidv4()
         };
+        console.log(dateSelection)
         addTask(task);
         handleClose()
     }
@@ -35,11 +51,23 @@ export default function Form({ handleClose, addTask}) {
                 <input ref={nameRef} id="inputTaskName" type="text" placeholder="I want to..." required=""></input>
                 <textarea ref={descRef} id="inputTaskDescription" name="description" rows="2" placeholder="Description..."></textarea>
                 <div id="inputDueDateContainer">
-                    <div className={`inputDueDate ${dueDate === new Date() && 'selected'}`} id="inputToday" onClick={()=>setDueDate(new Date())}>
+                    <div className='inputDueDate' id="inputToday" ref={todayInput} 
+                        onClick={()=>{
+                            setDateSelection(today);
+                            todayInput.current.classList.add('selected')
+                            tomorrowInput.current.classList.remove('selected')
+                        }}
+                >
                         <ion-icon name="calendar-number-outline" role="img" className="md hydrated" aria-label="calendar number outline"></ion-icon>
                         Today
                     </div>
-                    <div className="inputDueDate" id="inputTomorrow" onClick={()=>setDueDate(addDays(new Date(),1))}>  
+                    <div className='inputDueDate' id="inputTomorrow" ref={tomorrowInput} 
+                        onClick={()=>{
+                            setDateSelection(tomorrow);
+                            tomorrowInput.current.classList.toggle('selected')
+                            todayInput.current.classList.remove('selected')
+                        }}
+                    >  
                         <ion-icon name="today-outline" role="img" className="md hydrated" aria-label="today outline"></ion-icon>
                         Tomorrow
                     </div>

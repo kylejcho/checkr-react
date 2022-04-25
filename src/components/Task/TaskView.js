@@ -13,7 +13,7 @@ export default function TaskView({ openTask, task, checkTask, taskContainer, com
                 <motion.div 
                     key={'TvMotion' + task.id} 
                     className={`taskViewContainer ${task.complete && 'completed'}`}
-                    id = {'Tv' + task.id}
+                    id={'Tv' + task.id}
                     ref={taskViewContainer}
                     animate={{ opacity: 1, x: -250 }}
                     initial={{ opacity: 0, right: -800}}
