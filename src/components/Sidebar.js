@@ -8,7 +8,7 @@ export default function Sidebar({ changeContent }) {
 return (
     <>
         <div id="sidebar">
-            <div id="sidebarHome" className="sidebarTab viewing">
+            <div id="sidebarHome" className="sidebarTab" onClick={()=>pickType('home')}>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512" style={{fill:'none',strokeLinecap:'round',strokeLinejoin:'round',strokeWidth:'32px'}}>
                 <title>ionicons-v5-i</title>
                 <path d="M80,212V448a16,16,0,0,0,16,16h96V328a24,24,0,0,1,24-24h80a24,24,0,0,1,24,24V464h96a16,16,0,0,0,16-16V212"/>
