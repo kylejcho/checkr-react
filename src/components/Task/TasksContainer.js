@@ -1,12 +1,12 @@
 import React from 'react'
 import SubGroup from '../SubGroup';
 import { LayoutGroup, motion, AnimatePresence } from 'framer-motion';
-import { isToday, isTomorrow, isAfter, addDays} from "date-fns";
+import { isToday, isTomorrow, isAfter, addDays, endOfDay} from "date-fns";
 
 export default function TasksContainer({ contentType, tasks, updateTasks, removeTask, checkTask, viewTask, openTask }) {
     const todayTasks = tasks.filter(task=> isToday(task.dueDate))
     const tomorrowTasks = tasks.filter(task=> isTomorrow(task.dueDate))
-    const upcomingTasks = tasks.filter(task=> isAfter(task.dueDate, addDays(new Date(),1)))
+    const upcomingTasks = tasks.filter(task=> isAfter(task.dueDate, addDays(endOfDay(new Date()),1)))
 
     const today = () => <SubGroup subTasks={todayTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTask={openTask} type="today" />
 
