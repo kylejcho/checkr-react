@@ -14,6 +14,10 @@ export default function Form({ handleClose, addTask}) {
 
     const [dateSelection, setDateSelection] = useState(today)
    
+    useEffect(()=> {
+        todayInput.current.classList.add('selected')
+    },[])
+
     function handleAddTaskClick() {
         if (nameRef.current.value === '') return
         const task = {
@@ -23,7 +27,6 @@ export default function Form({ handleClose, addTask}) {
             complete: false,
             id: uuidv4()
         };
-        console.log(dateSelection)
         addTask(task);
         handleClose()
     }

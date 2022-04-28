@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TasksContainer from "./Task/TasksContainer";
-export default function Content({ tasks, checkTask, updateTasks, removeTask, openTask, viewTask}) {
+export default function Content({ contentType, tasks, checkTask, updateTasks, removeTask, openTask, viewTask}) {
+
     return (
         <div id="contentContainer" onClick={()=>{viewTask(null)}}>
-            <TasksContainer tasks={tasks} checkTask={checkTask} updateTasks={updateTasks} removeTask={removeTask} viewTask={viewTask} openTask={openTask} />
+            <TasksContainer contentType={contentType} tasks={tasks} checkTask={checkTask} updateTasks={updateTasks} removeTask={removeTask} viewTask={viewTask} openTask={openTask} />
         </div>
     )
 }

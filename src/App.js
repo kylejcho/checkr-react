@@ -8,6 +8,7 @@ import { addDays } from "date-fns";
 export default function App() {
   const [tasks, setTasks] = useState([])
   const [openTask, setOpenTask] = useState(null)
+  const [contentType, setContentType] = useState('home')
 
   useEffect(() => {setTasks([
       {name: 'Coffee with friend', description: 'Starbucks', dueDate: new Date(), complete: false, id: uuidv4()},
@@ -24,6 +25,11 @@ export default function App() {
       {name: 'Thingies', description: 'Do these thingies', dueDate: addDays(new Date(), 2), complete: false, id: uuidv4()},
       {name: 'Baking class', description: 'Bring homemade pie', dueDate: new Date(), complete: true, id: uuidv4()}])
   },[])
+
+  function changeContent(type) {
+    setContentType(type)
+    setOpenTask(null)
+  }
 
   function addTask(task) {
     setTasks(prevTasks => [task, ...prevTasks])
@@ -59,8 +65,8 @@ export default function App() {
   return (
     <>
       <Navbar addTask={addTask} />
-      <Sidebar />
-      <Content tasks={tasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} openTask={openTask} viewTask={viewTask}  />
+      <Sidebar changeContent={changeContent} />
+      <Content contentType={contentType} tasks={tasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} openTask={openTask} viewTask={viewTask}  />
     </>
   )
 }

@@ -1,10 +1,10 @@
 import React from "react";
 
-export default function Sidebar() {
-    const handleClick = type => e => {
-        console.log(type)
-    }   
-
+export default function Sidebar({ changeContent }) {   
+    
+    function pickType(type) {
+        changeContent(type)
+    }
 return (
     <>
         <div id="sidebar">
@@ -25,7 +25,7 @@ return (
                 Shortcuts
             </p>
             <div id="sidebarShortcuts" className="sidebarTabsContainer">
-                <div id="sidebarShortcutsToday" className="sidebarShortcut sidebarTab" onClick={handleClick('today')}>
+                <div id="sidebarShortcutsToday" className="sidebarShortcut sidebarTab" onClick={()=>pickType('today')}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512">
                         <rect fill="none" stroke="#697384" strokeLinejoin="round" strokeWidth="32" x="48" y="80" width="416" height="384" rx="48"/>
                         <line fill="none" stroke="#697384" strokeLinejoin="round" strokeWidth="32" strokeLinecap="round" x1="128" y1="48" x2="128" y2="80"/>
@@ -36,7 +36,7 @@ return (
                     <p>Today</p>
                     <div className = "sidebarCount" id="todayCount"></div>
                 </div>
-                <div id="sidebarShortcutsWeek" className="sidebarShortcut sidebarTab" onClick={handleClick('week')}>
+                <div id="sidebarShortcutsWeek" className="sidebarShortcut sidebarTab" onClick={()=>pickType('week')}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512" stroke="#697384" fill="#697384">
                     <rect fill="none" strokeLinejoin="round" strokeWidth="32" x="48" y="80" width="416" height="384" rx="48"/>
                     <circle cx="296" cy="232" r="24"/>
@@ -55,7 +55,7 @@ return (
                     <p>Next 7 Days</p>
                     <div className = "sidebarCount" id="weekCount"></div>
                 </div>
-                <div id="sidebarShortcutsAllTasks" className="sidebarShortcut sidebarTab" onClick={handleClick('allTasks')}>
+                <div id="sidebarShortcutsAllTasks" className="sidebarShortcut sidebarTab" onClick={()=>pickType('all')}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512"><title>ionicons-v5-o</title>
                     <line x1="160" y1="144" x2="448" y2="144" style={{fill:'none',strokeLinecap:'round',strokeLinejoin:'round',strokeWidth:'32px'}}/>
                     <line x1="160" y1="256" x2="448" y2="256" style={{fill:'none',strokeLinecap:'round',strokeLinejoin:'round',strokeWidth:'32px'}}/>
@@ -68,7 +68,7 @@ return (
                     <div className = "sidebarCount" id="allCount"></div>
                 </div>
             </div>
-            <p id="sidebarListsTitle" className="sidebarTitle">
+            <p id="sidebarListsTitle" className="sidebarTitle" onClick={()=>pickType('list')}>
                 <svg id = "listsArrow" className="sidebarArrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512">
                     <title>ionicons-v5-a</title>
                     <polyline points="112 184 256 328 400 184" style={{fill:'none',strokeLinecap:'round',strokeLinejoin:'round',strokeWidth:'50px'}}/>

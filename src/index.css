@@ -329,6 +329,7 @@ nav {
     padding: 40px 10px 0 20px;
     color: var(--secondary-text-color);
     background-color: var(--secondary-bg-color);
+    z-index: 2;
 }
 
 
