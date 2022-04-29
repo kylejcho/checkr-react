@@ -65,8 +65,10 @@ export default function App() {
   return (
     <>
       <Navbar addTask={addTask} />
-      <Sidebar changeContent={changeContent} />
-      <Content contentType={contentType} tasks={tasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} openTask={openTask} viewTask={viewTask}  />
+      <div id="sidebarContentContainer">
+        <Sidebar changeContent={changeContent} />
+        <Content contentType={contentType} tasks={tasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} openTask={openTask} viewTask={viewTask}  />
+      </div>
     </>
   )
 }

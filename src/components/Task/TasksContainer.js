@@ -32,6 +32,7 @@ export default function TasksContainer({ contentType, tasks, updateTasks, remove
         }
     }
 
+    //const sidebarWidth = document.querySelector('#sidebar').offsetWidth;
 
     return (
         <AnimatePresence exitBeforeEnter>
@@ -39,7 +40,11 @@ export default function TasksContainer({ contentType, tasks, updateTasks, remove
                 id="homeContainer"
                 key = {contentType}
                 className="tasksContainer" 
-                initial={{opacity: 0, y: '25vh'}}
+                initial={{
+                    opacity: 0, 
+                    y: '25vh',
+                    right: '50%'
+                }}
                 exit={{
                     opacity: 0, 
                     transition: {
@@ -48,7 +53,7 @@ export default function TasksContainer({ contentType, tasks, updateTasks, remove
                 }}
                 animate={{
                     y: '0',
-                    x: openTask ? -180: 0,
+                    right: openTask ? '60%': '50%',
                     opacity: 1,
                     transition: {
                         type: "spring",

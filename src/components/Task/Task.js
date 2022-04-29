@@ -50,6 +50,10 @@ export default function Task({ task, tasks, checkTask, removeTask, updateTasks, 
                             if (dragging) return
                             e.stopPropagation()
                             viewTask(task)
+                            setTimeout(() => {
+                               const tasksContainer = document.querySelector('.tasksContainer')
+                                console.log(tasksContainer.offsetwidth)
+                            }, 100);
                         }}
                     >
                         <CheckCircle task={task} taskContainer={taskContainer} checkTask={checkTask} complete={complete} checkClickAnimation={checkClickAnimation} />

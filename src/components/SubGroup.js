@@ -17,16 +17,11 @@ export default function SubGroup({ subTasks, type, updateTasks, removeTask, chec
     
     return (
         <div className="subGroup" id={type} ref={constraintsRef}>
-            <motion.div 
+            <div 
                 className="subGroupTitle"
-                layout 
-                transition={{
-                    type:'tween',
-                    duration: mounted ? 0 : 0.25
-                }} 
             >
                 {type[0].toUpperCase() + type.slice(1)}
-            </motion.div>
+            </div>
             <Reorder.Group values={tasks} onReorder={setTasks}>
                 {tasks.map(task=> {
                     return <Task 

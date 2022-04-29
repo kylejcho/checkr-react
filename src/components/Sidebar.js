@@ -1,13 +1,20 @@
-import React from "react";
+import React, {useRef, useEffect} from "react";
 
 export default function Sidebar({ changeContent }) {   
     
     function pickType(type) {
         changeContent(type)
     }
+
+
+    const ref = useRef(null);
+    useEffect(() => {
+      console.log('width', ref.current ? ref.current.offsetWidth : 0);
+    }, [ref.current]);
+
 return (
     <>
-        <div id="sidebar">
+        <div id="sidebar" ref={ref}>
             <div id="sidebarHome" className="sidebarTab" onClick={()=>pickType('home')}>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512" style={{fill:'none',strokeLinecap:'round',strokeLinejoin:'round',strokeWidth:'32px'}}>
                 <title>ionicons-v5-i</title>

@@ -295,9 +295,14 @@ nav {
     fill: var(--primary-blue);
 }
 
-#contentContainer {
-    position: absolute;
+#sidebarContentContainer {
+    display: flex;
+    position: fixed;
     top: 55px;
+}
+
+#contentContainer {
+    position: relative;
     left: 0;
     height: 100vh;
     width: 100vw;
@@ -307,7 +312,7 @@ nav {
 }
 
 #contentContainer::-webkit-scrollbar {
-    width: 0.8rem;
+    width: 10px;
 }
    
 #contentContainer::-webkit-scrollbar-track {
@@ -473,7 +478,7 @@ nav {
     width: 25vw;
     position: absolute;
     top: 37px;
-    left: calc(50vw - 12.5vw);
+    right: 65%;
     padding-bottom: 150px;
 }
 
@@ -494,6 +499,7 @@ nav {
 /* SUB-GROUP */
 
 .subGroup {
+    position: relative;
     margin-top: clamp(5px,1vw,20px);
 }
 
@@ -541,7 +547,7 @@ nav {
     cursor: pointer;
     display: grid;
     height: 60px;
-    width: max(100%, 250px);
+    width: max(100%, 225px);
     grid-template: 30px 30px/40px auto 40px;
     border-radius: 5px;
     border: 2px solid rgba(255, 255, 255, 0);
@@ -611,7 +617,7 @@ nav {
     height: 14px;
     white-space: nowrap;
     font-weight: 600;
-    font-size: clamp(14px, 1.2vw, 17px);
+    font-size: clamp(12px, 1.2vw, 17px);
     color: var(--primary-text-color);
     background-image: linear-gradient(to bottom,
         #00000000 50%,
@@ -666,7 +672,7 @@ nav {
     width: auto;
     height: 30px;
     font-weight: 400;
-    font-size: clamp(12px, 1.1vw, 16px);
+    font-size: clamp(10px, 1.1vw, 16px);
     color: var(--secondary-text-color);
     white-space: nowrap;
     overflow-X: hidden;
@@ -679,13 +685,12 @@ nav {
 .taskViewContainer {
     position: fixed;
     top: 100px;
-    right: 150px;
     height: max(20vw,300px);
-    width: clamp(250px, 22vw, 370px);
-    font-size: clamp(14px, 1.1vw, 16px);
+    width: calc(25vw - 70px);
+    min-width: 250px;
+    font-size: clamp(12px, 1vw, 16px);
     border-radius: 10px;
     box-shadow: -2px 2px 6px 0px rgba(0,0,0,0.15);
-    padding: 20px;
 }
 
 .taskViewCheckContainer {
@@ -724,6 +729,7 @@ nav {
     align-items: center;
     background-size: 0% 100%;
     border-radius: 5px;
+    margin: 20px 0 0 20px;
 }
 
 .taskViewNameContainer svg {
@@ -734,7 +740,7 @@ nav {
 .taskViewName {
     display: flex;
     align-items: center;
-    font-size: clamp(22px, 1.5vw, 28px);
+    font-size: clamp(17px, 1.4vw, 28px);
     font-weight: 700;
     width: 80%;
     height: 20px;
@@ -761,7 +767,7 @@ nav {
     font-weight: 700;
     margin-top: 20px;
     color: var(--secondary-text-color);
-    margin-left: 35px;
+    margin-left: 57px;
 }
 
 .taskViewDescription {
@@ -778,7 +784,7 @@ nav {
     font-weight: 700;
     margin-top: 20px;
     color: var(--secondary-text-color);
-    margin-left: 35px;
+    margin-left: 57px;
     fill: #697384;
 }
 
@@ -800,7 +806,7 @@ nav {
     font-weight: 700;
     margin-top: 20px;
     color: var(--secondary-text-color);
-    margin-left: 35px;
+    margin-left: 57px;
     fill: #697384;
 }
 

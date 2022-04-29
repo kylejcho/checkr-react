@@ -15,11 +15,11 @@ export default function TaskView({ openTask, task, checkTask, taskContainer, com
                     className={`taskViewContainer ${task.complete && 'completed'}`}
                     id={'Tv' + task.id}
                     ref={taskViewContainer}
-                    animate={{ opacity: 1, x: -250 }}
+                    animate={{ opacity: 1, right: -0.25*(window.innerWidth)}}
                     initial={{ opacity: 0, right: -800}}
                     exit={{ 
                         opacity: 0, 
-                        x: -50,
+                        x: 100,
                         transition: { duration: 0.16 }
                     }}
                     transition={{ type:'spring',duration: 0.6, delay: 0.05}}
