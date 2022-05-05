@@ -33,7 +33,6 @@ export default function Task({ task, tasks, checkTask, removeTask, updateTasks, 
                         value={task} 
                         style={{boxShadow, y}}
                         whileDrag={{scale:1.04}}
-                        dragConstraints={constraintsRef}
                         transition={{duration: 0.25}}
                         onDragStart={()=>{
                             taskContainer.current.classList.add('dragging')

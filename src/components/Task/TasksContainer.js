@@ -43,7 +43,7 @@ export default function TasksContainer({ contentType, tasks, updateTasks, remove
                 initial={{
                     opacity: 0, 
                     y: '25vh',
-                    right: '50%'
+                    x: '150%'
                 }}
                 exit={{
                     opacity: 0, 
@@ -52,8 +52,8 @@ export default function TasksContainer({ contentType, tasks, updateTasks, remove
                     }
                 }}
                 animate={{
-                    y: '0',
-                    right: openTask ? '60%': '50%',
+                    y: 0,
+                    x: openTask ? '100%': '150%',
                     opacity: 1,
                     transition: {
                         type: "spring",

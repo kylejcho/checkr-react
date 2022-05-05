@@ -302,8 +302,10 @@ nav {
 }
 
 #contentContainer {
-    position: relative;
+    position: absolute;
     left: 0;
+    top:0;
+    padding-top: 45px;
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -327,14 +329,14 @@ nav {
 
 #sidebar {
     position: sticky;
-    top: 55px;
     font-size: clamp(13px, 1.2vw, 16px);
     height: calc(100vh - 95px);
     width: max-content;
-    padding: 40px 10px 0 20px;
+    padding: 77px 10px 0 20px;
     color: var(--secondary-text-color);
     background-color: var(--secondary-bg-color);
     z-index: 2;
+    transform: translateY(-37px);
 }
 
 
@@ -476,9 +478,6 @@ nav {
 .tasksContainer {
     height: max-content;
     width: 25vw;
-    position: absolute;
-    top: 37px;
-    right: 65%;
     padding-bottom: 150px;
 }
 

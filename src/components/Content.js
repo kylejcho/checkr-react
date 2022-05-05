@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import TasksContainer from "./Task/TasksContainer";
+import { motion } from "framer-motion";
 export default function Content({ contentType, tasks, checkTask, updateTasks, removeTask, openTask, viewTask}) {
 
     return (
-        <div id="contentContainer" onClick={()=>{viewTask(null)}}>
+        <motion.div layoutScroll id="contentContainer" onClick={()=>{viewTask(null)}}>
             <TasksContainer contentType={contentType} tasks={tasks} checkTask={checkTask} updateTasks={updateTasks} removeTask={removeTask} viewTask={viewTask} openTask={openTask} />
-        </div>
+        </motion.div>
     )
 }

@@ -12,16 +12,21 @@ export default function SubGroup({ subTasks, type, updateTasks, removeTask, chec
     
     useEffect(() => {
         setmounted(true)
-        setTimeout(()=> setmounted(false), 310);
+        setTimeout(()=> setmounted(false), 450);
     }, [])
     
     return (
-        <div className="subGroup" id={type} ref={constraintsRef}>
-            <div 
+        <div className="subGroup" id={type} >
+            <motion.div 
                 className="subGroupTitle"
+                layout 
+                transition={{
+                    type:'tween',
+                    duration: mounted ? 0 : 0.25
+                }} 
             >
                 {type[0].toUpperCase() + type.slice(1)}
-            </div>
+            </motion.div>
             <Reorder.Group values={tasks} onReorder={setTasks}>
                 {tasks.map(task=> {
                     return <Task 
@@ -40,4 +45,3 @@ export default function SubGroup({ subTasks, type, updateTasks, removeTask, chec
         </div>
     )
 }
-
