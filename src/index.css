@@ -298,6 +298,7 @@ nav {
 #sidebarContentContainer {
     display: flex;
     position: fixed;
+    height: 100vh;
     top: 55px;
 }
 
@@ -306,7 +307,7 @@ nav {
     left: 0;
     top:0;
     padding-top: 45px;
-    height: 100vh;
+    height: calc(100vh - 100px);
     width: 100vw;
     display: flex;
     overflow-y: scroll;
@@ -330,13 +331,13 @@ nav {
 #sidebar {
     position: sticky;
     font-size: clamp(13px, 1.2vw, 16px);
-    height: calc(100vh - 95px);
+    height: calc(100vh - 100px);
     width: max-content;
-    padding: 77px 10px 0 20px;
+    padding: 45px 10px 0 20px;
     color: var(--secondary-text-color);
     background-color: var(--secondary-bg-color);
     z-index: 2;
-    transform: translateY(-37px);
+   
 }
 
 
@@ -476,7 +477,7 @@ nav {
 /* TASKS CONTAINER */
 
 .tasksContainer {
-    height: max-content;
+    height: calc(100vh - 150px);
     width: 25vw;
     padding-bottom: 150px;
 }
@@ -970,8 +971,6 @@ nav {
 }
 
 #inputCalendarOptions {
-    opacity: 0;
-    pointer-events: none;
     position: absolute;
     margin-top: 55px;
     padding: 10px 10px 0 10px;
@@ -983,7 +982,6 @@ nav {
     border: 1px solid #d6d6d6;
     background-color: white;
     transform: translateX(-25%);
-    transition: all 0.2s ease-in-out;
 }
 #inputCalendarContainer.selected {
     box-shadow: none;

@@ -13,7 +13,9 @@ export default function Form({ handleClose, addTask}) {
     const tomorrow = endOfDay(addDays(new Date(),1))
 
     const [dateSelection, setDateSelection] = useState(today)
-   
+    const [openCalendar, setOpenCalendar] = useState(false)
+ 
+
     useEffect(()=> {
         todayInput.current.classList.add('selected')
     },[])
@@ -63,12 +65,12 @@ export default function Form({ handleClose, addTask}) {
                         <ion-icon name="today-outline" role="img" className="md hydrated" aria-label="today outline"></ion-icon>
                         Tomorrow
                     </div>
-                    <div id="inputCalendarContainer">
+                    <div id="inputCalendarContainer" onClick={()=>{setOpenCalendar(!openCalendar)}}>
                         <div id="inputCalendar">
                             <ion-icon name="calendar-clear-outline" role="img" className="md hydrated" aria-label="calendar clear outline"></ion-icon>
                             <p id="dateSelection">Pick Date</p>
                         </div>
-                        <InputCalendarOptions />
+                        <InputCalendarOptions openCalendar={openCalendar} />
                     </div>
                     <div id="inputListContainer">
                         <div id="inputList">

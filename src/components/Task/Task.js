@@ -56,9 +56,9 @@ export default function Task({ task, tasks, checkTask, removeTask, updateTasks, 
                         }}
                     >
                         <CheckCircle task={task} taskContainer={taskContainer} checkTask={checkTask} complete={complete} checkClickAnimation={checkClickAnimation} />
-                        <motion.div className="nameContainer">
+                        <div className="nameContainer">
                             {task.name}
-                        </motion.div>
+                        </div>
                         <div className="deleteContainer" 
                             onClick={(e)=> {
                                 handleDeleteClick()
