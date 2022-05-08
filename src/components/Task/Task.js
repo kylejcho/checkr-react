@@ -3,10 +3,10 @@ import CheckCircle from "./CheckCircle";
 import { motion, useMotionValue, Reorder, AnimatePresence} from "framer-motion";
 import { RaisedShadow } from "./RaisedShadow";
 import TaskView, { viewTask } from "./TaskView";
+import { createTaskView } from "../Content";
 
-export default function Task({ task, tasks, checkTask, removeTask, allTasks, updateTasks}) {
+export default function Task({ task, tasks, checkTask, removeTask, updateTasks, viewTask, openTask }) {
     const [showTask, setShowTask] = useState(true)
-    const [viewTask, setViewTask] = useState(null)
     const taskContainer = useRef();
     
     function handleDeleteClick() {
@@ -16,8 +16,6 @@ export default function Task({ task, tasks, checkTask, removeTask, allTasks, upd
 
     const y = useMotionValue(0);
     const boxShadow = RaisedShadow(y);
-
-
 
     return (
         <>
@@ -38,10 +36,19 @@ export default function Task({ task, tasks, checkTask, removeTask, allTasks, upd
                         }}
                         exit={{opacity: 0, transition: {duration: 0.3}}}
                         dragTransition={{ bounceStiffness: 1000, bounceDamping:70 }}
-                        onClick={()=> {
+                        onClick={(e)=> {
+                
+                            e.stopPropagation()
+                     
+                            
+                            viewTask(task)
+                            document.querySelectorAll('.taskContainer').forEach(task=>{
+                                task.classList.remove('viewing')
+                            })
+                            e.target.classList.add('viewing');
+
                             //setViewTask(false)
-                            //openTask();
-                            //taskContainer.current.classList.add('viewing');
+                            //openTask(e);
                             //setViewTask(true)
                         }}
                     >
@@ -62,15 +69,15 @@ export default function Task({ task, tasks, checkTask, removeTask, allTasks, upd
                     </Reorder.Item>
                 )}
             </AnimatePresence>
-           
         </>
     )
 }
 
-function openTask() {
+function openTask(e) {
     const taskContainers = document.querySelectorAll('.taskContainer');
     taskContainers.forEach(task=>{
         task.classList.remove('viewing')
     })
+    e.target.classList.add('viewing');
 
 }

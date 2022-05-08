@@ -7,6 +7,7 @@ import { addDays } from "date-fns";
 
 export default function App() {
   const [tasks, setTasks] = useState([])
+  const [openTask, setOpenTask] = useState(null)
 
   useEffect(()=>{
     setTasks([
@@ -30,17 +31,39 @@ export default function App() {
     setTasks(prevTasks => [task, ...prevTasks])
     //console.log(tasks)
   }
+  
+  function removeTask(task) {
+    setTasks(tasks => tasks.filter(item => item.id !== task))
+  }; 
+
+  function checkTask(task) {
+    let prevTasks = [...tasks];
+    const checkedTask = prevTasks.find(item => item.id === task);
+    checkedTask.complete = !checkedTask.complete;
+    const index = prevTasks.indexOf(checkedTask);
+    if (checkedTask.complete) {
+      prevTasks.push(prevTasks.splice(index,1)[0])
+    } else {
+      prevTasks.unshift(prevTasks.splice(index,1)[0])
+    }
+    setTasks([...prevTasks])
+}
 
   function updateTasks(subTasks) {
     const prevTasks = tasks.filter(task => !subTasks.includes(task))
     setTasks([...prevTasks,...subTasks])
   }
 
+  function viewTask(task) {
+    console.log(task)
+    setOpenTask(task)
+  }
+
   return (
     <>
       <Navbar addTask={addTask} />
       <Sidebar />
-      <Content tasks={tasks} updateTasks={updateTasks} />
+      <Content tasks={tasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} openTask={openTask} viewTask={viewTask}  />
     </>
   )
 }

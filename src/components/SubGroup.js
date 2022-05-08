@@ -2,31 +2,17 @@ import React, { useState, useEffect, useCallback } from "react";
 import Task from "./Task/Task";
 import { motion, Reorder} from "framer-motion";
 
-export default function SubGroup({ subTasks, allTasks, type, updateTasks }) {
+export default function SubGroup({ subTasks, allTasks, type, updateTasks, removeTask, checkTask, viewTask, openTask }) {
     const [tasks, setTasks] = useState([])
     const [mounted, setmounted] = useState(false)
     
-    function checkTask(task) {
-        let prevTasks = [...tasks];
-        const checkedTask = prevTasks.find(item => item.id === task);
-        checkedTask.complete = !checkedTask.complete;
-        const index = prevTasks.indexOf(checkedTask);
-        if (checkedTask.complete) {
-          prevTasks.push(prevTasks.splice(index,1)[0])
-        } else {
-          prevTasks.unshift(prevTasks.splice(index,1)[0])
-        }
-        setTasks([...prevTasks])
-    }
+
 
     //function removeTask(task) {
     //    setTasks(prevTasks => prevTasks.filter(item => item.id !== task))
    // }
 
-    const removeTask = useCallback((task) => {
-        setTasks(tasks => tasks.filter(item => item.id !== task))
-        console.log(tasks)
-    }, []);
+
 
 
     useEffect(()=> {
@@ -52,7 +38,7 @@ export default function SubGroup({ subTasks, allTasks, type, updateTasks }) {
             </motion.div>
             <Reorder.Group values={tasks} onReorder={setTasks}>
                 {tasks.map(task=>{
-                    return <Task tasks={tasks} task={task} alltasks={allTasks} key={task.id} checkTask={checkTask} removeTask={removeTask} updateTasks={updateTasks} />
+                    return <Task tasks={tasks} task={task} alltasks={allTasks} key={task.id} checkTask={checkTask} removeTask={removeTask} updateTasks={updateTasks} viewTask={viewTask} openTask={openTask} />
                 })}
             </Reorder.Group>
         </div>

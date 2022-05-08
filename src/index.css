@@ -545,7 +545,7 @@ nav {
     grid-template: 30px 30px/40px auto 40px;
     border-radius: 5px;
     border: 2px solid rgba(255, 255, 255, 0);
-    transition: border ease-in-out 0.3s
+    transition: border ease-in-out 0.2s
 }
 
 .taskContainer::after {
@@ -570,9 +570,8 @@ nav {
     background-color: rgba(255, 255, 255, 0.762);
 }
 
-.taskContainer.viewing::after {
-    opacity: 1;
-    border: 2px solid var(--primary-blue);
+.taskContainer.viewing {
+    border-color: var(--primary-blue);
 }
 
 .completed div{
@@ -677,9 +676,9 @@ nav {
 /* TASK VIEW */
 
 .taskViewContainer {
-    position: absolute;
-    top: 140px;
-    right: -600px;
+    position: fixed;
+    top: 160px;
+    right: 0px;
     height: max(20vw,300px);
     width: clamp(250px, 22vw, 370px);
     font-size: clamp(14px, 1.1vw, 16px);

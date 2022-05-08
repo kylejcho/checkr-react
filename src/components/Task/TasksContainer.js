@@ -3,10 +3,14 @@ import SubGroup from '../SubGroup';
 import { LayoutGroup, motion } from 'framer-motion';
 import { isToday, isTomorrow, isAfter, addDays} from "date-fns";
 
-export default function TasksContainer({ tasks, updateTasks }) {
+export default function TasksContainer({ tasks, updateTasks, removeTask, checkTask, viewTask, openTask}) {
     const todayTasks = tasks.filter(task=> isToday(task.dueDate))
     const tomorrowTasks = tasks.filter(task=> isTomorrow(task.dueDate))
     const upcomingTasks = tasks.filter(task=> isAfter(task.dueDate, addDays(new Date(),1)))
+
+    const variants = {
+
+    }
 
     return (
         <motion.div 
@@ -16,6 +20,7 @@ export default function TasksContainer({ tasks, updateTasks }) {
             exit={{opacity: 0, y: '120vh'}}
             animate={{
                 y: '0',
+                x: openTask ? -180: 0,
                 opacity: 1,
                 transition: {
                     type: "spring",
@@ -27,9 +32,9 @@ export default function TasksContainer({ tasks, updateTasks }) {
         >
             <div id="titleContainer" className="tasksTitle">Good Afternoon, User</div>
             <LayoutGroup>
-                <SubGroup subTasks={todayTasks} allTasks={tasks} updateTasks={updateTasks} type="today" />
-                <SubGroup subTasks={tomorrowTasks} allTasks={tasks} updateTasks={updateTasks} type="tomorrow" />
-                <SubGroup subTasks={upcomingTasks} allTasks={tasks} updateTasks={updateTasks} type="upcoming" />
+                <SubGroup subTasks={todayTasks} allTasks={tasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTask={openTask} type="today"  />
+                <SubGroup subTasks={tomorrowTasks} allTasks={tasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTask={openTask} type="tomorrow" />
+                <SubGroup subTasks={upcomingTasks} allTasks={tasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTask={openTask} type="upcoming" />
             </LayoutGroup>
         </motion.div> 
     )
