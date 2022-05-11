@@ -3,8 +3,9 @@ import Calendar from "./Calendar"
 import { subMonths, addMonths, format, startOfMonth} from "date-fns"
 import { motion, AnimatePresence } from "framer-motion"
 
-export default function InputCalendarOptions({ openCalendar }) {
+export default function InputCalendarOptions({ openCalendar, selectCalendarDate }) {
     const [month, setMonth] = useState(startOfMonth(new Date))
+
     return (
         <AnimatePresence>
             {openCalendar && (
@@ -31,7 +32,7 @@ export default function InputCalendarOptions({ openCalendar }) {
                         <div>F</div>
                         <div>S</div>
                     </div>
-                    <Calendar month={month}/>
+                    <Calendar month={month} selectCalendarDate={selectCalendarDate} />
                 </motion.div>
             )}
         </AnimatePresence>

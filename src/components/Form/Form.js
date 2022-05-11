@@ -14,7 +14,14 @@ export default function Form({ handleClose, addTask}) {
 
     const [dateSelection, setDateSelection] = useState(today)
     const [openCalendar, setOpenCalendar] = useState(false)
- 
+    const [markCalendarInput, setMarkCalendarInput] = useState(false)
+
+    function selectCalendarDate(date) {
+        setDateSelection(date)
+        setMarkCalendarInput(true)
+        tomorrowInput.current.classList.remove('selected')
+        todayInput.current.classList.remove('selected')
+    }
 
     useEffect(()=> {
         todayInput.current.classList.add('selected')
@@ -48,6 +55,7 @@ export default function Form({ handleClose, addTask}) {
                     <div className='inputDueDate' id="inputToday" ref={todayInput} 
                         onClick={()=>{
                             setDateSelection(today);
+                            setMarkCalendarInput(false)
                             todayInput.current.classList.add('selected')
                             tomorrowInput.current.classList.remove('selected')
                         }}
@@ -58,6 +66,7 @@ export default function Form({ handleClose, addTask}) {
                     <div className='inputDueDate' id="inputTomorrow" ref={tomorrowInput} 
                         onClick={()=>{
                             setDateSelection(tomorrow);
+                            setMarkCalendarInput(false)
                             tomorrowInput.current.classList.toggle('selected')
                             todayInput.current.classList.remove('selected')
                         }}
@@ -65,13 +74,24 @@ export default function Form({ handleClose, addTask}) {
                         <ion-icon name="today-outline" role="img" className="md hydrated" aria-label="today outline"></ion-icon>
                         Tomorrow
                     </div>
-                    <div id="inputCalendarContainer" onClick={()=>{setOpenCalendar(!openCalendar)}}>
+                    <motion.div 
+                        id="inputCalendarContainer" 
+                        whileHover= {{
+                            boxShadow: markCalendarInput ? '0 2px 6px 0 rgba(0,0,0,0)' : '0 2px 6px 0 rgba(0,0,0,0.17)',
+                        }}
+                        style = {{
+                            boxShadow: openCalendar ? '0 2px 6px 0 rgba(0,0,0,0.17)' : '0 2px 6px 0 rgba(0,0,0,0)',
+                            backgroundColor: markCalendarInput && '#ecf0f6'
+                        }}
+                        transition= {{duration: 0.25}}
+                        onClick={()=>{setOpenCalendar(!openCalendar)}}
+                    >
                         <div id="inputCalendar">
                             <ion-icon name="calendar-clear-outline" role="img" className="md hydrated" aria-label="calendar clear outline"></ion-icon>
                             <p id="dateSelection">Pick Date</p>
                         </div>
-                        <InputCalendarOptions openCalendar={openCalendar} />
-                    </div>
+                        <InputCalendarOptions openCalendar={openCalendar} selectCalendarDate={selectCalendarDate} />
+                    </motion.div>
                     <div id="inputListContainer">
                         <div id="inputList">
                             <div className="dot"></div>

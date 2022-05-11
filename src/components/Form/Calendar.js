@@ -1,29 +1,25 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { v4 as uuidv4 } from 'uuid';
-import { getDaysInMonth, getDay , startOfMonth, format, setDate} from "date-fns";
+import { getDaysInMonth, getDay , addDays, endOfDay, isBefore } from "date-fns";
 
-export default function Calendar({ month }) {
+export default function Calendar({ month, selectCalendarDate }) {
     const calendar = useRef()
-
-    const daysInMonth = getDaysInMonth(month);
-    const startDay = getDay(startOfMonth(month));
     const calendarArr = []
-    useEffect(()=>{
-      console.log(month)
-    },[startDay])
-    for (let i = 0; i < startDay; i++) {
-       calendarArr.push('')
+
+    for (let i = 0; i < getDay(month); i++) {
+       calendarArr.push('x'+ i)
     }
-    for (let i = 1; i <= daysInMonth; i++) {
+    for (let i = 1; i <= getDaysInMonth(month); i++) {
         calendarArr.push(i)
-        //console.log(calendarArr)
     }
 
   return (
     <div id="calendar" ref={calendar}>
-        {calendarArr.map(day=> {
-            let className = (day>=1) ? '' : 'past';
-            return <div className={`calendarDay${className}`} key={uuidv4}>{day}</div>
+        {calendarArr.map(day => {
+            return <div className={`calendar${(day>=1) ? 'Day' : 'Blank'}${isBefore(endOfDay(addDays(month,day-1)),new Date) ? 'Past' : ''}`} key={day} 
+                        onClick={()=>{
+                          selectCalendarDate(endOfDay(addDays(month,day-1)))
+                        }}
+                    >{day}</div>
         })}
     </div>
   )
