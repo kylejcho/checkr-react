@@ -36,7 +36,6 @@ export default function TasksContainer({ contentType, tasks, updateTasks, remove
 
     return (
         <AnimatePresence exitBeforeEnter>
-            <LayoutGroup>
             <motion.div 
                 id="homeContainer"
                 key = {contentType}
@@ -67,14 +66,13 @@ export default function TasksContainer({ contentType, tasks, updateTasks, remove
                     e.stopPropagation();
                 }}
             >
-                <div id="titleContainer" className="tasksTitle">
-                    {taskTitle()}
-                </div>
-               
+                <LayoutGroup>
+                    <div id="titleContainer" className="tasksTitle">
+                        {taskTitle()}
+                    </div>
                     {contentType === 'today' ? today() : all()}
-           
+                </LayoutGroup>
             </motion.div> 
-            </LayoutGroup>
         </AnimatePresence>
     )
 }

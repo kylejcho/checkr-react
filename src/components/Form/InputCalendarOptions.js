@@ -1,10 +1,10 @@
 import React, { useState } from "react"
 import Calendar from "./Calendar"
-import { getMonth, addMonths, format } from "date-fns"
+import { subMonths, addMonths, format, startOfMonth} from "date-fns"
 import { motion, AnimatePresence } from "framer-motion"
 
 export default function InputCalendarOptions({ openCalendar }) {
-    const [month, setMonth] = useState(format(new Date, 'MMM y'))
+    const [month, setMonth] = useState(startOfMonth(new Date))
     return (
         <AnimatePresence>
             {openCalendar && (
@@ -16,10 +16,10 @@ export default function InputCalendarOptions({ openCalendar }) {
                     transition={{duration:0.2}}
                 >
                     <div id="calendarHeader">
-                        <div id="calendarMonth">{month}</div>
-                        <div id="calendarArrowContainer">
-                            <ion-icon id="backMonthIcon" name="chevron-back-outline" role="img" className="md hydrated" aria-label="chevron back outline"></ion-icon>
-                            <ion-icon id="forwardMonthIcon" name="chevron-forward-outline" role="img" className="md hydrated" aria-label="chevron forward outline"></ion-icon>
+                        <div id="calendarMonth">{format(month, 'MMM y')}</div>
+                        <div id="calendarArrowContainer" onClick={(e) => e.stopPropagation()}>
+                            <ion-icon id="backMonthIcon" name="chevron-back-outline" role="img" className="md hydrated" aria-label="chevron back outline" onClick={()=> setMonth(subMonths(month,1))}></ion-icon>
+                            <ion-icon id="forwardMonthIcon" name="chevron-forward-outline" role="img" className="md hydrated" aria-label="chevron forward outline" onClick={()=> setMonth(addMonths(month,1))}></ion-icon>
                         </div>
                     </div>
                     <div id="daysOfWeek">
@@ -31,7 +31,7 @@ export default function InputCalendarOptions({ openCalendar }) {
                         <div>F</div>
                         <div>S</div>
                     </div>
-                    <Calendar />
+                    <Calendar month={month}/>
                 </motion.div>
             )}
         </AnimatePresence>
