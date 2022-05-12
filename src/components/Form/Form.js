@@ -43,11 +43,14 @@ export default function Form({ handleClose, addTask}) {
     return (
         <div id="taskFormContainer" onClick={handleClose}>
             <motion.div id="taskForm" 
-                onClick={(e) => e.stopPropagation()}  
                 variants={dropIn}
                 initial="initial"
                 animate="animate"
                 exit="exit"
+                onClick={(e) => {
+                    e.stopPropagation();
+                    setOpenCalendar(false)
+                }}  
             >
                 <input ref={nameRef} id="inputTaskName" type="text" placeholder="I want to..." required=""></input>
                 <textarea ref={descRef} id="inputTaskDescription" name="description" rows="2" placeholder="Description..."></textarea>
@@ -75,21 +78,30 @@ export default function Form({ handleClose, addTask}) {
                         Tomorrow
                     </div>
                     <motion.div 
+
                         id="inputCalendarContainer" 
-                        whileHover= {{
-                            boxShadow: markCalendarInput ? '0 2px 6px 0 rgba(0,0,0,0)' : '0 2px 6px 0 rgba(0,0,0,0.17)',
-                        }}
-                        style = {{
-                            boxShadow: openCalendar ? '0 2px 6px 0 rgba(0,0,0,0.17)' : '0 2px 6px 0 rgba(0,0,0,0)',
-                            backgroundColor: markCalendarInput && '#ecf0f6'
-                        }}
+              
+
                         transition= {{duration: 0.25}}
-                        onClick={()=>{setOpenCalendar(!openCalendar)}}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setOpenCalendar(!openCalendar)
+                        }}  
                     >
-                        <div id="inputCalendar">
+                        <motion.div 
+                            id="inputCalendar"
+
+                            style = {{
+
+                                backgroundColor: markCalendarInput && '#ecf0f6'
+                            }}
+                            whileHover= {{
+                                boxShadow: markCalendarInput ? '0 2px 6px 0 rgba(0,0,0,0)' : '0 2px 6px 0 rgba(0,0,0,0.17)',
+                            }}
+                        >
                             <ion-icon name="calendar-clear-outline" role="img" className="md hydrated" aria-label="calendar clear outline"></ion-icon>
                             <p id="dateSelection">Pick Date</p>
-                        </div>
+                        </motion.div>
                         <InputCalendarOptions openCalendar={openCalendar} selectCalendarDate={selectCalendarDate} />
                     </motion.div>
                     <div id="inputListContainer">
