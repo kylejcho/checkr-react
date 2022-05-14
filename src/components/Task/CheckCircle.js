@@ -77,7 +77,7 @@ export default function CheckCircle({ task, taskContainer, checkTask, complete, 
                     <circle 
                         style={{
                             fill:'none',
-                            stroke:'#000',
+                            stroke:'#272a2f',
                             opacity: complete ? 0:1,
                             strokeLinecap:'round',
                             strokeLinejoin:'round',

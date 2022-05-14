@@ -69,7 +69,7 @@ export default function Navbar({ addTask }) {
             </div>
             <AnimatePresence
                 initial={false}
-                exitBeforeEnter={true}
+                exitBeforeEnter
                 onExitComplete={() => null}
             >
                 {formOpen && <Form addTask={addTask} handleClose={()=>setFormOpen(false)}/>}

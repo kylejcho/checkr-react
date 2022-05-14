@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import InputCalendarOptions from "./InputCalendarOptions";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { v4 as uuidv4 } from 'uuid';
 import { addDays, endOfDay } from "date-fns";
 
@@ -41,7 +41,24 @@ export default function Form({ handleClose, addTask}) {
     }
     
     return (
-        <div id="taskFormContainer" onClick={handleClose}>
+        <motion.div 
+            id="taskFormContainer" 
+            onClick={handleClose}
+            initial = {{
+                backgroundColor: 'rgb(239, 240, 246, 0.0)',
+            }}
+            animate={{
+                backgroundColor: 'rgb(239, 240, 246, 0.4)',
+                backdropFilter: 'blur(1.5px)',
+                transition: { duration: 0.4 }
+            }}
+            exit= {{
+                backgroundColor: 'rgb(239, 240, 246, 0.0)',
+                backdropFilter: 'blur(0px)',
+                transition: { duration: 0.3 }
+            }}
+
+        >
             <motion.div id="taskForm" 
                 variants={dropIn}
                 initial="initial"
@@ -78,10 +95,7 @@ export default function Form({ handleClose, addTask}) {
                         Tomorrow
                     </div>
                     <motion.div 
-
                         id="inputCalendarContainer" 
-              
-
                         transition= {{duration: 0.25}}
                         onClick={(e) => {
                             e.stopPropagation();
@@ -90,9 +104,7 @@ export default function Form({ handleClose, addTask}) {
                     >
                         <motion.div 
                             id="inputCalendar"
-
                             style = {{
-
                                 backgroundColor: markCalendarInput && '#ecf0f6'
                             }}
                             whileHover= {{
@@ -117,33 +129,33 @@ export default function Form({ handleClose, addTask}) {
                 </div>
                 <button id="taskFormAddButton" onClick={handleAddTaskClick}><ion-icon name="arrow-forward-circle-outline" role="img" className="md hydrated" aria-label="arrow forward circle outline"></ion-icon>Add task</button>
             </motion.div>
-        </div>
+        </motion.div>
     )
 }
 
 const dropIn = {
     initial: {
-      x: "12vw",
-      y: "-50vh",
-      opacity: 0,
-      scale: 0,
+        x: "12vw",
+        y: "-50vh",
+        opacity: 0,
+        scale: 0,
     },
     animate: {
-      x: "0",
-      y: "0",
-      opacity: 1,
-      scale: 1,
-      transition: {
+        x: "0",
+        y: "0",
+        opacity: 1,
+        scale: 1,
+        transition: {
           duration: 0.4
         }
     },
     exit: {
-      x: "12vw",
-      y: "-50vh",
-      opacity: 0,
-      scale: 0,
-      transition: {
-          duration: 0.3
+        x: "12vw",
+        y: "-50vh",
+        opacity: 0,
+        scale: 0,
+        transition: {
+            duration: 0.3
+            }
         }
-    }
 };
