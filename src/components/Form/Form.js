@@ -3,18 +3,25 @@ import InputCalendarOptions from "./InputCalendarOptions";
 import { AnimatePresence, motion } from "framer-motion";
 import { v4 as uuidv4 } from 'uuid';
 import { addDays, endOfDay } from "date-fns";
+import InputListOptions from "./InputListOptions";
 
-export default function Form({ handleClose, addTask}) {
+export default function Form({ tasks, handleClose, addTask}) {
     const nameRef = useRef();
     const descRef = useRef();
     const todayInput = useRef();
     const tomorrowInput = useRef();
     const today = endOfDay(new Date());
     const tomorrow = endOfDay(addDays(new Date(),1))
-
+    
     const [dateSelection, setDateSelection] = useState(today)
     const [openCalendar, setOpenCalendar] = useState(false)
     const [markCalendarInput, setMarkCalendarInput] = useState(false)
+    const [openList, setOpenList] = useState(false)
+    const [listSelection, setListSelection] = useState(null)
+
+    function createList(list) {
+        setListSelection(list)
+    }
 
     function selectCalendarDate(date) {
         setDateSelection(date)
@@ -33,6 +40,7 @@ export default function Form({ handleClose, addTask}) {
             name: nameRef.current.value, 
             description: descRef.current.value, 
             dueDate: dateSelection, 
+            list: listSelection,
             complete: false,
             id: uuidv4()
         };
@@ -67,6 +75,7 @@ export default function Form({ handleClose, addTask}) {
                 onClick={(e) => {
                     e.stopPropagation();
                     setOpenCalendar(false)
+                    setOpenList(false)
                 }}  
             >
                 <input ref={nameRef} id="inputTaskName" type="text" placeholder="I want to..." required=""></input>
@@ -116,18 +125,21 @@ export default function Form({ handleClose, addTask}) {
                         </motion.div>
                         <InputCalendarOptions openCalendar={openCalendar} selectCalendarDate={selectCalendarDate} />
                     </motion.div>
-                    <div id="inputListContainer">
+                    <motion.div 
+                        id="inputListContainer"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setOpenList(!openList)
+                        }}  
+                    >
                         <div id="inputList">
                             <div className="dot"></div>
                             <p id="listSelectionName">Add to list</p>
                         </div>
-                        <div id="inputListOptions">
-                            <input id="inputListTextArea" type="text" placeholder="Type a list"></input>
-                            <div id="createListButton" className="hidden"></div>
-                        <p className="inputListItem" id="SchoolList">School</p><p className="inputListItem" id="ReadingList">Reading</p><p className="inputListItem" id="PersonalList">Personal</p></div>
-                    </div>
+                        <InputListOptions tasks={tasks} openList={openList} createList={createList}/>
+                    </motion.div>
                 </div>
-                <button id="taskFormAddButton" onClick={handleAddTaskClick}><ion-icon name="arrow-forward-circle-outline" role="img" className="md hydrated" aria-label="arrow forward circle outline"></ion-icon>Add task</button>
+                <button id="taskFormAddButton" onClick={handleAddTaskClick}>Add task<ion-icon name="arrow-forward-outline"></ion-icon></button>
             </motion.div>
         </motion.div>
     )

@@ -37,6 +37,7 @@ export default function TasksContainer({ contentType, tasks, updateTasks, remove
     return (
         <AnimatePresence exitBeforeEnter>
             <motion.div 
+                layoutScroll
                 id="homeContainer"
                 key = {contentType}
                 className="tasksContainer" 
