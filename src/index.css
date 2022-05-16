@@ -546,8 +546,7 @@ nav {
     width: max(100%, 225px);
     grid-template: 30px 30px/40px auto 40px;
     border-radius: 5px;
-    border: 2px solid rgba(255, 255, 255, 0);
-    transition: border ease-in-out 0.2s
+    border: 2px solid #ffffff00;
 }
 
 .taskContainer::after {
@@ -568,6 +567,7 @@ nav {
 }
 
 .taskContainer.dragging {
+    pointer-events: none;
     border-color: var(--primary-blue);
     background-color: rgba(255, 255, 255, 0.762);
 }

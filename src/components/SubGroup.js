@@ -1,44 +1,39 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Task from "./Task/Task";
 import { motion, Reorder} from "framer-motion";
 
-export default function SubGroup({ subTasks, type, updateTasks, removeTask, checkTask, viewTask, openTask }) {
-    const [tasks, setTasks] = useState([])
-    const [mounted, setmounted] = useState(false)
-    
-    const constraintsRef = useRef(null)
+export default function SubGroup({ subTasks, type, updateTasks, removeTask, viewTask, openTask }) {
 
-    useEffect(()=> setTasks([...subTasks]),[subTasks])
-    
+
+    const firstRender = useRef(true);
     useEffect(() => {
-        setmounted(true)
-        setTimeout(()=> setmounted(false), 450);
-    }, [])
-    
+        setTimeout(() => {
+            if (firstRender.current) {
+                 firstRender.current = false;
+                 return;
+            }
+        }, 450);
+    });
+
     return (
         <div className="subGroup" id={type} >
             <motion.div 
-                className="subGroupTitle"
                 layout 
-                transition={{
-                    type:'tween',
-                    duration: mounted ? 0 : 0.25
-                }} 
+                className="subGroupTitle"
+                transition={{duration: firstRender.current ? 0 : 0.25}} 
             >
                 {type[0].toUpperCase() + type.slice(1)}
             </motion.div>
-            <Reorder.Group values={tasks} onReorder={setTasks}>
-                {tasks.map(task=> {
+            <Reorder.Group values={subTasks} onReorder={updateTasks}>
+                {subTasks.map(task=> {
                     return <Task 
                                 key={task.id} 
                                 task={task} 
-                                tasks={tasks} 
+                                tasks={subTasks} 
                                 viewTask={viewTask} 
                                 openTask={openTask} 
-                                checkTask={checkTask} 
                                 removeTask={removeTask} 
-                                updateTasks={updateTasks} 
-                                constraintsRef={constraintsRef}
+                                updateTasks={updateTasks}
                             />
                 })}
             </Reorder.Group>

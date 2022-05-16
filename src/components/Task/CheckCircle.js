@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-export default function CheckCircle({ task, taskContainer, checkTask, complete, checkClickAnimation }) {
+function CheckCircle({ task, taskContainer, checkTask, complete, checkClickAnimation }) {
     useEffect(()=>{
         taskContainer.current.classList.toggle('completed', task.complete);
     })
@@ -15,9 +15,24 @@ export default function CheckCircle({ task, taskContainer, checkTask, complete, 
             taskView.classList.toggle('completed')
         }
         setTimeout(() => taskContainer.current.classList.toggle('completed'),0); 
-        setTimeout(() => checkTask(taskContainer.current.id), 300);
+        setTimeout(() => checkTask(), 300);
     }
 
+    return (
+        <AnimatePresence initial={false}>
+            <div className="checkContainer" ref={checkContainer} 
+                onClick={(e) => {
+                    e.stopPropagation()
+                    handleClick()
+                }}  
+            >
+                <CheckCircleA complete={complete}/>
+            </div>
+        </AnimatePresence>
+    )
+}
+
+ const CheckCircleA = React.memo(({complete}) => {
     const pathVariants = {
         initial: {
             opacity: 0,
@@ -64,15 +79,8 @@ export default function CheckCircle({ task, taskContainer, checkTask, complete, 
         }
     }
 
-    return (
-        <AnimatePresence initial={false}>
-            <div className="checkContainer" ref={checkContainer} 
-                onClick={(e) => {
-                    e.stopPropagation()
-                    handleClick()
-                }}  
-            >
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512">
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512">
                     <title>ionicons-v5-e</title>
                     <circle 
                         style={{
@@ -116,7 +124,7 @@ export default function CheckCircle({ task, taskContainer, checkTask, complete, 
                         points="352 176 217.6 336 160 272" 
                     />
                 </svg>
-            </div>
-        </AnimatePresence>
-    )
-}
+  )
+})
+
+export default React.memo(CheckCircle)

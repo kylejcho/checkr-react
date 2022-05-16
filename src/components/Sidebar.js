@@ -1,6 +1,6 @@
 import React, {useRef, useEffect} from "react";
 
-export default function Sidebar({ changeContent }) {   
+function Sidebar({ changeContent }) {   
     const sidebar = useRef(null);
     
     return (
@@ -79,3 +79,4 @@ export default function Sidebar({ changeContent }) {
         </>
     )
 }
+export default React.memo(Sidebar)

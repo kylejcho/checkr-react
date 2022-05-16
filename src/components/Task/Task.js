@@ -1,18 +1,30 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useCallback } from "react";
 import CheckCircle from "./CheckCircle";
 import { useMotionValue, Reorder, AnimatePresence, motion } from "framer-motion";
 import { RaisedShadow } from "./RaisedShadow";
 import TaskView from "./TaskView";
 
-export default function Task({ task, tasks, checkTask, removeTask, updateTasks, viewTask, constraintsRef, openTask }) {
+function Task({ task, tasks, removeTask, updateTasks, viewTask, openTask }) {
     const [showTask, setShowTask] = useState(true)
     const [complete, setComplete] = useState(task.complete)
-    const [dragging, setDragging] = useState(false)
     const taskContainer = useRef();
     
-    function checkClickAnimation() {
+    const checkTask = useCallback(() => {
+        let prevTasks = [...tasks];
+        const checkedTask = prevTasks.find(item => item.id === task.id);
+        checkedTask.complete = !checkedTask.complete;
+        const index = prevTasks.indexOf(checkedTask);
+        if (checkedTask.complete) {
+          prevTasks.push(prevTasks.splice(index,1)[0])
+        } else {
+          prevTasks.unshift(prevTasks.splice(index,1)[0])
+        }
+        updateTasks(prevTasks)
+    },[complete])
+
+    const checkClickAnimation = useCallback(() =>  {
         setComplete(!complete)
-    }
+    },[complete])
 
     function handleDeleteClick() {
         setShowTask(false)
@@ -36,22 +48,17 @@ export default function Task({ task, tasks, checkTask, removeTask, updateTasks, 
                         transition={{duration: 0.25}}
                         onDragStart={()=>{
                             taskContainer.current.classList.add('dragging')
-                            setDragging(true)
                         }}
                         onDragEnd={()=>{
                             updateTasks(tasks)
                             taskContainer.current.classList.remove('dragging');
-                            setTimeout(() => setDragging(false), 100);
                         }}
                         exit={{opacity: 0, transition: {duration: 0.3}}}
                         dragTransition={{ bounceStiffness: 1000, bounceDamping:70 }}
                         onClick={(e)=> {
-                            if (dragging) return
                             e.stopPropagation()
+                            updateTasks(tasks)
                             viewTask(task)
-                            setTimeout(() => {
-                               const tasksContainer = document.querySelector('.tasksContainer')
-                            }, 100);
                         }}
                     >
                         <CheckCircle task={task} taskContainer={taskContainer} checkTask={checkTask} complete={complete} checkClickAnimation={checkClickAnimation} />
@@ -77,7 +84,13 @@ export default function Task({ task, tasks, checkTask, removeTask, updateTasks, 
                     </Reorder.Item>
                 )}
             </AnimatePresence>
-            <TaskView openTask={openTask} checkTask={checkTask} task={task} taskContainer={taskContainer} complete={complete} checkClickAnimation={checkClickAnimation} />
+            <AnimatePresence exitBeforeEnter>
+                {openTask && openTask.id === task.id && (
+                    <TaskView openTask={openTask} checkTask={checkTask} task={task} taskContainer={taskContainer} complete={complete} checkClickAnimation={checkClickAnimation} />
+                )}    
+            </AnimatePresence>
         </>
     )
 }
+
+export default React.memo(Task)

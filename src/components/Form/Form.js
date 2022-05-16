@@ -65,7 +65,6 @@ export default function Form({ tasks, handleClose, addTask}) {
                 backdropFilter: 'blur(0px)',
                 transition: { duration: 0.3 }
             }}
-
         >
             <motion.div id="taskForm" 
                 variants={dropIn}

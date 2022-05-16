@@ -4,7 +4,7 @@ import Form from "./Form/Form";
 import {ReactComponent as Logo} from '../icons/document-text-outline.svg'
 import {ReactComponent as SearchIcon} from '../icons/search-outline.svg'
 
-export default function Navbar({ addTask, tasks }) {
+function Navbar({ addTask, tasks }) {
     const [formOpen, setFormOpen] = useState(false);
     
     const pathVariants = {
@@ -77,3 +77,5 @@ export default function Navbar({ addTask, tasks }) {
         </nav>
     )
 }
+
+export default React.memo(Navbar)

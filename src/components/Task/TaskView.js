@@ -4,12 +4,10 @@ import { format, isToday, isTomorrow } from 'date-fns';
 import {ReactComponent as Caret} from '../../icons/caret-forward.svg'
 import TaskViewCheckCircle from "./TaskViewCheckCircle";
 
-export default function TaskView({ openTask, task, checkTask, taskContainer, complete, checkClickAnimation }) {
+export default function TaskView({ task, checkTask, taskContainer, complete, checkClickAnimation }) {
     const taskViewContainer = useRef()
 
     return (
-        <AnimatePresence exitBeforeEnter >
-            {openTask && openTask.id === task.id && (
                 <motion.div 
                     key={'TvMotion' + task.id} 
                     className={`taskViewContainer ${task.complete && 'completed'}`}
@@ -51,9 +49,7 @@ export default function TaskView({ openTask, task, checkTask, taskContainer, com
                         </div>    
                     )}
                 </motion.div>
-            )}
 
-        </AnimatePresence>
     )
 }
 
