@@ -27,9 +27,7 @@ export default function App() {
     setOpenTask(null)
   },[])
 
-  const addTask = useCallback((task) =>  {
-    setTasks(prevTasks => [task, ...prevTasks])
-  },[])
+
   
   const removeTask = useCallback((task) => {
     setTasks(tasks => tasks.filter(item => item.id !== task))
@@ -48,7 +46,6 @@ export default function App() {
 
   return (
     <>
-      <Navbar tasks={tasks} addTask={addTask} />
       <div id="sidebarContentContainer">
         <Sidebar changeContent={changeContent} />
         <Content contentType={contentType} tasks={tasks} updateTasks={updateTasks} removeTask={removeTask} openTask={openTask} viewTask={viewTask}  />

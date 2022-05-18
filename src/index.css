@@ -3,6 +3,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     font-family: "Inter", Helvetica, sans-serif;
     font-weight: 500;
     -webkit-touch-callout: none;
@@ -47,8 +48,9 @@ svg path {
 }
 
 nav {
-    position: sticky;
+    position: fixed;
     top: 0;
+    width: 100vw;
     display: flex;
     align-items: center;
     height: clamp(40px, 6vh, 55px);
@@ -303,8 +305,8 @@ nav {
     left: 0;
     top:0;
     padding-top: clamp(10px, 5vh, 45px);
-    height: calc(100vh - 100px);
-    width: calc(88vw - 20px);
+    height: 100vh;
+    width: 88vw;
     display: flex;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -327,15 +329,13 @@ nav {
 #sidebar {
     position: sticky;
     font-size: clamp(13px, 3vw, 16px);
-    height: calc(100vh - 100px);
+    height: 100vh;
     width: 12vw;
     /*min-width: max-content;*/
     padding: clamp(10px, 5vh, 45px) 10px 0px clamp(10px, 1vw, 20px);
     color: var(--secondary-text-color);
-    background-color: var(--secondary-bg-color);
     z-index: 2;
     white-space: nowrap;
-    border-right: 2px solid #f0f0f4;
 }
 
 
@@ -343,6 +343,10 @@ nav {
     margin: 0 1rem 0 15px;
     font-size: 1.5rem;
     stroke: var(--secondary-text-color);
+}
+
+#sidebarHome {
+    margin-top: clamp(40px, 6vh, 55px);
 }
 
 #sidebarHome ion-icon {
@@ -483,6 +487,7 @@ nav {
 .tasksContainer {
     height: max-content;
     width: 25vw;
+    padding-top: clamp(40px, 6vh, 55px);
     padding-bottom: 25px;
 }
 
@@ -1279,7 +1284,6 @@ nav {
 #sidebarListsTitle {
     height: auto;
     width: auto;
-    background-color: var(--secondary-bg-color);
 }
 
 #sidebarLists {

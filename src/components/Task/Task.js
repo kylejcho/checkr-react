@@ -1,6 +1,6 @@
 import React, { useRef, useState, useCallback } from "react";
 import CheckCircle from "./CheckCircle";
-import { useMotionValue, Reorder, AnimatePresence, motion } from "framer-motion";
+import { useMotionValue, Reorder, AnimatePresence} from "framer-motion";
 import { RaisedShadow } from "./RaisedShadow";
 import TaskView from "./TaskView";
 
@@ -8,7 +8,7 @@ function Task({ task, subTasks, updateSubTasks, viewTask, openTask }) {
     const [showTask, setShowTask] = useState(true)
     const [complete, setComplete] = useState(task.complete)
     const taskContainer = useRef();
-    
+
     const checkTask = () => {
         let prevTasks = [...subTasks];
         const checkedTask = prevTasks.find(item => item.id === task.id);
