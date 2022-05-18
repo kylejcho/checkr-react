@@ -4,13 +4,13 @@ import { useMotionValue, Reorder, AnimatePresence, motion } from "framer-motion"
 import { RaisedShadow } from "./RaisedShadow";
 import TaskView from "./TaskView";
 
-function Task({ task, tasks, removeTask, updateTasks, viewTask, openTask }) {
+function Task({ task, subTasks, updateSubTasks, viewTask, openTask }) {
     const [showTask, setShowTask] = useState(true)
     const [complete, setComplete] = useState(task.complete)
     const taskContainer = useRef();
     
-    const checkTask = useCallback(() => {
-        let prevTasks = [...tasks];
+    const checkTask = () => {
+        let prevTasks = [...subTasks];
         const checkedTask = prevTasks.find(item => item.id === task.id);
         checkedTask.complete = !checkedTask.complete;
         const index = prevTasks.indexOf(checkedTask);
@@ -19,12 +19,16 @@ function Task({ task, tasks, removeTask, updateTasks, viewTask, openTask }) {
         } else {
           prevTasks.unshift(prevTasks.splice(index,1)[0])
         }
-        updateTasks(prevTasks)
-    },[complete])
+        updateSubTasks(prevTasks)
+    }
 
-    const checkClickAnimation = useCallback(() =>  {
+    const removeTask = useCallback((task) => {
+        updateSubTasks(subTasks.filter(item => item.id !== task))
+      },[subTasks]); 
+
+    const checkClickAnimation = () =>  {
         setComplete(!complete)
-    },[complete])
+    }
 
     function handleDeleteClick() {
         setShowTask(false)
@@ -50,14 +54,14 @@ function Task({ task, tasks, removeTask, updateTasks, viewTask, openTask }) {
                             taskContainer.current.classList.add('dragging')
                         }}
                         onDragEnd={()=>{
-                            updateTasks(tasks)
+                            updateSubTasks(subTasks)
                             taskContainer.current.classList.remove('dragging');
                         }}
                         exit={{opacity: 0, transition: {duration: 0.3}}}
                         dragTransition={{ bounceStiffness: 1000, bounceDamping:70 }}
                         onClick={(e)=> {
                             e.stopPropagation()
-                            updateTasks(tasks)
+                            updateSubTasks(subTasks)
                             viewTask(task)
                         }}
                     >

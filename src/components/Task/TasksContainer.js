@@ -1,21 +1,51 @@
-import React from 'react'
+import React, { useState, useEffect, useCallback, useRef} from 'react'
 import SubGroup from '../SubGroup';
 import { LayoutGroup, motion, AnimatePresence } from 'framer-motion';
 import { isToday, isTomorrow, isAfter, addDays, endOfDay} from "date-fns";
 
 export default function TasksContainer({ contentType, tasks, updateTasks, removeTask, checkTask, viewTask, openTask }) {
-    const todayTasks = tasks.filter(task=> isToday(task.dueDate))
-    const tomorrowTasks = tasks.filter(task=> isTomorrow(task.dueDate))
-    const upcomingTasks = tasks.filter(task=> isAfter(task.dueDate, addDays(endOfDay(new Date()),1)))
+    const [todayTasks, setTodayTasks] = useState([])
+    const [tomorrowTasks, setTomorrowTasks] = useState([])
+    const [upcomingTasks, setUpcomingTasks] = useState([])
+    
+    const updateTodayTasks = useCallback((subTasks) =>{
+        setTodayTasks(subTasks)
+    },[])
 
-    const today = () => <SubGroup subTasks={todayTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTask={openTask} type="today" />
+    const updateTomorrowTasks = useCallback((subTasks) =>{
+        setTomorrowTasks(subTasks)
+    },[])
+
+    const updateUpcomingTasks = useCallback((subTasks) =>{
+        setUpcomingTasks(subTasks)
+    },[])
+
+    useEffect(() => {
+        setTodayTasks(tasks.filter(task=> isToday(task.dueDate)))
+        setTomorrowTasks(tasks.filter(task=> isTomorrow(task.dueDate)))
+        setUpcomingTasks(tasks.filter(task=> isAfter(task.dueDate, addDays(endOfDay(new Date()),1))))
+    },[tasks])
+    const firstRender = useRef(true);
+    useEffect(() => {
+        setTimeout(() => {
+            if (firstRender.current) {
+                 firstRender.current = false;
+                 return;
+            }
+        }, 450);
+    });
+
+    const today = () => <SubGroup subTasks={todayTasks} updateSubTasks={updateTodayTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTask={openTask} type="today" />
 
     const all = () => {
         return (
             <>
-                <SubGroup subTasks={todayTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTask={openTask} type="today" />
-                <SubGroup subTasks={tomorrowTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTask={openTask} type="tomorrow" />
-                <SubGroup subTasks={upcomingTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTask={openTask} type="upcoming" />
+                <motion.div layout className="subGroupTitle" transition={{duration: firstRender.current ? 0 : 0.25}} >Today</motion.div>
+                <SubGroup subTasks={todayTasks} updateSubTasks={updateTodayTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTask={openTask} type="today" />
+                <motion.div layout className="subGroupTitle" transition={{duration: firstRender.current ? 0 : 0.25}} >Tomorrow</motion.div>
+                <SubGroup subTasks={tomorrowTasks} updateSubTasks={updateTomorrowTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTask={openTask} type="tomorrow" />
+                <motion.div layout className="subGroupTitle" transition={{duration: firstRender.current ? 0 : 0.25}} >Upcoming</motion.div>
+                <SubGroup subTasks={upcomingTasks} updateSubTasks={updateUpcomingTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTask={openTask} type="upcoming" />
             </>
         )
     }
@@ -32,12 +62,9 @@ export default function TasksContainer({ contentType, tasks, updateTasks, remove
         }
     }
 
-    //const sidebarWidth = document.querySelector('#sidebar').offsetWidth;
-
     return (
         <AnimatePresence exitBeforeEnter>
             <motion.div 
-                layoutScroll
                 id="homeContainer"
                 key = {contentType}
                 className="tasksContainer" 

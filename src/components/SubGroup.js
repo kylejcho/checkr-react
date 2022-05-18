@@ -2,9 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import Task from "./Task/Task";
 import { motion, Reorder} from "framer-motion";
 
-export default function SubGroup({ subTasks, type, updateTasks, removeTask, viewTask, openTask }) {
-
-
+function SubGroup({ subTasks, updateSubTasks, type, updateTasks, removeTask, viewTask, openTask }) {
     const firstRender = useRef(true);
     useEffect(() => {
         setTimeout(() => {
@@ -17,19 +15,13 @@ export default function SubGroup({ subTasks, type, updateTasks, removeTask, view
 
     return (
         <div className="subGroup" id={type} >
-            <motion.div 
-                layout 
-                className="subGroupTitle"
-                transition={{duration: firstRender.current ? 0 : 0.25}} 
-            >
-                {type[0].toUpperCase() + type.slice(1)}
-            </motion.div>
-            <Reorder.Group values={subTasks} onReorder={updateTasks}>
+            <Reorder.Group values={subTasks} onReorder={updateSubTasks}>
                 {subTasks.map(task=> {
                     return <Task 
                                 key={task.id} 
                                 task={task} 
-                                tasks={subTasks} 
+                                subTasks={subTasks} 
+                                updateSubTasks={updateSubTasks}
                                 viewTask={viewTask} 
                                 openTask={openTask} 
                                 removeTask={removeTask} 
@@ -40,3 +32,4 @@ export default function SubGroup({ subTasks, type, updateTasks, removeTask, view
         </div>
     )
 }
+export default React.memo(SubGroup)
