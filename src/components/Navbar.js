@@ -23,7 +23,6 @@ import {ReactComponent as SearchIcon} from '../icons/search-outline.svg'
         }
     }
 
-
     return (
         <nav id = "navbar">
             <div id="pageTitle">

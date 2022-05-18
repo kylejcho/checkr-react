@@ -31,7 +31,7 @@ function Task({ task, subTasks, updateSubTasks, viewTask, openTask }) {
     }
 
     function handleDeleteClick() {
-        if (openTask) {
+        if (openTask && openTask.id === task.id) {
             setTimeout(() => {
                 viewTask(null)
             }, 0);
