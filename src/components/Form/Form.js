@@ -56,8 +56,7 @@ export default function Form({ tasks, handleClose, addTask}) {
                 backgroundColor: 'rgb(239, 240, 246, 0.0)',
             }}
             animate={{
-                backgroundColor: 'rgb(239, 240, 246, 0.4)',
-                backdropFilter: 'blur(1.5px)',
+                backgroundColor: 'rgb(239, 240, 246, 0.5)',
                 transition: { duration: 0.4 }
             }}
             exit= {{

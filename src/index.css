@@ -51,10 +51,11 @@ nav {
     top: 0;
     display: flex;
     align-items: center;
-    height: 55px;
+    height: clamp(40px, 6vh, 55px);
     background-color: var(--secondary-bg-color);
     padding: 0 31px;
     z-index: 3;
+    border-bottom: 2px solid #f0f0f4;
 }
 
 #pageTitle {
@@ -91,7 +92,7 @@ nav {
 #searchContainer {
     position: relative;
     background-color: var(--tertiary-bg-color);
-    height: 35px;
+    height: clamp(30px, 4vh, 35px);
     padding-left: 10px;
     border-radius: 5px;
     margin-right: 10px;
@@ -115,6 +116,7 @@ nav {
 
 #searchItemsContainer {
     display: flex;
+
     align-items: center;
 }
 
@@ -127,7 +129,7 @@ nav {
 #searchBar {
     width: 17vw;
     min-width: 225px;
-    height: 32px;
+    height: clamp(30px, 4vh, 35px);
     border: none;
     padding-left: 8px;
     margin-right:10px;
@@ -233,8 +235,8 @@ nav {
     align-items: center;
     background-color: var(--tertiary-bg-color);
     border-radius: 5px;
-    width: 35px;
-    height: 35px;
+    height: clamp(30px, 4vh, 35px);
+    aspect-ratio: 1/1;
 }
 
 #addButtonContainer:hover #addButton {
@@ -293,18 +295,18 @@ nav {
     display: flex;
     position: fixed;
     height: 100vh;
-    top: 55px;
+    width: 100vw;
 }
 
 #contentContainer {
-    position: absolute;
+    position: relative;
     left: 0;
     top:0;
-    padding-top: 45px;
+    padding-top: clamp(10px, 5vh, 45px);
     height: calc(100vh - 100px);
-    width: 100vw;
+    width: calc(88vw - 20px);
     display: flex;
-    overflow-y: hidden;
+    overflow-y: scroll;
     overflow-x: hidden;
 }
 
@@ -324,14 +326,16 @@ nav {
 
 #sidebar {
     position: sticky;
-    font-size: clamp(13px, 1.2vw, 16px);
+    font-size: clamp(13px, 3vw, 16px);
     height: calc(100vh - 100px);
-    width: max-content;
-    padding: 45px 10px 0 20px;
+    width: 12vw;
+    /*min-width: max-content;*/
+    padding: clamp(10px, 5vh, 45px) 10px 0px clamp(10px, 1vw, 20px);
     color: var(--secondary-text-color);
     background-color: var(--secondary-bg-color);
     z-index: 2;
-   
+    white-space: nowrap;
+    border-right: 2px solid #f0f0f4;
 }
 
 
@@ -361,6 +365,11 @@ nav {
 #sidebarShortcutsToday svg {
     pointer-events: none;
     margin-left: 15px;
+}
+
+#sidebarShortcutsWeek p {
+    width: 0;
+    margin-right: 0;
 }
 
 .todayIconNumber {
@@ -472,15 +481,15 @@ nav {
 /* TASKS CONTAINER */
 
 .tasksContainer {
-    height: calc(100vh - 150px);
+    height: max-content;
     width: 25vw;
-    padding-bottom: 150px;
+    padding-bottom: 25px;
 }
 
 .tasksTitle {
     width: auto;
-    font-size: clamp(24px, 1.6vw, 30px);
-    font-weight: 800;
+    font-size: clamp(20px, 1.6vw, 30px);
+    font-weight: 700;
     margin-bottom: 15px;
     white-space: nowrap;
     color: var(--primary-text-color);
@@ -496,7 +505,6 @@ nav {
 
 .subGroup {
     position: relative;
-    margin-top: clamp(5px,1vw,20px);
 }
 
 .subGroup.empty .subGroupTitle::after {
@@ -517,17 +525,20 @@ nav {
 
 .subGroupTitle {
     display: flex;
+    box-sizing: border-box;
     justify-content: center;
     align-items: center;
     height: 29px;
     width: max-content;
     padding: 0px 12px;
-    font-weight: 700;
-    font-size: clamp(16px, 1.2vw, 18px);
-    color: #697384bd;
+    font-weight: 500;
+    font-size: clamp(13px, 1vw, 17px);
+    color: #7b8593cf;
     border-radius: 5px;
-    background-color: #bec7d542;
-    margin-bottom: clamp(5px,1vw,20px);
+    border: 2px solid #bec7d562;
+    background-color: #bec7d538;
+    margin-top: 25px;
+    margin-bottom: 15px;
 }
 
 .subGroupTitle.overdue {
@@ -542,9 +553,9 @@ nav {
     box-sizing: border-box;
     cursor: pointer;
     display: grid;
-    height: 60px;
+    height: max-content;
     width: max(100%, 225px);
-    grid-template: 30px 30px/40px auto 40px;
+    grid-template: auto auto/40px auto 40px;
     border-radius: 5px;
     border: 2px solid #ffffff00;
 }
@@ -588,7 +599,7 @@ nav {
     justify-content: center;
     align-self: center;
     justify-self: center;
-    padding: 0;
+    padding: 5px;
     transition: all ease-in-out 0.2s;
     border-radius: 50px;
     width: 17px;
@@ -602,7 +613,8 @@ nav {
     display: flex;
     align-self: center;
     justify-self: center;
-    transform: translate(-1.5px,-1.5px);
+    width: clamp(15px, 1.5vw, 20px);
+    transform: translate(-3.5px,-6px);
 }
 
 .nameContainer {
@@ -612,7 +624,7 @@ nav {
     margin: 8px 5px 8px 0;
     height: 14px;
     white-space: nowrap;
-    font-weight: 600;
+    font-weight: 500;
     font-size: clamp(12px, 1.2vw, 17px);
     color: var(--primary-text-color);
     background-image: linear-gradient(to bottom,
@@ -635,8 +647,8 @@ nav {
     display: flex;
     align-self: center;
     justify-self: center;
-    height: 17px;
-    width: 17px;
+    width: clamp(14px, 1.5vw, 17px);
+    height: clamp(14px, 1.5vw, 17px);
     background-color: #e9ebf1; 
     border-radius: 50px;
     opacity: 0;
@@ -647,6 +659,10 @@ nav {
 
 .deleteContainer:hover {
     background-color: #e2e4ea; 
+}
+
+.deleteContainer svg {
+    width: clamp(10px, 1.1vw, 20px);
 }
 
 .taskContainer.dragging .deleteContainer{
@@ -666,9 +682,10 @@ nav {
     pointer-events: none;
     grid-column-start: 2;
     width: auto;
-    height: 30px;
+    height: max-content;
     font-weight: 400;
     font-size: clamp(10px, 1.1vw, 16px);
+    padding-bottom: 2.5px;
     color: var(--secondary-text-color);
     white-space: nowrap;
     overflow-X: hidden;
@@ -681,17 +698,19 @@ nav {
 .taskViewContainer {
     position: fixed;
     top: 100px;
-    height: max(20vw,300px);
-    width: calc(25vw - 70px);
-    min-width: 250px;
+    height: max(20vw,320px);
+    width: calc(22vw);
+    min-width: 300px;
     font-size: clamp(12px, 1vw, 16px);
     border-radius: 10px;
-    box-shadow: -2px 2px 20px 0px rgba(0, 0, 0, 0.1);
-    border: 1.5px solid #ebeef3;
+    box-shadow: -1px 5px 15px 0px rgba(0, 0, 0, 0.03);
+    border: 2px solid #eef0f4;
+    background-color: #fcfcfe;
 }
 
 .taskViewCheckContainer {
-    position: relative;
+    position: absolute;
+    right: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -725,9 +744,9 @@ nav {
     display: flex;
     align-items: center;
     background-size: 0% 100%;
-    border-radius: 5px;
-    margin: 20px 0 0 20px;
-    color: var(--primary-text-color)
+    padding: 10px 0 0 33px;
+    color: var(--primary-text-color);
+    border-bottom: 2px solid #eef0f4;
 }
 
 .taskViewNameContainer svg {
@@ -738,12 +757,12 @@ nav {
 .taskViewName {
     display: flex;
     align-items: center;
-    font-size: clamp(17px, 1.4vw, 28px);
-    font-weight: 700;
-    width: 80%;
+    font-size: clamp(17px, 1.4vw, 24px);
+    font-weight: 500;
+    width: max-content;
     height: 20px;
     margin: 12px 25px 12px 10px;
-    border-radius: 5px;
+    border-top: 5px;
     background-image: linear-gradient(to bottom,
         #00000000 50%,
         var(--tertiary-text-color) 50%, 
@@ -762,10 +781,10 @@ nav {
 
 
 .taskViewDescriptionContainer {
-    font-weight: 700;
-    margin-top: 20px;
+    font-weight: 600;
+    margin-top: clamp(0px,10vh,20px);
     color: var(--secondary-text-color);
-    margin-left: 57px;
+    margin-left: 45px;
 }
 
 .taskViewDescription {
@@ -773,16 +792,16 @@ nav {
     align-items: center;
     font-weight: 400;
     color: var(--secondary-text-color);
-    margin-top: 10px;
+    margin-top: 5px;
     height: 30px;
     white-space: normal;
 }
 
 .taskViewDueDateContainer {
-    font-weight: 700;
+    font-weight: 600;
     margin-top: 20px;
     color: var(--secondary-text-color);
-    margin-left: 57px;
+    margin-left: 45px;
     fill: #697384;
 }
 
@@ -791,7 +810,7 @@ nav {
     align-items: center;
     font-weight: 400;
     color: var(--secondary-text-color);
-    margin-top: 10px;
+    margin-top: 5px;
     white-space: nowrap;
     overflow: hidden; text-overflow: ellipsis;
 }
@@ -801,10 +820,10 @@ nav {
 }
 
 .taskViewListContainer {
-    font-weight: 700;
+    font-weight: 600;
     margin-top: 20px;
     color: var(--secondary-text-color);
-    margin-left: 57px;
+    margin-left: 45px;
     fill: #697384;
 }
 
@@ -814,7 +833,7 @@ nav {
     font-weight: 400;
     width: max-content;
     color: var(--secondary-text-color);
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .taskViewList .dot {
@@ -834,7 +853,6 @@ nav {
     width: 100vw;
     z-index: 3;
 }
-
 
 #taskForm {
     background-color: rgb(255, 255, 255);

@@ -3,7 +3,7 @@ import SubGroup from '../SubGroup';
 import { LayoutGroup, motion, AnimatePresence } from 'framer-motion';
 import { isToday, isTomorrow, isAfter, addDays, endOfDay} from "date-fns";
 
-export default function TasksContainer({ contentType, tasks, updateTasks, removeTask, checkTask, viewTask, openTask }) {
+export default function TasksContainer({ contentType, tasks, updateTasks, removeTask, checkTask, viewTask, openTask, openTaskView }) {
     const [todayTasks, setTodayTasks] = useState([])
     const [tomorrowTasks, setTomorrowTasks] = useState([])
     const [upcomingTasks, setUpcomingTasks] = useState([])
@@ -35,17 +35,17 @@ export default function TasksContainer({ contentType, tasks, updateTasks, remove
         }, 450);
     });
 
-    const today = () => <SubGroup subTasks={todayTasks} updateSubTasks={updateTodayTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTask={openTask} type="today" />
+    const today = () => <SubGroup subTasks={todayTasks} updateSubTasks={updateTodayTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTask={openTask} openTaskView={openTaskView} type="today" />
 
     const all = () => {
         return (
             <>
                 <motion.div layout className="subGroupTitle" transition={{duration: firstRender.current ? 0 : 0.25}} >Today</motion.div>
-                <SubGroup subTasks={todayTasks} updateSubTasks={updateTodayTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTask={openTask} type="today" />
+                <SubGroup subTasks={todayTasks} updateSubTasks={updateTodayTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTask={openTask} openTaskView={openTaskView} type="today" />
                 <motion.div layout className="subGroupTitle" transition={{duration: firstRender.current ? 0 : 0.25}} >Tomorrow</motion.div>
-                <SubGroup subTasks={tomorrowTasks} updateSubTasks={updateTomorrowTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTask={openTask} type="tomorrow" />
+                <SubGroup subTasks={tomorrowTasks} updateSubTasks={updateTomorrowTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTask={openTask} openTaskView={openTaskView} type="tomorrow" />
                 <motion.div layout className="subGroupTitle" transition={{duration: firstRender.current ? 0 : 0.25}} >Upcoming</motion.div>
-                <SubGroup subTasks={upcomingTasks} updateSubTasks={updateUpcomingTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTask={openTask} type="upcoming" />
+                <SubGroup subTasks={upcomingTasks} updateSubTasks={updateUpcomingTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTask={openTask} openTaskView={openTaskView} type="upcoming" />
             </>
         )
     }
@@ -71,7 +71,7 @@ export default function TasksContainer({ contentType, tasks, updateTasks, remove
                 initial={{
                     opacity: 0, 
                     y: '25vh',
-                    x: '150%'
+                    x: '100%'
                 }}
                 exit={{
                     opacity: 0, 
@@ -81,7 +81,7 @@ export default function TasksContainer({ contentType, tasks, updateTasks, remove
                 }}
                 animate={{
                     y: 0,
-                    x: openTask ? '100%': '150%',
+                    x: openTask ? '50%': '100%',
                     opacity: 1,
                     transition: {
                         type: "spring",

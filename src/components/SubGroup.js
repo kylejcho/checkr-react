@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import Task from "./Task/Task";
 import { motion, Reorder} from "framer-motion";
 
-function SubGroup({ subTasks, updateSubTasks, type, updateTasks, removeTask, viewTask, openTask }) {
+function SubGroup({ subTasks, updateSubTasks, type, updateTasks, removeTask, viewTask, openTask}) {
     const firstRender = useRef(true);
     useEffect(() => {
         setTimeout(() => {

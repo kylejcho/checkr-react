@@ -31,8 +31,15 @@ function Task({ task, subTasks, updateSubTasks, viewTask, openTask }) {
     }
 
     function handleDeleteClick() {
-        setShowTask(false)
-        setTimeout(() => removeTask(taskContainer.current.id), 150); 
+        if (openTask) {
+            setTimeout(() => {
+                viewTask(null)
+            }, 0);
+        }
+        setTimeout(() => {
+            setShowTask(false)
+        }, 0);
+        setTimeout(() => {removeTask(taskContainer.current.id)}, 250); 
     }
 
     const y = useMotionValue(0);

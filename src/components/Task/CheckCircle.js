@@ -89,7 +89,7 @@ function CheckCircle({ task, taskContainer, checkTask, complete, checkClickAnima
                             opacity: complete ? 0:1,
                             strokeLinecap:'round',
                             strokeLinejoin:'round',
-                            strokeWidth:'40px'
+                            strokeWidth:'35px'
                         }}
                         cx="256" cy="256" r="192" 
                     />

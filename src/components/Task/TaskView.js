@@ -13,19 +13,16 @@ export default function TaskView({ task, checkTask, taskContainer, complete, che
                     className={`taskViewContainer ${task.complete && 'completed'}`}
                     id={'Tv' + task.id}
                     ref={taskViewContainer}
-                    animate={{ opacity: 1, right: -0.25*(window.innerWidth)}}
-                    initial={{ opacity: 0, right: -800}}
+                    initial={{ opacity: 0, right: 'calc(-45vw)'}}
+                    animate={{ opacity: 1, right: 'calc(-30vw)'}}
                     exit={{ 
                         opacity: 0, 
-                        x: 100,
-                        transition: { duration: 0.16 }
+                        right: 'calc(-35vw)',
+                        transition: { duration: 0.2 }
                     }}
-                    transition={{ type:'spring',duration: 0.6, delay: 0.05}}
+                    transition={{ type:'spring', stiffness:350, damping:26, duration: 0.3, delay: 0.1}}
                 >
                     <div className="taskViewNameContainer">
-                        <div className={`taskViewCheckContainer`} >
-                            <TaskViewCheckCircle taskContainer={taskContainer} checkTask={checkTask} complete={complete} checkClickAnimation={checkClickAnimation}/>
-                        </div>
                         <p className={`taskViewName`}>{task.name}</p>
                     </div>
                     <div className="taskViewDescriptionContainer">
