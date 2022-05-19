@@ -87,6 +87,7 @@ body {
     height: 100vh;
     line-height: 1.6;
     overflow: hidden;
+    transition: background-color ease 0.4s;
 }
 
 body.dark {
@@ -121,6 +122,7 @@ nav {
     padding: 0 31px;
     z-index: 3;
     border-bottom: 2px solid var(--border1);
+    transition: background-color ease 0.4s, border ease 0.4s;
 }
 
 #pageTitle {
@@ -161,7 +163,9 @@ nav {
     padding-left: 10px;
     border-radius: 5px;
     margin-right: 10px;
-    transition: all ease-in-out 0.15s;
+
+    transition: background-color ease 0.4s;
+    
 }
 
 #searchContainer.selected {
@@ -200,7 +204,8 @@ nav {
     margin-right:10px;
     outline-width: 0;
     background-color: var(--search);
-    transition: all ease-in-out 0.15s;
+    transition: background-color ease 0.4s;
+
 }
 
 #searchBar::placeholder {
@@ -569,6 +574,8 @@ nav {
     margin-bottom: 15px;
     white-space: nowrap;
     color: var(--text1);
+    transition: color ease 0.4s;
+
 }
 
 @keyframes tasksContainerShiftLeft {
@@ -615,6 +622,7 @@ nav {
     background-color: var(--bkg5);
     margin-top: 25px;
     margin-bottom: 15px;
+    transition: background-color ease 0.4s, border ease 0.4s;
 }
 
 .subGroupTitle.overdue {
@@ -803,6 +811,7 @@ nav {
     box-shadow: -1px 5px 15px 0px rgba(0, 0, 0, 0.03);
     border: 2px solid var(--border2);
     background-color: var(--bkg4);
+    transition: background-color ease 0.4s, border ease 0.4s;
 }
 
 .taskViewCheckContainer {
@@ -844,6 +853,8 @@ nav {
     padding: 10px 0 0 33px;
     color: var(--text1);
     border-bottom: 2px solid var(--border2);
+    transition: border ease 0.4s;
+
 }
 
 .taskViewNameContainer svg {
