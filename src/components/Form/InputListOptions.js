@@ -9,6 +9,7 @@ export default function InputListOptions({ tasks, openList, createList}) {
         }
     }, [openList])
     
+    let uniqueLists = [...new Set(tasks.map(task=>task.list))]
 
     return (
         <AnimatePresence>
@@ -22,9 +23,9 @@ export default function InputListOptions({ tasks, openList, createList}) {
                 >
                     <input id="inputListTextArea" type="text" placeholder="Type a list" onClick={(e)=>e.stopPropagation()} onChange={e=>setSearchValue(e.target.value)}></input>
                     <div id="createListButton" onClick={()=>createList(searchValue)}>Create "{searchValue}"</div>
-                    {tasks.map(task=>{
-                        if (task.list && task.list.toLowerCase().includes(searchValue)) {
-                            return <p className="inputListItem" id="SchoolList" key={task.list} onClick={()=>createList(task.list)}>{task.list}</p>
+                    {uniqueLists.map(list=>{
+                        if (list && list.toLowerCase().includes(searchValue)) {
+                            return <p className="inputListItem" id="SchoolList" key={list} onClick={()=>createList(list)}>{list}</p>
                         } 
                     })}
                 </motion.div>
