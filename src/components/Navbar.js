@@ -23,6 +23,11 @@ import {ReactComponent as SearchIcon} from '../icons/search-outline.svg'
         }
     }
 
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark')
+    }
+
+
     return (
         <nav id = "navbar">
             <div id="pageTitle">
@@ -51,7 +56,7 @@ import {ReactComponent as SearchIcon} from '../icons/search-outline.svg'
                     </svg>
                 </motion.div>
             </div>
-            <div id="darkModeContainer">
+            <div id="darkModeContainer" onClick={toggleDarkMode}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 512 512">
                     <title>ionicons-v5-j</title>
                     <path 

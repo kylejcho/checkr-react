@@ -29,6 +29,10 @@ export default function TasksContainer({ contentType, tasks, addedTask, updateTa
     useEffect(()=>{
         if (addedTask && isToday(addedTask.dueDate)) {
             setTodayTasks(prevTodayTasks=> [addedTask, ...prevTodayTasks])
+        } else if (addedTask && isTomorrow(addedTask.dueDate)) {
+            setTomorrowTasks(prevTomorrowTasks=> [addedTask, ...prevTomorrowTasks])
+        } else if (addedTask && isAfter(addedTask.dueDate, addDays(endOfDay(new Date()),1))){
+            setUpcomingTasks(prevUpcomingTasks=> [addedTask, ...prevUpcomingTasks])
         }
     },[addedTask])
 

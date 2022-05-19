@@ -56,27 +56,26 @@
     --border3-dark: #4c4f5562;
 }
 
-@media (prefers-color-scheme:dark) {
-    :root {
-        --text1: var(--text1-dark);
-        --text2: var(--text2-dark);
-        --text3: var(--text3-dark);
-        --bkg1: var(--bkg1-dark);
-        --bkg2: var(--bkg2-dark);
-        --bkg3: var(--bkg3-dark);
-        --bkg4: var(--bkg4-dark);
-        --bkg5: var(--bkg5-dark);
-        --search: var(--search-dark);
-        --circle: var(--circle-dark);
-        --check-circle: var(--check-circle-dark);
-        --circle-variant: var(--circle-variant-dark);
-        --task-drag: var(--task-drag-dark);
-        --selection: var(--selection-dark);
-        --shadow: var(--shadow-dark);
-        --border1: var(--border1-dark);
-        --border2: var(--border2-dark);
-        --border3: var(--border3-dark);
-    }
+body.dark {
+    --text1: var(--text1-dark);
+    --text2: var(--text2-dark);
+    --text3: var(--text3-dark);
+    --bkg1: var(--bkg1-dark);
+    --bkg2: var(--bkg2-dark);
+    --bkg3: var(--bkg3-dark);
+    --bkg4: var(--bkg4-dark);
+    --bkg5: var(--bkg5-dark);
+    --search: var(--search-dark);
+    --circle: var(--circle-dark);
+    --check-circle: var(--check-circle-dark);
+    --circle-variant: var(--circle-variant-dark);
+    --task-drag: var(--task-drag-dark);
+    --selection: var(--selecton-dark);
+    --shadow: var(--shadow-dark);
+    --blue1: var(--blue1-dark);
+    --border1: var(--border1-dark);
+    --border2: var(--border2-dark);
+    --border3: var(--border3-dark);
 }
 
 
@@ -645,7 +644,7 @@ nav {
     height: calc(100% + 4px);
     position: absolute;
     border-radius: 5px;
-    box-shadow: 0px 1px 6px 0px rgba(0,0,0,0.17);
+    box-shadow: 0px 1px 6px 0px var(--shadow);
     opacity: 0;
     transform: translate(-2px,-2px);
     transition: opacity ease-in-out 0.2s;

@@ -110,9 +110,7 @@ export default function Form({ tasks, handleClose, addTask}) {
                             setOpenCalendar(!openCalendar)
                         }}  
                     >
-                        <div 
-                            id="inputCalendar"
-                        >
+                        <div id="inputCalendar">
                             <ion-icon name="calendar-clear-outline" role="img" className="md hydrated" aria-label="calendar clear outline"></ion-icon>
                             <p id="dateSelection">Pick Date</p>
                         </div>
