@@ -28,6 +28,8 @@
     --check-circle: #979fac;
     --circle-variant: #e9ebf1;
     --task-drag: #ffffffbf;
+    --selection: #ecf0f6;
+    --shadow: rgba(0,0,0,0.17);
     --blue1: #3880ff;
     --border1: #f0f0f4;
     --border2: #eef0f4;
@@ -46,6 +48,8 @@
     --check-circle-dark: #373b43;
     --circle-variant-dark: #23242d;
     --task-drag-dark: #15181d95;
+    --selection-dark: #2b303b;
+    --shadow-dark: rgba(65, 71, 91, 0.617);
     --blue1-dark: #3880ff;
     --border1-dark: #2b303b;
     --border2-dark: #2b303b;
@@ -67,6 +71,8 @@
         --check-circle: var(--check-circle-dark);
         --circle-variant: var(--circle-variant-dark);
         --task-drag: var(--task-drag-dark);
+        --selection: var(--selection-dark);
+        --shadow: var(--shadow-dark);
         --border1: var(--border1-dark);
         --border2: var(--border2-dark);
         --border3: var(--border3-dark);
@@ -74,9 +80,7 @@
 }
 
 
-.circle {
-    stroke: var(--circle)
-}
+
 
 body {
     background-color: var(--bkg1);
@@ -631,7 +635,7 @@ nav {
     grid-template: auto auto/40px auto 40px;
     border-radius: 5px;
     backdrop-filter: blur(1.5px);
-    border: 2px solid #ffffff00;
+    border: 1.5px solid #ffffff00;
 }
 
 .taskContainer::after {
@@ -690,6 +694,10 @@ nav {
     width: clamp(15px, 1.5vw, 20px);
     transform: translate(-6.5px,-6.5px);
     stroke: var(--check-circle)
+}
+
+.circle {
+    stroke: var(--circle)
 }
 
 .checkCircleVariant {
@@ -945,7 +953,7 @@ nav {
 }
 
 #taskForm {
-    background-color: rgb(255, 255, 255);
+    background-color: var(--bkg4);
     min-width: 450px;
     width: max-content;
     height: max-content;
@@ -956,13 +964,14 @@ nav {
 
 
 
-#taskForm input {
+#taskForm input, textarea{
     box-sizing: border-box;
     width: 100%;
     margin-bottom: 5px;
     border: none;
     outline-width: 0;
     padding: 5px 0 5px 5px;
+    background-color: var(--bkg4);
 }
 
 #inputTaskName {
@@ -974,7 +983,7 @@ nav {
 }
 
 #inputTaskName:hover {
-    background-color: #f6f6fb;
+    background-color: var(--bkg3);
 }
 
 #inputTaskName::placeholder {
@@ -1002,7 +1011,7 @@ nav {
 }
 
 #inputTaskDescription:hover {
-    background-color: #f6f6fb;
+    background-color: var(--bkg3);
     
 }
 
@@ -1018,16 +1027,15 @@ nav {
     align-items: center;
     margin: 5px;
     padding: 10px;
-    color: var(--text1);
+    color: var(--text2);
     border: none;
     border-radius: 5px;
     transition: all ease 0.4s;
 }
 
 .selected {
-    background-color: #ecf0f6;
+    background-color: var(--selection)
 }
-
 .inputDueDate ion-icon {
     color: var(--text1);
     font-size: 1.25rem;
@@ -1035,7 +1043,7 @@ nav {
 }
 
 .inputDueDate:hover {
-    box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.17);
+    box-shadow: 0px 2px 6px 0px var(--shadow);
 }
 
 .inputDueDate.selected:hover {
@@ -1086,8 +1094,14 @@ nav {
     background-color: white;
     transform: translateX(-25%);
 }
+
+#inputCalendarContainer:hover {
+    box-shadow: 0px 2px 6px 0px var(--shadow);
+}
+
 #inputCalendarContainer.selected {
     box-shadow: none;
+    background-color: var(--selection)
 }
 
 #inputCalendarOptions.selected {

@@ -103,24 +103,19 @@ export default function Form({ tasks, handleClose, addTask}) {
                     </div>
                     <motion.div 
                         id="inputCalendarContainer" 
+                        className= {markCalendarInput && 'selected'}
                         transition= {{duration: 0.25}}
                         onClick={(e) => {
                             e.stopPropagation();
                             setOpenCalendar(!openCalendar)
                         }}  
                     >
-                        <motion.div 
+                        <div 
                             id="inputCalendar"
-                            style = {{
-                                backgroundColor: markCalendarInput && '#ecf0f6'
-                            }}
-                            whileHover= {{
-                                boxShadow: markCalendarInput ? '0 2px 6px 0 rgba(0,0,0,0)' : '0 2px 6px 0 rgba(0,0,0,0.17)',
-                            }}
                         >
                             <ion-icon name="calendar-clear-outline" role="img" className="md hydrated" aria-label="calendar clear outline"></ion-icon>
                             <p id="dateSelection">Pick Date</p>
-                        </motion.div>
+                        </div>
                         <InputCalendarOptions openCalendar={openCalendar} selectCalendarDate={selectCalendarDate} />
                     </motion.div>
                     <motion.div 
