@@ -52,11 +52,7 @@ function CheckCircle({ task, taskContainer, checkTask, complete, checkClickAnima
         }
     }
     const svgVariants = {
-        initial: {
-            stroke: '#000',
-        },
         animate: {
-            stroke: '#979fac',
             pathLength: complete ? 1 : 0,
             transition: {
                 delay: 0.6,
@@ -83,9 +79,9 @@ function CheckCircle({ task, taskContainer, checkTask, complete, checkClickAnima
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512">
                     <title>ionicons-v5-e</title>
                     <circle 
+                        className="circle"
                         style={{
                             fill:'none',
-                            stroke:'#272a2f',
                             opacity: complete ? 0:1,
                             strokeLinecap:'round',
                             strokeLinejoin:'round',
@@ -94,13 +90,14 @@ function CheckCircle({ task, taskContainer, checkTask, complete, checkClickAnima
                         cx="256" cy="256" r="192" 
                     />
                     <motion.path
-                        style={{fill:'#e9ebf1'}}
+                        className="checkCircleVariant"
                         variants={circleVariants}
                         initial='initial'
                         animate='animate'
                         d="M256,464C141.31,464,48,370.69,48,256S141.31,48,256,48s208,93.31,208,208S370.69,464,256,464Z"
                     />
                     <motion.path
+                        className="checkSvgVariant"
                         variants={svgVariants}
                         initial='initial'
                         animate='animate'

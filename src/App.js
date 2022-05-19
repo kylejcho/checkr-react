@@ -44,6 +44,8 @@ export default function App() {
     setOpenTask(task)
   },[openTask])
 
+
+
   return (
     <>
       <div id="sidebarContentContainer">

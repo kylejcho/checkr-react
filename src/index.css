@@ -15,29 +15,89 @@
 }
 
 :root {
-    --primary-text-color: #272a2f;
-    --secondary-text-color: #697384;
-    --tertiary-text-color: #979fac;
-    --primary-bg-color: rgb(255, 255, 255);
-    --secondary-bg-color: #f8f8fb;
-    --tertiary-bg-color: #e9ebf1;
-    --primary-blue: #3880ff;
-    --secondary-blue: #5a96ff;
-    --tertiary-blue: #aec6ff;
-    --primary-svg-color: invert(7%) sepia(7%) saturate(2512%) hue-rotate(178deg) brightness(97%) contrast(92%);
-    --secondary-svg-color: brightness(0) saturate(100%) invert(74%) sepia(13%) saturate(227%) hue-rotate(177deg) brightness(103%) contrast(97%);
+    --text1: #272a2f;
+    --text2: #697384;
+    --text3: #979fac;
+    --bkg1: #ffffff;
+    --bkg2: #f8f8fb;
+    --bkg3: #e9ebf1;
+    --bkg4: #fcfcfe;
+    --bkg5: #f1f3f5;
+    --search: #e9ebf1;
+    --circle: #272a2f;
+    --check-circle: #979fac;
+    --circle-variant: #e9ebf1;
+    --task-drag: #ffffffbf;
+    --blue1: #3880ff;
+    --border1: #f0f0f4;
+    --border2: #eef0f4;
+    --border3: #bec7d562;
+
+    --text1-dark: #d5d5e9;
+    --text2-dark: #98a0b3;
+    --text3-dark: #979fac;
+    --bkg1-dark: #15181d;
+    --bkg2-dark: #1c1e25;
+    --bkg3-dark: #2a2c36;
+    --bkg4-dark: #1c1e25;
+    --bkg5-dark: #25272e;
+    --search-dark: #15181d;
+    --circle-dark: #373b43;
+    --check-circle-dark: #373b43;
+    --circle-variant-dark: #23242d;
+    --task-drag-dark: #15181d95;
+    --blue1-dark: #3880ff;
+    --border1-dark: #2b303b;
+    --border2-dark: #2b303b;
+    --border3-dark: #4c4f5562;
+}
+
+@media (prefers-color-scheme:dark) {
+    :root {
+        --text1: var(--text1-dark);
+        --text2: var(--text2-dark);
+        --text3: var(--text3-dark);
+        --bkg1: var(--bkg1-dark);
+        --bkg2: var(--bkg2-dark);
+        --bkg3: var(--bkg3-dark);
+        --bkg4: var(--bkg4-dark);
+        --bkg5: var(--bkg5-dark);
+        --search: var(--search-dark);
+        --circle: var(--circle-dark);
+        --check-circle: var(--check-circle-dark);
+        --circle-variant: var(--circle-variant-dark);
+        --task-drag: var(--task-drag-dark);
+        --border1: var(--border1-dark);
+        --border2: var(--border2-dark);
+        --border3: var(--border3-dark);
+    }
 }
 
 
+.circle {
+    stroke: var(--circle)
+}
+
 body {
+    background-color: var(--bkg1);
     width: 100vw;
     height: 100vh;
-    background-color: var(--main-bg-color);
     line-height: 1.6;
     overflow: hidden;
 }
 
-
+body.dark {
+    --text1: var(--text1-dark);
+    --text2: var(--text2-dark);
+    --text3: var(--text3-dark);
+    --bkg1: var(--bkg1-dark);
+    --bkg2: var(--bkg2-dark);
+    --bkg3: var(--bkg3-dark);
+    --bkg4: var(--bkg4-dark);
+    --blue1: var(--blue1-dark);
+    --border1: var(--border1-dark);
+    --border2: var(--border2-dark);
+}
 
 body.stop-transitions * {
     transition: none !important;
@@ -54,10 +114,10 @@ nav {
     display: flex;
     align-items: center;
     height: clamp(40px, 6vh, 55px);
-    background-color: var(--secondary-bg-color);
+    background-color: var(--bkg2);
     padding: 0 31px;
     z-index: 3;
-    border-bottom: 2px solid #f0f0f4;
+    border-bottom: 2px solid var(--border1);
 }
 
 #pageTitle {
@@ -71,7 +131,7 @@ nav {
 }
 
 .logo {
-    stroke: var(--primary-blue);
+    stroke: var(--blue1);
     width: 28px;
     height: 28px;
     stroke-width: 50px;
@@ -79,8 +139,8 @@ nav {
 
 #pageTitle p {
     font-size: 1.5rem;
-    font-weight: 700;
-    
+    font-weight: 600;
+    color: var(--text1)
 }
 
 #searchAddContainer {
@@ -93,7 +153,7 @@ nav {
 
 #searchContainer {
     position: relative;
-    background-color: var(--tertiary-bg-color);
+    background-color: var(--search);
     height: clamp(30px, 4vh, 35px);
     padding-left: 10px;
     border-radius: 5px;
@@ -102,17 +162,17 @@ nav {
 }
 
 #searchContainer.selected {
-    background-color: var(--secondary-bg-color);
+    background-color: var(--bkg2);
     box-shadow: 0px 1px 8px 0px rgba(0,0,0,0.13);
 }
 
 #searchContainer.selected ion-icon{
-    color: var(--primary-blue);
+    color: var(--blue1);
 }
 
 
 #searchContainer.selected #searchBar{
-    background-color: var(--secondary-bg-color);
+    background-color: var(--bkg2);
 }
 
 
@@ -125,7 +185,7 @@ nav {
 #searchIcon {
     width: 25px;
     height: 25px;
-    stroke: var(--secondary-text-color);
+    stroke: var(--text2);
 }
 
 #searchBar {
@@ -136,12 +196,12 @@ nav {
     padding-left: 8px;
     margin-right:10px;
     outline-width: 0;
-    background-color: var(--tertiary-bg-color);
+    background-color: var(--search);
     transition: all ease-in-out 0.15s;
 }
 
 #searchBar::placeholder {
-    color: var(--tertiary-text-color);
+    color: var(--text3);
 }
 
 #searchResultsContainer {
@@ -165,7 +225,7 @@ nav {
 }
    
 #searchResultsContainer::-webkit-scrollbar-track {
-    background-color: #f8f8fb;
+    background-color: var(--bkg2);
 }
    
 #searchResultsContainer::-webkit-scrollbar-thumb {
@@ -217,7 +277,7 @@ nav {
 .searchResultDescription {
     pointer-events: none;
     font-size: 0.8rem;
-    color: var(--secondary-text-color);
+    color: var(--text2);
 }
 
 .searchResultArrow {
@@ -235,14 +295,21 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--tertiary-bg-color);
+    background-color: var(--bkg3);
     border-radius: 5px;
     height: clamp(30px, 4vh, 35px);
     aspect-ratio: 1/1;
 }
 
+
+#addButtonContainer #addButton {
+    stroke: var(--text2);
+    transition: stroke ease 0.2s;
+}
+
+
 #addButtonContainer:hover #addButton {
-    stroke: var(--primary-blue);
+    stroke: var(--blue1);
 }
 
 #darkModeContainer {
@@ -251,20 +318,21 @@ nav {
     box-sizing: border-box;
     justify-content: center;
     align-items: center;
-    background-color: var(--tertiary-bg-color);
+    background-color: var(--bkg3);
     border-radius: 5px;
     width: 35px;
     height: 35px;
-    transition: box-shadow 0.2s ease-in-out;
+    transition: box-shadow 0.2s ease;
     margin: 0 10px;
 }
 
 #darkModeContainer svg {
-    stroke: #697384;
+    stroke: var(--text2);
+    transition: stroke 0.2s ease;
 }
 
 #darkModeContainer:hover svg {
-    stroke: var(--primary-blue);
+    stroke: var(--blue1);
 }
 
 
@@ -275,7 +343,7 @@ nav {
     box-sizing: border-box;
     justify-content: center;
     align-items: center;
-    background-color: var(--tertiary-bg-color);
+    background-color: var(--bkg3);
     border-radius: 5px;
     width: 35px;
     height: 35px;
@@ -284,13 +352,13 @@ nav {
 }
 
 #profileContainer svg {
-    fill: #697384;
+    fill: var(--text2);
     stroke-width: 40px;
-    transition: fill 0.2s ease-in-out;
+    transition: fill 0.2s ease;
 }
 
 #profileContainer:hover svg {
-    fill: var(--primary-blue);
+    fill: var(--blue1);
 }
 
 #sidebarContentContainer {
@@ -317,7 +385,7 @@ nav {
 }
    
 #contentContainer::-webkit-scrollbar-track {
-    background-color: #f8f8fb;
+    background-color: var(--bkg2);
 }
    
 #contentContainer::-webkit-scrollbar-thumb {
@@ -333,16 +401,16 @@ nav {
     width: 12vw;
     /*min-width: max-content;*/
     padding: clamp(10px, 5vh, 45px) 10px 0px clamp(10px, 1vw, 20px);
-    color: var(--secondary-text-color);
+    color: var(--text2);
     z-index: 2;
+    overflow-x: visible;
     white-space: nowrap;
 }
 
 
 #sidebar svg {
     margin: 0 1rem 0 15px;
-    font-size: 1.5rem;
-    stroke: var(--secondary-text-color);
+    stroke: var(--text2);
 }
 
 #sidebarHome {
@@ -411,7 +479,7 @@ nav {
 
 
 .sidebarTab:hover {
-    color: var(--primary-text-color);
+    color: var(--text1);
 }
 
 .sidebarTab:hover::after {
@@ -419,8 +487,8 @@ nav {
 }
 
 .sidebarTab.viewing {
-    color: var(--primary-text-color);
-    background-color: var(--tertiary-bg-color);
+    color: var(--text1);
+    background-color: var(--bkg3);
 
 }
 
@@ -439,7 +507,7 @@ nav {
 }
 
 .sidebarTab.viewing ion-icon {
-    color: var(--primary-blue)
+    color: var(--blue1)
 }
 
 .sidebarTab.viewing svg {
@@ -447,13 +515,13 @@ nav {
 }
 
 .sidebarArrow {
-    color: var(--secondary-text-color);
+    color: var(--text2);
     cursor: pointer;
     transition: all 0.2s ease-in-out;
 }
 
 .sidebarArrow:hover {
-    color: var(--primary-text-color);
+    color: var(--text1);
 }
 
 
@@ -469,7 +537,7 @@ nav {
 }
 
 .sidebarTab.viewing .sidebarCount {
-    color: var(--secondary-text-color);
+    color: var(--text2);
 }
 
 .sidebarTitle {
@@ -477,7 +545,7 @@ nav {
     align-items: center;
     font-weight: 700;
     margin-top: 20px;
-    color: var(--primary-text-color);
+    color: var(--text1);
     transform: translateX(-1px);
 }
 
@@ -497,7 +565,7 @@ nav {
     font-weight: 700;
     margin-bottom: 15px;
     white-space: nowrap;
-    color: var(--primary-text-color);
+    color: var(--text1);
 }
 
 @keyframes tasksContainerShiftLeft {
@@ -540,8 +608,8 @@ nav {
     font-size: clamp(13px, 1vw, 17px);
     color: #7b8593cf;
     border-radius: 5px;
-    border: 2px solid #bec7d562;
-    background-color: #bec7d538;
+    border: 2px solid var(--border3);
+    background-color: var(--bkg5);
     margin-top: 25px;
     margin-bottom: 15px;
 }
@@ -562,6 +630,7 @@ nav {
     width: max(100%, 225px);
     grid-template: auto auto/40px auto 40px;
     border-radius: 5px;
+    backdrop-filter: blur(1.5px);
     border: 2px solid #ffffff00;
 }
 
@@ -584,16 +653,16 @@ nav {
 
 .taskContainer.dragging {
     pointer-events: none;
-    border-color: var(--primary-blue);
-    background-color: rgba(255, 255, 255, 0.762);
+    border-color: var(--blue1);
+    background-color: var(--task-drag);
 }
 
 .taskContainer.viewing {
-    border-color: var(--primary-blue);
+    border-color: var(--blue1);
 }
 
 .completed div{
-    color: var(--tertiary-text-color);
+    color: var(--text3);
 }
 
 
@@ -609,7 +678,7 @@ nav {
     border-radius: 50px;
     width: 17px;
     height: 17px;
-    background-color: #ffffff;
+    background-color: var(--bkg1);
     overflow: visible;
 }
 
@@ -619,7 +688,23 @@ nav {
     align-self: center;
     justify-self: center;
     width: clamp(15px, 1.5vw, 20px);
-    transform: translate(-3.5px,-6px);
+    transform: translate(-6.5px,-6.5px);
+    stroke: var(--check-circle)
+}
+
+.checkCircleVariant {
+    fill: var(--circle-variant);
+}
+
+.checkSvgVariant {
+    stroke: var(--check-circle);
+    animation: check 0.2s ease forwards;
+}
+
+@keyframes check {
+    100% {
+        stroke: var(--check-circle);
+    }
 }
 
 .nameContainer {
@@ -631,11 +716,11 @@ nav {
     white-space: nowrap;
     font-weight: 500;
     font-size: clamp(12px, 1.2vw, 17px);
-    color: var(--primary-text-color);
+    color: var(--text1);
     background-image: linear-gradient(to bottom,
         #00000000 50%,
-        var(--tertiary-text-color) 50%, 
-        var(--tertiary-text-color) 60%,
+        var(--text3) 50%, 
+        var(--text3) 60%,
         #00000000 60%
     );
     background-size: 0 100%;
@@ -654,7 +739,7 @@ nav {
     justify-self: center;
     width: clamp(14px, 1.5vw, 17px);
     height: clamp(14px, 1.5vw, 17px);
-    background-color: #e9ebf1; 
+    background-color: var(--bkg3); 
     border-radius: 50px;
     opacity: 0;
     align-items: center;
@@ -691,7 +776,7 @@ nav {
     font-weight: 400;
     font-size: clamp(10px, 1.1vw, 16px);
     padding-bottom: 2.5px;
-    color: var(--secondary-text-color);
+    color: var(--text2);
     white-space: nowrap;
     overflow-X: hidden;
     transition: color 0.3s ease-in-out;
@@ -709,8 +794,8 @@ nav {
     font-size: clamp(12px, 1vw, 16px);
     border-radius: 10px;
     box-shadow: -1px 5px 15px 0px rgba(0, 0, 0, 0.03);
-    border: 2px solid #eef0f4;
-    background-color: #fcfcfe;
+    border: 2px solid var(--border2);
+    background-color: var(--bkg4);
 }
 
 .taskViewCheckContainer {
@@ -726,7 +811,7 @@ nav {
     border-radius: 50px;
     width: 25px;
     height: 25px;
-    background-color: #ffffff;
+    background-color: var(--bkg1);
     overflow: visible;
 }
 
@@ -750,8 +835,8 @@ nav {
     align-items: center;
     background-size: 0% 100%;
     padding: 10px 0 0 33px;
-    color: var(--primary-text-color);
-    border-bottom: 2px solid #eef0f4;
+    color: var(--text1);
+    border-bottom: 2px solid var(--border2);
 }
 
 .taskViewNameContainer svg {
@@ -770,8 +855,8 @@ nav {
     border-top: 5px;
     background-image: linear-gradient(to bottom,
         #00000000 50%,
-        var(--tertiary-text-color) 50%, 
-        var(--tertiary-text-color) 60%,
+        var(--text3) 50%, 
+        var(--text3) 60%,
         #00000000 60%
     );
     background-size: 0 100%;
@@ -788,7 +873,7 @@ nav {
 .taskViewDescriptionContainer {
     font-weight: 600;
     margin-top: clamp(0px,10vh,20px);
-    color: var(--secondary-text-color);
+    color: var(--text2);
     margin-left: 45px;
 }
 
@@ -796,7 +881,7 @@ nav {
     display: flex;
     align-items: center;
     font-weight: 400;
-    color: var(--secondary-text-color);
+    color: var(--text2);
     margin-top: 5px;
     height: 30px;
     white-space: normal;
@@ -805,16 +890,16 @@ nav {
 .taskViewDueDateContainer {
     font-weight: 600;
     margin-top: 20px;
-    color: var(--secondary-text-color);
+    color: var(--text2);
     margin-left: 45px;
-    fill: #697384;
+    fill: var(--text2);
 }
 
 .taskViewDueDate {
     display: flex;
     align-items: center;
     font-weight: 400;
-    color: var(--secondary-text-color);
+    color: var(--text2);
     margin-top: 5px;
     white-space: nowrap;
     overflow: hidden; text-overflow: ellipsis;
@@ -827,9 +912,9 @@ nav {
 .taskViewListContainer {
     font-weight: 600;
     margin-top: 20px;
-    color: var(--secondary-text-color);
+    color: var(--text2);
     margin-left: 45px;
-    fill: #697384;
+    fill: var(--text2);
 }
 
 .taskViewList {
@@ -837,7 +922,7 @@ nav {
     align-items: center;
     font-weight: 400;
     width: max-content;
-    color: var(--secondary-text-color);
+    color: var(--text2);
     margin-top: 5px;
 }
 
@@ -884,7 +969,7 @@ nav {
     font-size: 1.5rem;
     border-radius: 5px;
     font-weight: 700;
-    color: var(--primary-text-color);
+    color: var(--text1);
     transition: background-color ease 0.4s;
 }
 
@@ -907,7 +992,7 @@ nav {
     padding: 5px;
     border: none;
     outline-width: 0;
-    color: var(--primary-text-color);
+    color: var(--text1);
     transition: background-color ease 0.4s;
 }
 
@@ -933,7 +1018,7 @@ nav {
     align-items: center;
     margin: 5px;
     padding: 10px;
-    color: var(--primary-text-color);
+    color: var(--text1);
     border: none;
     border-radius: 5px;
     transition: all ease 0.4s;
@@ -944,7 +1029,7 @@ nav {
 }
 
 .inputDueDate ion-icon {
-    color: var(--primary-text-color);
+    color: var(--text1);
     font-size: 1.25rem;
     margin-right: 5px;
 }
@@ -973,13 +1058,13 @@ nav {
     display: flex;
     align-items: center;
     padding: 10px;
-    color: var(--primary-text-color);
+    color: var(--text1);
     border-radius: 5px;
 }
 
 #inputCalendar ion-icon {
     pointer-events: none;
-    color: var(--primary-text-color);
+    color: var(--text1);
     font-size: 1.25rem;
     margin-right: 5px;
 }
@@ -1033,7 +1118,7 @@ nav {
     margin: 0 auto;
     width: 0;
     height: 0;
-    border-bottom: solid 5px #ffffff;
+    border-bottom: solid 5px var(--bkg1);
     border-left: solid 6px transparent;
     border-right: solid 6px transparent;
 }
@@ -1056,12 +1141,12 @@ nav {
 #calendarArrowContainer ion-icon {
     cursor: pointer;
     font-size: 1.1rem;
-    color: var(--secondary-text-color);
+    color: var(--text2);
     transition: color 0.4s ease;
 }
 
 #calendarArrowContainer ion-icon:hover {
-    color: var(--primary-text-color);
+    color: var(--text1);
 }
 
 #daysOfWeek {
@@ -1073,7 +1158,7 @@ nav {
 }
 
 #daysOfWeek div {
-    color: var(--secondary-text-color);
+    color: var(--text2);
     font-size: 0.8rem;
     overflow: hidden;
 }
@@ -1100,7 +1185,7 @@ nav {
     height: 100%;
     font-size: 0.8rem;
     font-weight: 400;
-    color: var(--tertiary-text-color);
+    color: var(--text3);
 }
 
 .calendarDay {
@@ -1117,8 +1202,8 @@ nav {
 }
 
 .calendarDay:hover {
-    background-color: var(--secondary-bg-color);
-    color: var(--primary-blue);
+    background-color: var(--bkg2);
+    color: var(--blue1);
 }
 
 #inputListContainer {
@@ -1146,7 +1231,7 @@ nav {
     display: flex;
     align-items: center;
     padding: 10px;
-    color: var(--primary-text-color);
+    color: var(--text1);
     border-radius: 5px;
     transition: all ease 0.4s;
 }
@@ -1165,13 +1250,13 @@ nav {
 }
 
 #inputListTextArea::placeholder {
-    color: var(--secondary-text-color);
+    color: var(--text2);
 }
 
 #inputListTextArea {
     border-bottom: 1px solid #d6d6d6 !important;
     padding-left: 5px;
-    color: var(--primary-text-color);
+    color: var(--text1);
     font-weight: 400;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -1228,7 +1313,7 @@ nav {
     margin: 0 auto;
     width: 0;
     height: 0;
-    border-bottom: solid 5px #ffffff;
+    border-bottom: solid 5px var(--bkg1);
     border-left: solid 6px transparent;
     border-right: solid 6px transparent;
 }
@@ -1258,7 +1343,7 @@ nav {
     border-radius: 5px;
     font-size: 0.9rem;
     font-weight: 500;
-    background-color: #3880ff;
+    background-color: var(--blue1);
     color: white;
     padding: 8px 10px;
     margin-left: 5px;
@@ -1290,7 +1375,7 @@ nav {
     position: relative;
     z-index: 1;
     width: auto;
-    background-color: var(--secondary-bg-color);
+    background-color: var(--bkg2);
     transition: ease 0.4s;
 }
 
@@ -1309,7 +1394,7 @@ nav {
     width: 12px;
     height: 12px;
     margin: 0 22px;
-    background-color: var(--primary-blue);
+    background-color: var(--blue1);
     border-radius: 50px;
 }
 
@@ -1319,7 +1404,7 @@ nav {
     z-index: 2;
     width: auto;
     height: 0;
-    background-color: var(--secondary-bg-color);
+    background-color: var(--bkg2);
 }
 
 
@@ -1359,7 +1444,7 @@ nav {
     font-family: 'Helvetica';
     font-size: 3.5rem;
     font-weight: 700;
-    color: var(--primary-text-color);
+    color: var(--text1);
 }
 
 #loadingCircle {
@@ -1368,7 +1453,7 @@ nav {
     margin-top: 15px;
     width: 1.5rem;
     height: 1.5rem;
-    border-top-color: #3880ff;
+    border-top-color: var(--blue1);
     animation: spin infinite ease-in-out 1.5s;    
 }
 
