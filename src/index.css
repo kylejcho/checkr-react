@@ -29,7 +29,9 @@
     --circle-variant: #e9ebf1;
     --task-drag: #ffffffbf;
     --selection: #ecf0f6;
-    --shadow: rgba(0,0,0,0.17);
+    --shadow1: rgba(0,0,0,0.17);
+    --shadow2: rgba(0,0,0,0.03);
+    --form-bkg: #eff0f680;
     --blue1: #3880ff;
     --border1: #f0f0f4;
     --border2: #eef0f4;
@@ -49,7 +51,9 @@
     --circle-variant-dark: #23242d;
     --task-drag-dark: #15181d95;
     --selection-dark: #2b303b;
-    --shadow-dark: rgba(65, 71, 91, 0.617);
+    --shadow1-dark: rgba(65, 71, 91, 0.617);
+    --shadow2-dark: rgba(65, 71, 91, 0.25);
+    --form-bkg-dark: #15181d7b;
     --blue1-dark: #3880ff;
     --border1-dark: #2b303b;
     --border2-dark: #2b303b;
@@ -71,15 +75,14 @@ body.dark {
     --circle-variant: var(--circle-variant-dark);
     --task-drag: var(--task-drag-dark);
     --selection: var(--selection-dark);
-    --shadow: var(--shadow-dark);
+    --shadow1: var(--shadow1-dark);
+    --shadow2: var(--shadow2-dark);
+    --form-bkg: var(--form-bkg-dark);
     --blue1: var(--blue1-dark);
     --border1: var(--border1-dark);
     --border2: var(--border2-dark);
     --border3: var(--border3-dark);
 }
-
-
-
 
 body {
     background-color: var(--bkg1);
@@ -88,19 +91,6 @@ body {
     line-height: 1.6;
     overflow: hidden;
     transition: background-color ease 0.4s;
-}
-
-body.dark {
-    --text1: var(--text1-dark);
-    --text2: var(--text2-dark);
-    --text3: var(--text3-dark);
-    --bkg1: var(--bkg1-dark);
-    --bkg2: var(--bkg2-dark);
-    --bkg3: var(--bkg3-dark);
-    --bkg4: var(--bkg4-dark);
-    --blue1: var(--blue1-dark);
-    --border1: var(--border1-dark);
-    --border2: var(--border2-dark);
 }
 
 body.stop-transitions * {
@@ -652,7 +642,7 @@ nav {
     height: calc(100% + 4px);
     position: absolute;
     border-radius: 5px;
-    box-shadow: 0px 1px 6px 0px var(--shadow);
+    box-shadow: 0px 1px 6px 0px var(--shadow1);
     opacity: 0;
     transform: translate(-2px,-2px);
     transition: opacity ease-in-out 0.2s;
@@ -808,7 +798,7 @@ nav {
     min-width: 300px;
     font-size: clamp(12px, 1vw, 16px);
     border-radius: 10px;
-    box-shadow: -1px 5px 15px 0px rgba(0, 0, 0, 0.03);
+    box-shadow: -1px 5px 15px 0px var(--shadow2);
     border: 2px solid var(--border2);
     background-color: var(--bkg4);
     transition: background-color ease 0.4s, border ease 0.4s;
@@ -968,6 +958,7 @@ nav {
     width: max-content;
     height: max-content;
     border-radius: 10px;
+    border: 1.5px solid var(--border2);
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
     padding: 15px 15px 25px 15px;
 }
@@ -1053,7 +1044,7 @@ nav {
 }
 
 .inputDueDate:hover {
-    box-shadow: 0px 2px 6px 0px var(--shadow);
+    box-shadow: 0px 2px 6px 0px var(--shadow1);
 }
 
 .inputDueDate.selected:hover {
@@ -1100,13 +1091,13 @@ nav {
     font-weight: 400;
     box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.17);
     border-radius: 5px;
-    border: 1px solid #d6d6d6;
-    background-color: white;
+    border: 1.5px solid var(--border2);
+    background-color: var(--bkg4);
     transform: translateX(-25%);
 }
 
 #inputCalendarContainer:hover {
-    box-shadow: 0px 2px 6px 0px var(--shadow);
+    box-shadow: 0px 2px 6px 0px var(--shadow1);
 }
 
 #inputCalendarContainer.selected {
@@ -1155,6 +1146,7 @@ nav {
 
 #calendarMonth {
     font-weight: 600;
+    color: var(--text1);
 }
 
 #calendarArrowContainer {
@@ -1195,9 +1187,10 @@ nav {
 }
 
 .calendarBlank {
+    pointer-events: none;
     width: 100%;
     height: 100%;
-    color: white;
+    color: rgba(0, 0, 0, 0);
 }
 
 
@@ -1223,10 +1216,11 @@ nav {
     font-weight: 400;
     transition: 0.3s ease;
     border-radius: 5px;
+    color: var(--text1)
 }
 
 .calendarDay:hover {
-    background-color: var(--bkg2);
+    background-color: var(--bkg3);
     color: var(--blue1);
 }
 
@@ -1278,7 +1272,7 @@ nav {
 }
 
 #inputListTextArea {
-    border-bottom: 1px solid #d6d6d6 !important;
+    border-bottom: 1.5px solid var(--border2) !important;
     padding-left: 5px;
     color: var(--text1);
     font-weight: 400;
@@ -1294,10 +1288,11 @@ nav {
     z-index: -1;
     overflow-x: hidden;
     white-space: nowrap;
+    color: var(--text1);
 }
 
 #createListButton:hover {
-    background-color: #ecf0f6;
+    background-color: var(--bkg4);
 }
 
 #inputListOptions {
@@ -1309,8 +1304,8 @@ nav {
     font-weight: 400;
     box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.17);
     border-radius: 5px;
-    border: 1px solid #d6d6d6;
-    background-color: white;
+    border: 1.5px solid var(--border2);
+    background-color: var(--bkg4);
     transform: translateX(-14%);
 }
 
@@ -1323,9 +1318,9 @@ nav {
     margin: 0 auto;
     width: 0;
     height: 0;
-    border-bottom: solid 6px #d6d6d6;
-    border-left: solid 7px transparent;
-    border-right: solid 7px transparent;
+    border-bottom: solid 6.5px var(--border2);
+    border-left: solid 7.5px transparent;
+    border-right: solid 7.5px transparent;
 }
 
 #inputListOptions:after {
@@ -1337,7 +1332,7 @@ nav {
     margin: 0 auto;
     width: 0;
     height: 0;
-    border-bottom: solid 5px var(--bkg1);
+    border-bottom: solid 5px var(--bkg4);
     border-left: solid 6px transparent;
     border-right: solid 6px transparent;
 }
@@ -1347,15 +1342,16 @@ nav {
 .inputListItem {
     cursor: pointer;
     padding-left: 10px;
-    background-color: white;
+    color: var(--text1);
+    background-color: var(--bkg2);
 }
 
 .inputListItem:hover {
-    background-color: #ecf0f6;
+    background-color: var(--bkg5);
 }
 
 .inputListItem.selected {
-    background-color: #ecf0f6;
+    background-color: var(--bkg5);
 }
 
 
@@ -1368,7 +1364,7 @@ nav {
     font-size: 0.9rem;
     font-weight: 500;
     background-color: var(--blue1);
-    color: white;
+    color: var(--text1);
     padding: 8px 10px;
     margin-left: 5px;
     margin-top: 20px;

@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import InputCalendarOptions from "./InputCalendarOptions";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m, motion } from "framer-motion";
 import { v4 as uuidv4 } from 'uuid';
 import { addDays, endOfDay } from "date-fns";
 import InputListOptions from "./InputListOptions";
@@ -53,15 +53,15 @@ export default function Form({ tasks, handleClose, addTask}) {
             id="taskFormContainer" 
             onClick={handleClose}
             initial = {{
-                backgroundColor: 'rgb(239, 240, 246, 0.0)',
+                backdropFilter:'blur(0px)',
             }}
             animate={{
-                backgroundColor: 'rgb(239, 240, 246, 0.5)',
+                backdropFilter:'blur(1.5px)',
                 transition: { duration: 0.4 }
             }}
             exit= {{
-                backgroundColor: 'rgb(239, 240, 246, 0.0)',
                 backdropFilter: 'blur(0px)',
+                backgroundColor:'rgb(151, 159, 172,0)',
                 transition: { duration: 0.3 }
             }}
         >

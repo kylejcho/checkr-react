@@ -10,9 +10,7 @@ export default function App() {
   const [openTask, setOpenTask] = useState(null)
   const [contentType, setContentType] = useState('home')
 
-  useEffect(() => {
-    document.body.classList.toggle('dark')
-    setTasks([
+  useEffect(() => {setTasks([
       {name: 'Coffee with friend', description: 'Starbucks', dueDate: endOfDay(new Date()), list: 'Personal', complete: false, id: uuidv4()},
       {name: 'Exercise', description: 'Workout out for 45 minutes', dueDate: endOfDay(new Date()), list: 'Personal', complete: false, id: uuidv4()},
       {name: 'Learn sign language', description: 'Practice english alphabet', dueDate: endOfDay(new Date()), list: 'Personal', complete: false,  id: uuidv4()}, 
