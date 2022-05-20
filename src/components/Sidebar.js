@@ -1,12 +1,12 @@
-import React, {useRef, useEffect} from "react";
+import React, {useRef} from "react";
 
-function Sidebar({ changeContent }) {   
+function Sidebar({ changeContent, contentType}) {   
     const sidebar = useRef(null);
-    
+
     return (
         <>
             <div id="sidebar" ref={sidebar}>
-                <div id="sidebarHome" className="sidebarTab" onClick={()=>changeContent('home')}>
+                <div id="sidebarHome" className="sidebarTab" onClick={()=>changeContent('home')} style={{color: contentType === 'home' && '#3880ff'}}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512" style={{fill:'none',strokeLinecap:'round',strokeLinejoin:'round',strokeWidth:'32px'}}>
                     <title>ionicons-v5-i</title>
                     <path d="M80,212V448a16,16,0,0,0,16,16h96V328a24,24,0,0,1,24-24h80a24,24,0,0,1,24,24V464h96a16,16,0,0,0,16-16V212"/>
@@ -23,7 +23,7 @@ function Sidebar({ changeContent }) {
                     Shortcuts
                 </p>
                 <div id="sidebarShortcuts" className="sidebarTabsContainer">
-                    <div id="sidebarShortcutsToday" className="sidebarShortcut sidebarTab" onClick={()=>changeContent('today')}>
+                    <div id="sidebarShortcutsToday" className="sidebarShortcut sidebarTab" onClick={()=>changeContent('today')} style={{color: contentType === 'today' && '#3880ff'}}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512">
                             <rect fill="none" stroke="#697384" strokeLinejoin="round" strokeWidth="32" x="48" y="80" width="416" height="384" rx="48"/>
                             <line fill="none" stroke="#697384" strokeLinejoin="round" strokeWidth="32" strokeLinecap="round" x1="128" y1="48" x2="128" y2="80"/>
@@ -34,7 +34,7 @@ function Sidebar({ changeContent }) {
                         <p>Today</p>
                         <div className = "sidebarCount" id="todayCount"></div>
                     </div>
-                    <div id="sidebarShortcutsWeek" className="sidebarShortcut sidebarTab" onClick={()=>changeContent('week')}>
+                    <div id="sidebarShortcutsWeek" className="sidebarShortcut sidebarTab" onClick={()=>changeContent('week')} style={{color: contentType === 'week' && '#3880ff'}}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512" stroke="#697384" fill="#697384">
                         <rect fill="none" strokeLinejoin="round" strokeWidth="32" x="48" y="80" width="416" height="384" rx="48"/>
                         <circle cx="296" cy="232" r="24"/>
@@ -53,7 +53,7 @@ function Sidebar({ changeContent }) {
                         <p>Next 7 Days</p>
                         <div className = "sidebarCount" id="weekCount"></div>
                     </div>
-                    <div id="sidebarShortcutsAllTasks" className="sidebarShortcut sidebarTab" onClick={()=>changeContent('all')}>
+                    <div id="sidebarShortcutsAllTasks" className="sidebarShortcut sidebarTab" onClick={()=>changeContent('all')} style={{color: contentType === 'all' && '#3880ff'}}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512"><title>ionicons-v5-o</title>
                         <line x1="160" y1="144" x2="448" y2="144" style={{fill:'none',strokeLinecap:'round',strokeLinejoin:'round',strokeWidth:'32px'}}/>
                         <line x1="160" y1="256" x2="448" y2="256" style={{fill:'none',strokeLinecap:'round',strokeLinejoin:'round',strokeWidth:'32px'}}/>

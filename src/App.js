@@ -49,7 +49,7 @@ export default function App() {
   return (
     <>
       <div id="sidebarContentContainer">
-        <Sidebar changeContent={changeContent} />
+        <Sidebar changeContent={changeContent} contentType={contentType} />
         <Content contentType={contentType} tasks={tasks} updateTasks={updateTasks} removeTask={removeTask} openTask={openTask} viewTask={viewTask}  />
       </div>
     </>
