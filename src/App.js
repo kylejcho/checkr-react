@@ -27,7 +27,8 @@ export default function App() {
     setOpenTask(null)
   },[])
 
-
+  useEffect(() => hideScroll(), [contentType])
+  
   
   const removeTask = useCallback((task) => {
     setTasks(tasks => tasks.filter(item => item.id !== task))
@@ -54,4 +55,9 @@ export default function App() {
       </div>
     </>
   )
+}
+
+function hideScroll() {
+  document.querySelector('#contentContainer').style.overflow = 'hidden';
+  setTimeout(() => document.querySelector('#contentContainer').style.overflowY = 'auto', 500);
 }

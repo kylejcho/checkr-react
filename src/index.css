@@ -32,10 +32,12 @@
     --shadow1: rgba(0,0,0,0.17);
     --shadow2: rgba(0,0,0,0.03);
     --form-bkg: #eff0f680;
+    --scroll: #d4d4d8;
     --blue1: #3880ff;
     --border1: #f0f0f4;
     --border2: #eef0f4;
     --border3: #bec7d562;
+
 
     --text1-dark: #d5d5e9;
     --text2-dark: #98a0b3;
@@ -54,6 +56,7 @@
     --shadow1-dark: rgba(65, 71, 91, 0.617);
     --shadow2-dark: rgba(65, 71, 91, 0.25);
     --form-bkg-dark: #15181d7b;
+    --scroll-dark: #2a2c36;
     --blue1-dark: #3880ff;
     --border1-dark: #2b303b;
     --border2-dark: #2b303b;
@@ -78,6 +81,7 @@ body.dark {
     --shadow1: var(--shadow1-dark);
     --shadow2: var(--shadow2-dark);
     --form-bkg: var(--form-bkg-dark);
+    --scroll: var(--scroll-dark);
     --blue1: var(--blue1-dark);
     --border1: var(--border1-dark);
     --border2: var(--border2-dark);
@@ -129,7 +133,7 @@ nav {
     stroke: var(--blue1);
     width: 28px;
     height: 28px;
-    stroke-width: 50px;
+    stroke-width: 44px;
 }
 
 #pageTitle p {
@@ -297,6 +301,7 @@ nav {
     border-radius: 5px;
     height: clamp(30px, 4vh, 35px);
     aspect-ratio: 1/1;
+    transition: background-color ease 0.4s;
 }
 
 
@@ -320,8 +325,8 @@ nav {
     border-radius: 5px;
     width: 35px;
     height: 35px;
-    transition: box-shadow 0.2s ease;
     margin: 0 10px;
+    transition: background-color ease 0.4s;
 }
 
 #darkModeContainer svg {
@@ -345,7 +350,7 @@ nav {
     border-radius: 5px;
     width: 35px;
     height: 35px;
-    transition: box-shadow 0.2s ease-in-out;
+    transition: background-color ease 0.4s;
     margin-right: 10px;
 }
 
@@ -387,7 +392,7 @@ nav {
 }
    
 #contentContainer::-webkit-scrollbar-thumb {
-    background-color: #d4d4d8;
+    background-color: var(--scroll);
     border-radius: 5px;
     animation: fadeInScrollBar 0.3s ease-in-out;
 }
@@ -545,6 +550,7 @@ nav {
     margin-top: 20px;
     color: var(--text1);
     transform: translateX(-1px);
+    transition: background-color ease 0.4s;
 }
 
 
@@ -694,11 +700,12 @@ nav {
 }
 
 .circle {
-    stroke: var(--circle)
+    stroke: var(--circle);
 }
 
 .checkCircleVariant {
     fill: var(--circle-variant);
+    transition: fill ease 0.4s;
 }
 
 .checkSvgVariant {
