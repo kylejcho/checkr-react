@@ -1,26 +1,50 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { format, isToday, isTomorrow } from 'date-fns';
 import {ReactComponent as Caret} from '../../icons/caret-forward.svg'
 import TaskViewCheckCircle from "./TaskViewCheckCircle";
+import {a} from "../Content"
 
-export default function TaskView({ task, checkTask, taskContainer, complete, checkClickAnimation }) {
+export default function TaskView({ task }) {
     const taskViewContainer = useRef()
 
+/*
+    function taskViewOffset() {
+        console.log(taskViewContainer.current.getBoundingClientRect().top)
+        return taskViewContainer.current.getBoundingClientRect().top
+    }
+
+    useEffect(() => {
+        console.log(a)
+        taskViewContainer.current.style.top = `${a+100}px`
+    }, [])
+*/
+
+useEffect(() => {
+    console.log(task)
+}, [])
+
     return (
+        <AnimatePresence >
+        {task && /*openTask.id === task.id &&*/ (
+
                 <motion.div 
                     key={'TvMotion' + task.id} 
                     className={`taskViewContainer ${task.complete && 'completed'}`}
                     id={'Tv' + task.id}
                     ref={taskViewContainer}
-                    initial={{ opacity: 0, right: 'calc(-45vw)'}}
-                    animate={{ opacity: 1, right: 'calc(-30vw)'}}
+                    initial={{ opacity: 0, right: 'calc(5vw)'}}
+                    animate={{ 
+                        opacity: 1, 
+                        right: 'calc(20vw)',
+                        transition:{ type:'spring', stiffness:350, damping:26, delay: 0.1}
+                    }}
                     exit={{ 
                         opacity: 0, 
-                        right: 'calc(-35vw)',
-                        transition: { duration: 0.2 }
+                        right:'calc(10vw)',
+                        transition:{ type:'spring', stiffness:350, damping:26}
                     }}
-                    transition={{ type:'spring', stiffness:350, damping:26, duration: 0.3, delay: 0.1}}
+                
                 >
                     <div className="taskViewNameContainer">
                         <p className={`taskViewName`}>{task.name}</p>
@@ -46,7 +70,8 @@ export default function TaskView({ task, checkTask, taskContainer, complete, che
                         </div>    
                     )}
                 </motion.div>
-
+                        )}    
+                        </AnimatePresence>
     )
 }
 

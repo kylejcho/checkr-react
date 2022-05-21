@@ -799,7 +799,7 @@ nav {
 
 .taskViewContainer {
     position: fixed;
-    top: 100px;
+    top: 200px;
     height: max(20vw,320px);
     width: calc(22vw);
     min-width: 300px;

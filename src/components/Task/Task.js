@@ -95,11 +95,6 @@ function Task({ task, subTasks, updateSubTasks, viewTask, openTask }) {
                     </Reorder.Item>
                 )}
             </AnimatePresence>
-            <AnimatePresence exitBeforeEnter>
-                {openTask && openTask.id === task.id && (
-                    <TaskView openTask={openTask} checkTask={checkTask} task={task} taskContainer={taskContainer} complete={complete} checkClickAnimation={checkClickAnimation} />
-                )}    
-            </AnimatePresence>
         </>
     )
 }
