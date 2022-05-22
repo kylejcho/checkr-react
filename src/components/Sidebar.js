@@ -74,7 +74,18 @@ function Sidebar({ changeContent, contentType, uniqueLists}) {
                     </svg>
                     Lists
                 </p>
-                <div id="sidebarLists" className="sidebarTabsContainer"></div>
+                <div id="sidebarLists" className="sidebarTabsContainer">
+                    {uniqueLists.map(list=>{
+                        if (list) {
+                            return (
+                                <div className="sidebarListContainer sidebarTab" key={list+'Container'}>
+                                    <div className="dot"></div>
+                                    <p>{list}</p> 
+                                </div>
+                            )
+                        }
+                    })}
+                </div>
                 <div id="sidebarListsClose"></div>
             </div>
         </>
