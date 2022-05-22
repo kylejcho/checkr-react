@@ -42,7 +42,7 @@ useEffect(() => {
                     exit={{ 
                         opacity: 0, 
                         right:'calc(10vw)',
-                        transition:{ type:'spring', stiffness:350, damping:26}
+                        transition:{ type:'spring', stiffness:250, damping:26}
                     }}
                 
                 >

@@ -4,8 +4,9 @@ import { useMotionValue, Reorder, AnimatePresence} from "framer-motion";
 import { RaisedShadow } from "./RaisedShadow";
 import TaskView from "./TaskView";
 
-function Task({ task, subTasks, updateSubTasks, viewTask, openTask }) {
+function Task({ task, subTasks, updateSubTasks, viewTask }) {
     const [showTask, setShowTask] = useState(true)
+    const [selectTask, setSelectTask] = useState(false)
     const [complete, setComplete] = useState(task.complete)
     const taskContainer = useRef();
 
@@ -31,11 +32,12 @@ function Task({ task, subTasks, updateSubTasks, viewTask, openTask }) {
     }
 
     function handleDeleteClick() {
-        if (openTask && openTask.id === task.id) {
+        if (taskContainer.current.className.includes('viewing')) {
             setTimeout(() => {
                 viewTask(null)
             }, 0);
         }
+
         setTimeout(() => {
             setShowTask(false)
         }, 0);
@@ -52,7 +54,7 @@ function Task({ task, subTasks, updateSubTasks, viewTask, openTask }) {
                     <Reorder.Item 
                         id={task.id} 
                         ref={taskContainer}
-                        className={`taskContainer ${openTask && task.id === openTask.id && 'viewing'}`}
+                        className={`taskContainer`}
                         value={task} 
                         style={{boxShadow, y}}
                         whileDrag={{scale:1.04}}
@@ -70,6 +72,9 @@ function Task({ task, subTasks, updateSubTasks, viewTask, openTask }) {
                             e.stopPropagation()
                             updateSubTasks(subTasks)
                             viewTask(task)
+                            setSelectTask(!selectTask)
+                            document.querySelectorAll('.taskContainer').forEach(taskContainer=>taskContainer.classList.remove('viewing'))
+                            taskContainer.current.classList.add('viewing')
                         }}
                     >
                         <CheckCircle task={task} taskContainer={taskContainer} checkTask={checkTask} complete={complete} checkClickAnimation={checkClickAnimation} />

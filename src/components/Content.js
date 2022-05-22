@@ -16,7 +16,11 @@ export default function Content({ contentType, tasks, checkTask, updateTasks, re
     return (
         <>
             <Navbar tasks={tasks} addTask={addTask}/>
-            <motion.div layoutScroll id="contentContainer" onClick={()=>{viewTask(null)}} >
+            <motion.div layoutScroll id="contentContainer" 
+                onClick={()=>{
+                    viewTask(null)
+                    document.querySelectorAll('.taskContainer').forEach(taskContainer=>taskContainer.classList.remove('viewing'))
+                }} >
                 <TasksContainer contentType={contentType} tasks={tasks} addedTask={addedTask} checkTask={checkTask} updateTasks={updateTasks} removeTask={removeTask} viewTask={viewTask} openTask={openTask} />
             </motion.div>            
             <TaskView task={openTask}  />

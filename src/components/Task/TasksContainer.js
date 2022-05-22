@@ -46,17 +46,17 @@ export default function TasksContainer({ contentType, tasks, addedTask, updateTa
         }, 450);
     });
 
-    const today = () => <SubGroup subTasks={todayTasks} updateSubTasks={updateTodayTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTask={openTask} openTaskView={openTaskView} type="today" />
+    const today = () => <SubGroup subTasks={todayTasks} updateSubTasks={updateTodayTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTaskView={openTaskView} type="today" />
 
     const all = () => {
         return (
             <>
                 <motion.div className="subGroupTitle" transition={{duration: firstRender.current ? 0 : 0.25}} >Today</motion.div>
-                <SubGroup subTasks={todayTasks} updateSubTasks={updateTodayTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTask={openTask} openTaskView={openTaskView} type="today" />
+                <SubGroup subTasks={todayTasks} updateSubTasks={updateTodayTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTaskView={openTaskView} type="today" />
                 <motion.div layout className="subGroupTitle" transition={{duration: firstRender.current ? 0 : 0.25}} >Tomorrow</motion.div>
-                <SubGroup subTasks={tomorrowTasks} updateSubTasks={updateTomorrowTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTask={openTask} openTaskView={openTaskView} type="tomorrow" />
+                <SubGroup subTasks={tomorrowTasks} updateSubTasks={updateTomorrowTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTaskView={openTaskView} type="tomorrow" />
                 <motion.div layout className="subGroupTitle" transition={{duration: firstRender.current ? 0 : 0.25}} >Upcoming</motion.div>
-                <SubGroup subTasks={upcomingTasks} updateSubTasks={updateUpcomingTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTask={openTask} openTaskView={openTaskView} type="upcoming" />
+                <SubGroup subTasks={upcomingTasks} updateSubTasks={updateUpcomingTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTaskView={openTaskView} type="upcoming" />
             </>
         )
     }
