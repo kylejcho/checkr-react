@@ -49,15 +49,13 @@ export default function App() {
     setOpenTask(task)
   },[])
 
-
+  const uniqueLists = [...new Set(tasks.map(task=>task.list))]
 
   return (
-    <>
       <div id="sidebarContentContainer">
-        <Sidebar changeContent={changeContent} contentType={contentType} />
-        <Content contentType={contentType} tasks={tasks} updateTasks={updateTasks} removeTask={removeTask} openTask={openTask} viewTask={viewTask}  />
+        <Sidebar changeContent={changeContent} contentType={contentType} uniqueLists={uniqueLists}/>
+        <Content contentType={contentType} tasks={tasks} updateTasks={updateTasks} removeTask={removeTask} openTask={openTask} viewTask={viewTask}  uniqueLists={uniqueLists} />
       </div>
-    </>
   )
 }
 

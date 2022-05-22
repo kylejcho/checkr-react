@@ -4,7 +4,7 @@ import Form from "./Form/Form";
 import {ReactComponent as Logo} from '../icons/document-text-outline.svg'
 import {ReactComponent as SearchIcon} from '../icons/search-outline.svg'
 
- function Navbar({ tasks, addTask}) {
+ function Navbar({ tasks, addTask, uniqueLists }) {
     const [formOpen, setFormOpen] = useState(false);
     
     const pathVariants = {
@@ -77,7 +77,7 @@ import {ReactComponent as SearchIcon} from '../icons/search-outline.svg'
                 exitBeforeEnter
                 onExitComplete={() => null}
             >
-                {formOpen && <Form tasks={tasks} addTask={addTask} handleClose={()=>setFormOpen(false)}/>}
+                {formOpen && <Form tasks={tasks} addTask={addTask} uniqueLists={uniqueLists} handleClose={()=>setFormOpen(false)}/>}
             </AnimatePresence>
         </nav>
     )

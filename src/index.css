@@ -30,7 +30,8 @@
     --task-drag: #ffffffbf;
     --selection: #ecf0f6;
     --shadow1: rgba(0,0,0,0.17);
-    --shadow2: rgba(0,0,0,0.03);
+    --shadow2: rgba(0,0,0,0.02);
+    --shadow3: rgba(0, 0, 0, 0.045);
     --form-bkg: #eff0f680;
     --scroll: #d4d4d8;
     --blue1: #3880ff;
@@ -55,6 +56,7 @@
     --selection-dark: #2b303b;
     --shadow1-dark: rgba(65, 71, 91, 0.617);
     --shadow2-dark: rgba(65, 71, 91, 0.25);
+    --shadow3-dark: rgba(65, 71, 91, 0.303);
     --form-bkg-dark: #15181d7b;
     --scroll-dark: #2a2c36;
     --blue1-dark: #3880ff;
@@ -80,6 +82,7 @@ body.dark {
     --selection: var(--selection-dark);
     --shadow1: var(--shadow1-dark);
     --shadow2: var(--shadow2-dark);
+    --shadow3: var(--shadow3-dark);
     --form-bkg: var(--form-bkg-dark);
     --scroll: var(--scroll-dark);
     --blue1: var(--blue1-dark);
@@ -467,26 +470,8 @@ nav {
     border-radius: 5px;
 }
 
-.sidebarTab::after {
-    content: '';
-    z-index: -1;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    border-radius: 5px;
-    box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.12);
-    opacity: 0;
-    transition: all 0.4s ease;
-}
-
-
-
 .sidebarTab:hover {
     color: var(--text1);
-}
-
-.sidebarTab:hover::after {
-    opacity: 1;
 }
 
 .sidebarTab.viewing {
@@ -497,7 +482,6 @@ nav {
 
 .sidebarTab p {
     pointer-events: none;
-    margin-right: max(3.5vw, 40px);
     transition: 0.3s ease;
 }
 
@@ -511,10 +495,6 @@ nav {
 
 .sidebarTab.viewing ion-icon {
     color: var(--blue1)
-}
-
-.sidebarTab.viewing svg {
-    filter: sepia(100%) saturate(400%) hue-rotate(185deg) brightness(90%) contrast(100%)
 }
 
 .sidebarArrow {
@@ -637,7 +617,7 @@ nav {
     width: max(100%, 225px);
     grid-template: auto auto/40px auto 40px;
     border-radius: 5px;
-    backdrop-filter: blur(1.5px);
+    backdrop-filter: blur(1px);
     border: 2px solid #ffffff00;
 }
 
@@ -648,7 +628,7 @@ nav {
     height: calc(100% + 4px);
     position: absolute;
     border-radius: 5px;
-    box-shadow: 0px 1px 6px 0px var(--shadow1);
+    box-shadow: 0px 1px 5px 0.5px var(--shadow1);
     opacity: 0;
     transform: translate(-2px,-2px);
     transition: opacity ease-in-out 0.2s;
@@ -668,10 +648,14 @@ nav {
     border-color: var(--blue1);
 }
 
+.taskContainer.viewing::after {
+    opacity: 1;
+    box-shadow: 0px 1px 10px 4px var(--shadow3);
+}
+
 .completed div{
     color: var(--text3);
 }
-
 
 .checkContainer {
     position: relative;

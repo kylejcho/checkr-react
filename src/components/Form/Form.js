@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { addDays, endOfDay } from "date-fns";
 import InputListOptions from "./InputListOptions";
 
-export default function Form({ tasks, handleClose, addTask}) {
+export default function Form({ tasks, handleClose, addTask, uniqueLists}) {
     const nameRef = useRef();
     const descRef = useRef();
     const todayInput = useRef();
@@ -30,9 +30,7 @@ export default function Form({ tasks, handleClose, addTask}) {
         todayInput.current.classList.remove('selected')
     }
 
-    useEffect(()=> {
-        todayInput.current.classList.add('selected')
-    },[])
+    useEffect(()=>todayInput.current.classList.add('selected'),[])
 
     function handleAddTaskClick() {
         if (nameRef.current.value === '') return
@@ -127,7 +125,7 @@ export default function Form({ tasks, handleClose, addTask}) {
                             <div className="dot"></div>
                             <p id="listSelectionName">Add to list</p>
                         </div>
-                        <InputListOptions tasks={tasks} openList={openList} createList={createList}/>
+                        <InputListOptions tasks={tasks} openList={openList} createList={createList} uniqueLists={uniqueLists}/>
                     </motion.div>
                 </div>
                 <button id="taskFormAddButton" onClick={handleAddTaskClick}>Add task<ion-icon name="arrow-forward-outline"></ion-icon></button>

@@ -1,28 +1,10 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { format, isToday, isTomorrow } from 'date-fns';
 import {ReactComponent as Caret} from '../../icons/caret-forward.svg'
-import TaskViewCheckCircle from "./TaskViewCheckCircle";
-import {a} from "../Content"
 
 export default function TaskView({ task }) {
     const taskViewContainer = useRef()
-
-/*
-    function taskViewOffset() {
-        console.log(taskViewContainer.current.getBoundingClientRect().top)
-        return taskViewContainer.current.getBoundingClientRect().top
-    }
-
-    useEffect(() => {
-        console.log(a)
-        taskViewContainer.current.style.top = `${a+100}px`
-    }, [])
-*/
-
-useEffect(() => {
-    console.log(task)
-}, [])
 
     return (
         <AnimatePresence >

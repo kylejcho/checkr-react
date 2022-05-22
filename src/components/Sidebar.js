@@ -1,6 +1,7 @@
 import React, {useRef} from "react";
+import getDate from "date-fns/getDate";
 
-function Sidebar({ changeContent, contentType}) {   
+function Sidebar({ changeContent, contentType, uniqueLists}) {   
     const sidebar = useRef(null);
 
     return (
@@ -29,7 +30,7 @@ function Sidebar({ changeContent, contentType}) {
                             <line fill="none" stroke="#697384" strokeLinejoin="round" strokeWidth="32" strokeLinecap="round" x1="128" y1="48" x2="128" y2="80" style={{stroke: contentType === 'today' && '#3880ff'}}/>
                             <line fill="none" stroke="#697384" strokeLinejoin="round" strokeWidth="32" strokeLinecap="round" x1="384" y1="48" x2="384" y2="80" style={{stroke: contentType === 'today' && '#3880ff'}}/>
                             <line fill="none" stroke="#697384" strokeLinejoin="round" strokeWidth="32" strokeLinecap="round" x1="464" y1="160" x2="48" y2="160" style={{stroke: contentType === 'today' && '#3880ff'}}/>
-                            <text className = "todayIconNumber" x="50%" y="62%" textAnchor="middle" fill="#697384" fontSize="250px" fontFamily="Inter" textLength="55%" dy=".3em" style={{fill: contentType === 'today' && '#3880ff'}}>4</text>
+                            <text className = "todayIconNumber" x="50%" y="62%" textAnchor="middle" fill="#697384" fontSize="250px" fontFamily="Inter" textLength="55%" dy=".3em" style={{fill: contentType === 'today' && '#3880ff'}}>{getDate(new Date())}</text>
                         </svg>
                         <p>Today</p>
                         <div className = "sidebarCount" id="todayCount"></div>
@@ -80,3 +81,4 @@ function Sidebar({ changeContent, contentType}) {
     )
 }
 export default React.memo(Sidebar)
+
