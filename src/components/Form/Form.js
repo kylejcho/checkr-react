@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import InputCalendarOptions from "./InputCalendarOptions";
 import { AnimatePresence, m, motion } from "framer-motion";
 import { v4 as uuidv4 } from 'uuid';
-import { addDays, endOfDay } from "date-fns";
+import { addDays, endOfDay, format } from "date-fns";
 import InputListOptions from "./InputListOptions";
 
 export default function Form({ tasks, handleClose, addTask, uniqueLists}) {
@@ -110,7 +110,7 @@ export default function Form({ tasks, handleClose, addTask, uniqueLists}) {
                     >
                         <div id="inputCalendar">
                             <ion-icon name="calendar-clear-outline" role="img" className="md hydrated" aria-label="calendar clear outline"></ion-icon>
-                            <p id="dateSelection">Pick Date</p>
+                            <p id="dateSelection">{markCalendarInput ? format(dateSelection, 'MMM d'): 'Pick date'}</p>
                         </div>
                         <InputCalendarOptions openCalendar={openCalendar} selectCalendarDate={selectCalendarDate} />
                     </motion.div>
