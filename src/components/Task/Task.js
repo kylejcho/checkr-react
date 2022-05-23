@@ -37,7 +37,6 @@ function Task({ task, subTasks, updateSubTasks, viewTask }) {
                 viewTask(null)
             }, 0);
         }
-
         setTimeout(() => {
             setShowTask(false)
         }, 0);

@@ -123,7 +123,7 @@ export default function Form({ tasks, handleClose, addTask, uniqueLists}) {
                     >
                         <div id="inputList">
                             <div className="dot"></div>
-                            <p id="listSelectionName">Add to list</p>
+                            <p id="listSelectionName">{listSelection ? listSelection : 'Add to list'}</p>
                         </div>
                         <InputListOptions tasks={tasks} openList={openList} createList={createList} uniqueLists={uniqueLists}/>
                     </motion.div>

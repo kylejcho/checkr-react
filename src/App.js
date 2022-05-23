@@ -31,7 +31,10 @@ export default function App() {
     setOpenTask(null)
   },[])
 
-  useEffect(() => hideScroll(), [contentType])
+  useEffect(() => {
+    hideScroll()
+    console.log(contentType)
+  }, [contentType])
   
   
   const removeTask = useCallback((task) => {

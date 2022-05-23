@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useRef} from 'react'
 import SubGroup from '../SubGroup';
 import { LayoutGroup, motion, AnimatePresence } from 'framer-motion';
 import { isToday, isTomorrow, isAfter, addDays, endOfDay} from "date-fns";
+import { es } from 'date-fns/locale';
 
 export default function TasksContainer({ contentType, tasks, addedTask, updateTasks, removeTask, checkTask, viewTask, openTask, openTaskView }) {
     const [todayTasks, setTodayTasks] = useState([])
@@ -25,7 +26,7 @@ export default function TasksContainer({ contentType, tasks, addedTask, updateTa
         setTomorrowTasks(tasks.filter(task=> isTomorrow(task.dueDate)))
         setUpcomingTasks(tasks.filter(task=> isAfter(task.dueDate, addDays(endOfDay(new Date()),1))))
     },[tasks])
-    
+
     useEffect(()=>{
         if (addedTask && isToday(addedTask.dueDate)) {
             setTodayTasks(prevTodayTasks=> [addedTask, ...prevTodayTasks])
@@ -33,7 +34,7 @@ export default function TasksContainer({ contentType, tasks, addedTask, updateTa
             setTomorrowTasks(prevTomorrowTasks=> [addedTask, ...prevTomorrowTasks])
         } else if (addedTask && isAfter(addedTask.dueDate, addDays(endOfDay(new Date()),1))){
             setUpcomingTasks(prevUpcomingTasks=> [addedTask, ...prevUpcomingTasks])
-        }
+        } 
     },[addedTask])
 
     const firstRender = useRef(true);
@@ -51,12 +52,12 @@ export default function TasksContainer({ contentType, tasks, addedTask, updateTa
     const all = () => {
         return (
             <>
-                <motion.div className="subGroupTitle" transition={{duration: firstRender.current ? 0 : 0.25}} >Today</motion.div>
-                <SubGroup subTasks={todayTasks} updateSubTasks={updateTodayTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTaskView={openTaskView} type="today" />
-                <motion.div layout className="subGroupTitle" transition={{duration: firstRender.current ? 0 : 0.25}} >Tomorrow</motion.div>
-                <SubGroup subTasks={tomorrowTasks} updateSubTasks={updateTomorrowTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTaskView={openTaskView} type="tomorrow" />
-                <motion.div layout className="subGroupTitle" transition={{duration: firstRender.current ? 0 : 0.25}} >Upcoming</motion.div>
-                <SubGroup subTasks={upcomingTasks} updateSubTasks={updateUpcomingTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTaskView={openTaskView} type="upcoming" />
+                <motion.div className="subGroupTitle" transition={{duration: firstRender.current ? 0 : 0.25}}>Today</motion.div>
+                <SubGroup subTasks={todayTasks} contentType={contentType} updateSubTasks={updateTodayTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTaskView={openTaskView} type="today" />
+                <motion.div layout className="subGroupTitle" transition={{duration: firstRender.current ? 0 : 0.25}}>Tomorrow</motion.div>
+                <SubGroup subTasks={tomorrowTasks} contentType={contentType} updateSubTasks={updateTomorrowTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTaskView={openTaskView} type="tomorrow" />
+                <motion.div layout className="subGroupTitle" transition={{duration: firstRender.current ? 0 : 0.25}}>Upcoming</motion.div>
+                <SubGroup subTasks={upcomingTasks} contentType={contentType} updateSubTasks={updateUpcomingTasks} updateTasks={updateTasks} removeTask={removeTask} checkTask={checkTask} viewTask={viewTask} openTaskView={openTaskView} type="upcoming" />
             </>
         )
     }
@@ -70,6 +71,8 @@ export default function TasksContainer({ contentType, tasks, addedTask, updateTa
             return 'Next 7 Days'
         } else if (contentType === 'all') {
             return 'All Tasks'
+        } else {
+            return contentType
         }
     }
 
@@ -109,7 +112,7 @@ export default function TasksContainer({ contentType, tasks, addedTask, updateTa
                     <div id="titleContainer" className="tasksTitle">
                         {taskTitle()}
                     </div>
-                    {contentType === 'today' ? today() : all()}
+                    {contentType === 'today' ? today() : all()} 
                 </LayoutGroup>
             </motion.div> 
         </AnimatePresence>

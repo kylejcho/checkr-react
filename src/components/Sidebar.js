@@ -78,7 +78,7 @@ function Sidebar({ changeContent, contentType, uniqueLists}) {
                     {uniqueLists.map(list=>{
                         if (list) {
                             return (
-                                <div className="sidebarListContainer sidebarTab" key={list+'Container'}>
+                                <div className="sidebarListContainer sidebarTab" key={list+'Container'} onClick={()=>changeContent(list)}>
                                     <div className="dot"></div>
                                     <p>{list}</p> 
                                 </div>
