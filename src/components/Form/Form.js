@@ -51,15 +51,15 @@ export default function Form({ tasks, handleClose, addTask, uniqueLists}) {
             id="taskFormContainer" 
             onClick={handleClose}
             initial = {{
-                backdropFilter:'blur(0px)',
+                backgroundColor: 'rgba(74, 78, 83, 0)'
             }}
             animate={{
-                backdropFilter:'blur(1.5px)',
+                backgroundColor: 'rgba(74, 78, 83, 0.5)',
                 transition: { duration: 0.4 }
             }}
             exit= {{
-                backdropFilter: 'blur(0px)',
-                backgroundColor:'rgb(151, 159, 172,0)',
+
+                backgroundColor: 'rgba(74, 78, 83, 0)',
                 transition: { duration: 0.3 }
             }}
         >
@@ -101,7 +101,7 @@ export default function Form({ tasks, handleClose, addTask, uniqueLists}) {
                     </div>
                     <motion.div 
                         id="inputCalendarContainer" 
-                        className= {markCalendarInput && 'selected'}
+                        className= {markCalendarInput ? 'selected': undefined}
                         transition= {{duration: 0.25}}
                         onClick={(e) => {
                             e.stopPropagation();

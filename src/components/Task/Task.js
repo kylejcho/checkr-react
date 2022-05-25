@@ -2,7 +2,6 @@ import React, { useRef, useState, useCallback } from "react";
 import CheckCircle from "./CheckCircle";
 import { useMotionValue, Reorder, AnimatePresence} from "framer-motion";
 import { RaisedShadow } from "./RaisedShadow";
-import TaskView from "./TaskView";
 
 function Task({ task, subTasks, updateSubTasks, viewTask }) {
     const [showTask, setShowTask] = useState(true)
@@ -10,7 +9,7 @@ function Task({ task, subTasks, updateSubTasks, viewTask }) {
     const [complete, setComplete] = useState(task.complete)
     const taskContainer = useRef();
 
-    const checkTask = () => {
+    const checkTask = useCallback(() => {
         let prevTasks = [...subTasks];
         const checkedTask = prevTasks.find(item => item.id === task.id);
         checkedTask.complete = !checkedTask.complete;
@@ -21,15 +20,15 @@ function Task({ task, subTasks, updateSubTasks, viewTask }) {
           prevTasks.unshift(prevTasks.splice(index,1)[0])
         }
         updateSubTasks(prevTasks)
-    }
+    },[subTasks])
 
     const removeTask = useCallback((task) => {
         updateSubTasks(subTasks.filter(item => item.id !== task))
       },[subTasks]); 
 
-    const checkClickAnimation = () =>  {
+    const checkClickAnimation = useCallback(() =>  {
         setComplete(!complete)
-    }
+    },[subTasks])
 
     function handleDeleteClick() {
         if (taskContainer.current.className.includes('viewing')) {

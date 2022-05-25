@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-export default function InputListOptions({ tasks, openList, createList, uniqueLists }) {
+export default function InputListOptions({ tasks, openList, createList }) {
     const [searchValue, setSearchValue] = useState('')
     useEffect(() => {
         if (!openList) {
             setSearchValue('')
         }
     }, [openList])
+
+    let uniqueLists = [...new Set(tasks.map(task=>task.list))]
 
     return (
         <AnimatePresence>

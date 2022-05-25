@@ -1,7 +1,7 @@
 import React, {useRef} from "react";
 import getDate from "date-fns/getDate";
 
-function Sidebar({ changeContent, contentType, uniqueLists}) {   
+function Sidebar({ changeContent, contentType }) {   
     const sidebar = useRef(null);
 
     return (
@@ -74,8 +74,8 @@ function Sidebar({ changeContent, contentType, uniqueLists}) {
                     </svg>
                     Lists
                 </p>
-                <div id="sidebarLists" className="sidebarTabsContainer">
-                    {uniqueLists.map(list=>{
+                <div id="sidebarLists" className="sidebarTabsContainer"> 
+                    {/**uniqueLists.map(list=>{
                         if (list) {
                             return (
                                 <div className="sidebarListContainer sidebarTab" key={list+'Container'} onClick={()=>changeContent(list)}>
@@ -84,7 +84,7 @@ function Sidebar({ changeContent, contentType, uniqueLists}) {
                                 </div>
                             )
                         }
-                    })}
+                    })**/}
                 </div>
                 <div id="sidebarListsClose"></div>
             </div>

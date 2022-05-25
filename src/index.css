@@ -15,6 +15,7 @@
 }
 
 :root {
+    --s: rgba(74, 78, 83, 0);
     --text1: #272a2f;
     --text2: #697384;
     --text3: #979fac;
@@ -28,7 +29,7 @@
     --check-circle: #979fac;
     --circle-variant: #e9ebf1;
     --task-drag: #ffffffbf;
-    --selection: #ecf0f6;
+    --selection: #dce2ed;
     --shadow1: rgba(0,0,0,0.17);
     --shadow2: rgba(0,0,0,0.02);
     --shadow3: rgba(0, 0, 0, 0.045);
@@ -944,7 +945,7 @@ nav {
 }
 
 #taskForm {
-    background-color: var(--bkg4);
+    background-color: var(--bkg2);
     min-width: 450px;
     width: max-content;
     height: max-content;
@@ -954,31 +955,29 @@ nav {
     padding: 15px 15px 25px 15px;
 }
 
-
-
 #taskForm input, textarea{
     box-sizing: border-box;
     width: 100%;
     margin-bottom: 5px;
     border: none;
+    border-radius: 5px;
     outline-width: 0;
     padding: 5px 0 5px 5px;
-    background-color: var(--bkg4);
+    color: var(--text1);
+    background-color: var(--bkg2);
+    transition: background-color ease 0.4s;
 }
 
 #inputTaskName {
     font-size: 1.5rem;
-    border-radius: 5px;
     font-weight: 700;
-    color: var(--text1);
-    transition: background-color ease 0.4s;
 }
 
-#inputTaskName:hover {
+#taskForm input:hover, textarea:hover {
     background-color: var(--bkg3);
 }
 
-#inputTaskName::placeholder {
+#inputTaskName::placeholder, #inputTaskDescription::placeholder {
     color: #7b7f8659;
 }
 
@@ -988,7 +987,6 @@ nav {
     font-weight: 400;
     width: 100%;
     height: max-content;
-    border-radius: 5px;
     resize: none;
     padding: 5px;
     border: none;
@@ -998,7 +996,6 @@ nav {
 }
 
 #inputTaskDescription::placeholder {
-    color: #7b7f8659;
     font-weight: 700;
 }
 
@@ -1013,6 +1010,10 @@ nav {
     align-items: center;
 }
 
+#inputDueDateContainer div.selected {
+
+}
+
 .inputDueDate {
     cursor: pointer;
     display: flex;
@@ -1025,10 +1026,11 @@ nav {
     transition: all ease 0.4s;
 }
 
-.selected {
-    background-color: var(--selection)
+#taskForm .selected {
+    background-color: var(--selection);
+    color: var(--text1)
 }
-.inputDueDate ion-icon {
+.inputDueDate svg {
     color: var(--text1);
     font-size: 1.25rem;
     margin-right: 5px;

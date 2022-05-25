@@ -7,7 +7,7 @@ export default function TaskView({ task }) {
     const taskViewContainer = useRef()
 
     return (
-        <AnimatePresence >
+        <AnimatePresence exitBeforeEnter>
         {task && /*openTask.id === task.id &&*/ (
 
                 <motion.div 
@@ -19,12 +19,12 @@ export default function TaskView({ task }) {
                     animate={{ 
                         opacity: 1, 
                         right: 'calc(20vw)',
-                        transition:{ type:'spring', stiffness:350, damping:26, delay: 0.1}
+                        transition:{ type:'spring', stiffness:350, damping:26, delay: 0}
                     }}
                     exit={{ 
                         opacity: 0, 
                         right:'calc(10vw)',
-                        transition:{ type:'spring', stiffness:250, damping:26}
+                        transition:{duration: 0.19}
                     }}
                 
                 >

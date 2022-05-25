@@ -6,7 +6,6 @@ import TaskView from "./Task/TaskView";
 
 export default function Content({ contentType, tasks, checkTask, updateTasks, removeTask, openTask, viewTask, uniqueLists}) {
     const [addedTask, setAddedTask] = useState()
-
     const addTask = (task) => setAddedTask(task)
 
     return (

@@ -1,7 +1,7 @@
 import Sidebar from "./components/Sidebar";
 import Content from "./components/Content";
 import Navbar from "./components/Navbar";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { addDays, endOfDay} from "date-fns";
 
@@ -49,12 +49,10 @@ export default function App() {
     setOpenTask(task)
   },[])
 
-  const uniqueLists = [...new Set(tasks.map(task=>task.list))]
-
   return (
       <div id="sidebarContentContainer">
-        <Sidebar changeContent={changeContent} contentType={contentType} uniqueLists={uniqueLists}/>
-        <Content contentType={contentType} tasks={tasks} updateTasks={updateTasks} removeTask={removeTask} openTask={openTask} viewTask={viewTask}  uniqueLists={uniqueLists} />
+        <Sidebar changeContent={changeContent} contentType={contentType} />
+        <Content contentType={contentType} tasks={tasks} updateTasks={updateTasks} removeTask={removeTask} openTask={openTask} viewTask={viewTask} />
       </div>
   )
 }
