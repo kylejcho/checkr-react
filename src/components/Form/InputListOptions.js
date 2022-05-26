@@ -3,12 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 export default function InputListOptions({ tasks, openList, createList}) {
     const [searchValue, setSearchValue] = useState('')
-    useEffect(() => {
-        if (!openList) {
-            setSearchValue('')
-        }
-    }, [openList])
-    
 
     return (
         <AnimatePresence>
