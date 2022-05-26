@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import InputCalendarOptions from "./InputCalendarOptions";
 import { AnimatePresence, m, motion } from "framer-motion";
 import { v4 as uuidv4 } from 'uuid';
-import { addDays, endOfDay, format } from "date-fns";
+import { addDays, endOfDay, format, getDate } from "date-fns";
 import InputListOptions from "./InputListOptions";
 
 export default function Form({ tasks, handleClose, addTask, uniqueLists}) {
@@ -85,7 +85,13 @@ export default function Form({ tasks, handleClose, addTask, uniqueLists}) {
                             tomorrowInput.current.classList.remove('selected')
                         }}
                 >
-                        <ion-icon name="calendar-number-outline" role="img" className="md hydrated" aria-label="calendar number outline"></ion-icon>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512">
+                        <rect fill="none" strokeLinejoin="round" strokeWidth="32" x="48" y="80" width="416" height="384" rx="48"/>
+                        <line fill="none" strokeLinejoin="round" strokeWidth="32" strokeLinecap="round" x1="128" y1="48" x2="128" y2="80"/>
+                        <line fill="none" strokeLinejoin="round" strokeWidth="32" strokeLinecap="round" x1="384" y1="48" x2="384" y2="80"/>
+                        <line fill="none" strokeLinejoin="round" strokeWidth="32" strokeLinecap="round" x1="464" y1="160" x2="48" y2="160"/>
+                        <text className = "todayIconNumber" x="50%" y="62%" textAnchor="middle"  fontSize="250px" fontFamily="Inter" textLength="55%" dy=".3em" >{getDate(new Date())}</text>
+                    </svg>                 
                         Today
                     </div>
                     <div className='inputDueDate' id="inputTomorrow" ref={tomorrowInput} 
@@ -96,7 +102,13 @@ export default function Form({ tasks, handleClose, addTask, uniqueLists}) {
                             todayInput.current.classList.remove('selected')
                         }}
                     >  
-                        <ion-icon name="today-outline" role="img" className="md hydrated" aria-label="today outline"></ion-icon>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512">
+                        <rect fill="none" strokeLinejoin="round" strokeWidth="32" x="48" y="80" width="416" height="384" rx="48"/>
+                        <line fill="none" strokeLinejoin="round" strokeWidth="32" strokeLinecap="round" x1="128" y1="48" x2="128" y2="80"/>
+                        <line fill="none" strokeLinejoin="round" strokeWidth="32" strokeLinecap="round" x1="384" y1="48" x2="384" y2="80"/>
+                        <line fill="none" strokeLinejoin="round" strokeWidth="32" strokeLinecap="round" x1="464" y1="160" x2="48" y2="160"/>
+                        <text className = "todayIconNumber" x="50%" y="62%" textAnchor="middle"  fontSize="250px" fontFamily="Inter" textLength="55%" dy=".3em" >{getDate(addDays(new Date(),1))}</text>
+                    </svg>      
                         Tomorrow
                     </div>
                     <motion.div 
@@ -109,7 +121,12 @@ export default function Form({ tasks, handleClose, addTask, uniqueLists}) {
                         }}  
                     >
                         <div id="inputCalendar">
-                            <ion-icon name="calendar-clear-outline" role="img" className="md hydrated" aria-label="calendar clear outline"></ion-icon>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">\
+                        <rect fill="none" strokeLinejoin="round" strokeWidth="32" x="48" y="80" width="416" height="384" rx="48"/>
+                            <line fill="none" strokeLinejoin="round" strokeWidth="32" strokeLinecap="round" x1="128" y1="48" x2="128" y2="80"/>
+                            <line fill="none" strokeLinejoin="round" strokeWidth="32" strokeLinecap="round" x1="384" y1="48" x2="384" y2="80"/>
+                            <line fill="none" strokeLinejoin="round" strokeWidth="32" strokeLinecap="round" x1="464" y1="160" x2="48" y2="160"/>
+                        </svg>
                             <p id="dateSelection">{markCalendarInput ? format(dateSelection, 'MMM d'): 'Pick date'}</p>
                         </div>
                         <InputCalendarOptions openCalendar={openCalendar} selectCalendarDate={selectCalendarDate} />
