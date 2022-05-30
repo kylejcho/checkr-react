@@ -1,7 +1,6 @@
 import Sidebar from "./components/Sidebar";
 import Content from "./components/Content";
-import Navbar from "./components/Navbar";
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { addDays, endOfDay} from "date-fns";
 
@@ -36,7 +35,7 @@ export default function App() {
   
   const removeTask = useCallback((task) => {
     setTasks(tasks => tasks.filter(item => item.id !== task))
-  },[tasks]); 
+  },[]); 
 
 
   const updateTasks = useCallback((subTasks) => {

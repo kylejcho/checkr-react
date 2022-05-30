@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useEffect, useRef } from "react";
 import Task from "./Task/Task";
-import { motion, Reorder} from "framer-motion";
+import { Reorder} from "framer-motion";
 
 function SubGroup({ subTasks, updateSubTasks, type, updateTasks, removeTask, viewTask }) {
     const firstRender = useRef(true);

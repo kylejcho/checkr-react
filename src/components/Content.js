@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useState } from "react";
 import Navbar from "./Navbar";
 import TasksContainer from "./Task/TasksContainer";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import TaskView from "./Task/TaskView";
 
 export default function Content({ contentType, tasks, checkTask, updateTasks, removeTask, openTask, viewTask, uniqueLists}) {

@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import InputCalendarOptions from "./InputCalendarOptions";
-import { AnimatePresence, m, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { v4 as uuidv4 } from 'uuid';
 import { addDays, endOfDay, format, getDate } from "date-fns";
 import InputListOptions from "./InputListOptions";

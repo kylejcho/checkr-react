@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import React, { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 function CheckCircle({ task, taskContainer, checkTask, complete, checkClickAnimation }) {

@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef } from 'react'
 import { getDaysInMonth, getDay , addDays, endOfDay, isBefore } from "date-fns";
 
 export default function Calendar({ month, selectCalendarDate }) {
@@ -15,11 +15,10 @@ export default function Calendar({ month, selectCalendarDate }) {
   return (
     <div id="calendar" ref={calendar}>
         {calendarArr.map(day => {
-            return <div className={`calendar${(day>=1) ? 'Day' : 'Blank'}${isBefore(endOfDay(addDays(month,day-1)),new Date) ? 'Past' : ''}`} key={day} 
-                        onClick={()=>{
-                          selectCalendarDate(endOfDay(addDays(month,day-1)))
-                        }}
-                    >{day}</div>
+            return <div className={`calendar${(day>=1) ? 'Day' : 'Blank'}${isBefore(endOfDay(addDays(month,day-1)),new Date()) ? 'Past' : ''}`} key={day} 
+                        onClick={()=>selectCalendarDate(endOfDay(addDays(month,day-1)))}>
+                        {day}
+                    </div>
         })}
     </div>
   )

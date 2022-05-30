@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback, useRef} from 'react'
 import SubGroup from '../SubGroup';
 import { LayoutGroup, motion, AnimatePresence } from 'framer-motion';
 import { isToday, isTomorrow, isAfter, addDays, endOfDay} from "date-fns";
-import { es } from 'date-fns/locale';
 
 export default function TasksContainer({ contentType, tasks, addedTask, updateTasks, removeTask, checkTask, viewTask, openTask, openTaskView }) {
     const [todayTasks, setTodayTasks] = useState([])

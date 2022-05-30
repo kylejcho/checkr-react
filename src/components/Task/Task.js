@@ -20,15 +20,15 @@ function Task({ task, subTasks, updateSubTasks, viewTask }) {
           prevTasks.unshift(prevTasks.splice(index,1)[0])
         }
         updateSubTasks(prevTasks)
-    },[subTasks])
-
-    const removeTask = useCallback((task) => {
-        updateSubTasks(subTasks.filter(item => item.id !== task))
-      },[subTasks]); 
+    },[subTasks, task.id, updateSubTasks])
 
     const checkClickAnimation = useCallback(() =>  {
         setComplete(!complete)
-    },[subTasks])
+    },[complete])
+
+    const removeTask = useCallback((task) => {
+        updateSubTasks(subTasks.filter(item => item.id !== task))
+    },[subTasks, updateSubTasks]); 
 
     function handleDeleteClick() {
         if (taskContainer.current.className.includes('viewing')) {
