@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import TasksContainer from "./Task/TasksContainer";
 import { motion } from "framer-motion";
@@ -8,6 +8,19 @@ export default function Content({ contentType, tasks, checkTask, updateTasks, re
     const [addedTask, setAddedTask] = useState()
     const addTask = (task) => setAddedTask(task)
 
+
+    useEffect(() => {
+
+
+        fetch("https://jsonplaceholder.typicode.com/users")
+            .then(res => res.json())
+            .then(data => console.log(data))
+    
+    
+    
+    
+    }, [])
+    
     return (
         <>
             <Navbar tasks={tasks} addTask={addTask} uniqueLists={uniqueLists}/>

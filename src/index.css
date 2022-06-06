@@ -1408,9 +1408,70 @@ nav {
     background-color: var(--bkg2);
 }
 
+/*SIGN UP*/
+#signupBackground {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+}
 
+#signupContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border: 2px solid #e3e5e9;
+    border-radius: 5px;
+    width: 25vw;
+    height: 60vh;
+    padding-top: 25px;
+}
 
+.signupInputsContainer {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 85%;
+}
+ 
+#signupHeader {
+    font-size: 2.5rem;
+}
 
+.signupInputContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.signupLabel {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.signupInput {
+    height: 55px;
+    border-radius: 5px;
+    border: 2px solid #e3e5e9;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-top: 10px;
+    padding-left: 10px;
+}
+
+#signupButton {
+    cursor: pointer;
+    margin-top: 25px;
+    width: 85%;
+    height: 55px;
+    border-radius: 5px;
+    border: none;
+    background-color: #3877ff;
+    color: white;
+    font-size: 1.25rem;
+}
 
 
 /* LOADING SCREEN */

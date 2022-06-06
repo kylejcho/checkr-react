@@ -3,6 +3,8 @@ import Content from "./components/Content";
 import React, { useState, useEffect, useCallback } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { addDays, endOfDay} from "date-fns";
+import Signup from "./components/Signup";
+import { AuthContextProvider } from "./contexts/AuthContext";
 
 export default function App() {
   const [tasks, setTasks] = useState([])
@@ -30,7 +32,7 @@ export default function App() {
     setOpenTask(null)
   },[])
 
-  useEffect(() => hideScroll(), [contentType])
+  //useEffect(() => hideScroll(), [contentType])
   
   
   const removeTask = useCallback((task) => {
@@ -49,14 +51,13 @@ export default function App() {
   },[])
 
   return (
-      <div id="sidebarContentContainer">
-        <Sidebar changeContent={changeContent} contentType={contentType} />
-        <Content contentType={contentType} tasks={tasks} updateTasks={updateTasks} removeTask={removeTask} openTask={openTask} viewTask={viewTask} />
-      </div>
+    <AuthContextProvider>
+      <Signup/>
+    </AuthContextProvider>
   )
 }
-
+/*
 function hideScroll() {
   document.querySelector('#contentContainer').style.overflow = 'hidden';
   setTimeout(() => document.querySelector('#contentContainer').style.overflowY = 'auto', 500);
-}
+}*/
