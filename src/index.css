@@ -1425,6 +1425,7 @@ nav {
     border: 2px solid #e3e5e9;
     border-radius: 5px;
     width: 25vw;
+    min-width: 500px;
     height: 60vh;
     padding-top: 25px;
 }
@@ -1437,7 +1438,8 @@ nav {
 }
  
 #signupHeader {
-    font-size: 2.5rem;
+    font-size: 1.75rem;
+    font-weight: 700;
 }
 
 .signupInputContainer {

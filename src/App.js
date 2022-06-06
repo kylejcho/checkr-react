@@ -1,10 +1,14 @@
 import Sidebar from "./components/Sidebar";
 import Content from "./components/Content";
 import React, { useState, useEffect, useCallback } from "react";
+import { Route, Routes } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 import { addDays, endOfDay} from "date-fns";
 import Signup from "./components/Signup";
+import Signin from "./components/Signin";
 import { AuthContextProvider } from "./contexts/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
+
 
 export default function App() {
   const [tasks, setTasks] = useState([])
@@ -50,9 +54,21 @@ export default function App() {
     setOpenTask(task)
   },[])
 
+
+
   return (
     <AuthContextProvider>
-      <Signup/>
+      <Routes>
+        <Route path='checkr-react/' element={<Signin />} />
+        <Route path='checkr-react/signup' element={<Signup />} />
+        <Route path='/checkr-react/account' element={<ProtectedRoute>
+          <div id="sidebarContentContainer">
+            <Sidebar changeContent={changeContent} contentType={contentType} />
+            <Content contentType={contentType} tasks={tasks} updateTasks={updateTasks} removeTask={removeTask} openTask={openTask} viewTask={viewTask} />
+          </div>
+
+        </ProtectedRoute>} />
+      </Routes>
     </AuthContextProvider>
   )
 }

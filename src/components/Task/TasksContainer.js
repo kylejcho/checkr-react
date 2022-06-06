@@ -2,8 +2,12 @@ import React, { useState, useEffect, useCallback, useRef} from 'react'
 import SubGroup from '../SubGroup';
 import { LayoutGroup, motion, AnimatePresence } from 'framer-motion';
 import { isToday, isTomorrow, isAfter, addDays, endOfDay} from "date-fns";
+import { UserAuth } from '../../contexts/AuthContext';
+import userEvent from '@testing-library/user-event';
 
 export default function TasksContainer({ contentType, tasks, addedTask, updateTasks, removeTask, checkTask, viewTask, openTask, openTaskView }) {
+    const {user} = UserAuth()
+
     const [todayTasks, setTodayTasks] = useState([])
     const [tomorrowTasks, setTomorrowTasks] = useState([])
     const [upcomingTasks, setUpcomingTasks] = useState([])
@@ -63,7 +67,7 @@ export default function TasksContainer({ contentType, tasks, addedTask, updateTa
 
     const taskTitle = () => {
         if (contentType === 'home') {
-            return 'Good Afternoon, User'
+            return 'Good Afternoon, ' + user.email
         } else if (contentType === 'today') {
             return "Today's Tasks"
         } else if (contentType === 'week') {
