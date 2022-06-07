@@ -2,16 +2,23 @@ import React, { useRef, useState, useCallback } from "react";
 import CheckCircle from "./CheckCircle";
 import { useMotionValue, Reorder, AnimatePresence} from "framer-motion";
 import { RaisedShadow } from "./RaisedShadow";
+import {auth, db} from "../../firebase"
+import { collection, getDocs, doc, setDoc, updateDoc, deleteDoc } from "firebase/firestore"; 
+import {onAuthStateChanged } from 'firebase/auth'
 
 function Task({ task, subTasks, updateSubTasks, viewTask }) {
     const [showTask, setShowTask] = useState(true)
     const [selectTask, setSelectTask] = useState(false)
     const [complete, setComplete] = useState(task.complete)
     const taskContainer = useRef();
-
+    
+    const docRef = doc(db, `${auth.currentUser.uid}`, `${task.id}`);
     const checkTask = useCallback(() => {
         let prevTasks = [...subTasks];
         const checkedTask = prevTasks.find(item => item.id === task.id);
+        updateDoc(docRef, {
+            complete: !checkedTask.complete
+        })
         checkedTask.complete = !checkedTask.complete;
         const index = prevTasks.indexOf(checkedTask);
         if (checkedTask.complete) {
@@ -27,18 +34,15 @@ function Task({ task, subTasks, updateSubTasks, viewTask }) {
     },[complete])
 
     const removeTask = useCallback((task) => {
+        deleteDoc(docRef)
         updateSubTasks(subTasks.filter(item => item.id !== task))
     },[subTasks, updateSubTasks]); 
 
     function handleDeleteClick() {
         if (taskContainer.current.className.includes('viewing')) {
-            setTimeout(() => {
-                viewTask(null)
-            }, 0);
+            setTimeout(() => viewTask(null), 0);
         }
-        setTimeout(() => {
-            setShowTask(false)
-        }, 0);
+        setTimeout(() => setShowTask(false), 0);
         setTimeout(() => {removeTask(taskContainer.current.id)}, 250); 
     }
 

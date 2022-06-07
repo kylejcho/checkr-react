@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { addDays, endOfDay, format, getDate, parseJSON} from "date-fns";
 import InputListOptions from "./InputListOptions";
 import {db} from '../../firebase'
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, doc, setDoc } from "firebase/firestore";
 import { auth } from "../../firebase";
 export default function Form({ tasks, handleClose, addTask, uniqueLists}) {
     const nameRef = useRef();
@@ -54,8 +54,7 @@ export default function Form({ tasks, handleClose, addTask, uniqueLists}) {
 
     const writeUserData = async (task) => {
         try {
-            const docRef = await addDoc(collection(db, `${auth.currentUser.uid}`), task);
-            console.log("Document written with ID: ", docRef.id);
+            const docRef = await setDoc(doc(db, `${auth.currentUser.uid}`,`${task.id}`), task);
           } catch (e) {
             console.error("Error adding document: ", e);
           }

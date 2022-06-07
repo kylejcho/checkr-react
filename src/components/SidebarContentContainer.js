@@ -1,13 +1,12 @@
 import React, {useEffect, useState, useCallback } from 'react'
 import Sidebar from './Sidebar'
 import Content from './Content'
-import { UserAuth } from '../contexts/AuthContext'
 import {auth} from "../firebase"
 import { collection, getDocs } from "firebase/firestore"; 
 import { db } from "../firebase";
 import {onAuthStateChanged } from 'firebase/auth'
+
 function SidebarContentContainer({} ) {
-    const { user } = UserAuth()
     const [openTask, setOpenTask] = useState(null)
     const [contentType, setContentType] = useState('home')
     const [tasks, setTasks] = useState(null)
