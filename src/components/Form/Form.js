@@ -2,9 +2,11 @@ import React, { useRef, useState, useEffect } from "react";
 import InputCalendarOptions from "./InputCalendarOptions";
 import { motion } from "framer-motion";
 import { v4 as uuidv4 } from 'uuid';
-import { addDays, endOfDay, format, getDate } from "date-fns";
+import { addDays, endOfDay, format, getDate, parseJSON} from "date-fns";
 import InputListOptions from "./InputListOptions";
-
+import {db} from '../../firebase'
+import { collection, addDoc } from "firebase/firestore";
+import { auth } from "../../firebase";
 export default function Form({ tasks, handleClose, addTask, uniqueLists}) {
     const nameRef = useRef();
     const descRef = useRef();
@@ -34,18 +36,32 @@ export default function Form({ tasks, handleClose, addTask, uniqueLists}) {
 
     function handleAddTaskClick() {
         if (nameRef.current.value === '') return
+        const uuid = uuidv4()
         const task = {
             name: nameRef.current.value, 
             description: descRef.current.value, 
             dueDate: dateSelection, 
             list: listSelection,
             complete: false,
-            id: uuidv4()
+            id: uuid
         };
+
+        writeUserData(task)
+          
         addTask(task);
         handleClose()
     }
-    
+
+    const writeUserData = async (task) => {
+        try {
+            const docRef = await addDoc(collection(db, `${auth.currentUser.uid}`), task);
+            console.log("Document written with ID: ", docRef.id);
+          } catch (e) {
+            console.error("Error adding document: ", e);
+          }
+    }
+
+
     return (
         <motion.div 
             id="taskFormContainer" 

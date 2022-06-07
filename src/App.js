@@ -1,21 +1,14 @@
-import Sidebar from "./components/Sidebar";
-import Content from "./components/Content";
-import React, { useState, useEffect, useCallback } from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { v4 as uuidv4 } from 'uuid';
-import { addDays, endOfDay} from "date-fns";
+import SidebarContentContainer from "./components/SidebarContentContainer";
 import Signup from "./components/Signup";
 import Signin from "./components/Signin";
-import { AuthContextProvider } from "./contexts/AuthContext";
+import { AuthContextProvider} from "./contexts/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 
-
 export default function App() {
-  const [tasks, setTasks] = useState([])
-  const [openTask, setOpenTask] = useState(null)
-  const [contentType, setContentType] = useState('home')
-
-  useEffect(() => {setTasks([
+  
+/* useEffect(() => {setTasks([
       {name: 'Coffee with friend', description: 'Starbucks', dueDate: endOfDay(new Date()), list: 'Personal', complete: false, id: uuidv4()},
       {name: 'Exercise', description: 'Workout out for 45 minutes', dueDate: endOfDay(new Date()), list: 'Personal', complete: false, id: uuidv4()},
       {name: 'Learn sign language', description: 'Practice english alphabet', dueDate: endOfDay(new Date()), list: 'Personal', complete: false,  id: uuidv4()}, 
@@ -29,51 +22,17 @@ export default function App() {
       {name: 'Weight training', description: 'Do this', dueDate: addDays(endOfDay(new Date()), 4), list: null, complete: false,  id: uuidv4()},
       {name: 'Read Animal Farm', description: 'Do this', dueDate: addDays(endOfDay(new Date()), 4), list: null, complete: false,  id: uuidv4()},
       {name: 'Baking class', description: 'Bring homemade pie', dueDate: endOfDay(new Date()), list: 'School', complete: true, id: uuidv4()}])
-  },[])
+  },[])*/
 
-  const changeContent = useCallback((type) => {
-    setContentType(type)
-    setOpenTask(null)
-  },[])
-
-  //useEffect(() => hideScroll(), [contentType])
-  
-  
-  const removeTask = useCallback((task) => {
-    setTasks(tasks => tasks.filter(item => item.id !== task))
-  },[]); 
-
-
-  const updateTasks = useCallback((subTasks) => {
-    const prevTasks = tasks.filter(task => !subTasks.includes(task))
-    setTasks([...prevTasks,...subTasks])
-    console.log(tasks)
-  },[tasks])
-
-  const viewTask = useCallback((task) => {
-    setOpenTask(task)
-  },[])
-
-
-
-  return (
-    <AuthContextProvider>
-      <Routes>
-        <Route path='checkr-react/' element={<Signin />} />
-        <Route path='checkr-react/signup' element={<Signup />} />
-        <Route path='/checkr-react/account' element={<ProtectedRoute>
-          <div id="sidebarContentContainer">
-            <Sidebar changeContent={changeContent} contentType={contentType} />
-            <Content contentType={contentType} tasks={tasks} updateTasks={updateTasks} removeTask={removeTask} openTask={openTask} viewTask={viewTask} />
-          </div>
-
-        </ProtectedRoute>} />
-      </Routes>
-    </AuthContextProvider>
-  )
+    return (
+      <AuthContextProvider>
+        <Routes>
+          <Route path='checkr-react/' element={<Signin />} />
+          <Route path='checkr-react/signup' element={<Signup />} />
+            <Route path='/checkr-react/account' element={<ProtectedRoute>
+              <SidebarContentContainer />
+            </ProtectedRoute>} />
+        </Routes>
+      </AuthContextProvider>
+    )
 }
-/*
-function hideScroll() {
-  document.querySelector('#contentContainer').style.overflow = 'hidden';
-  setTimeout(() => document.querySelector('#contentContainer').style.overflowY = 'auto', 500);
-}*/

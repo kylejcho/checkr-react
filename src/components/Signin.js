@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
+import { parseISO } from 'date-fns';
 import { UserAuth } from '../contexts/AuthContext'
 import { Link, useNavigate } from 'react-router-dom'
+import { collection, getDocs } from "firebase/firestore"; 
+import { db } from "../firebase";
+import {auth} from "../firebase"
 
-export default function Signin() {
+export default function Signin({ getData }) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
@@ -15,12 +19,16 @@ export default function Signin() {
         setError('')
         try {
             await signIn(email, password)
+            //await data()
             navigate('/checkr-react/account')
         } catch (e) {
             setError(e.message)
             console.log(e.message)
         }
     }
+
+
+
 
     return (
         <div id="signupBackground">
