@@ -45,7 +45,6 @@ function SidebarContentContainer({} ) {
                 complete: doc.data().complete,
                 id: doc.data().id
             };
-            console.log(task)
             arr.push(task)
         });
         setTasks([...arr])
@@ -54,13 +53,9 @@ function SidebarContentContainer({} ) {
 
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth, currentUser =>{
-            if (currentUser) {
-                data()
-            }
+            if (currentUser) data()
         })
-        return ()=> {
-            unsubscribe()
-        }
+        return unsubscribe()
     },[])
 
     if (tasks && auth.currentUser) {

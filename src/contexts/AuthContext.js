@@ -9,9 +9,8 @@ const UserContext = React.createContext()
 export function AuthContextProvider({ children }) {
     const [user, setUser] = useState({})
 
-    const createUser = async (email, password) => {
-        await createUserWithEmailAndPassword(auth, email, password)
-        //setName(name)
+    function createUser(email, password) {
+        return createUserWithEmailAndPassword(auth, email, password)
     }
 
     function signIn(email, password) {

@@ -19,16 +19,12 @@ export default function Signin({ getData }) {
         setError('')
         try {
             await signIn(email, password)
-            //await data()
             navigate('/checkr-react/home')
         } catch (e) {
             setError(e.message)
             console.log(e.message)
         }
     }
-
-
-
 
     return (
         <div id="signupBackground">
