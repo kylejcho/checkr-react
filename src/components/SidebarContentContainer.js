@@ -26,7 +26,6 @@ function SidebarContentContainer({} ) {
       const updateTasks = useCallback((subTasks) => {
         const prevTasks = tasks.filter(task => !subTasks.includes(task))
         setTasks([...prevTasks,...subTasks])
-        console.log(tasks)
       },[tasks])
     
       const viewTask = useCallback((task) => {

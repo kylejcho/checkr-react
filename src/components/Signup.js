@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { UserAuth } from '../contexts/AuthContext'
 import { Link, useNavigate } from 'react-router-dom'
+import { auth } from '../firebase'
+import { updateProfile } from 'firebase/auth'
 
 export default function Signup() {
     const [name, setName] = useState('')
@@ -15,8 +17,11 @@ export default function Signup() {
         e.preventDefault()
         setError('')
         try {
-            await createUser(email, password, name)
-            navigate('/checkr-react/account')
+            await createUser(email, password )
+            updateProfile(auth.currentUser, {
+                displayName: name
+            }) 
+            navigate('/checkr-react/home')
         } catch(e) {
             setError(e.message)
             console.log(e.message)
