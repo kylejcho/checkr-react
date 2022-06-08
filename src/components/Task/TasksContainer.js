@@ -4,9 +4,23 @@ import { LayoutGroup, motion, AnimatePresence } from 'framer-motion';
 import { isToday, isTomorrow, isAfter, addDays, endOfDay} from "date-fns";
 import { UserAuth } from '../../contexts/AuthContext';
 import userEvent from '@testing-library/user-event';
-
+import { auth } from '../../firebase';
+import { updateProfile, onAuthStateChanged} from 'firebase/auth';
 export default function TasksContainer({ contentType, tasks, addedTask, updateTasks, removeTask, checkTask, viewTask, openTask, openTaskView }) {
-    const {user} = UserAuth()
+    const {name} = UserAuth()
+
+    useEffect(()=>{
+        const unsubscribe = onAuthStateChanged(auth, currentUser =>{
+            if (currentUser) {
+                updateProfile(auth.currentUser, {
+                    displayName: name
+                })
+            }
+        })
+        return ()=> {
+            unsubscribe()
+        }
+    },[])
 
     const [todayTasks, setTodayTasks] = useState([])
     const [tomorrowTasks, setTomorrowTasks] = useState([])
@@ -67,7 +81,7 @@ export default function TasksContainer({ contentType, tasks, addedTask, updateTa
 
     const taskTitle = () => {
         if (contentType === 'home') {
-            return 'Good Afternoon, ' + user.email
+            return 'Good Afternoon, ' + auth.currentUser.displayName
         } else if (contentType === 'today') {
             return "Today's Tasks"
         } else if (contentType === 'week') {

@@ -119,7 +119,7 @@ nav {
     background-color: var(--bkg2);
     padding: 0 31px;
     z-index: 3;
-    border-bottom: 2px solid var(--border1);
+    border-bottom: 1.5px solid var(--border1);
     transition: background-color ease 0.4s, border ease 0.4s;
 }
 
@@ -151,13 +151,14 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100%;
 }
 
 
 #searchContainer {
     position: relative;
     background-color: var(--search);
-    height: clamp(30px, 4vh, 35px);
+    height: 70%;
     padding-left: 10px;
     border-radius: 5px;
     margin-right: 10px;
@@ -183,23 +184,23 @@ nav {
 
 #searchItemsContainer {
     display: flex;
-
+    height: 100%;
     align-items: center;
 }
 
 #searchIcon {
-    width: 25px;
-    height: 25px;
+    width: clamp(18px, 3vh, 25px);
+    aspect-ratio: 1/1;
     stroke: var(--text2);
 }
 
 #searchBar {
     width: 17vw;
     min-width: 225px;
-    height: clamp(30px, 4vh, 35px);
     border: none;
     padding-left: 8px;
     margin-right:10px;
+    height: 100%;
     outline-width: 0;
     background-color: var(--search);
     transition: background-color ease 0.4s;
@@ -303,11 +304,13 @@ nav {
     align-items: center;
     background-color: var(--bkg3);
     border-radius: 5px;
-    height: clamp(30px, 4vh, 35px);
+    height: 70%;
     aspect-ratio: 1/1;
     transition: background-color ease 0.4s;
 }
-
+#addButtonContainer svg {
+    width: clamp(18px, 3vh, 25px);
+}
 
 #addButtonContainer #addButton {
     stroke: var(--text2);
@@ -327,8 +330,8 @@ nav {
     align-items: center;
     background-color: var(--bkg3);
     border-radius: 5px;
-    width: 35px;
-    height: 35px;
+    height: 70%;
+    aspect-ratio: 1/1;
     margin: 0 10px;
     transition: background-color ease 0.4s;
 }
@@ -336,12 +339,12 @@ nav {
 #darkModeContainer svg {
     stroke: var(--text2);
     transition: stroke 0.2s ease;
+    width: clamp(18px, 3vh, 25px);
 }
 
 #darkModeContainer:hover svg {
     stroke: var(--blue1);
 }
-
 
 
 #profileContainer {
@@ -352,8 +355,8 @@ nav {
     align-items: center;
     background-color: var(--bkg3);
     border-radius: 5px;
-    width: 35px;
-    height: 35px;
+    height: 70%;
+    aspect-ratio: 1/1;
     transition: background-color ease 0.4s;
     margin-right: 10px;
 }
@@ -361,6 +364,7 @@ nav {
 #profileContainer svg {
     fill: var(--text2);
     stroke-width: 40px;
+    width: clamp(18px, 3vh, 25px);
     transition: fill 0.2s ease;
 }
 
@@ -403,9 +407,9 @@ nav {
 
 #sidebar {
     position: sticky;
-    font-size: clamp(13px, 3vw, 16px);
     height: 100vh;
     width: 12vw;
+    font-size: clamp(12px, 1.1vw, 17px);
     /*min-width: max-content;*/
     padding: clamp(10px, 5vh, 45px) 10px 0px clamp(10px, 1vw, 20px);
     color: var(--text2);
@@ -429,7 +433,7 @@ nav {
 }
 
 #sidebarShortcuts {
-    transition: all ease-in-out 0.2s;
+    transition: color ease-in-out 0.2s, background-color ease-in-out 0.2s;
 }
 
 #sidebarShortcuts.close {
@@ -482,7 +486,7 @@ nav {
 
 .sidebarTab p {
     pointer-events: none;
-    transition: 0.3s ease;
+    transition: color 0.3s ease;
 }
 
 .sidebarTab.viewing:hover::after {
@@ -620,7 +624,7 @@ nav {
     height: calc(100% + 4px);
     position: absolute;
     border-radius: 5px;
-    box-shadow: 0px 1px 5px 0.5px var(--shadow1);
+    box-shadow: 0px 1px 4px 0.5px var(--shadow1);
     opacity: 0;
     transform: translate(-2px,-2px);
     transition: opacity ease-in-out 0.2s;
@@ -703,7 +707,7 @@ nav {
     height: 14px;
     white-space: nowrap;
     font-weight: 500;
-    font-size: clamp(12px, 1.2vw, 17px);
+    font-size: clamp(12px, 1.1vw, 17px);
     color: var(--text1);
     background-image: linear-gradient(to bottom,
         #00000000 50%,
@@ -758,7 +762,7 @@ nav {
     width: auto;
     height: max-content;
     font-weight: 400;
-    font-size: clamp(10px, 1.1vw, 16px);
+    font-size: clamp(10px, 1vw, 16px);
     padding-bottom: 2.5px;
     color: var(--text2);
     white-space: nowrap;
@@ -1425,20 +1429,22 @@ nav {
     border: 2px solid #e3e5e9;
     border-radius: 5px;
     width: 25vw;
-    min-width: 500px;
-    height: 60vh;
+    min-width: 400px;
+    height: max-content;
     padding-top: 25px;
+    padding-bottom: 50px;
 }
 
 .signupInputsContainer {
     display: flex;
     flex-direction: column;
     align-self: center;
+    height: 90%;
     width: 85%;
 }
  
 #signupHeader {
-    font-size: 1.75rem;
+    font-size: clamp(18px, 1.75vw, 30px);
     font-weight: 700;
 }
 
@@ -1449,12 +1455,12 @@ nav {
 }
 
 .signupLabel {
-    font-size: 1.25rem;
+    font-size: clamp(14px, 1.25vw, 22px);
     font-weight: 500;
 }
 
 .signupInput {
-    height: 55px;
+    height: clamp(45px, 7vh, 55px);
     border-radius: 5px;
     border: 2px solid #e3e5e9;
     font-size: 1.5rem;
@@ -1488,9 +1494,8 @@ nav {
     top: 0;
     height: 100vh;
     width: 100vw;
-    background-color: white;
+    background-color: var(--bkg1);
     z-index: 3;
-    transition: 0.5s all ease-in-out;
 }
 
 #loadingScreenLogoContainer {
@@ -1505,7 +1510,6 @@ nav {
 }
 
 #loadingScreen p {
-    font-family: 'Helvetica';
     font-size: 3.5rem;
     font-weight: 700;
     color: var(--text1);

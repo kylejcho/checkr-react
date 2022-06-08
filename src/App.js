@@ -29,7 +29,7 @@ export default function App() {
         <Routes>
           <Route path='checkr-react/' element={<Signin />} />
           <Route path='checkr-react/signup' element={<Signup />} />
-            <Route path='/checkr-react/account' element={<ProtectedRoute>
+            <Route path='/checkr-react/home' element={<ProtectedRoute>
               <SidebarContentContainer />
             </ProtectedRoute>} />
         </Routes>

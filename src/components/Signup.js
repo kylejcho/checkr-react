@@ -43,7 +43,6 @@ export default function Signup() {
                 </div>
             </div>
             <button id="signupButton">Sign Up</button>
-            <div className="signupInputContainer"></div>
         </form>
     </div>
   )

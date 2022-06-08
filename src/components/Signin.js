@@ -20,7 +20,7 @@ export default function Signin({ getData }) {
         try {
             await signIn(email, password)
             //await data()
-            navigate('/checkr-react/account')
+            navigate('/checkr-react/home')
         } catch (e) {
             setError(e.message)
             console.log(e.message)
@@ -46,7 +46,6 @@ export default function Signin({ getData }) {
                     </div>
                 </div>
                 <button id="signupButton">Sign In</button>
-                <div className="signupInputContainer"></div>
             </form>
         </div>
   )
