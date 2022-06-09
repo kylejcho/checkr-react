@@ -55,9 +55,9 @@
     --circle-variant-dark: #23242d;
     --task-drag-dark: #15181d95;
     --selection-dark: #2b303b;
-    --shadow1-dark: rgba(65, 71, 91, 0.617);
-    --shadow2-dark: rgba(65, 71, 91, 0.25);
-    --shadow3-dark: rgba(65, 71, 91, 0.303);
+    --shadow1-dark: #41475b9d;
+    --shadow2-dark: #41475b40;
+    --shadow3-dark: #41475b4d;
     --form-bkg-dark: #15181d7b;
     --scroll-dark: #2a2c36;
     --blue1-dark: #3880ff;
@@ -409,7 +409,7 @@ nav {
     position: sticky;
     height: 100vh;
     width: 12vw;
-    font-size: clamp(12px, 1.1vw, 17px);
+    font-size: clamp(12px, 1vw, 16px);
     /*min-width: max-content;*/
     padding: clamp(10px, 5vh, 45px) 10px 0px clamp(10px, 1vw, 20px);
     color: var(--text2);
@@ -585,9 +585,9 @@ nav {
     align-items: center;
     height: 29px;
     width: max-content;
-    padding: 0px 12px;
+    padding: 0px calc(5px + 0.3vw);
     font-weight: 500;
-    font-size: clamp(13px, 1vw, 17px);
+    font-size: clamp(13px, 1vw, 16px);
     color: #7b8593cf;
     border-radius: 5px;
     border: 2px solid var(--border3);
@@ -610,7 +610,7 @@ nav {
     cursor: pointer;
     display: grid;
     height: max-content;
-    width: max(100%, 225px);
+    width: max(100%,300px);
     grid-template: auto auto/40px auto 40px;
     border-radius: 5px;
     backdrop-filter: blur(1px);
@@ -707,7 +707,7 @@ nav {
     height: 14px;
     white-space: nowrap;
     font-weight: 500;
-    font-size: clamp(12px, 1.1vw, 17px);
+    font-size: clamp(12px, 1vw, 16px);
     color: var(--text1);
     background-image: linear-gradient(to bottom,
         #00000000 50%,
@@ -762,7 +762,7 @@ nav {
     width: auto;
     height: max-content;
     font-weight: 400;
-    font-size: clamp(10px, 1vw, 16px);
+    font-size: clamp(11px, 0.9vw, 15px);
     padding-bottom: 2.5px;
     color: var(--text2);
     white-space: nowrap;
@@ -776,9 +776,9 @@ nav {
 .taskViewContainer {
     position: fixed;
     top: 200px;
-    height: max(20vw,320px);
-    width: calc(22vw);
-    min-width: 300px;
+    height: max(20vw,300px);
+    width: 22vw;
+    min-width: 280px;
     font-size: clamp(12px, 1vw, 16px);
     border-radius: 10px;
     box-shadow: -1px 5px 15px 0px var(--shadow2);
@@ -823,7 +823,8 @@ nav {
     display: flex;
     align-items: center;
     background-size: 0% 100%;
-    padding: 10px 0 0 33px;
+    padding-top: 10px;
+    padding-left: calc(2vw + 5px);
     color: var(--text1);
     border-bottom: 2px solid var(--border2);
     transition: border ease 0.4s;
@@ -838,11 +839,11 @@ nav {
 .taskViewName {
     display: flex;
     align-items: center;
-    font-size: clamp(17px, 1.4vw, 24px);
+    font-size: clamp(16px, 1.3vw, 22px);
     font-weight: 500;
     width: max-content;
     height: 20px;
-    margin: 12px 25px 12px 10px;
+    margin: 12px 25px 12px 0px;
     border-top: 5px;
     background-image: linear-gradient(to bottom,
         #00000000 50%,
@@ -865,7 +866,7 @@ nav {
     font-weight: 600;
     margin-top: clamp(0px,10vh,20px);
     color: var(--text2);
-    margin-left: 45px;
+    margin-left: calc(2vw + 6px);
 }
 
 .taskViewDescription {
@@ -882,7 +883,7 @@ nav {
     font-weight: 600;
     margin-top: 20px;
     color: var(--text2);
-    margin-left: 45px;
+    margin-left: calc(2vw + 6px);
     fill: var(--text2);
 }
 
@@ -904,7 +905,7 @@ nav {
     font-weight: 600;
     margin-top: 20px;
     color: var(--text2);
-    margin-left: 45px;
+    margin-left: calc(2vw + 6px);
     fill: var(--text2);
 }
 
