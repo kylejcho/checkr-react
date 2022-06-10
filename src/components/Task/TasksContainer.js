@@ -6,6 +6,7 @@ import { UserAuth } from '../../contexts/AuthContext';
 import userEvent from '@testing-library/user-event';
 import { auth } from '../../firebase';
 import { updateProfile, onAuthStateChanged} from 'firebase/auth';
+
 export default function TasksContainer({ contentType, tasks, addedTask, updateTasks, removeTask, checkTask, viewTask, openTask, openTaskView }) {
     const {name} = UserAuth()
 
