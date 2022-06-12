@@ -1,5 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { UserAuth } from '../contexts/AuthContext'
+import { ReactComponent as Logo } from '../icons/document-text-outline.svg'
+import { ReactComponent as WorkingSVG } from '../icons/working.svg'
 import { updateProfile } from 'firebase/auth'
 import React, { useState } from 'react'
 import { auth } from '../firebase'
@@ -36,6 +38,13 @@ export default function Signup() {
 
    return (
       <div id='signupBackground'>
+         <div id='signupSVGContainer'>
+            <div id='signupLogoContainer'>
+               <Logo className='logo' />
+               <h1>checkr.</h1>
+            </div>
+            <WorkingSVG id='workingSVG' />
+         </div>
          <form id='signupContainer' onSubmit={handleSubmit}>
             <div className='signupInputsContainer'>
                <p id='signupHeader'>Sign up for a free account</p>
@@ -44,10 +53,11 @@ export default function Signup() {
                   <Link to='/checkr-react/'>Sign in.</Link>{' '}
                </p>
                <div className='signupInputContainer'>
-                  <label className='signupLabel'>Your Name</label>
+                  <label className='signupLabel'>First Name</label>
                   <input
                      type='name'
                      className='signupInput'
+                     placeholder='Give us a name to greet you with...'
                      required
                      onChange={(e) => setName(e.target.value)}
                   ></input>
@@ -58,6 +68,7 @@ export default function Signup() {
                      type='email'
                      id='email'
                      className='signupInput'
+                     placeholder='Enter your email...'
                      required
                      onChange={(e) => setEmail(e.target.value)}
                   ></input>
@@ -68,6 +79,7 @@ export default function Signup() {
                      type='password'
                      id='password'
                      className='signupInput'
+                     placeholder='Enter your password...'
                      required
                      onChange={(e) => setPassword(e.target.value)}
                   ></input>
