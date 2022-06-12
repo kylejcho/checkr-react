@@ -339,6 +339,7 @@ nav {
 }
 
 #profileContainer {
+   position: relative;
    cursor: pointer;
    display: flex;
    box-sizing: border-box;
@@ -361,6 +362,52 @@ nav {
 
 #profileContainer:hover svg {
    fill: var(--blue1);
+}
+
+#profileOptions {
+   position: absolute;
+   padding: 10px 10px 0 10px;
+   width: 200%;
+   aspect-ratio: 1 / 0.8;
+   font-weight: 400;
+   box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.17);
+   border-radius: 5px;
+   border: 1.5px solid var(--border2);
+   background-color: var(--bkg4);
+   transform: translateY(93%);
+}
+
+#profileOptions.selected {
+   opacity: 1;
+   pointer-events: all;
+}
+
+#profileOptions:before {
+   content: '';
+   position: absolute;
+   bottom: 100%;
+   left: 0;
+   right: 0;
+   margin: 0 auto;
+   width: 0;
+   height: 0;
+   border-bottom: solid 7px var(--border2);
+   border-left: solid 7px transparent;
+   border-right: solid 7px transparent;
+}
+
+#profileOptions:after {
+   content: '';
+   position: absolute;
+   bottom: 100%;
+   left: 0;
+   right: 0;
+   margin: 0 auto;
+   width: 0;
+   height: 0;
+   border-bottom: solid 5px var(--bkg4);
+   border-left: solid 6px transparent;
+   border-right: solid 6px transparent;
 }
 
 #sidebarContentContainer {
@@ -1097,7 +1144,7 @@ textarea:hover {
    margin: 0 auto;
    width: 0;
    height: 0;
-   border-bottom: solid 6px #d6d6d6;
+   border-bottom: solid 7px var(--border2);
    border-left: solid 7px transparent;
    border-right: solid 7px transparent;
 }
@@ -1111,7 +1158,7 @@ textarea:hover {
    margin: 0 auto;
    width: 0;
    height: 0;
-   border-bottom: solid 5px var(--bkg1);
+   border-bottom: solid 5px var(--bkg4);
    border-left: solid 6px transparent;
    border-right: solid 6px transparent;
 }
