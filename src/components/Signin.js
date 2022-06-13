@@ -8,8 +8,15 @@ export default function Signin() {
    //Password and email states updated on input field change
    const [password, setPassword] = useState('')
    const [email, setEmail] = useState('')
-
    const [error, setError] = useState('')
+
+   function errorMessage() {
+      if (error === 'Firebase: Error (auth/user-not-found).') {
+         return <div id='signupError'>Email or password is incorrect.</div>
+      } else {
+         return <div id='signupError'>{error}</div>
+      }
+   }
 
    const navigate = useNavigate()
 
@@ -42,6 +49,7 @@ export default function Signin() {
          <form id='signupContainer' onSubmit={handleSubmit}>
             <div className='signupInputsContainer'>
                <p id='signupHeader'>Sign in to your account</p>
+               {error && errorMessage()}
                <div className='signupInputContainer'>
                   <label className='signupLabel'>Email Address</label>
                   <input

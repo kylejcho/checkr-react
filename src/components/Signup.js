@@ -14,6 +14,21 @@ export default function Signup() {
 
    const [error, setError] = useState('')
 
+   function errorMessage() {
+      if (error === 'Firebase: Error (auth/email-already-in-use).') {
+         return <div id='signupError'>Email is already in use.</div>
+      } else if (
+         error ===
+         'Firebase: Password should be at least 6 characters (auth/weak-password).'
+      ) {
+         return (
+            <div id='signupError'>Password must be at least 6 characters.</div>
+         )
+      } else {
+         return <div id='signupError'>{error}</div>
+      }
+   }
+
    const navigate = useNavigate()
 
    //Create user function from userAuth context
@@ -51,6 +66,7 @@ export default function Signup() {
                <p>
                   Already have an account? <Link to='/'>Sign in.</Link>{' '}
                </p>
+               {error && errorMessage()}
                <div className='signupInputContainer'>
                   <label className='signupLabel'>First Name</label>
                   <input

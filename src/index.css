@@ -1517,6 +1517,21 @@ textarea:hover {
    color: var(--blue1);
 }
 
+#signupError {
+   display: flex;
+   align-items: center;
+   height: clamp(40px, 4vh, 50px);
+   border-radius: 5px;
+   background-color: rgb(231, 153, 153);
+   color: rgb(187, 70, 70);
+   border: 1.5px solid var(--border1);
+   font-size: clamp(13px, 0.8vw, 18px);
+   font-weight: 500;
+   margin-top: 10px;
+   padding-left: 10px;
+   outline: 1.5px solid rgba(0, 0, 0, 0);
+}
+
 .signupInputContainer {
    display: flex;
    flex-direction: column;
