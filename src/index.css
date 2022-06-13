@@ -19,10 +19,10 @@
    --text1: #272a2f;
    --text2: #697384;
    --text3: #979fac;
-   --bkg1: #fbfbfb;
-   --bkg2: #f8f8fb;
+   --bkg1: #f7f7f9;
+   --bkg2: #f4f4f8;
    --bkg3: #e9ebf1;
-   --bkg4: rgb(252, 252, 254);
+   --bkg4: #f7f7fa;
    --bkg5: #f1f3f5;
    --search: #e9ebf1;
    --circle: #272a2f;
@@ -31,13 +31,13 @@
    --task-drag: #ffffffbf;
    --selection: #dce2ed;
    --shadow1: rgba(0, 0, 0, 0.17);
-   --shadow2: rgba(0, 0, 0, 0.02);
+   --shadow2: rgba(0, 0, 0, 0.03);
    --shadow3: rgba(0, 0, 0, 0.045);
    --form-bkg: #eff0f680;
    --scroll: #d4d4d8;
    --blue1: #3880ff;
-   --border1: #f0f0f4;
-   --border2: #eef0f4;
+   --border1: #e9e9ed;
+   --border2: #e8eaee;
    --border3: #bec7d562;
 
    --text1-dark: #d5d5e9;
@@ -114,7 +114,7 @@ nav {
    width: 100vw;
    display: flex;
    align-items: center;
-   height: clamp(40px, 6vh, 55px);
+   height: clamp(40px, 6vh, 50px);
    background-color: var(--bkg2);
    padding: 0 31px;
    z-index: 3;
@@ -447,7 +447,7 @@ nav {
 }
 
 #sidebarHome {
-   margin-top: clamp(40px, 6vh, 55px);
+   margin-top: clamp(40px, 6vh, 50px);
 }
 
 #sidebarHome ion-icon {
@@ -554,7 +554,7 @@ nav {
 .tasksContainer {
    height: max-content;
    width: 25vw;
-   padding-top: clamp(40px, 6vh, 55px);
+   padding-top: clamp(40px, 6vh, 50px);
    padding-bottom: 25px;
 }
 

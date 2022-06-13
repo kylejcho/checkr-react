@@ -71,7 +71,7 @@ export default function Form({ tasks, handleClose, addTask, uniqueLists }) {
             backgroundColor: 'rgba(74, 78, 83, 0)',
          }}
          animate={{
-            backgroundColor: 'rgba(74, 78, 83, 0.5)',
+            backgroundColor: 'rgba(74, 78, 83, 0.3)',
             transition: { duration: 0.4 },
          }}
          exit={{
