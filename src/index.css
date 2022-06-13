@@ -1595,7 +1595,7 @@ textarea:hover {
    top: 0;
    height: 100vh;
    width: 100vw;
-   background-color: var(--bkg1);
+   background-color: var(white);
    z-index: 3;
 }
 
