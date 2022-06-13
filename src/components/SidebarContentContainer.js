@@ -76,7 +76,7 @@ export default function SidebarContentContainer({}) {
          if (currentUser)
             setTimeout(() => {
                data()
-            }, 1000)
+            }, 200)
       })
       return unsubscribe()
    }, [])

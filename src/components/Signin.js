@@ -30,7 +30,7 @@ export default function Signin() {
       setError('')
       try {
          await signIn(email, password)
-         navigate('/home')
+         navigate('/')
       } catch (e) {
          setError(e.message)
          console.log(e.message)
@@ -75,7 +75,7 @@ export default function Signin() {
             </div>
             <button id='signupButton'>Sign In</button>
             <p>
-               Don't have an account yet? <Link to='signup'>Sign up.</Link>
+               Don't have an account yet? <Link to='/signup'>Sign up.</Link>
             </p>
          </form>
       </div>

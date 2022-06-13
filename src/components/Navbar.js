@@ -33,7 +33,7 @@ function Navbar({ tasks, addTask, uniqueLists }) {
    const handleLogout = async () => {
       try {
          await logout()
-         navigate('/checkr-react/')
+         navigate('/')
       } catch (e) {
          console.log(e.message)
       }
@@ -167,6 +167,7 @@ function Navbar({ tasks, addTask, uniqueLists }) {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.2 }}
+                        onClick={handleLogout}
                      ></motion.div>
                   </motion.div>
                )}

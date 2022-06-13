@@ -44,7 +44,7 @@ export default function Signup() {
          updateProfile(auth.currentUser, {
             displayName: name,
          })
-         navigate('/home')
+         navigate('/')
       } catch (e) {
          setError(e.message)
          console.log(e.message)
@@ -64,7 +64,7 @@ export default function Signup() {
             <div className='signupInputsContainer'>
                <p id='signupHeader'>Sign up for a free account</p>
                <p>
-                  Already have an account? <Link to='/'>Sign in.</Link>{' '}
+                  Already have an account? <Link to='/signin'>Sign in.</Link>{' '}
                </p>
                {error && errorMessage()}
                <div className='signupInputContainer'>
