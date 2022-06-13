@@ -23,7 +23,7 @@ export default function Signin() {
       setError('')
       try {
          await signIn(email, password)
-         navigate('/checkr-react/home')
+         navigate('/home')
       } catch (e) {
          setError(e.message)
          console.log(e.message)

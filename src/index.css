@@ -19,7 +19,7 @@
    --text1: #272a2f;
    --text2: #697384;
    --text3: #979fac;
-   --bkg1: #ffffff;
+   --bkg1: #fbfbfb;
    --bkg2: #f8f8fb;
    --bkg3: #e9ebf1;
    --bkg4: rgb(252, 252, 254);
@@ -118,7 +118,7 @@ nav {
    background-color: var(--bkg2);
    padding: 0 31px;
    z-index: 3;
-   border-bottom: 1.5px solid var(--border1);
+   border-bottom: 1px solid var(--border1);
    transition: background-color ease 0.4s, border ease 0.4s;
 }
 
@@ -197,6 +197,7 @@ nav {
    margin-right: 10px;
    height: 100%;
    outline-width: 0;
+   color: var(--text1);
    background-color: var(--search);
    transition: background-color ease 0.4s;
 }
@@ -364,50 +365,34 @@ nav {
    fill: var(--blue1);
 }
 
+#profileOptionsContainer {
+   position: fixed;
+   display: flex;
+   left: 0;
+   top: 0;
+   height: 100vh;
+   width: 100vw;
+   z-index: 3;
+}
+
 #profileOptions {
    position: absolute;
+   right: 31px;
+   top: clamp(40px, calc(6vh - 5px), 55px);
    padding: 10px 10px 0 10px;
-   width: 200%;
-   aspect-ratio: 1 / 0.8;
+   width: 12vw;
+   min-width: 180px;
+   aspect-ratio: 1 / 1.25;
    font-weight: 400;
    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.17);
    border-radius: 5px;
-   border: 1.5px solid var(--border2);
+   border: 1px solid var(--border2);
    background-color: var(--bkg4);
-   transform: translateY(93%);
 }
 
 #profileOptions.selected {
    opacity: 1;
    pointer-events: all;
-}
-
-#profileOptions:before {
-   content: '';
-   position: absolute;
-   bottom: 100%;
-   left: 0;
-   right: 0;
-   margin: 0 auto;
-   width: 0;
-   height: 0;
-   border-bottom: solid 7px var(--border2);
-   border-left: solid 7px transparent;
-   border-right: solid 7px transparent;
-}
-
-#profileOptions:after {
-   content: '';
-   position: absolute;
-   bottom: 100%;
-   left: 0;
-   right: 0;
-   margin: 0 auto;
-   width: 0;
-   height: 0;
-   border-bottom: solid 5px var(--bkg4);
-   border-left: solid 6px transparent;
-   border-right: solid 6px transparent;
 }
 
 #sidebarContentContainer {
@@ -821,7 +806,7 @@ nav {
    font-size: clamp(12px, 1vw, 16px);
    border-radius: 10px;
    box-shadow: -1px 5px 15px 0px var(--shadow2);
-   border: 2px solid var(--border2);
+   border: 1.5px solid var(--border2);
    background-color: var(--bkg4);
    transition: background-color ease 0.4s, border ease 0.4s;
 }
@@ -863,7 +848,7 @@ nav {
    padding-top: 10px;
    padding-left: calc(2vw + 5px);
    color: var(--text1);
-   border-bottom: 2px solid var(--border2);
+   border-bottom: 1.5px solid var(--border2);
    transition: border ease 0.4s;
 }
 

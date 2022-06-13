@@ -12,10 +12,10 @@ export default function App() {
    return (
       <AuthContextProvider>
          <Routes>
-            <Route path='checkr-react/' element={<Signin />} />
-            <Route path='checkr-react/signup' element={<Signup />} />
+            <Route path='/' element={<Signin />} />
+            <Route path='/signup' element={<Signup />} />
             <Route
-               path='/checkr-react/home'
+               path='/home'
                element={
                   <ProtectedRoute>
                      <SidebarContentContainer />

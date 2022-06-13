@@ -29,7 +29,7 @@ export default function Signup() {
          updateProfile(auth.currentUser, {
             displayName: name,
          })
-         navigate('/checkr-react/home')
+         navigate('/home')
       } catch (e) {
          setError(e.message)
          console.log(e.message)
@@ -49,8 +49,7 @@ export default function Signup() {
             <div className='signupInputsContainer'>
                <p id='signupHeader'>Sign up for a free account</p>
                <p>
-                  Already have an account?{' '}
-                  <Link to='/checkr-react/'>Sign in.</Link>{' '}
+                  Already have an account? <Link to='/'>Sign in.</Link>{' '}
                </p>
                <div className='signupInputContainer'>
                   <label className='signupLabel'>First Name</label>
