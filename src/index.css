@@ -19,13 +19,13 @@
    --text1: #272a2f;
    --text2: #697384;
    --text3: #979fac;
-   --bkg1: #f7f7f9;
-   --bkg2: #f4f4f8;
-   --bkg3: #e9ebf1;
+   --bkg1: #f5f5f8;
+   --bkg2: #eeeef5;
+   --bkg3: #e0e2ee;
    --bkg4: #f7f7fa;
-   --bkg5: #f1f3f5;
-   --search: #e9ebf1;
-   --circle: #272a2f;
+   --bkg5: #e9ebf0;
+   --search: #e0e2ee;
+   --circle: #3b4351;
    --check-circle: #979fac;
    --circle-variant: #e9ebf1;
    --task-drag: #ffffffbf;
@@ -36,7 +36,7 @@
    --form-bkg: #eff0f680;
    --scroll: #d4d4d8;
    --blue1: #3880ff;
-   --border1: #e9e9ed;
+   --border1: #e5e5eb;
    --border2: #e8eaee;
    --border3: #bec7d562;
 
@@ -44,7 +44,7 @@
    --text2-dark: #98a0b3;
    --text3-dark: #979fac;
    --bkg1-dark: #15181d;
-   --bkg2-dark: rgb(28, 30, 37);
+   --bkg2-dark: #1b1e25;
    --bkg3-dark: #2a2c36;
    --bkg4-dark: #1c1e25;
    --bkg5-dark: #25272e;
@@ -612,9 +612,9 @@ nav {
    padding: 0px calc(5px + 0.3vw);
    font-weight: 500;
    font-size: clamp(13px, 1vw, 16px);
-   color: #7b8593cf;
+   color: #78808acf;
    border-radius: 5px;
-   border: 2px solid var(--border3);
+   border: 1.5px solid var(--border3);
    background-color: var(--bkg5);
    margin-top: 25px;
    margin-bottom: 15px;
@@ -638,7 +638,7 @@ nav {
    grid-template: auto auto/40px auto 40px;
    border-radius: 5px;
    backdrop-filter: blur(1px);
-   border: 2px solid #ffffff00;
+   border: 1.5px solid #ffffff00;
 }
 
 .taskContainer::after {
@@ -1439,24 +1439,17 @@ textarea:hover {
    color: var(--text1);
    width: 100vw;
    height: 100vh;
-   background-color: var(--bkg2);
+   background-color: var(--bkg1);
 }
-
-#artSignupContainer {
-   display: flex;
-   justify-content: center;
-   width: 100vw;
-}
-
-#signupSVGContainer {
+#signupArtContainer {
    display: flex;
    flex-direction: column;
    justify-content: center;
    width: 22vw;
    min-width: 350px;
    height: max-content;
+   padding-right: 3%;
    border-right: 2px solid var(--border1);
-   padding-right: 35px;
 }
 
 #signupLogoContainer {
@@ -1475,24 +1468,19 @@ textarea:hover {
    height: 35px;
 }
 
-#workingSVG {
+#signupArtSVG {
    width: 100%;
    margin-bottom: 25px;
-}
-
-#workingSVG rect {
-   fill: var(--bkg3);
 }
 
 #signupContainer {
    display: flex;
    align-items: center;
    flex-direction: column;
-   background-color: var(--bkg2);
    width: 22vw;
+   padding-left: 3%;
    min-width: 350px;
    height: max-content;
-   margin-left: 15px;
 }
 
 .signupInputsContainer {
@@ -1500,7 +1488,7 @@ textarea:hover {
    flex-direction: column;
    align-self: center;
    height: 90%;
-   width: 85%;
+   width: 100%;
 }
 
 #signupHeader {
@@ -1569,12 +1557,13 @@ textarea:hover {
    cursor: pointer;
    margin-top: 25px;
    margin-bottom: 10px;
-   width: 85%;
+   width: 100%;
    height: clamp(45px, 5vh, 55px);
    border-radius: 5px;
    border: none;
    background-color: #3877ff;
    color: white;
+   border: 1.5px solid var(--border1);
    font-size: 1.25rem;
    transition: background-color 0.3s ease;
 }

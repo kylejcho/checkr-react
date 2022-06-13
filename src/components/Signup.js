@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { UserAuth } from '../contexts/AuthContext'
 import { ReactComponent as Logo } from '../icons/document-text-outline.svg'
-import { ReactComponent as WorkingSVG } from '../icons/working.svg'
+import { ReactComponent as DayflowSVG } from '../icons/dayflow.svg'
 import { updateProfile } from 'firebase/auth'
 import React, { useState } from 'react'
 import { auth } from '../firebase'
@@ -53,12 +53,12 @@ export default function Signup() {
 
    return (
       <div id='signupBackground'>
-         <div id='signupSVGContainer'>
+         <div id='signupArtContainer'>
             <div id='signupLogoContainer'>
                <Logo className='logo' />
                <h1>checkr.</h1>
             </div>
-            <WorkingSVG id='workingSVG' />
+            <DayflowSVG id='signupArtSVG' />
          </div>
          <form id='signupContainer' onSubmit={handleSubmit}>
             <div className='signupInputsContainer'>
