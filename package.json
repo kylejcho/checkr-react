@@ -28,7 +28,7 @@
       "type": "git",
       "url": "git+https://github.com/kylejcho/checkr-react.git"
    },
-   "homepage": ".",
+   "homepage": "https://kylejcho.github.io/checkr-react/",
    "eslintConfig": {
       "extends": [
          "react-app",

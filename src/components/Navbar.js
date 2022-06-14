@@ -3,6 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Form from './Form/Form'
 import DarkModeButton from './DarkModeButton'
 import { ReactComponent as Logo } from '../icons/document-text-outline.svg'
+import { ReactComponent as User } from '../icons/user.svg'
+import { ReactComponent as Settings } from '../icons/settings.svg'
+import { ReactComponent as Logout } from '../icons/logout.svg'
 import { ReactComponent as SearchIcon } from '../icons/search-outline.svg'
 import { UserAuth } from '../contexts/AuthContext'
 import { useNavigate } from 'react-router-dom'
@@ -167,8 +170,24 @@ function Navbar({ tasks, addTask, uniqueLists }) {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.2 }}
-                        onClick={handleLogout}
-                     ></motion.div>
+                     >
+                        <div className='profileOption'>
+                           <User className='userSVG' />
+                           Profile
+                        </div>
+                        <div className='profileOption'>
+                           <Settings className='settingsSVG' />
+                           Settings
+                        </div>
+                        <div
+                           id='logoutOption'
+                           className='profileOption'
+                           onClick={handleLogout}
+                        >
+                           <Logout className='settingsSVG' />
+                           Log out
+                        </div>
+                     </motion.div>
                   </motion.div>
                )}
             </AnimatePresence>
