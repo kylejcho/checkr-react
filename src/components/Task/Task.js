@@ -46,7 +46,7 @@ function Task({ task, subTasks, updateSubTasks, viewTask }) {
       }
       setTimeout(() => setShowTask(false), 0)
       setTimeout(() => {
-         removeTask(taskContainer.current.id)
+         removeTask(task.id)
       }, 250)
    }
 
