@@ -1,10 +1,11 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Task from './Task/Task'
 import { Reorder } from 'framer-motion'
 
 function SubGroup({
    subTasks,
    updateSubTasks,
+   contentType,
    type,
    updateTasks,
    removeTask,
@@ -20,22 +21,49 @@ function SubGroup({
       }, 450)
    })
 
+   const [tasks, setTasks] = useState(null)
+
+   useEffect(() => {
+      if (
+         contentType !== 'all' &&
+         contentType !== 'today' &&
+         contentType !== 'week' &&
+         contentType !== 'home'
+      ) {
+         setTasks(subTasks.filter((task) => task.list === contentType))
+      }
+   }, [contentType, subTasks])
+
    return (
       <div className='subGroup' id={type}>
          <Reorder.Group values={subTasks} onReorder={updateSubTasks}>
-            {subTasks.map((task) => {
-               return (
-                  <Task
-                     key={task.id}
-                     task={task}
-                     subTasks={subTasks}
-                     updateSubTasks={updateSubTasks}
-                     viewTask={viewTask}
-                     removeTask={removeTask}
-                     updateTasks={updateTasks}
-                  />
-               )
-            })}
+            {tasks
+               ? tasks.map((task) => {
+                    return (
+                       <Task
+                          key={task.id}
+                          task={task.list === contentType && task}
+                          subTasks={subTasks}
+                          updateSubTasks={updateSubTasks}
+                          viewTask={viewTask}
+                          removeTask={removeTask}
+                          updateTasks={updateTasks}
+                       />
+                    )
+                 })
+               : subTasks.map((task) => {
+                    return (
+                       <Task
+                          key={task.id}
+                          task={task}
+                          subTasks={subTasks}
+                          updateSubTasks={updateSubTasks}
+                          viewTask={viewTask}
+                          removeTask={removeTask}
+                          updateTasks={updateTasks}
+                       />
+                    )
+                 })}
          </Reorder.Group>
       </div>
    )

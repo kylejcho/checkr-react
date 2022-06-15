@@ -90,6 +90,7 @@ export default function TasksContainer({
    const today = () => (
       <SubGroup
          subTasks={todayTasks}
+         contentType={contentType}
          updateSubTasks={updateTodayTasks}
          updateTasks={updateTasks}
          removeTask={removeTask}

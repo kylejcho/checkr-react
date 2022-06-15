@@ -40,6 +40,7 @@ export default function SidebarContentContainer() {
    //Set new 'contentType' state with given 'type'
    //OpenTask state must be set to null to insure taskViewContainer is not present during content change
    const changeContent = useCallback((type) => {
+      console.log(type)
       setContentType(type)
       setOpenTask(null)
    }, [])
