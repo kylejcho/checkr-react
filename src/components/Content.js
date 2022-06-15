@@ -53,6 +53,7 @@ export default function Content({
                removeTask={removeTask}
                viewTask={viewTask}
                openTask={openTask}
+               updateUniqueLists={updateUniqueLists}
             />
          </motion.div>
          <TaskView task={openTask} />

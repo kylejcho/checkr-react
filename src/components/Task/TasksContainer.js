@@ -16,6 +16,7 @@ export default function TasksContainer({
    viewTask,
    openTask,
    openTaskView,
+   updateUniqueLists,
 }) {
    const { name } = UserAuth()
 

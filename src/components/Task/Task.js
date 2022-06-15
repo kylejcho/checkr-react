@@ -35,7 +35,7 @@ function Task({ task, subTasks, updateSubTasks, viewTask }) {
    const removeTask = useCallback(
       (task) => {
          deleteDoc(docRef)
-         updateSubTasks(subTasks.filter((item) => item.id !== task))
+         updateSubTasks(subTasks.filter((item) => item.id !== task.id))
       },
       [subTasks, updateSubTasks, docRef]
    )
@@ -46,7 +46,7 @@ function Task({ task, subTasks, updateSubTasks, viewTask }) {
       }
       setTimeout(() => setShowTask(false), 0)
       setTimeout(() => {
-         removeTask(task.id)
+         removeTask(task)
       }, 250)
    }
 

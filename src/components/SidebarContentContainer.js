@@ -45,12 +45,6 @@ export default function SidebarContentContainer() {
       setOpenTask(null)
    }, [])
 
-   //Tasks state is updated with the same array except the task that is to be deleted
-   //Filter through task 'id' properties to determine which task object to delete
-   const removeTask = useCallback((task) => {
-      setTasks((tasks) => tasks.filter((item) => item.id !== task.id))
-   }, [])
-
    //Subgroup changes are updated to the master 'tasks' list
    //Prevents unecessary rerender to all task components whenever a layout change is made with a subgroup
    const updateTasks = useCallback(
@@ -187,7 +181,6 @@ export default function SidebarContentContainer() {
                   updateUniqueLists={updateUniqueLists}
                   addUniqueList={addUniqueList}
                   updateTasks={updateTasks}
-                  removeTask={removeTask}
                   openTask={openTask}
                   viewTask={viewTask}
                />
