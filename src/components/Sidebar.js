@@ -325,6 +325,47 @@ function Sidebar({ tasks, changeContent, contentType, uniqueLists }) {
                         >
                            <div className='dot'></div>
                            <p>{list}</p>
+                           <div
+                              className='deleteContainer'
+                              onClick={(e) => {
+                                 e.stopPropagation()
+                              }}
+                           >
+                              <svg
+                                 xmlns='http://www.w3.org/2000/svg'
+                                 width='20'
+                                 height='20'
+                                 viewBox='0 0 512 512'
+                              >
+                                 <title>ionicons-v5-l</title>
+                                 <line
+                                    x1='368'
+                                    y1='368'
+                                    x2='144'
+                                    y2='144'
+                                    style={{
+                                       fill: 'none',
+                                       stroke: '#697384',
+                                       strokeLinecap: 'round',
+                                       strokeLinejoin: 'round',
+                                       strokeWidth: '32px',
+                                    }}
+                                 />
+                                 <line
+                                    x1='368'
+                                    y1='144'
+                                    x2='144'
+                                    y2='368'
+                                    style={{
+                                       fill: 'none',
+                                       stroke: '#697384',
+                                       strokeLinecap: 'round',
+                                       strokeLinejoin: 'round',
+                                       strokeWidth: '32px',
+                                    }}
+                                 />
+                              </svg>
+                           </div>
                         </div>
                      )
                   }

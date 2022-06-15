@@ -16,10 +16,10 @@
 
 :root {
    --s: rgba(74, 78, 83, 0);
-   --text1: #272a2f;
-   --text2: #697384;
+   --text1: rgb(39, 42, 47);
+   --text2: rgb(105, 115, 132);
    --text3: #979fac;
-   --bkg1: #f5f5f8;
+   --bkg1: rgb(245, 245, 248);
    --bkg2: #eeeef5;
    --bkg3: #e0e2ee;
    --bkg4: #f7f7fa;
@@ -36,14 +36,14 @@
    --form-bkg: #eff0f680;
    --scroll: #d4d4d8;
    --blue1: #3880ff;
-   --border1: #e5e5eb;
+   --border1: rgb(229, 229, 235);
    --border2: #e8eaee;
    --border3: #bec7d562;
 
    --text1-dark: #d5d5e9;
-   --text2-dark: #98a0b3;
+   --text2-dark: rgb(152, 160, 179);
    --text3-dark: #979fac;
-   --bkg1-dark: #15181d;
+   --bkg1-dark: rgb(21, 24, 29);
    --bkg2-dark: #1b1e25;
    --bkg3-dark: #2a2c36;
    --bkg4-dark: #1c1e25;
@@ -60,7 +60,7 @@
    --form-bkg-dark: #15181d7b;
    --scroll-dark: #2a2c36;
    --blue1-dark: #3880ff;
-   --border1-dark: #2b303b;
+   --border1-dark: rgb(43, 48, 59);
    --border2-dark: #2b303b;
    --border3-dark: #4c4f5562;
 }
@@ -1471,6 +1471,15 @@ textarea:hover {
    margin: 0 22px;
    background-color: var(--blue1);
    border-radius: 50px;
+}
+
+.sidebarListContainer:hover .deleteContainer {
+   opacity: 1;
+}
+
+.sidebarListContainer .deleteContainer svg {
+   width: 20px;
+   height: 20px;
 }
 
 #sidebarListsClose {

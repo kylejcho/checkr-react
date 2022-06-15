@@ -20,7 +20,7 @@ export default function Content({
    const [addedTask, setAddedTask] = useState()
 
    function addTask(task) {
-      if (task.list && uniqueLists.includes(task.list)) {
+      if (task.list && !uniqueLists.includes(task.list)) {
          addUniqueList(task)
       }
       setAddedTask(task)

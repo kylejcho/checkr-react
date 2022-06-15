@@ -178,6 +178,7 @@ export default function SidebarContentContainer() {
                <Content
                   contentType={contentType}
                   tasks={tasks}
+                  uniqueLists={uniqueLists}
                   updateUniqueLists={updateUniqueLists}
                   addUniqueList={addUniqueList}
                   updateTasks={updateTasks}
