@@ -7,9 +7,11 @@ import { collection, getDocs } from 'firebase/firestore'
 import { db } from '../firebase'
 import { onAuthStateChanged } from 'firebase/auth'
 
-export default function SidebarContentContainer({}) {
+export default function SidebarContentContainer() {
    //Master list of users tasks and is updated whenever an update needs to be sent to FireStore database
    const [tasks, setTasks] = useState(null)
+
+   const [uniqueLists, setUniqueLists] = useState([])
 
    //Determines whether a task is open in taskView mode within the content container
    const [openTask, setOpenTask] = useState(null)
@@ -17,18 +19,28 @@ export default function SidebarContentContainer({}) {
    //State is set to current content path
    const [contentType, setContentType] = useState('home')
 
+   useEffect(() => {
+      if (tasks) {
+         updateUniqueLists()
+      }
+   }, [tasks])
+
+   const updateUniqueLists = () => {
+      setUniqueLists([...new Set(tasks.map((task) => task.list))])
+   }
+
    const viewTask = useCallback((task) => {
       setOpenTask(task)
    }, [])
 
    //Set new 'contentType' state with given 'type'
-   //OpenTask state must be set to null to insure taskViewContainer is not present with new content
+   //OpenTask state must be set to null to insure taskViewContainer is not present during content change
    const changeContent = useCallback((type) => {
       setContentType(type)
       setOpenTask(null)
    }, [])
 
-   //Tasks state is updated with the same array to except the task that is to be deleted
+   //Tasks state is updated with the same array except the task that is to be deleted
    //Filter through task 'id' properties to determine which task object to delete
    const removeTask = useCallback((task) => {
       setTasks((tasks) => tasks.filter((item) => item.id !== task))
@@ -159,12 +171,15 @@ export default function SidebarContentContainer({}) {
          {tasks && (
             <div id='sidebarContentContainer'>
                <Sidebar
+                  tasks={tasks}
+                  uniqueLists={uniqueLists}
                   changeContent={changeContent}
                   contentType={contentType}
                />
                <Content
                   contentType={contentType}
                   tasks={tasks}
+                  updateUniqueLists={updateUniqueLists}
                   updateTasks={updateTasks}
                   removeTask={removeTask}
                   openTask={openTask}
@@ -175,7 +190,7 @@ export default function SidebarContentContainer({}) {
       </>
    )
 }
-
+/*
 function hideScroll() {
    document.querySelector('#contentContainer').style.overflow = 'hidden'
    setTimeout(
@@ -184,3 +199,4 @@ function hideScroll() {
       500
    )
 }
+*/

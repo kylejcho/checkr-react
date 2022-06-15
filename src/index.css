@@ -301,6 +301,7 @@ nav {
    height: 70%;
    aspect-ratio: 1/1;
    transition: background-color ease 0.4s;
+   border: 1.5px solid var(--border1);
 }
 #addButtonContainer svg {
    width: clamp(18px, 3vh, 25px);
@@ -348,6 +349,7 @@ nav {
    align-items: center;
    background-color: var(--bkg3);
    border-radius: 5px;
+   border: 1.5px solid var(--border1);
    height: 70%;
    aspect-ratio: 1/1;
    transition: background-color ease 0.4s;

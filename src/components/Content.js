@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Navbar from './Navbar'
 import TasksContainer from './Task/TasksContainer'
 import { motion } from 'framer-motion'
@@ -7,6 +7,7 @@ import TaskView from './Task/TaskView'
 export default function Content({
    contentType,
    tasks,
+   updateUniqueLists,
    checkTask,
    updateTasks,
    removeTask,
@@ -16,7 +17,10 @@ export default function Content({
 }) {
    //Added task state is updated when new task is made by user
    const [addedTask, setAddedTask] = useState()
-   const addTask = (task) => setAddedTask(task)
+
+   function addTask(task) {
+      setAddedTask(task)
+   }
 
    return (
       <>

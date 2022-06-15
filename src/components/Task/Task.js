@@ -26,7 +26,7 @@ function Task({ task, subTasks, updateSubTasks, viewTask }) {
          prevTasks.unshift(prevTasks.splice(index, 1)[0])
       }
       updateSubTasks(prevTasks)
-   }, [subTasks, task.id, updateSubTasks])
+   }, [subTasks, task.id, updateSubTasks, docRef])
 
    const checkClickAnimation = useCallback(() => {
       setComplete(!complete)
@@ -37,7 +37,7 @@ function Task({ task, subTasks, updateSubTasks, viewTask }) {
          deleteDoc(docRef)
          updateSubTasks(subTasks.filter((item) => item.id !== task))
       },
-      [subTasks, updateSubTasks]
+      [subTasks, updateSubTasks, docRef]
    )
 
    function handleDeleteClick() {

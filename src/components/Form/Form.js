@@ -5,8 +5,9 @@ import { v4 as uuidv4 } from 'uuid'
 import { addDays, endOfDay, format, getDate } from 'date-fns'
 import InputListOptions from './InputListOptions'
 import { db } from '../../firebase'
-import { collection, addDoc, doc, setDoc } from 'firebase/firestore'
+import { doc, setDoc } from 'firebase/firestore'
 import { auth } from '../../firebase'
+
 export default function Form({ tasks, handleClose, addTask, uniqueLists }) {
    const nameRef = useRef()
    const descRef = useRef()
@@ -54,10 +55,7 @@ export default function Form({ tasks, handleClose, addTask, uniqueLists }) {
 
    const writeUserData = async (task) => {
       try {
-         const docRef = await setDoc(
-            doc(db, `${auth.currentUser.uid}`, `${task.id}`),
-            task
-         )
+         await setDoc(doc(db, `${auth.currentUser.uid}`, `${task.id}`), task)
       } catch (e) {
          console.error('Error adding document: ', e)
       }
@@ -348,8 +346,8 @@ export default function Form({ tasks, handleClose, addTask, uniqueLists }) {
 
 const dropIn = {
    initial: {
-      x: '12vw',
-      y: '-50vh',
+      x: '10vw',
+      y: '-52vh',
       opacity: 0,
       scale: 0,
    },
@@ -364,11 +362,11 @@ const dropIn = {
    },
    exit: {
       x: '12vw',
-      y: '-50vh',
+      y: '-52vh',
       opacity: 0,
       scale: 0,
       transition: {
-         duration: 0.3,
+         duration: 0.5,
       },
    },
 }
