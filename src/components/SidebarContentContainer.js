@@ -19,14 +19,18 @@ export default function SidebarContentContainer() {
    //State is set to current content path
    const [contentType, setContentType] = useState('home')
 
+   const updateUniqueLists = useCallback(() => {
+      setUniqueLists([...new Set(tasks.map((task) => task.list))])
+   }, [tasks])
+
    useEffect(() => {
       if (tasks) {
          updateUniqueLists()
       }
-   }, [tasks])
+   }, [tasks, updateUniqueLists])
 
-   const updateUniqueLists = () => {
-      setUniqueLists([...new Set(tasks.map((task) => task.list))])
+   const addUniqueList = (task) => {
+      setUniqueLists((prevUniqueLists) => [...prevUniqueLists, task.list])
    }
 
    const viewTask = useCallback((task) => {
@@ -180,6 +184,7 @@ export default function SidebarContentContainer() {
                   contentType={contentType}
                   tasks={tasks}
                   updateUniqueLists={updateUniqueLists}
+                  addUniqueList={addUniqueList}
                   updateTasks={updateTasks}
                   removeTask={removeTask}
                   openTask={openTask}

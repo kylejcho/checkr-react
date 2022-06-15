@@ -7,24 +7,31 @@ import TaskView from './Task/TaskView'
 export default function Content({
    contentType,
    tasks,
+   uniqueLists,
    updateUniqueLists,
+   addUniqueList,
    checkTask,
    updateTasks,
    removeTask,
    openTask,
    viewTask,
-   uniqueLists,
 }) {
    //Added task state is updated when new task is made by user
    const [addedTask, setAddedTask] = useState()
 
    function addTask(task) {
+      addUniqueList(task)
       setAddedTask(task)
    }
 
    return (
       <>
-         <Navbar tasks={tasks} addTask={addTask} uniqueLists={uniqueLists} />
+         <Navbar
+            tasks={tasks}
+            addTask={addTask}
+            uniqueLists={uniqueLists}
+            addUniqueList={addUniqueList}
+         />
          <motion.div
             layoutScroll
             id='contentContainer'

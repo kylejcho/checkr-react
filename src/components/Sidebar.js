@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef } from 'react'
 import getDate from 'date-fns/getDate'
 
 function Sidebar({ tasks, changeContent, contentType, uniqueLists }) {
@@ -314,11 +314,7 @@ function Sidebar({ tasks, changeContent, contentType, uniqueLists }) {
                </svg>
                Lists
             </p>
-            <div
-               id='sidebarLists'
-               className='sidebarTabsContainer'
-               onClick={() => changeContent('list')}
-            >
+            <div id='sidebarLists' className='sidebarTabsContainer'>
                {uniqueLists.map((list) => {
                   if (list) {
                      return (

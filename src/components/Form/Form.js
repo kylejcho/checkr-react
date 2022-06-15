@@ -37,6 +37,7 @@ export default function Form({ tasks, handleClose, addTask, uniqueLists }) {
 
    function handleAddTaskClick() {
       if (nameRef.current.value === '') return
+
       const uuid = uuidv4()
       const task = {
          name: nameRef.current.value,
@@ -47,8 +48,8 @@ export default function Form({ tasks, handleClose, addTask, uniqueLists }) {
          id: uuid,
       }
 
+      console.log(task)
       writeUserData(task)
-
       addTask(task)
       handleClose()
    }
