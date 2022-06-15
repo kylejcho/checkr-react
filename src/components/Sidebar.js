@@ -333,8 +333,6 @@ function Sidebar({ tasks, changeContent, contentType, uniqueLists }) {
                            >
                               <svg
                                  xmlns='http://www.w3.org/2000/svg'
-                                 width='20'
-                                 height='20'
                                  viewBox='0 0 512 512'
                               >
                                  <title>ionicons-v5-l</title>
@@ -345,7 +343,6 @@ function Sidebar({ tasks, changeContent, contentType, uniqueLists }) {
                                     y2='144'
                                     style={{
                                        fill: 'none',
-                                       stroke: '#697384',
                                        strokeLinecap: 'round',
                                        strokeLinejoin: 'round',
                                        strokeWidth: '32px',
@@ -358,7 +355,6 @@ function Sidebar({ tasks, changeContent, contentType, uniqueLists }) {
                                     y2='368'
                                     style={{
                                        fill: 'none',
-                                       stroke: '#697384',
                                        strokeLinecap: 'round',
                                        strokeLinejoin: 'round',
                                        strokeWidth: '32px',
