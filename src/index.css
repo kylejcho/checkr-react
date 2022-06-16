@@ -18,11 +18,11 @@
    --s: rgba(74, 78, 83, 0);
    --text1: rgb(39, 42, 47);
    --text2: rgb(105, 115, 132);
-   --text3: #979fac;
+   --text3: rgb(151, 159, 172);
    --bkg1: rgb(245, 245, 248);
    --bkg2: #eeeef5;
    --bkg3: #e0e2ee;
-   --bkg4: #f7f7fa;
+   --bkg4: rgb(247, 247, 250);
    --bkg5: #e9ebf0;
    --search: #e0e2ee;
    --circle: #3b4351;
@@ -35,12 +35,12 @@
    --shadow3: rgba(0, 0, 0, 0.045);
    --form-bkg: #eff0f680;
    --scroll: #d4d4d8;
-   --blue1: #3880ff;
+   --blue1: rgb(56, 128, 255);
    --border1: rgb(229, 229, 235);
-   --border2: #e8eaee;
+   --border2: rgb(232, 234, 238);
    --border3: #bec7d562;
 
-   --text1-dark: #d5d5e9;
+   --text1-dark: rgb(213, 213, 233);
    --text2-dark: rgb(152, 160, 179);
    --text3-dark: #979fac;
    --bkg1-dark: rgb(21, 24, 29);
@@ -61,8 +61,8 @@
    --scroll-dark: #2a2c36;
    --blue1-dark: #3880ff;
    --border1-dark: rgb(43, 48, 59);
-   --border2-dark: #2b303b;
-   --border3-dark: #4c4f5562;
+   --border2-dark: rgb(43, 48, 59);
+   --border3-dark: rgba(76, 79, 85, 0.384);
 }
 
 body.dark {

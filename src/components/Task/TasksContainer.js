@@ -1,7 +1,14 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import SubGroup from '../SubGroup'
 import { LayoutGroup, motion, AnimatePresence } from 'framer-motion'
-import { isToday, isTomorrow, isAfter, addDays, endOfDay } from 'date-fns'
+import {
+   isToday,
+   isTomorrow,
+   isAfter,
+   addDays,
+   endOfDay,
+   getHours,
+} from 'date-fns'
 import { UserAuth } from '../../contexts/AuthContext'
 import { auth } from '../../firebase'
 import { updateProfile, onAuthStateChanged } from 'firebase/auth'
@@ -162,9 +169,19 @@ export default function TasksContainer({
       )
    }
 
+   function homeGreeting() {
+      if (isMorning()) {
+         return 'Good Morning, '
+      } else if (isAfternoon()) {
+         return 'Good Afternoon, '
+      } else {
+         return 'Good Evening, '
+      }
+   }
+
    const taskTitle = () => {
       if (contentType === 'home') {
-         return 'Good Afternoon, ' + auth.currentUser.displayName
+         return homeGreeting() + auth.currentUser.displayName
       } else if (contentType === 'today') {
          return "Today's Tasks"
       } else if (contentType === 'week') {
@@ -217,4 +234,16 @@ export default function TasksContainer({
          </motion.div>
       </AnimatePresence>
    )
+}
+
+const isMorning = () => {
+   if (getHours(new Date()) < 12) {
+      return true
+   }
+}
+
+const isAfternoon = () => {
+   if (getHours(new Date()) >= 12 && getHours(new Date()) < 18) {
+      return true
+   }
 }

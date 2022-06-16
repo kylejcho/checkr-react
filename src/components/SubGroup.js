@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Task from './Task/Task'
 import { Reorder } from 'framer-motion'
+import { addDays, endOfDay, isBefore } from 'date-fns'
 
 function SubGroup({
    subTasks,
@@ -24,10 +25,15 @@ function SubGroup({
    const [tasks, setTasks] = useState(null)
 
    useEffect(() => {
-      if (
+      if (contentType === 'week') {
+         setTasks(
+            subTasks.filter((task) => {
+               return isBefore(task.dueDate, addDays(endOfDay(new Date()), 7))
+            })
+         )
+      } else if (
          contentType !== 'all' &&
          contentType !== 'today' &&
-         contentType !== 'week' &&
          contentType !== 'home'
       ) {
          setTasks(subTasks.filter((task) => task.list === contentType))
@@ -42,7 +48,7 @@ function SubGroup({
                     return (
                        <Task
                           key={task.id}
-                          task={task.list === contentType && task}
+                          task={task}
                           subTasks={subTasks}
                           updateSubTasks={updateSubTasks}
                           viewTask={viewTask}
