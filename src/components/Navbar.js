@@ -87,6 +87,12 @@ function Navbar({ tasks, addTask, uniqueLists }) {
                      id='searchBar'
                      type='text'
                      placeholder='Search tasks...'
+                     onFocus={() =>
+                        searchContainer.current.classList.toggle('selected')
+                     }
+                     onBlur={() =>
+                        searchContainer.current.classList.toggle('selected')
+                     }
                      onChange={(e) => {
                         setSearchValue(e.target.value)
                      }}

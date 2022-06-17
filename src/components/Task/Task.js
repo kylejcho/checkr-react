@@ -68,14 +68,12 @@ function Task({ task, subTasks, updateSubTasks, viewTask }) {
                   taskContainer.current.classList.add('dragging')
                }}
                onDragEnd={() => {
-                  updateSubTasks(subTasks)
                   taskContainer.current.classList.remove('dragging')
                }}
                exit={{ opacity: 0, transition: { duration: 0.3 } }}
                dragTransition={{ bounceStiffness: 1000, bounceDamping: 70 }}
                onClick={(e) => {
                   e.stopPropagation()
-                  updateSubTasks(subTasks)
                   viewTask(task)
                   setSelectTask(!selectTask)
                   document

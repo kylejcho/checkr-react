@@ -8,7 +8,6 @@ function SubGroup({
    updateSubTasks,
    contentType,
    type,
-   updateTasks,
    removeTask,
    viewTask,
 }) {
@@ -53,7 +52,6 @@ function SubGroup({
                           updateSubTasks={updateSubTasks}
                           viewTask={viewTask}
                           removeTask={removeTask}
-                          updateTasks={updateTasks}
                        />
                     )
                  })
@@ -66,7 +64,6 @@ function SubGroup({
                           updateSubTasks={updateSubTasks}
                           viewTask={viewTask}
                           removeTask={removeTask}
-                          updateTasks={updateTasks}
                        />
                     )
                  })}

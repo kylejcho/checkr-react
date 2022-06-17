@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react'
+import React, {
+   useState,
+   useEffect,
+   useCallback,
+   useRef,
+   useTransition,
+} from 'react'
 import SubGroup from '../SubGroup'
 import { LayoutGroup, motion, AnimatePresence } from 'framer-motion'
 import {
@@ -26,6 +32,7 @@ export default function TasksContainer({
    updateUniqueLists,
 }) {
    const { name } = UserAuth()
+   const [isPending, startTransition] = useTransition()
 
    useEffect(() => {
       const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -45,15 +52,21 @@ export default function TasksContainer({
    const [upcomingTasks, setUpcomingTasks] = useState([])
 
    const updateTodayTasks = useCallback((subTasks) => {
-      setTodayTasks(subTasks)
+      startTransition(() => {
+         setTodayTasks(subTasks)
+      })
    }, [])
 
    const updateTomorrowTasks = useCallback((subTasks) => {
-      setTomorrowTasks(subTasks)
+      startTransition(() => {
+         setTomorrowTasks(subTasks)
+      })
    }, [])
 
    const updateUpcomingTasks = useCallback((subTasks) => {
-      setUpcomingTasks(subTasks)
+      startTransition(() => {
+         setUpcomingTasks(subTasks)
+      })
    }, [])
 
    useEffect(() => {

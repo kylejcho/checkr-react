@@ -31,6 +31,7 @@ export default function Content({
          <Navbar
             tasks={tasks}
             addTask={addTask}
+            addedTask={addedTask}
             uniqueLists={uniqueLists}
             addUniqueList={addUniqueList}
          />

@@ -28,7 +28,7 @@ function Sidebar({ changeContent, contentType, uniqueLists, deleteList }) {
                      strokeLinecap: 'round',
                      strokeLinejoin: 'round',
                      strokeWidth: '32px',
-                     stroke: contentType === 'home' && '#3880ff',
+                     stroke: contentType === 'home' ? '#3880ff' : '#697384',
                   }}
                >
                   <title>ionicons-v5-i</title>
@@ -153,8 +153,8 @@ function Sidebar({ changeContent, contentType, uniqueLists, deleteList }) {
                      stroke='#697384'
                      fill='#697384'
                      style={{
-                        stroke: contentType === 'week' && '#3880ff',
-                        fill: contentType === 'week' && '#3880ff',
+                        stroke: contentType === 'week' ? '#3880ff' : '#697384',
+                        fill: contentType === 'week' ? '#3880ff' : '#697384',
                      }}
                   >
                      <rect

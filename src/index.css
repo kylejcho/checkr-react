@@ -17,7 +17,7 @@
 :root {
    --s: rgba(74, 78, 83, 0);
    --text1: rgb(39, 42, 47);
-   --text2: rgb(105, 115, 132);
+   --text2: #697384;
    --text3: rgb(151, 159, 172);
    --bkg1: rgb(245, 245, 248);
    --bkg2: #eeeef5;
@@ -159,21 +159,20 @@ nav {
    height: 70%;
    border-radius: 5px;
    margin-right: 10px;
-
-   transition: background-color ease 0.4s;
+   transition: background-color ease 0.4s, box-shadow ease 0.4s;
 }
 
 #searchContainer.selected {
-   background-color: var(--bkg2);
-   box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.13);
+   background-color: var(--bkg4);
+   box-shadow: 0px 1px 8px 0px var(--shadow1);
 }
 
-#searchContainer.selected ion-icon {
-   color: var(--blue1);
+#searchContainer svg {
+   transition: stroke ease 0.4s;
 }
 
-#searchContainer.selected #searchBar {
-   background-color: var(--bkg2);
+#searchContainer.selected #searchIcon {
+   stroke: var(--blue1);
 }
 
 #searchItemsContainer {
@@ -186,7 +185,7 @@ nav {
    width: clamp(18px, 3vh, 25px);
    aspect-ratio: 1/1;
    stroke: var(--text2);
-   margin-left: 5px;
+   margin-left: 10px;
 }
 
 #searchBar {
@@ -198,15 +197,12 @@ nav {
    height: 100%;
    outline-width: 0;
    color: var(--text1);
-   background-color: var(--search);
+   background-color: #ffffff00;
    transition: background-color ease 0.4s;
 }
 
 #searchBar::placeholder {
    color: var(--text3);
-}
-
-#searchResultsBackgroundContainer {
 }
 
 #searchResultsContainer {
@@ -220,7 +216,7 @@ nav {
    box-shadow: 0px 2px 6px 0px var(--shadow2);
    border-radius: 5px;
    border: 1.5px solid var(--border1);
-   background-color: var(--bkg2);
+   background-color: var(--bkg4);
    transition: all 0.2s ease-in-out;
    z-index: 2;
    overflow-y: auto;
@@ -258,10 +254,10 @@ nav {
    cursor: pointer;
    color: var(--text1);
    background-color: var(--bkg2);
-   padding: 5px 32px;
+   padding: 5px 36px;
    width: 100%;
    border-radius: 4px;
-   transition: 0.2s ease-in-out;
+   transition: 0.3s ease;
 }
 
 .searchResultItem:hover {
@@ -312,7 +308,7 @@ nav {
    border-radius: 5px;
    height: 70%;
    aspect-ratio: 1/1;
-   transition: background-color ease 0.4s;
+   transition: background-color ease 0.4s, border ease 0.4s;
    border: 1.5px solid var(--border1);
 }
 #addButtonContainer svg {
@@ -364,7 +360,7 @@ nav {
    border: 1.5px solid var(--border1);
    height: 70%;
    aspect-ratio: 1/1;
-   transition: background-color ease 0.4s;
+   transition: background-color ease 0.4s, border ease 0.4s;
    margin-right: 10px;
 }
 
@@ -460,7 +456,7 @@ nav {
    height: 100vh;
    width: 88vw;
    display: flex;
-   overflow-y: scroll;
+   overflow-y: auto;
    overflow-x: hidden;
 }
 
@@ -494,6 +490,7 @@ nav {
 #sidebar svg {
    margin: 0 1rem 0 15px;
    stroke: var(--text2);
+   transition: stroke ease 0.4s, fill ease 0.4s;
 }
 
 #sidebarHome {
