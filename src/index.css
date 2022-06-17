@@ -157,7 +157,6 @@ nav {
    position: relative;
    background-color: var(--search);
    height: 70%;
-   padding-left: 10px;
    border-radius: 5px;
    margin-right: 10px;
 
@@ -187,6 +186,7 @@ nav {
    width: clamp(18px, 3vh, 25px);
    aspect-ratio: 1/1;
    stroke: var(--text2);
+   margin-left: 5px;
 }
 
 #searchBar {
@@ -206,20 +206,24 @@ nav {
    color: var(--text3);
 }
 
+#searchResultsBackgroundContainer {
+}
+
 #searchResultsContainer {
    position: absolute;
    height: max-content;
    max-height: 300px;
-   width: calc(100% - 2px);
+   min-height: 30px;
+   width: 100%;
    margin-top: 5px;
    font-weight: 400;
-   box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.17);
+   box-shadow: 0px 2px 6px 0px var(--shadow2);
    border-radius: 5px;
-   background-color: white;
-   transform: translateX(-10px);
+   border: 1.5px solid var(--border1);
+   background-color: var(--bkg2);
    transition: all 0.2s ease-in-out;
    z-index: 2;
-   overflow-y: scroll;
+   overflow-y: auto;
 }
 
 #searchResultsContainer::-webkit-scrollbar {
@@ -239,22 +243,29 @@ nav {
    opacity: 0;
 }
 
+#noResults {
+   position: absolute;
+   display: flex;
+   align-items: center;
+   height: 100%;
+   padding-left: 30px;
+   font-size: 0.8rem;
+   color: var(--text2);
+}
+
 .searchResultItem {
    position: relative;
    cursor: pointer;
+   color: var(--text1);
+   background-color: var(--bkg2);
    padding: 5px 32px;
-   border: 1.5px solid white;
-   border-radius: 5px;
+   width: 100%;
+   border-radius: 4px;
    transition: 0.2s ease-in-out;
 }
 
-.searchResultItem .hidden {
-   pointer-events: none;
-   opacity: 0;
-}
-
 .searchResultItem:hover {
-   background-color: #eff2fa;
+   background-color: var(--bkg3);
 }
 
 .searchResultItem:hover .searchResultArrow {
@@ -264,6 +275,7 @@ nav {
 .searchResultCircle {
    pointer-events: none;
    position: absolute;
+   stroke: var(--circle);
    left: 10px;
    top: 50%;
    transform: translateY(-75%);

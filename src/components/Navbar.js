@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Form from './Form/Form'
 import DarkModeButton from './DarkModeButton'
@@ -9,10 +9,41 @@ import { ReactComponent as Logout } from '../icons/logout.svg'
 import { ReactComponent as SearchIcon } from '../icons/search-outline.svg'
 import { UserAuth } from '../contexts/AuthContext'
 import { useNavigate } from 'react-router-dom'
+import SearchResultItem from './SearchResultItem'
 
 function Navbar({ tasks, addTask, uniqueLists }) {
    const [formOpen, setFormOpen] = useState(false)
    const [profileOpen, setProfileOpen] = useState(false)
+   const [searchValue, setSearchValue] = useState('')
+
+   const searchResultsContainer = useRef()
+   const searchContainer = useRef()
+   const searchInput = useRef()
+
+   function useOutsideDetection() {
+      useEffect(() => {
+         //Alert if clicked on outside of element
+         function handleClickOutside(event) {
+            if (searchResultsContainer.current) {
+               if (
+                  !searchResultsContainer.current.contains(event.target) &&
+                  !searchContainer.current.contains(event.target)
+               ) {
+                  setSearchValue('')
+                  searchInput.current.value = ''
+               }
+            }
+         }
+         // Bind the event listener
+         document.addEventListener('mousedown', handleClickOutside)
+         return () => {
+            // Unbind the event listener on clean up
+            document.removeEventListener('mousedown', handleClickOutside)
+         }
+      }, [searchResultsContainer, searchContainer])
+   }
+
+   useOutsideDetection(searchResultsContainer)
 
    const pathVariants = {
       initial: {
@@ -49,16 +80,44 @@ function Navbar({ tasks, addTask, uniqueLists }) {
             <p>checkr.</p>
          </div>
          <div id='searchAddContainer'>
-            <div id='searchContainer'>
+            <div id='searchContainer' ref={searchContainer}>
                <div id='searchItemsContainer'>
                   <SearchIcon id='searchIcon' />
                   <input
                      id='searchBar'
                      type='text'
                      placeholder='Search tasks...'
+                     onChange={(e) => {
+                        setSearchValue(e.target.value)
+                     }}
+                     ref={searchInput}
                   ></input>
                </div>
-               <div id='searchResultsContainer' className='hidden'></div>
+               {searchValue && (
+                  <div
+                     id='searchResultsBackgroundContainer'
+                     ref={searchResultsContainer}
+                  >
+                     <div id='searchResultsContainer'>
+                        <div id='noResults'>{`No Results for '${searchValue}'`}</div>
+                        {tasks.map((task) => {
+                           if (
+                              task.name
+                                 .toLowerCase()
+                                 .includes(searchValue.toLowerCase())
+                           ) {
+                              return (
+                                 <SearchResultItem
+                                    name={task.name}
+                                    key={`search${task.id}`}
+                                    description={task.description}
+                                 />
+                              )
+                           }
+                        })}
+                     </div>
+                  </div>
+               )}
             </div>
             <motion.div
                id='addButtonContainer'
