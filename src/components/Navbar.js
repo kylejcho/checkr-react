@@ -11,7 +11,7 @@ import { UserAuth } from '../contexts/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import SearchResultItem from './SearchResultItem'
 
-function Navbar({ tasks, addTask, uniqueLists }) {
+function Navbar({ tasks, addTask, uniqueLists, changeContent, viewTask }) {
    const [formOpen, setFormOpen] = useState(false)
    const [profileOpen, setProfileOpen] = useState(false)
    const [searchValue, setSearchValue] = useState('')
@@ -25,10 +25,30 @@ function Navbar({ tasks, addTask, uniqueLists }) {
          //Alert if clicked on outside of element
          function handleClickOutside(event) {
             if (searchResultsContainer.current) {
-               if (
-                  !searchResultsContainer.current.contains(event.target) &&
-                  !searchContainer.current.contains(event.target)
-               ) {
+               if (searchResultsContainer.current.contains(event.target)) {
+                  const taskId = event.target.id.slice(6)
+                  console.log(taskId)
+                  changeContent('all')
+                  const a = tasks.filter((task) => {
+                     if (task.id === taskId) {
+                        return task
+                     }
+                  })
+                  console.log(...a)
+                  setTimeout(() => {
+                     document
+                        .querySelectorAll('.taskContainer')
+                        .forEach((taskContainer) =>
+                           taskContainer.classList.remove('viewing')
+                        )
+                     document
+                        .querySelector(`#${taskId}`)
+                        .classList.add('viewing')
+                     viewTask(...a)
+                  }, 600)
+                  setSearchValue('')
+                  searchInput.current.value = ''
+               } else if (!searchContainer.current.contains(event.target)) {
                   setSearchValue('')
                   searchInput.current.value = ''
                }
@@ -107,6 +127,7 @@ function Navbar({ tasks, addTask, uniqueLists }) {
                      <div id='searchResultsContainer'>
                         <div id='noResults'>{`No Results for '${searchValue}'`}</div>
                         {tasks.map((task) => {
+                           console.log(task)
                            if (
                               task.name
                                  .toLowerCase()
@@ -116,7 +137,9 @@ function Navbar({ tasks, addTask, uniqueLists }) {
                                  <SearchResultItem
                                     name={task.name}
                                     key={`search${task.id}`}
+                                    task={task}
                                     description={task.description}
+                                    changeContent={changeContent}
                                  />
                               )
                            }

@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import TaskView from './Task/TaskView'
 
 export default function Content({
+   changeContent,
    contentType,
    tasks,
    uniqueLists,
@@ -34,6 +35,8 @@ export default function Content({
             addedTask={addedTask}
             uniqueLists={uniqueLists}
             addUniqueList={addUniqueList}
+            changeContent={changeContent}
+            viewTask={viewTask}
          />
          <motion.div
             layoutScroll

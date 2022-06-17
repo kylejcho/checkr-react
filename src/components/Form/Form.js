@@ -45,7 +45,7 @@ export default function Form({ tasks, handleClose, addTask, uniqueLists }) {
          dueDate: dateSelection,
          list: listSelection,
          complete: false,
-         id: uuid,
+         id: `t${uuid}`,
       }
 
       console.log(task)

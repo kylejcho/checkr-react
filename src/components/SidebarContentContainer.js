@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState, useCallback, useTransition } from 'react'
 import Sidebar from './Sidebar'
 import Content from './Content'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -17,6 +17,7 @@ import { onAuthStateChanged } from 'firebase/auth'
 export default function SidebarContentContainer() {
    //Master list of users tasks and is updated whenever an update needs to be sent to FireStore database
    const [tasks, setTasks] = useState(null)
+   const [isPending, startTransition] = useTransition()
 
    const [uniqueLists, setUniqueLists] = useState([])
 
@@ -52,6 +53,7 @@ export default function SidebarContentContainer() {
 
    useEffect(() => {
       if (tasks) {
+         console.log(tasks)
          updateUniqueLists()
       }
    }, [tasks, updateUniqueLists])
@@ -204,6 +206,7 @@ export default function SidebarContentContainer() {
                   contentType={contentType}
                />
                <Content
+                  changeContent={changeContent}
                   contentType={contentType}
                   tasks={tasks}
                   uniqueLists={uniqueLists}

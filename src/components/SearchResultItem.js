@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function SearchResultItem({ name, description }) {
+export default function SearchResultItem({ task, name, description }) {
    return (
-      <div className='searchResultItem' id='search4'>
+      <div className='searchResultItem' id={'search' + task.id}>
          <div className='searchResultCircle'>
             <svg
                xmlns='http://www.w3.org/2000/svg'
