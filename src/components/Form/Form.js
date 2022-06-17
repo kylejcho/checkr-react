@@ -95,11 +95,13 @@ export default function Form({ tasks, handleClose, addTask, uniqueLists }) {
                id='inputTaskName'
                type='text'
                placeholder='I want to...'
+               autoComplete='none'
                required=''
             ></input>
             <textarea
                ref={descRef}
                id='inputTaskDescription'
+               autoComplete='none'
                name='description'
                rows='2'
                placeholder='Description...'
