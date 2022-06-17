@@ -1,9 +1,14 @@
 import React, { useRef } from 'react'
 import getDate from 'date-fns/getDate'
 
-function Sidebar({ tasks, changeContent, contentType, uniqueLists }) {
+function Sidebar({ changeContent, contentType, uniqueLists, deleteList }) {
    const sidebar = useRef(null)
+   const listContainer = useRef()
 
+   function handleDelete(list, e) {
+      deleteList(list)
+      e.target.parentNode.parentNode.remove()
+   }
    return (
       <>
          <div id='sidebar' ref={sidebar}>
@@ -325,10 +330,12 @@ function Sidebar({ tasks, changeContent, contentType, uniqueLists }) {
                         >
                            <div className='dot'></div>
                            <p>{list}</p>
+                           {/*
                            <div
                               className='deleteContainer'
                               onClick={(e) => {
                                  e.stopPropagation()
+                                 handleDelete(list, e)
                               }}
                            >
                               <svg
@@ -361,7 +368,7 @@ function Sidebar({ tasks, changeContent, contentType, uniqueLists }) {
                                     }}
                                  />
                               </svg>
-                           </div>
+                           </div>*/}
                         </div>
                      )
                   }

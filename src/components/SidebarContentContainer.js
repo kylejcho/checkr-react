@@ -3,7 +3,14 @@ import Sidebar from './Sidebar'
 import Content from './Content'
 import { motion, AnimatePresence } from 'framer-motion'
 import { auth } from '../firebase'
-import { collection, getDocs } from 'firebase/firestore'
+import {
+   collection,
+   getDocs,
+   updateDoc,
+   doc,
+   update,
+   setDoc,
+} from 'firebase/firestore'
 import { db } from '../firebase'
 import { onAuthStateChanged } from 'firebase/auth'
 
@@ -22,6 +29,26 @@ export default function SidebarContentContainer() {
    const updateUniqueLists = useCallback(() => {
       setUniqueLists([...new Set(tasks.map((task) => task.list))])
    }, [tasks])
+
+   const deleteList = (list) => {
+      let a = []
+      if (tasks) {
+         console.log(tasks)
+         a = tasks.map((task) => {
+            if (task.list === list) {
+               task.list = null
+               updateUserData(task)
+               console.log('hi')
+            }
+            return task
+         })
+      }
+   }
+
+   const updateUserData = async (task) => {
+      console.log(task)
+      await setDoc(doc(db, `${auth.currentUser.uid}`, `${task.id}`), task)
+   }
 
    useEffect(() => {
       if (tasks) {
@@ -172,6 +199,7 @@ export default function SidebarContentContainer() {
                <Sidebar
                   tasks={tasks}
                   uniqueLists={uniqueLists}
+                  deleteList={deleteList}
                   changeContent={changeContent}
                   contentType={contentType}
                />
