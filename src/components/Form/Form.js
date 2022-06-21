@@ -8,7 +8,7 @@ import { db } from '../../firebase'
 import { doc, setDoc } from 'firebase/firestore'
 import { auth } from '../../firebase'
 
-export default function Form({ tasks, handleClose, addDataTask, uniqueLists }) {
+export default function Form({ tasks, handleClose, addDataTask }) {
    const nameRef = useRef()
    const descRef = useRef()
    const todayInput = useRef()
@@ -21,6 +21,11 @@ export default function Form({ tasks, handleClose, addDataTask, uniqueLists }) {
    const [markCalendarInput, setMarkCalendarInput] = useState(false)
    const [openList, setOpenList] = useState(false)
    const [listSelection, setListSelection] = useState(null)
+   const [uniqueLists, setUniqueLists] = useState([])
+
+   useEffect(() => {
+      setUniqueLists(tasks.map((task) => task.list))
+   }, [tasks])
 
    function createList(list) {
       setListSelection(list)

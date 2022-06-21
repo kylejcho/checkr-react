@@ -20,10 +20,6 @@ export default function SidebarContentContainer() {
    //State is set to current content path
    const [contentType, setContentType] = useState('home')
 
-   useEffect(() => {
-      setUniqueLists([...new Set(tasks.map((task) => task.list))])
-   }, [tasks])
-
    const updateUserData = async (task) => {
       console.log(task)
       await setDoc(doc(db, `${auth.currentUser.uid}`, `${task.id}`), task)
@@ -42,8 +38,11 @@ export default function SidebarContentContainer() {
    }, [])
 
    const addTask = (task) => {
-      setTasks([task, ...tasks])
+      setTasks((prevTasks) => [task, ...prevTasks])
    }
+   useEffect(() => {
+      console.log(tasks)
+   }, [tasks])
 
    const deleteTask = (task) => {
       setTasks(tasks.filter((prevTask) => prevTask.id !== task.id))

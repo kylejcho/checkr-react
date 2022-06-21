@@ -1,13 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react'
 import getDate from 'date-fns/getDate'
 
-function Sidebar({ changeContent, contentType, tasks, uniqueLists }) {
+function Sidebar({ changeContent, contentType, tasks }) {
    const sidebar = useRef(null)
    const listContainer = useRef()
 
    function handleDelete(list, e) {
       e.target.parentNode.parentNode.remove()
    }
+   const [uniqueLists, setUniqueLists] = useState([])
+
+   useEffect(() => {
+      setUniqueLists(tasks.map((task) => task.list))
+   }, [tasks])
 
    return (
       <>
