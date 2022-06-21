@@ -9,6 +9,7 @@ function SubGroup({
    contentType,
    type,
    removeTask,
+   deleteTask,
    viewTask,
 }) {
    const firstRender = useRef(true)
@@ -52,6 +53,7 @@ function SubGroup({
                           updateSubTasks={updateSubTasks}
                           viewTask={viewTask}
                           removeTask={removeTask}
+                          deleteTask={deleteTask}
                        />
                     )
                  })
@@ -64,6 +66,7 @@ function SubGroup({
                           updateSubTasks={updateSubTasks}
                           viewTask={viewTask}
                           removeTask={removeTask}
+                          deleteTask={deleteTask}
                        />
                     )
                  })}

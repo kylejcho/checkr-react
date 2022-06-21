@@ -5,7 +5,7 @@ import { RaisedShadow } from './RaisedShadow'
 import { auth, db } from '../../firebase'
 import CheckCircle from './CheckCircle'
 
-function Task({ task, subTasks, updateSubTasks, viewTask }) {
+function Task({ task, subTasks, updateSubTasks, viewTask, deleteTask }) {
    const [showTask, setShowTask] = useState(true)
    const [selectTask, setSelectTask] = useState(false)
    const [complete, setComplete] = useState(task.complete)
@@ -32,22 +32,18 @@ function Task({ task, subTasks, updateSubTasks, viewTask }) {
       setComplete(!complete)
    }, [complete])
 
-   const removeTask = useCallback(
-      (task) => {
-         deleteDoc(docRef)
-         updateSubTasks(subTasks.filter((item) => item.id !== task.id))
-      },
-      [subTasks, updateSubTasks, docRef]
-   )
+   const removeTask = useCallback(() => {
+      deleteDoc(docRef)
+      deleteTask(task)
+      updateSubTasks(subTasks.filter((item) => item.id !== task.id))
+   }, [subTasks, updateSubTasks, docRef])
 
    function handleDeleteClick() {
       if (taskContainer.current.className.includes('viewing')) {
          setTimeout(() => viewTask(null), 0)
       }
       setTimeout(() => setShowTask(false), 0)
-      setTimeout(() => {
-         removeTask(task)
-      }, 250)
+      setTimeout(() => removeTask(), 250)
    }
 
    const y = useMotionValue(0)

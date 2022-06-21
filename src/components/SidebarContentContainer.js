@@ -1,23 +1,16 @@
-import React, { useEffect, useState, useCallback, useTransition } from 'react'
+import React, { useEffect, useState, useCallback, useRef } from 'react'
 import Sidebar from './Sidebar'
 import Content from './Content'
 import { motion, AnimatePresence } from 'framer-motion'
 import { auth } from '../firebase'
-import {
-   collection,
-   getDocs,
-   updateDoc,
-   doc,
-   update,
-   setDoc,
-} from 'firebase/firestore'
+import { collection, getDocs, doc, setDoc } from 'firebase/firestore'
 import { db } from '../firebase'
 import { onAuthStateChanged } from 'firebase/auth'
+import { setDate } from 'date-fns'
 
 export default function SidebarContentContainer() {
    //Master list of users tasks and is updated whenever an update needs to be sent to FireStore database
    const [tasks, setTasks] = useState(null)
-   const [isPending, startTransition] = useTransition()
 
    const [uniqueLists, setUniqueLists] = useState([])
 
@@ -27,39 +20,9 @@ export default function SidebarContentContainer() {
    //State is set to current content path
    const [contentType, setContentType] = useState('home')
 
-   const updateUniqueLists = useCallback(() => {
-      setUniqueLists([...new Set(tasks.map((task) => task.list))])
-   }, [tasks])
-
-   const deleteList = (list) => {
-      let a = []
-      if (tasks) {
-         console.log(tasks)
-         a = tasks.map((task) => {
-            if (task.list === list) {
-               task.list = null
-               updateUserData(task)
-               console.log('hi')
-            }
-            return task
-         })
-      }
-   }
-
    const updateUserData = async (task) => {
       console.log(task)
       await setDoc(doc(db, `${auth.currentUser.uid}`, `${task.id}`), task)
-   }
-
-   useEffect(() => {
-      if (tasks) {
-         console.log(tasks)
-         updateUniqueLists()
-      }
-   }, [tasks, updateUniqueLists])
-
-   const addUniqueList = (task) => {
-      setUniqueLists((prevUniqueLists) => [...prevUniqueLists, task.list])
    }
 
    const viewTask = useCallback((task) => {
@@ -74,20 +37,20 @@ export default function SidebarContentContainer() {
       setOpenTask(null)
    }, [])
 
-   //Subgroup changes are updated to the master 'tasks' list
-   //Prevents unecessary rerender to all task components whenever a layout change is made with a subgroup
-   const updateTasks = useCallback(
-      (subTasks) => {
-         const prevTasks = tasks.filter((task) => !subTasks.includes(task))
-         setTasks([...prevTasks, ...subTasks])
-      },
-      [tasks]
-   )
+   const addTask = (task) => {
+      setTasks([task, ...tasks])
+   }
+
+   const deleteTask = (task) => {
+      setTasks(tasks.filter((prevTask) => prevTask.id !== task.id))
+   }
+
+   const [dataArr, setDataArr] = useState()
+
+   const arr = []
 
    //On first mount, user's data collection is requested from Firebase
    const data = async () => {
-      const arr = []
-
       const querySnapshot = await getDocs(
          collection(db, `${auth.currentUser.uid}`)
       )
@@ -105,7 +68,7 @@ export default function SidebarContentContainer() {
          }
          arr.push(task)
       })
-
+      setDataArr([...arr])
       //'Tasks' state is set to be the new array of tasks.
       setTasks([...arr])
    }
@@ -113,10 +76,7 @@ export default function SidebarContentContainer() {
    //Only get data from firebase once user authentification state has changed
    useEffect(() => {
       const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-         if (currentUser)
-            setTimeout(() => {
-               data()
-            }, 200)
+         if (currentUser) setTimeout(() => data(), 200)
       })
       return unsubscribe()
    }, [])
@@ -128,7 +88,7 @@ export default function SidebarContentContainer() {
    return (
       <>
          <AnimatePresence exitBeforeEnter>
-            {!tasks && (
+            {!dataArr && (
                <motion.div
                   id='loadingScreen'
                   initial={{ opacity: 0 }}
@@ -196,23 +156,22 @@ export default function SidebarContentContainer() {
                </motion.div>
             )}
          </AnimatePresence>
-         {tasks && (
+         {dataArr && (
             <div id='sidebarContentContainer'>
                <Sidebar
-                  tasks={tasks}
                   uniqueLists={uniqueLists}
-                  deleteList={deleteList}
+                  tasks={tasks}
                   changeContent={changeContent}
                   contentType={contentType}
                />
                <Content
                   changeContent={changeContent}
                   contentType={contentType}
+                  dataArr={dataArr}
                   tasks={tasks}
+                  addTask={addTask}
+                  deleteTask={deleteTask}
                   uniqueLists={uniqueLists}
-                  updateUniqueLists={updateUniqueLists}
-                  addUniqueList={addUniqueList}
-                  updateTasks={updateTasks}
                   openTask={openTask}
                   viewTask={viewTask}
                />

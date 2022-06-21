@@ -8,7 +8,7 @@ import { db } from '../../firebase'
 import { doc, setDoc } from 'firebase/firestore'
 import { auth } from '../../firebase'
 
-export default function Form({ tasks, handleClose, addTask, uniqueLists }) {
+export default function Form({ tasks, handleClose, addDataTask, uniqueLists }) {
    const nameRef = useRef()
    const descRef = useRef()
    const todayInput = useRef()
@@ -45,12 +45,12 @@ export default function Form({ tasks, handleClose, addTask, uniqueLists }) {
          dueDate: dateSelection,
          list: listSelection,
          complete: false,
-         id: `t${uuid}`,
+         id: `${uuid}`,
       }
 
       console.log(task)
       writeUserData(task)
-      addTask(task)
+      addDataTask(task)
       handleClose()
    }
 

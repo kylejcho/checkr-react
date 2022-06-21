@@ -11,7 +11,14 @@ import { UserAuth } from '../contexts/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import SearchResultItem from './SearchResultItem'
 
-function Navbar({ tasks, addTask, uniqueLists, changeContent, viewTask }) {
+function Navbar({
+   tasks,
+   uniqueLists,
+   addDataTask,
+   changeContent,
+   contentType,
+   viewTask,
+}) {
    const [formOpen, setFormOpen] = useState(false)
    const [profileOpen, setProfileOpen] = useState(false)
    const [searchValue, setSearchValue] = useState('')
@@ -20,38 +27,16 @@ function Navbar({ tasks, addTask, uniqueLists, changeContent, viewTask }) {
    const searchContainer = useRef()
    const searchInput = useRef()
 
+   //Unfocus from searchbar if outside is clicked
    function useOutsideDetection() {
       useEffect(() => {
-         //Alert if clicked on outside of element
-         function handleClickOutside(event) {
+         const handleClickOutside = (e) => {
             if (searchResultsContainer.current) {
-               if (searchResultsContainer.current.contains(event.target)) {
-                  const taskId = event.target.id.slice(6)
-                  console.log(taskId)
-                  changeContent('all')
-                  const a = tasks.filter((task) => {
-                     if (task.id === taskId) {
-                        return task
-                     }
-                  })
-                  console.log(...a)
-                  setTimeout(() => {
-                     document
-                        .querySelectorAll('.taskContainer')
-                        .forEach((taskContainer) =>
-                           taskContainer.classList.remove('viewing')
-                        )
-                     document
-                        .querySelector(`#${taskId}`)
-                        .classList.add('viewing')
-                     viewTask(...a)
-                  }, 600)
-                  setSearchValue('')
-                  searchInput.current.value = ''
-               } else if (!searchContainer.current.contains(event.target)) {
-                  setSearchValue('')
-                  searchInput.current.value = ''
+               if (searchResultsContainer.current.contains(e.target)) {
+                  result(e)
                }
+               setSearchValue('')
+               searchInput.current.value = ''
             }
          }
          // Bind the event listener
@@ -64,6 +49,22 @@ function Navbar({ tasks, addTask, uniqueLists, changeContent, viewTask }) {
    }
 
    useOutsideDetection(searchResultsContainer)
+
+   function result(e) {
+      const taskId = e.target.id.slice(6)
+      const resultTask = tasks.filter((task) => {
+         if (task.id === taskId) {
+            return task
+         }
+      })
+      changeContent('all')
+
+      if (contentType !== 'all') viewTask(...resultTask)
+      document.querySelectorAll('.taskContainer').forEach((taskContainer) => {
+         taskContainer.classList.remove('viewing')
+      })
+      document.querySelector(`#${taskId}`).classList.add('viewing')
+   }
 
    const pathVariants = {
       initial: {
@@ -288,7 +289,7 @@ function Navbar({ tasks, addTask, uniqueLists, changeContent, viewTask }) {
             {formOpen && (
                <Form
                   tasks={tasks}
-                  addTask={addTask}
+                  addDataTask={addDataTask}
                   uniqueLists={uniqueLists}
                   handleClose={() => setFormOpen(false)}
                />

@@ -35,7 +35,7 @@ export default function InputListOptions({
                   id='createListButton'
                   onClick={() => createList(searchValue)}
                >
-                  Create "{searchValue}"
+                  {searchValue !== '' && `Create "${searchValue}"`}
                </div>
                {uniqueLists.map((list) => {
                   if (list && list.toLowerCase().includes(searchValue)) {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import Navbar from './Navbar'
 import TasksContainer from './Task/TasksContainer'
 import { motion } from 'framer-motion'
@@ -7,12 +7,14 @@ import TaskView from './Task/TaskView'
 export default function Content({
    changeContent,
    contentType,
+   dataArr,
    tasks,
+   addTask,
+   deleteTask,
    uniqueLists,
    updateUniqueLists,
    addUniqueList,
    checkTask,
-   updateTasks,
    removeTask,
    openTask,
    viewTask,
@@ -20,22 +22,21 @@ export default function Content({
    //Added task state is updated when new task is made by user
    const [addedTask, setAddedTask] = useState()
 
-   function addTask(task) {
-      if (task.list && !uniqueLists.includes(task.list)) {
-         addUniqueList(task)
-      }
+   const addDataTask = useCallback((task) => {
+      addTask(task)
       setAddedTask(task)
-   }
+   }, [])
 
    return (
       <>
          <Navbar
             tasks={tasks}
-            addTask={addTask}
+            addDataTask={addDataTask}
             addedTask={addedTask}
             uniqueLists={uniqueLists}
             addUniqueList={addUniqueList}
             changeContent={changeContent}
+            contentType={contentType}
             viewTask={viewTask}
          />
          <motion.div
@@ -52,10 +53,10 @@ export default function Content({
          >
             <TasksContainer
                contentType={contentType}
-               tasks={tasks}
+               dataArr={dataArr}
                addedTask={addedTask}
                checkTask={checkTask}
-               updateTasks={updateTasks}
+               deleteTask={deleteTask}
                removeTask={removeTask}
                viewTask={viewTask}
                openTask={openTask}

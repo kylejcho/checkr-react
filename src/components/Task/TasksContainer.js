@@ -21,15 +21,14 @@ import { updateProfile, onAuthStateChanged } from 'firebase/auth'
 
 export default function TasksContainer({
    contentType,
-   tasks,
+   dataArr,
    addedTask,
-   updateTasks,
    removeTask,
+   deleteTask,
    checkTask,
    viewTask,
    openTask,
    openTaskView,
-   updateUniqueLists,
 }) {
    const { name } = UserAuth()
    const [isPending, startTransition] = useTransition()
@@ -70,14 +69,14 @@ export default function TasksContainer({
    }, [])
 
    useEffect(() => {
-      setTodayTasks(tasks.filter((task) => isToday(task.dueDate)))
-      setTomorrowTasks(tasks.filter((task) => isTomorrow(task.dueDate)))
+      setTodayTasks(dataArr.filter((task) => isToday(task.dueDate)))
+      setTomorrowTasks(dataArr.filter((task) => isTomorrow(task.dueDate)))
       setUpcomingTasks(
-         tasks.filter((task) =>
+         dataArr.filter((task) =>
             isAfter(task.dueDate, addDays(endOfDay(new Date()), 1))
          )
       )
-   }, [tasks])
+   }, [dataArr])
 
    useEffect(() => {
       if (addedTask && isToday(addedTask.dueDate)) {
@@ -113,8 +112,8 @@ export default function TasksContainer({
          subTasks={todayTasks}
          contentType={contentType}
          updateSubTasks={updateTodayTasks}
-         updateTasks={updateTasks}
          removeTask={removeTask}
+         deleteTask={deleteTask}
          checkTask={checkTask}
          viewTask={viewTask}
          openTaskView={openTaskView}
@@ -135,8 +134,8 @@ export default function TasksContainer({
                subTasks={todayTasks}
                contentType={contentType}
                updateSubTasks={updateTodayTasks}
-               updateTasks={updateTasks}
                removeTask={removeTask}
+               deleteTask={deleteTask}
                checkTask={checkTask}
                viewTask={viewTask}
                openTaskView={openTaskView}
@@ -153,8 +152,8 @@ export default function TasksContainer({
                subTasks={tomorrowTasks}
                contentType={contentType}
                updateSubTasks={updateTomorrowTasks}
-               updateTasks={updateTasks}
                removeTask={removeTask}
+               deleteTask={deleteTask}
                checkTask={checkTask}
                viewTask={viewTask}
                openTaskView={openTaskView}
@@ -171,8 +170,8 @@ export default function TasksContainer({
                subTasks={upcomingTasks}
                contentType={contentType}
                updateSubTasks={updateUpcomingTasks}
-               updateTasks={updateTasks}
                removeTask={removeTask}
+               deleteTask={deleteTask}
                checkTask={checkTask}
                viewTask={viewTask}
                openTaskView={openTaskView}
