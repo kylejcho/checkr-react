@@ -45,7 +45,7 @@ function Navbar({
             // Unbind the event listener on clean up
             document.removeEventListener('mousedown', handleClickOutside)
          }
-      }, [searchResultsContainer, searchContainer])
+      }, [searchResultsContainer, searchContainer, tasks])
    }
 
    useOutsideDetection(searchResultsContainer)
@@ -53,13 +53,14 @@ function Navbar({
    function result(e) {
       const taskId = e.target.id.slice(6)
       const resultTask = tasks.filter((task) => {
+         console.log(task.id)
+         console.log(taskId)
          if (task.id === taskId) {
             return task
          }
       })
       changeContent('all')
-
-      if (contentType !== 'all') viewTask(...resultTask)
+      viewTask(...resultTask)
       document.querySelectorAll('.taskContainer').forEach((taskContainer) => {
          taskContainer.classList.remove('viewing')
       })
@@ -128,7 +129,6 @@ function Navbar({
                      <div id='searchResultsContainer'>
                         <div id='noResults'>{`No Results for '${searchValue}'`}</div>
                         {tasks.map((task) => {
-                           console.log(task)
                            if (
                               task.name
                                  .toLowerCase()

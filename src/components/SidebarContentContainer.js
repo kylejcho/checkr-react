@@ -41,13 +41,15 @@ export default function SidebarContentContainer() {
       setTasks([task, ...tasks])
    }
 
+   useEffect(() => {
+      console.log(tasks)
+   }, [tasks])
+
    const deleteTask = (task) => {
       setTasks(tasks.filter((prevTask) => prevTask.id !== task.id))
    }
 
    const [dataArr, setDataArr] = useState()
-
-   const arr = []
 
    //On first mount, user's data collection is requested from Firebase
    const data = async () => {
@@ -57,6 +59,7 @@ export default function SidebarContentContainer() {
 
       //Tasks in JSON data will be turned into JS task objects
       //Pushed into a new array
+      const arr = []
       querySnapshot.forEach((doc) => {
          const task = {
             name: doc.data().name,
@@ -68,8 +71,8 @@ export default function SidebarContentContainer() {
          }
          arr.push(task)
       })
-      setDataArr([...arr])
       //'Tasks' state is set to be the new array of tasks.
+      setDataArr([...arr])
       setTasks([...arr])
    }
 
