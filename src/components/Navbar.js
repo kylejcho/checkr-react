@@ -59,8 +59,20 @@ function Navbar({
             return task
          }
       })
-      if (contentType !== 'all') {
+      if (contentType !== 'all' && contentType !== 'home') {
          await changeContent('all')
+         setTimeout(() => {
+            setTimeout(() => {
+               viewTask(...resultTask)
+            }, 200)
+            document
+               .querySelectorAll('.taskContainer')
+               .forEach((taskContainer) => {
+                  taskContainer.classList.remove('viewing')
+               })
+            document.querySelector(`#${taskId}`).classList.add('viewing')
+         }, 300)
+      } else {
          setTimeout(() => {
             viewTask(...resultTask)
             document
@@ -69,15 +81,7 @@ function Navbar({
                   taskContainer.classList.remove('viewing')
                })
             document.querySelector(`#${taskId}`).classList.add('viewing')
-         }, 500)
-      } else {
-         viewTask(...resultTask)
-         document
-            .querySelectorAll('.taskContainer')
-            .forEach((taskContainer) => {
-               taskContainer.classList.remove('viewing')
-            })
-         document.querySelector(`#${taskId}`).classList.add('viewing')
+         }, 150)
       }
    }
 
