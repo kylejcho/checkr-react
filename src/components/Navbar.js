@@ -45,12 +45,12 @@ function Navbar({
             // Unbind the event listener on clean up
             document.removeEventListener('mousedown', handleClickOutside)
          }
-      }, [searchResultsContainer, searchContainer, tasks])
+      }, [searchResultsContainer, searchContainer, tasks, contentType])
    }
 
    useOutsideDetection(searchResultsContainer)
 
-   function result(e) {
+   const result = async (e) => {
       const taskId = e.target.id.slice(6)
       const resultTask = tasks.filter((task) => {
          console.log(task.id)
@@ -59,12 +59,26 @@ function Navbar({
             return task
          }
       })
-      changeContent('all')
-      viewTask(...resultTask)
-      document.querySelectorAll('.taskContainer').forEach((taskContainer) => {
-         taskContainer.classList.remove('viewing')
-      })
-      document.querySelector(`#${taskId}`).classList.add('viewing')
+      if (contentType !== 'all') {
+         await changeContent('all')
+         setTimeout(() => {
+            viewTask(...resultTask)
+            document
+               .querySelectorAll('.taskContainer')
+               .forEach((taskContainer) => {
+                  taskContainer.classList.remove('viewing')
+               })
+            document.querySelector(`#${taskId}`).classList.add('viewing')
+         }, 500)
+      } else {
+         viewTask(...resultTask)
+         document
+            .querySelectorAll('.taskContainer')
+            .forEach((taskContainer) => {
+               taskContainer.classList.remove('viewing')
+            })
+         document.querySelector(`#${taskId}`).classList.add('viewing')
+      }
    }
 
    const pathVariants = {

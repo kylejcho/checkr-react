@@ -20,6 +20,10 @@ export default function SidebarContentContainer() {
    //State is set to current content path
    const [contentType, setContentType] = useState('home')
 
+   useEffect(() => {
+      console.log(contentType)
+   }, [contentType])
+
    const updateUserData = async (task) => {
       console.log(task)
       await setDoc(doc(db, `${auth.currentUser.uid}`, `${task.id}`), task)
