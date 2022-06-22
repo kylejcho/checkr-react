@@ -34,7 +34,10 @@ The problems I faced regarding performance forced me to really get a good grasp 
 This was also my first time working with a back-end service. It required some initial setup and referencing of the Firebase documentation but I certainly would love to incorporate it in future projects as well. It also gave me an oppurtunity to dip my toes into the world of back-end as a front-end dev. 
 
 ## To Do:
--Allow user's the ability to change their display name
--Allow user's the ability to delete their accounts
--Add "Forgot Password" functionality
--Add an "edit" functionality when opening up the task-view of a certain task. 
+- Allow user's the ability to change their display name
+
+- Allow user's the ability to delete their accounts
+
+- Add "Forgot Password" functionality
+
+- Add an "edit" functionality when opening up the task-view of a certain task. 
