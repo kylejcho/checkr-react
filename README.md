@@ -42,4 +42,6 @@ This was also my first time working with a back-end service. It required some in
 
 - Add "Forgot Password" functionality
 
+- Responsiveness for mobile screens
+
 - Add an "edit" functionality when opening up the task-view of a certain task. 
