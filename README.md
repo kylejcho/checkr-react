@@ -1,7 +1,7 @@
 # Checkr. (React)
 A task management web application. Users can login to the app and manage their tasks from their personal account with user authentication and realtime database storage/manipulation from Firebase. 
 
-**Live Demo:** http://kylejcho.github.io/checkr-react/
+**Live Demo:** http://kylejcho.github.io/checkr-react/  **User-email:** demo@demo.com **Password:** demo123
 
 ![alt tag](https://i.imgur.com/UmHjoEd.png)
 
@@ -36,4 +36,5 @@ This was also my first time working with a back-end service. It required some in
 ## To Do:
 -Allow user's the ability to change their display name
 -Allow user's the ability to delete their accounts
+-Add "Forgot Password" functionality
 -Add an "edit" functionality when opening up the task-view of a certain task. 
