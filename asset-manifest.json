@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/checkr-react/static/css/main.a62e7b4b.css",
-    "main.js": "/checkr-react/static/js/main.5cadaa0c.js",
+    "main.js": "/checkr-react/static/js/main.70b14eb6.js",
     "static/media/dayflow.svg": "/checkr-react/static/media/dayflow.dc2c90ec2edf2e9304e2d51b67f96b0b.svg",
     "static/media/settings.svg": "/checkr-react/static/media/settings.69ff9b5c947ab88a5a87e745be35bff3.svg",
     "index.html": "/checkr-react/index.html",
@@ -9,12 +9,11 @@
     "static/media/user.svg": "/checkr-react/static/media/user.66161f8fd1d9f2b11b7839f29aa434fd.svg",
     "static/media/search-outline.svg": "/checkr-react/static/media/search-outline.52ba342a4550aae81c249ac3f847f634.svg",
     "static/media/logout.svg": "/checkr-react/static/media/logout.316dd325ee26da2ef13734bd761092da.svg",
-    "static/media/caret-forward.svg": "/checkr-react/static/media/caret-forward.32657964a0b1f96a3bb73928d363d856.svg",
     "main.a62e7b4b.css.map": "/checkr-react/static/css/main.a62e7b4b.css.map",
-    "main.5cadaa0c.js.map": "/checkr-react/static/js/main.5cadaa0c.js.map"
+    "main.70b14eb6.js.map": "/checkr-react/static/js/main.70b14eb6.js.map"
   },
   "entrypoints": [
     "static/css/main.a62e7b4b.css",
-    "static/js/main.5cadaa0c.js"
+    "static/js/main.70b14eb6.js"
   ]
 }
