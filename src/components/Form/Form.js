@@ -61,7 +61,9 @@ export default function Form({ tasks, handleClose, addDataTask }) {
 
    const writeUserData = async (task) => {
       try {
-         await setDoc(doc(db, `${auth.currentUser.uid}`, `${task.id}`), task)
+         await setDoc(doc(db, `${auth.currentUser.uid}`, 'tasks'), {
+            tasks: [task, ...tasks],
+         })
       } catch (e) {
          console.error('Error adding document: ', e)
       }

@@ -22,6 +22,7 @@ import { updateProfile, onAuthStateChanged } from 'firebase/auth'
 export default function TasksContainer({
    contentType,
    dataArr,
+   updateTasks,
    addedTask,
    removeTask,
    deleteTask,
@@ -112,6 +113,7 @@ export default function TasksContainer({
          subTasks={todayTasks}
          contentType={contentType}
          updateSubTasks={updateTodayTasks}
+         updateTasks={updateTasks}
          removeTask={removeTask}
          deleteTask={deleteTask}
          checkTask={checkTask}
@@ -134,6 +136,7 @@ export default function TasksContainer({
                subTasks={todayTasks}
                contentType={contentType}
                updateSubTasks={updateTodayTasks}
+               updateTasks={updateTasks}
                removeTask={removeTask}
                deleteTask={deleteTask}
                checkTask={checkTask}
@@ -152,6 +155,7 @@ export default function TasksContainer({
                subTasks={tomorrowTasks}
                contentType={contentType}
                updateSubTasks={updateTomorrowTasks}
+               updateTasks={updateTasks}
                removeTask={removeTask}
                deleteTask={deleteTask}
                checkTask={checkTask}
@@ -170,6 +174,7 @@ export default function TasksContainer({
                subTasks={upcomingTasks}
                contentType={contentType}
                updateSubTasks={updateUpcomingTasks}
+               updateTasks={updateTasks}
                removeTask={removeTask}
                deleteTask={deleteTask}
                checkTask={checkTask}

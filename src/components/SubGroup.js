@@ -6,6 +6,7 @@ import { addDays, endOfDay, isBefore } from 'date-fns'
 function SubGroup({
    subTasks,
    updateSubTasks,
+   updateTasks,
    contentType,
    type,
    removeTask,
@@ -39,6 +40,12 @@ function SubGroup({
          setTasks(subTasks.filter((task) => task.list === contentType))
       }
    }, [contentType, subTasks])
+
+   useEffect(() => {
+      if (!firstRender.current) {
+         updateTasks(subTasks)
+      }
+   }, [subTasks])
 
    return (
       <div className='subGroup' id={type}>

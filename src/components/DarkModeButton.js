@@ -8,7 +8,7 @@ export default function DarkModeButton() {
       if (localStorage.getItem('theme') === 'dark') {
          setDark(true)
       }
-   })
+   }, [])
 
    function toggleDarkMode() {
       if (dark) {

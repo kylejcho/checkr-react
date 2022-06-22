@@ -45,7 +45,7 @@ function Navbar({
             // Unbind the event listener on clean up
             document.removeEventListener('mousedown', handleClickOutside)
          }
-      }, [searchResultsContainer, searchContainer, tasks, contentType])
+      })
    }
 
    useOutsideDetection(searchResultsContainer)
@@ -101,7 +101,7 @@ function Navbar({
       },
    }
 
-   const { user, logout } = UserAuth()
+   const { logout } = UserAuth()
    const navigate = useNavigate()
 
    const handleLogout = async () => {

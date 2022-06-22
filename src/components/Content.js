@@ -9,6 +9,7 @@ export default function Content({
    contentType,
    dataArr,
    tasks,
+   updateTasks,
    addTask,
    deleteTask,
    uniqueLists,
@@ -19,13 +20,16 @@ export default function Content({
    openTask,
    viewTask,
 }) {
-   //Added task state is updated when new task is made by user
+   //Added task s tate is updated when new task is made by user
    const [addedTask, setAddedTask] = useState()
 
-   const addDataTask = useCallback((task) => {
-      addTask(task)
-      setAddedTask(task)
-   }, [])
+   const addDataTask = useCallback(
+      (task) => {
+         addTask(task)
+         setAddedTask(task)
+      },
+      [addTask]
+   )
 
    return (
       <>
@@ -56,6 +60,7 @@ export default function Content({
                dataArr={dataArr}
                addedTask={addedTask}
                checkTask={checkTask}
+               updateTasks={updateTasks}
                deleteTask={deleteTask}
                removeTask={removeTask}
                viewTask={viewTask}

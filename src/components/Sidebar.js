@@ -3,15 +3,11 @@ import getDate from 'date-fns/getDate'
 
 function Sidebar({ changeContent, contentType, tasks }) {
    const sidebar = useRef(null)
-   const listContainer = useRef()
 
-   function handleDelete(list, e) {
-      e.target.parentNode.parentNode.remove()
-   }
    const [uniqueLists, setUniqueLists] = useState([])
 
    useEffect(() => {
-      setUniqueLists(tasks.map((task) => task.list))
+      setUniqueLists([...new Set(tasks.map((task) => task.list))])
    }, [tasks])
 
    return (

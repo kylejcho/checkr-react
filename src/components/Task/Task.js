@@ -11,13 +11,9 @@ function Task({ task, subTasks, updateSubTasks, viewTask, deleteTask }) {
    const [complete, setComplete] = useState(task.complete)
    const taskContainer = useRef()
 
-   const docRef = doc(db, `${auth.currentUser.uid}`, `${task.id}`)
    const checkTask = useCallback(() => {
       let prevTasks = [...subTasks]
       const checkedTask = prevTasks.find((item) => item.id === task.id)
-      updateDoc(docRef, {
-         complete: !checkedTask.complete,
-      })
       checkedTask.complete = !checkedTask.complete
       const index = prevTasks.indexOf(checkedTask)
       if (checkedTask.complete) {
@@ -26,17 +22,16 @@ function Task({ task, subTasks, updateSubTasks, viewTask, deleteTask }) {
          prevTasks.unshift(prevTasks.splice(index, 1)[0])
       }
       updateSubTasks(prevTasks)
-   }, [subTasks, task.id, updateSubTasks, docRef])
+   }, [subTasks, task.id, updateSubTasks])
 
    const checkClickAnimation = useCallback(() => {
       setComplete(!complete)
    }, [complete])
 
    const removeTask = useCallback(() => {
-      deleteDoc(docRef)
       deleteTask(task)
       updateSubTasks(subTasks.filter((item) => item.id !== task.id))
-   }, [subTasks, updateSubTasks, docRef])
+   }, [subTasks, updateSubTasks])
 
    function handleDeleteClick() {
       if (taskContainer.current.className.includes('viewing')) {

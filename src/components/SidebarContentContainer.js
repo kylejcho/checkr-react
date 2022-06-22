@@ -1,18 +1,15 @@
-import React, { useEffect, useState, useCallback, useRef } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import Sidebar from './Sidebar'
 import Content from './Content'
 import { motion, AnimatePresence } from 'framer-motion'
 import { auth } from '../firebase'
-import { collection, getDocs, doc, setDoc } from 'firebase/firestore'
+import { collection, getDocs, setDoc, doc } from 'firebase/firestore'
 import { db } from '../firebase'
 import { onAuthStateChanged } from 'firebase/auth'
-import { setDate } from 'date-fns'
 
 export default function SidebarContentContainer() {
    //Master list of users tasks and is updated whenever an update needs to be sent to FireStore database
    const [tasks, setTasks] = useState(null)
-
-   const [uniqueLists, setUniqueLists] = useState([])
 
    //Determines whether a task is open in taskView mode within the content container
    const [openTask, setOpenTask] = useState(null)
@@ -23,11 +20,6 @@ export default function SidebarContentContainer() {
    useEffect(() => {
       console.log(contentType)
    }, [contentType])
-
-   const updateUserData = async (task) => {
-      console.log(task)
-      await setDoc(doc(db, `${auth.currentUser.uid}`, `${task.id}`), task)
-   }
 
    const viewTask = useCallback((task) => {
       setOpenTask(task)
@@ -44,9 +36,6 @@ export default function SidebarContentContainer() {
    const addTask = (task) => {
       setTasks((prevTasks) => [task, ...prevTasks])
    }
-   useEffect(() => {
-      console.log(tasks)
-   }, [tasks])
 
    const deleteTask = (task) => {
       setTasks(tasks.filter((prevTask) => prevTask.id !== task.id))
@@ -59,20 +48,23 @@ export default function SidebarContentContainer() {
       const querySnapshot = await getDocs(
          collection(db, `${auth.currentUser.uid}`)
       )
-
       //Tasks in JSON data will be turned into JS task objects
       //Pushed into a new array
       const arr = []
+
       querySnapshot.forEach((doc) => {
-         const task = {
-            name: doc.data().name,
-            description: doc.data().description,
-            dueDate: doc.data().dueDate.toDate(),
-            list: doc.data().list,
-            complete: doc.data().complete,
-            id: doc.data().id,
-         }
-         arr.push(task)
+         console.log(doc.data().tasks)
+         doc.data().tasks.forEach((task) => {
+            const a = {
+               name: task.name,
+               description: task.description,
+               dueDate: task.dueDate.toDate(),
+               list: task.list,
+               complete: task.complete,
+               id: task.id,
+            }
+            arr.push(a)
+         })
       })
       //'Tasks' state is set to be the new array of tasks.
       setDataArr([...arr])
@@ -86,6 +78,29 @@ export default function SidebarContentContainer() {
       })
       return unsubscribe()
    }, [])
+
+   const updateTasks = (subTasks) => {
+      const prevTasks = [...tasks]
+      const a = prevTasks.filter((task) => {
+         if (!subTasks.includes(task)) {
+            return task
+         }
+      })
+      setTasks([...a, ...subTasks])
+   }
+
+   const writeUserData = () => {
+      const prevTasks = [...tasks]
+      setDoc(doc(db, `${auth.currentUser.uid}`, 'tasks'), {
+         tasks: [...prevTasks],
+      })
+   }
+
+   useEffect(() => {
+      if (tasks) {
+         writeUserData()
+      }
+   }, [tasks])
 
    //useEffect(() => hideScroll(), [contentType])
 
@@ -165,7 +180,6 @@ export default function SidebarContentContainer() {
          {dataArr && (
             <div id='sidebarContentContainer'>
                <Sidebar
-                  uniqueLists={uniqueLists}
                   tasks={tasks}
                   changeContent={changeContent}
                   contentType={contentType}
@@ -173,11 +187,11 @@ export default function SidebarContentContainer() {
                <Content
                   changeContent={changeContent}
                   contentType={contentType}
+                  updateTasks={updateTasks}
                   dataArr={dataArr}
                   tasks={tasks}
                   addTask={addTask}
                   deleteTask={deleteTask}
-                  uniqueLists={uniqueLists}
                   openTask={openTask}
                   viewTask={viewTask}
                />

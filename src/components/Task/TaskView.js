@@ -1,7 +1,6 @@
 import React, { useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { format, isToday, isTomorrow } from 'date-fns'
-import { ReactComponent as Caret } from '../../icons/caret-forward.svg'
+import { format } from 'date-fns'
 
 export default function TaskView({ task }) {
    const taskViewContainer = useRef()
@@ -62,12 +61,4 @@ export default function TaskView({ task }) {
 function formatDate(date) {
    const dateFormatted = format(date, 'EEEE, LLLL do, yyyy')
    return dateFormatted
-}
-
-function checkDate(date) {
-   if (isToday(date)) {
-      return `Today ${date}`
-   } else if (isTomorrow(date)) {
-      return `Tomorrow ${date}`
-   }
 }
