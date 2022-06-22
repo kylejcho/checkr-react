@@ -24,7 +24,7 @@ export default function Form({ tasks, handleClose, addDataTask }) {
    const [uniqueLists, setUniqueLists] = useState([])
 
    useEffect(() => {
-      setUniqueLists(tasks.map((task) => task.list))
+      setUniqueLists([...new Set(tasks.map((task) => task.list))])
    }, [tasks])
 
    function createList(list) {
