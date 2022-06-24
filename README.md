@@ -37,18 +37,18 @@ Another notable performance issue I ran into was the rerendering of all task com
 ## Lessons Learned:
 This project required a lot of learning and struggling in order to achieve the standard that I wanted for this project. Learning React while also learning to use an animation library and a back-end service was especially difficult. While it was very difficult, I came out being much more confortable with the idea of using tools that would help me achieve whatever I needed, rather than brute-forcing my way using pure javascript. 
 
-## Optimizing performance with React
+### Optimizing performance with React
 The problems I faced regarding performance forced me to really get a good grasp of how React works, and how to structure the component hierarchy to prevent uneccessary rerendering. Using the react profiler extension, as well as the performance tab, allowed me to become more familiar with debugging any percieved jankiness. 
 
-## Too much ambition can be detrimental
+### Over-abitiousness 
 The most important lesson I have learned from building this application is to prioritize goals wisely. I wanted to build an interface that had beautiful animations for every interaction, but I quickly realized it was extremely difficult to do with a large app with many moving parts, and I found myself rewriting or restructuring code just to accomodate a new animation. 
 
 Having looked at many other apps, animation were incorporated when it would be visually jarring without them. For example, switching to a tab does not necessitate an animation, but making an element larger when you click on it or creating a modal may require a transition animation. 
 
-## Back-end Services
+### Back-end Services
 This was also my first time working with a back-end service. It required some initial setup and referencing of the Firebase documentation but I certainly would love to incorporate it in future projects as well. It also gave me an oppurtunity to dip my toes into the world of back-end as a front-end dev. 
 
-## To Do:
+# To Do:
 - Allow user's the ability to change their display name
 
 - Allow user's the ability to delete their accounts
