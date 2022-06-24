@@ -37,9 +37,12 @@ export default function SidebarContentContainer() {
       setTasks((prevTasks) => [task, ...prevTasks])
    }
 
-   const deleteTask = (task) => {
-      setTasks(tasks.filter((prevTask) => prevTask.id !== task.id))
-   }
+   const deleteTask = useCallback(
+      (task) => {
+         setTasks(tasks.filter((prevTask) => prevTask.id !== task.id))
+      },
+      [tasks]
+   )
 
    const [dataArr, setDataArr] = useState()
 
@@ -79,15 +82,18 @@ export default function SidebarContentContainer() {
       return unsubscribe()
    }, [])
 
-   const updateTasks = (subTasks) => {
-      const prevTasks = [...tasks]
-      const a = prevTasks.filter((task) => {
-         if (!subTasks.includes(task)) {
-            return task
-         }
-      })
-      setTasks([...a, ...subTasks])
-   }
+   const updateTasks = useCallback(
+      (subTasks) => {
+         const prevTasks = [...tasks]
+         const a = prevTasks.filter((task) => {
+            if (!subTasks.includes(task)) {
+               return task
+            }
+         })
+         setTasks([...a, ...subTasks])
+      },
+      [tasks]
+   )
 
    const writeUserData = () => {
       const prevTasks = [...tasks]

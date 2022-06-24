@@ -5,6 +5,7 @@ function Sidebar({ changeContent, contentType, tasks }) {
    const sidebar = useRef(null)
 
    const [uniqueLists, setUniqueLists] = useState([])
+   const [listDropDown, setListDropDown] = useState(true)
 
    useEffect(() => {
       setUniqueLists([...new Set(tasks.map((task) => task.list))])
@@ -298,40 +299,47 @@ function Sidebar({ changeContent, contentType, tasks }) {
                   <div className='sidebarCount' id='allCount'></div>
                </div>
             </div>
-            <p id='sidebarListsTitle' className='sidebarTitle'>
-               <svg
-                  id='listsArrow'
-                  className='sidebarArrow'
-                  xmlns='http://www.w3.org/2000/svg'
-                  width='24'
-                  height='24'
-                  viewBox='0 0 512 512'
+            <div id='sidebarListsContainer'>
+               <p id='sidebarListsTitle' className='sidebarTitle'>
+                  <svg
+                     id='listsArrow'
+                     className='sidebarArrow'
+                     xmlns='http://www.w3.org/2000/svg'
+                     width='24'
+                     height='24'
+                     viewBox='0 0 512 512'
+                     onClick={() => setListDropDown(!listDropDown)}
+                  >
+                     <title>ionicons-v5-a</title>
+                     <polyline
+                        points='112 184 256 328 400 184'
+                        style={{
+                           fill: 'none',
+                           strokeLinecap: 'round',
+                           strokeLinejoin: 'round',
+                           strokeWidth: '50px',
+                        }}
+                     />
+                  </svg>
+                  Lists
+               </p>
+               <div
+                  id='sidebarLists'
+                  className={`sidebarTabsContainer ${
+                     !listDropDown && 'hidden'
+                  }`}
                >
-                  <title>ionicons-v5-a</title>
-                  <polyline
-                     points='112 184 256 328 400 184'
-                     style={{
-                        fill: 'none',
-                        strokeLinecap: 'round',
-                        strokeLinejoin: 'round',
-                        strokeWidth: '50px',
-                     }}
-                  />
-               </svg>
-               Lists
-            </p>
-            <div id='sidebarLists' className='sidebarTabsContainer'>
-               {uniqueLists.map((list) => {
-                  if (list) {
-                     return (
-                        <div
-                           className='sidebarListContainer sidebarTab'
-                           key={list + 'Container'}
-                           onClick={() => changeContent(list)}
-                        >
-                           <div className='dot'></div>
-                           <p>{list}</p>
-                           {/*
+                  {uniqueLists.map((list) => {
+                     if (list) {
+                        return (
+                           <div
+                              className='sidebarListContainer sidebarTab'
+                              key={list + 'Container'}
+                              onClick={() => changeContent(list)}
+                           >
+                              <div className='dot'></div>
+                              <p>{list}</p>
+                              {/*
                            <div
                               className='deleteContainer'
                               onClick={(e) => {
@@ -370,12 +378,12 @@ function Sidebar({ changeContent, contentType, tasks }) {
                                  />
                               </svg>
                            </div>*/}
-                        </div>
-                     )
-                  }
-               })}
+                           </div>
+                        )
+                     }
+                  })}
+               </div>
             </div>
-            <div id='sidebarListsClose'></div>
          </div>
       </>
    )

@@ -115,10 +115,10 @@ nav {
    display: flex;
    align-items: center;
    height: clamp(40px, 6vh, 50px);
-   background-color: var(--bkg2);
    padding: 0 31px;
-   z-index: 3;
+   background-color: var(--bkg2);
    border-bottom: 1px solid var(--border1);
+   z-index: 3;
    transition: background-color ease 0.4s, border ease 0.4s;
 }
 
@@ -361,7 +361,6 @@ nav {
    height: 70%;
    aspect-ratio: 1/1;
    transition: background-color ease 0.4s, border ease 0.4s;
-   margin-right: 10px;
 }
 
 #profileContainer > svg {
@@ -1452,11 +1451,6 @@ textarea:hover {
    transform: translateX(2.5px);
 }
 
-#sidebarListsTitle {
-   height: auto;
-   width: auto;
-}
-
 #sidebarLists {
    position: relative;
    z-index: 1;
@@ -1703,5 +1697,118 @@ textarea:hover {
 @keyframes spin {
    100% {
       transform: rotate(360deg);
+   }
+}
+
+/* Mobile Screen widths*/
+@media (max-width: 600px) {
+   #sidebarContentContainer {
+      flex-direction: column-reverse;
+   }
+
+   #contentContainer {
+      width: 100%;
+   }
+
+   #sidebar {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      position: sticky;
+      height: 10vh;
+      width: 100vw;
+      overflow-x: visible;
+      white-space: nowrap;
+      padding: 0;
+      margin: 0;
+   }
+
+   #sidebar * {
+      margin: 0;
+      padding: 0;
+   }
+
+   #sidebarShortcutsTitle {
+      display: none;
+   }
+
+   #sidebarShortcuts {
+      display: flex;
+   }
+
+   .sidebarTab {
+      width: max-content;
+   }
+
+   .sidebarTab p {
+      display: none;
+   }
+
+   #sidebarListsContainer {
+      position: relative;
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+   }
+
+   #sidebarListsTitle {
+      font-size: 0;
+   }
+
+   #sidebarLists {
+      position: absolute;
+      transform: translateY(-60%);
+   }
+
+   #sidebarLists.hidden {
+      display: none;
+   }
+
+   #sidebarListsContainer .sidebarListContainer {
+      margin-bottom: 20px;
+   }
+
+   #sidebarListsContainer .sidebarListContainer p {
+      display: unset;
+      margin-left: 10px;
+   }
+
+   nav {
+      padding-inline: 20px;
+   }
+
+   #searchBar {
+      width: 45vw;
+      min-width: 0;
+      border: none;
+      padding-left: 8px;
+      margin-right: 10px;
+      height: 100%;
+      outline-width: 0;
+      color: var(--text1);
+      background-color: #ffffff00;
+      transition: background-color ease 0.4s;
+   }
+
+   #pageTitle p {
+      display: none;
+   }
+
+   #pageTitle svg {
+      stroke: var(--text2);
+      margin-right: 20px;
+   }
+
+   .checkContainer {
+      justify-self: center;
+      padding: 5px;
+      transition: all ease-in-out 0.2s;
+      border-radius: 50px;
+      width: 17px;
+      height: 17px;
+      background-color: var(--bkg1);
+      overflow: visible;
    }
 }

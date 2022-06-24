@@ -31,7 +31,7 @@ function Task({ task, subTasks, updateSubTasks, viewTask, deleteTask }) {
    const removeTask = useCallback(() => {
       deleteTask(task)
       updateSubTasks(subTasks.filter((item) => item.id !== task.id))
-   }, [subTasks, updateSubTasks])
+   }, [subTasks, updateSubTasks, deleteTask, task])
 
    function handleDeleteClick() {
       if (taskContainer.current.className.includes('viewing')) {
