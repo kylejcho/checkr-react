@@ -1,20 +1,7 @@
-import React, {
-   useState,
-   useEffect,
-   useCallback,
-   useRef,
-   useTransition,
-} from 'react'
+import React, { useState, useEffect, useCallback, useRef, useTransition } from 'react'
 import SubGroup from '../SubGroup'
 import { LayoutGroup, motion, AnimatePresence } from 'framer-motion'
-import {
-   isToday,
-   isTomorrow,
-   isAfter,
-   addDays,
-   endOfDay,
-   getHours,
-} from 'date-fns'
+import { isToday, isTomorrow, isAfter, addDays, endOfDay, getHours } from 'date-fns'
 import { UserAuth } from '../../contexts/AuthContext'
 import { auth } from '../../firebase'
 import { updateProfile, onAuthStateChanged } from 'firebase/auth'
@@ -34,69 +21,58 @@ export default function TasksContainer({
    const { name } = UserAuth()
    const [isPending, startTransition] = useTransition()
 
-   useEffect(() => {
-      const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-         if (currentUser) {
-            updateProfile(auth.currentUser, {
-               displayName: name,
-            })
-         }
-      })
-      return () => {
-         unsubscribe()
-      }
-   }, [name])
+   const [todayTasks, setTodayTasks] = useState(
+      dataArr.filter(task => isToday(task.dueDate))
+   )
+   const [tomorrowTasks, setTomorrowTasks] = useState(
+      dataArr.filter(task => isTomorrow(task.dueDate))
+   )
+   const [upcomingTasks, setUpcomingTasks] = useState(
+      dataArr.filter(task => isAfter(task.dueDate, addDays(endOfDay(new Date()), 1)))
+   )
 
-   const [todayTasks, setTodayTasks] = useState([])
-   const [tomorrowTasks, setTomorrowTasks] = useState([])
-   const [upcomingTasks, setUpcomingTasks] = useState([])
-
-   const updateTodayTasks = useCallback((subTasks) => {
+   const updateTodayTasks = useCallback(subTasks => {
+      setTodayTasks(subTasks)
       startTransition(() => {
-         setTodayTasks(subTasks)
+         updateTasks(subTasks)
       })
    }, [])
 
-   const updateTomorrowTasks = useCallback((subTasks) => {
+   const updateTomorrowTasks = useCallback(subTasks => {
+      setTomorrowTasks(subTasks)
       startTransition(() => {
-         setTomorrowTasks(subTasks)
+         updateTasks(subTasks)
       })
    }, [])
 
-   const updateUpcomingTasks = useCallback((subTasks) => {
+   const updateUpcomingTasks = useCallback(subTasks => {
+      setUpcomingTasks(subTasks)
       startTransition(() => {
-         setUpcomingTasks(subTasks)
+         updateTasks(subTasks)
       })
    }, [])
-
-   useEffect(() => {
-      setTodayTasks(dataArr.filter((task) => isToday(task.dueDate)))
-      setTomorrowTasks(dataArr.filter((task) => isTomorrow(task.dueDate)))
-      setUpcomingTasks(
-         dataArr.filter((task) =>
-            isAfter(task.dueDate, addDays(endOfDay(new Date()), 1))
-         )
-      )
-   }, [dataArr])
 
    useEffect(() => {
       if (addedTask && isToday(addedTask.dueDate)) {
-         setTodayTasks((prevTodayTasks) => [addedTask, ...prevTodayTasks])
+         setTodayTasks(prevTodayTasks => [addedTask, ...prevTodayTasks])
       } else if (addedTask && isTomorrow(addedTask.dueDate)) {
-         setTomorrowTasks((prevTomorrowTasks) => [
-            addedTask,
-            ...prevTomorrowTasks,
-         ])
+         setTomorrowTasks(prevTomorrowTasks => [addedTask, ...prevTomorrowTasks])
       } else if (
          addedTask &&
          isAfter(addedTask.dueDate, addDays(endOfDay(new Date()), 1))
       ) {
-         setUpcomingTasks((prevUpcomingTasks) => [
-            addedTask,
-            ...prevUpcomingTasks,
-         ])
+         setUpcomingTasks(prevUpcomingTasks => [addedTask, ...prevUpcomingTasks])
       }
    }, [addedTask])
+
+   useEffect(() => {
+      const unsubscribe = onAuthStateChanged(auth, currentUser => {
+         if (currentUser) {
+            updateProfile(auth.currentUser, { displayName: name })
+         }
+      })
+      return () => unsubscribe()
+   }, [name])
 
    const firstRender = useRef(true)
    useEffect(() => {
@@ -238,7 +214,7 @@ export default function TasksContainer({
                   duration: 0.25,
                },
             }}
-            onClick={(e) => {
+            onClick={e => {
                e.stopPropagation()
             }}
          >

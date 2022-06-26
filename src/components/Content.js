@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Navbar from './Navbar'
 import TasksContainer from './Task/TasksContainer'
 import { motion } from 'framer-motion'
@@ -24,7 +24,7 @@ export default function Content({
    const [addedTask, setAddedTask] = useState()
 
    const addDataTask = useCallback(
-      (task) => {
+      task => {
          addTask(task)
          setAddedTask(task)
       },
@@ -50,9 +50,7 @@ export default function Content({
                viewTask(null)
                document
                   .querySelectorAll('.taskContainer')
-                  .forEach((taskContainer) =>
-                     taskContainer.classList.remove('viewing')
-                  )
+                  .forEach(taskContainer => taskContainer.classList.remove('viewing'))
             }}
          >
             <TasksContainer

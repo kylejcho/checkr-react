@@ -6,7 +6,6 @@ import { addDays, endOfDay, isBefore } from 'date-fns'
 function SubGroup({
    subTasks,
    updateSubTasks,
-   updateTasks,
    contentType,
    type,
    removeTask,
@@ -28,7 +27,7 @@ function SubGroup({
    useEffect(() => {
       if (contentType === 'week') {
          setTasks(
-            subTasks.filter((task) => {
+            subTasks.filter(task => {
                return isBefore(task.dueDate, addDays(endOfDay(new Date()), 7))
             })
          )
@@ -37,21 +36,15 @@ function SubGroup({
          contentType !== 'today' &&
          contentType !== 'home'
       ) {
-         setTasks(subTasks.filter((task) => task.list === contentType))
+         setTasks(subTasks.filter(task => task.list === contentType))
       }
    }, [contentType, subTasks])
-
-   useEffect(() => {
-      if (!firstRender.current) {
-         updateTasks(subTasks)
-      }
-   }, [subTasks])
 
    return (
       <div className='subGroup' id={type}>
          <Reorder.Group values={subTasks} onReorder={updateSubTasks}>
             {tasks
-               ? tasks.map((task) => {
+               ? tasks.map(task => {
                     return (
                        <Task
                           key={task.id}
@@ -64,7 +57,7 @@ function SubGroup({
                        />
                     )
                  })
-               : subTasks.map((task) => {
+               : subTasks.map(task => {
                     return (
                        <Task
                           key={task.id}
