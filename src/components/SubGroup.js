@@ -4,11 +4,13 @@ import { Reorder } from 'framer-motion'
 import { addDays, endOfDay, isBefore } from 'date-fns'
 
 function SubGroup({
-   subTasks,
    updateSubTasks,
+   updateTasks,
+   tasksCopy,
    contentType,
    removeTask,
    deleteTask,
+   subTasks,
    viewTask,
 }) {
    const [tasks, setTasks] = useState(null)
@@ -43,10 +45,12 @@ function SubGroup({
          <Task
             key={task.id}
             task={task}
+            tasksCopy={tasksCopy}
             subTasks={subTasks}
             viewTask={viewTask}
             removeTask={removeTask}
             deleteTask={deleteTask}
+            updateTasks={updateTasks}
             updateSubTasks={updateSubTasks}
          />
       )

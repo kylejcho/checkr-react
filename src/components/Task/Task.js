@@ -1,34 +1,57 @@
+import React, { useRef, useState, useCallback, useEffect } from 'react'
 import { useMotionValue, Reorder, AnimatePresence } from 'framer-motion'
-import { doc, updateDoc, deleteDoc } from 'firebase/firestore'
-import React, { useRef, useState, useCallback } from 'react'
+import { ReactComponent as Delete } from '../../icons/delete.svg'
 import { RaisedShadow } from './RaisedShadow'
-import { auth, db } from '../../firebase'
 import CheckCircle from './CheckCircle'
 
-function Task({ task, subTasks, updateSubTasks, viewTask, deleteTask }) {
+function Task({
+   task,
+   tasksCopy,
+   subTasks,
+   updateSubTasks,
+   updateTasks,
+   viewTask,
+   deleteTask,
+}) {
    const [showTask, setShowTask] = useState(true)
 
    const [selectTask, setSelectTask] = useState(false)
 
    const taskContainer = useRef()
 
-   const checkTask = useCallback(() => {
-      let prevTasks = [...subTasks]
-      const checkedTask = prevTasks.find(item => item.id === task.id)
-      checkedTask.complete = !checkedTask.complete
-      const index = prevTasks.indexOf(checkedTask)
-      if (checkedTask.complete) {
-         prevTasks.push(prevTasks.splice(index, 1)[0])
+   const checkTask = () => {
+      let newSubTasks = [...subTasks]
+      const checkedSubTask = newSubTasks.find(item => item.id === task.id)
+      checkedSubTask.complete = !checkedSubTask.complete
+      const subIndex = newSubTasks.indexOf(checkedSubTask)
+      if (checkedSubTask.complete) {
+         newSubTasks.push(newSubTasks.splice(subIndex, 1)[0])
       } else {
-         prevTasks.unshift(prevTasks.splice(index, 1)[0])
+         newSubTasks.unshift(newSubTasks.splice(subIndex, 1)[0])
       }
-      updateSubTasks(prevTasks)
-   }, [subTasks, task.id, updateSubTasks])
 
-   const removeTask = useCallback(() => {
-      deleteTask(task)
+      const newTasks = [...tasksCopy]
+      const a = newTasks.filter(() => newTasks.includes(newSubTasks))
+
+      updateTasks([...a, ...newSubTasks])
+      updateSubTasks(newSubTasks)
+   }
+
+   const removeTask = () => {
+      const newTasks = [...tasksCopy]
       updateSubTasks(subTasks.filter(item => item.id !== task.id))
-   }, [subTasks, updateSubTasks, deleteTask, task])
+      updateTasks(newTasks.filter(item => item.id !== task.id))
+   }
+
+   const reorderTask = () => {
+      const prevTasks = [...tasksCopy]
+      const a = prevTasks.filter(task => {
+         if (!subTasks.includes(task)) {
+            return task
+         }
+      })
+      updateTasks([...a, ...subTasks])
+   }
 
    function handleDeleteClick() {
       if (taskContainer.current.className.includes('viewing')) {
@@ -57,6 +80,7 @@ function Task({ task, subTasks, updateSubTasks, viewTask, deleteTask }) {
                }}
                onDragEnd={() => {
                   taskContainer.current.classList.remove('dragging')
+                  reorderTask()
                }}
                exit={{ opacity: 0, transition: { duration: 0.3 } }}
                dragTransition={{ bounceStiffness: 1000, bounceDamping: 70 }}
@@ -83,40 +107,7 @@ function Task({ task, subTasks, updateSubTasks, viewTask, deleteTask }) {
                      e.stopPropagation()
                   }}
                >
-                  <svg
-                     xmlns='http://www.w3.org/2000/svg'
-                     width='20'
-                     height='20'
-                     viewBox='0 0 512 512'
-                  >
-                     <title>ionicons-v5-l</title>
-                     <line
-                        x1='368'
-                        y1='368'
-                        x2='144'
-                        y2='144'
-                        style={{
-                           fill: 'none',
-                           stroke: '#697384',
-                           strokeLinecap: 'round',
-                           strokeLinejoin: 'round',
-                           strokeWidth: '32px',
-                        }}
-                     />
-                     <line
-                        x1='368'
-                        y1='144'
-                        x2='144'
-                        y2='368'
-                        style={{
-                           fill: 'none',
-                           stroke: '#697384',
-                           strokeLinecap: 'round',
-                           strokeLinejoin: 'round',
-                           strokeWidth: '32px',
-                        }}
-                     />
-                  </svg>
+                  <Delete />
                </div>
                <div className='descriptionContainer'>{task.description}</div>
             </Reorder.Item>

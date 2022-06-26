@@ -32,14 +32,9 @@ export default function SidebarContentContainer() {
       [tasks]
    )
 
-   const updateTasks = useCallback(
-      subTasks => {
-         const prevTasks = [...tasks]
-         const t = prevTasks.filter(task => !subTasks.includes(task))
-         setTasks([...t, ...subTasks])
-      },
-      [tasks]
-   )
+   const updateTasks = updatedTasks => {
+      setTasks([...updatedTasks])
+   }
 
    //taskOpened state set to null to remove taskViewContainer during content change
    const changeContent = useCallback(type => {
@@ -54,7 +49,7 @@ export default function SidebarContentContainer() {
       //User's data pushed into a new array of objects
       const arr = []
       querySnapshot.forEach(doc => {
-         doc.data().tasks.forEach(task => {
+         doc.data().tasks?.forEach(task => {
             const a = {
                name: task.name,
                description: task.description,

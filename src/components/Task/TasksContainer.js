@@ -30,17 +30,14 @@ export default function TasksContainer({
 
    const updateTodayTasks = useCallback(subTasks => {
       setTodayTasks(subTasks)
-      startTransition(() => updateTasks(subTasks))
    }, [])
 
    const updateTomorrowTasks = useCallback(subTasks => {
       setTomorrowTasks(subTasks)
-      startTransition(() => updateTasks(subTasks))
    }, [])
 
    const updateUpcomingTasks = useCallback(subTasks => {
       setUpcomingTasks(subTasks)
-      startTransition(() => updateTasks(subTasks))
    }, [])
 
    function subGroupType(type) {
@@ -65,8 +62,10 @@ export default function TasksContainer({
                {type[0].toUpperCase() + type.substring(1)}
             </motion.div>
             <SubGroup
+               tasksCopy={tasksCopy}
                subTasks={subGroupTasks}
                updateSubTasks={update}
+               updateTasks={updateTasks}
                contentType={contentType}
                removeTask={removeTask}
                deleteTask={deleteTask}
