@@ -39,9 +39,7 @@ export default function TaskView({ task }) {
                </div>
                <div className='taskViewDueDateContainer'>
                   Due:
-                  <div className='taskViewDueDate'>
-                     {formatDate(task.dueDate)}
-                  </div>
+                  <div className='taskViewDueDate'>{formatDate(task.dueDate)}</div>
                </div>
                {task.list && (
                   <div className='taskViewListContainer'>

@@ -13,7 +13,7 @@ function Task({ task, subTasks, updateSubTasks, viewTask, deleteTask }) {
 
    const checkTask = useCallback(() => {
       let prevTasks = [...subTasks]
-      const checkedTask = prevTasks.find((item) => item.id === task.id)
+      const checkedTask = prevTasks.find(item => item.id === task.id)
       checkedTask.complete = !checkedTask.complete
       const index = prevTasks.indexOf(checkedTask)
       if (checkedTask.complete) {
@@ -30,7 +30,7 @@ function Task({ task, subTasks, updateSubTasks, viewTask, deleteTask }) {
 
    const removeTask = useCallback(() => {
       deleteTask(task)
-      updateSubTasks(subTasks.filter((item) => item.id !== task.id))
+      updateSubTasks(subTasks.filter(item => item.id !== task.id))
    }, [subTasks, updateSubTasks, deleteTask, task])
 
    function handleDeleteClick() {
@@ -63,15 +63,13 @@ function Task({ task, subTasks, updateSubTasks, viewTask, deleteTask }) {
                }}
                exit={{ opacity: 0, transition: { duration: 0.3 } }}
                dragTransition={{ bounceStiffness: 1000, bounceDamping: 70 }}
-               onClick={(e) => {
+               onClick={e => {
                   e.stopPropagation()
                   viewTask(task)
                   setSelectTask(!selectTask)
                   document
                      .querySelectorAll('.taskContainer')
-                     .forEach((taskContainer) =>
-                        taskContainer.classList.remove('viewing')
-                     )
+                     .forEach(taskContainer => taskContainer.classList.remove('viewing'))
                   taskContainer.current.classList.add('viewing')
                }}
             >
@@ -85,7 +83,7 @@ function Task({ task, subTasks, updateSubTasks, viewTask, deleteTask }) {
                <div className='nameContainer'>{task.name}</div>
                <div
                   className='deleteContainer'
-                  onClick={(e) => {
+                  onClick={e => {
                      handleDeleteClick()
                      e.stopPropagation()
                   }}

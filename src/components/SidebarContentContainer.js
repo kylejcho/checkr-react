@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { collection, getDocs, setDoc, doc } from 'firebase/firestore'
 import { onAuthStateChanged } from 'firebase/auth'
-import { AnimatePresence } from 'framer-motion'
 import { auth, db } from '../firebase'
+import { AnimatePresence } from 'framer-motion'
 import LoadingScreen from './LoadingScreen'
 import Content from './Content'
 import Sidebar from './Sidebar'
@@ -10,16 +10,15 @@ import Sidebar from './Sidebar'
 export default function SidebarContentContainer() {
    //Master list of users tasks and is updated whenever an update needs to be sent to FireStore database
    const [tasks, setTasks] = useState(null)
-   const [dataArr, setDataArr] = useState()
 
    //Determines whether a task is open in taskView mode within the content container
-   const [openTask, setOpenTask] = useState(null)
+   const [taskOpened, setTaskOpened] = useState(null)
 
    //State is set to current content path
    const [contentType, setContentType] = useState('home')
 
    const viewTask = useCallback(task => {
-      setOpenTask(task)
+      setTaskOpened(task)
    }, [])
 
    const addTask = task => {
@@ -42,10 +41,10 @@ export default function SidebarContentContainer() {
       [tasks]
    )
 
-   //OpenTask state set to null to remove taskViewContainer during content change
+   //taskOpened state set to null to remove taskViewContainer during content change
    const changeContent = useCallback(type => {
       setContentType(type)
-      setOpenTask(null)
+      setTaskOpened(null)
    }, [])
 
    //On first mount, user's data collection is requested from Firebase
@@ -69,7 +68,6 @@ export default function SidebarContentContainer() {
       })
       //'Tasks' state is set to be the new array of tasks.
       setTasks([...arr])
-      setDataArr([...arr])
    }
 
    //Only get data from firebase once user authentification state has changed
@@ -81,22 +79,19 @@ export default function SidebarContentContainer() {
    }, [])
 
    const writeUserData = () => {
-      const prevTasks = [...tasks]
       setDoc(doc(db, `${auth.currentUser.uid}`, 'tasks'), {
-         tasks: [...prevTasks],
+         tasks: [...tasks],
       })
    }
 
    useEffect(() => {
-      if (tasks) {
-         writeUserData()
-      }
+      if (tasks) writeUserData()
    }, [tasks])
 
    //Render LoadingScreen until user is logged in and tasks state is set
    return (
       <>
-         <AnimatePresence>{!dataArr && <LoadingScreen />}</AnimatePresence>
+         <AnimatePresence>{!tasks && <LoadingScreen />}</AnimatePresence>
          {tasks && (
             <div id='sidebarContentContainer'>
                <Sidebar
@@ -108,11 +103,10 @@ export default function SidebarContentContainer() {
                   changeContent={changeContent}
                   contentType={contentType}
                   updateTasks={updateTasks}
-                  dataArr={[...tasks]}
                   tasks={tasks}
                   addTask={addTask}
                   deleteTask={deleteTask}
-                  openTask={openTask}
+                  taskOpened={taskOpened}
                   viewTask={viewTask}
                />
             </div>

@@ -7,22 +7,20 @@ function SubGroup({
    subTasks,
    updateSubTasks,
    contentType,
-   type,
    removeTask,
    deleteTask,
    viewTask,
 }) {
+   const [tasks, setTasks] = useState(null)
+
    const firstRender = useRef(true)
    useEffect(() => {
       setTimeout(() => {
          if (firstRender.current) {
             firstRender.current = false
-            return
          }
       }, 450)
    })
-
-   const [tasks, setTasks] = useState(null)
 
    useEffect(() => {
       if (contentType === 'week') {
@@ -40,36 +38,24 @@ function SubGroup({
       }
    }, [contentType, subTasks])
 
+   const group = task => {
+      return (
+         <Task
+            key={task.id}
+            task={task}
+            subTasks={subTasks}
+            viewTask={viewTask}
+            removeTask={removeTask}
+            deleteTask={deleteTask}
+            updateSubTasks={updateSubTasks}
+         />
+      )
+   }
+
    return (
-      <div className='subGroup' id={type}>
+      <div className='subGroup' id={contentType}>
          <Reorder.Group values={subTasks} onReorder={updateSubTasks}>
-            {tasks
-               ? tasks.map(task => {
-                    return (
-                       <Task
-                          key={task.id}
-                          task={task}
-                          subTasks={subTasks}
-                          updateSubTasks={updateSubTasks}
-                          viewTask={viewTask}
-                          removeTask={removeTask}
-                          deleteTask={deleteTask}
-                       />
-                    )
-                 })
-               : subTasks.map(task => {
-                    return (
-                       <Task
-                          key={task.id}
-                          task={task}
-                          subTasks={subTasks}
-                          updateSubTasks={updateSubTasks}
-                          viewTask={viewTask}
-                          removeTask={removeTask}
-                          deleteTask={deleteTask}
-                       />
-                    )
-                 })}
+            {tasks ? tasks.map(task => group(task)) : subTasks.map(task => group(task))}
          </Reorder.Group>
       </div>
    )
