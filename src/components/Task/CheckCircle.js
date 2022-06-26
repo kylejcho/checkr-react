@@ -1,21 +1,17 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState, useCallback } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
-function CheckCircle({
-   task,
-   taskContainer,
-   checkTask,
-   complete,
-   checkClickAnimation,
-}) {
+function CheckCircle({ task, taskContainer, checkTask }) {
+   const [complete, setComplete] = useState(task.complete)
+
+   const checkContainer = useRef()
+
    useEffect(() => {
       taskContainer.current.classList.toggle('completed', task.complete)
    })
 
-   const checkContainer = useRef()
-
    function handleClick() {
-      checkClickAnimation()
+      setComplete(!complete)
       const taskView = document.querySelector('.taskViewContainer')
       if (taskView && taskView.id.slice(2) === task.id) {
          taskView.classList.toggle('completed')
@@ -29,7 +25,7 @@ function CheckCircle({
          <div
             className='checkContainer'
             ref={checkContainer}
-            onClick={(e) => {
+            onClick={e => {
                e.stopPropagation()
                handleClick()
             }}

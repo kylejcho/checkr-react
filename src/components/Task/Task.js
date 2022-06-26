@@ -7,8 +7,9 @@ import CheckCircle from './CheckCircle'
 
 function Task({ task, subTasks, updateSubTasks, viewTask, deleteTask }) {
    const [showTask, setShowTask] = useState(true)
+
    const [selectTask, setSelectTask] = useState(false)
-   const [complete, setComplete] = useState(task.complete)
+
    const taskContainer = useRef()
 
    const checkTask = useCallback(() => {
@@ -23,10 +24,6 @@ function Task({ task, subTasks, updateSubTasks, viewTask, deleteTask }) {
       }
       updateSubTasks(prevTasks)
    }, [subTasks, task.id, updateSubTasks])
-
-   const checkClickAnimation = useCallback(() => {
-      setComplete(!complete)
-   }, [complete])
 
    const removeTask = useCallback(() => {
       deleteTask(task)
@@ -77,8 +74,6 @@ function Task({ task, subTasks, updateSubTasks, viewTask, deleteTask }) {
                   task={task}
                   taskContainer={taskContainer}
                   checkTask={checkTask}
-                  complete={complete}
-                  checkClickAnimation={checkClickAnimation}
                />
                <div className='nameContainer'>{task.name}</div>
                <div
