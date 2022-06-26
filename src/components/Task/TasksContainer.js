@@ -55,12 +55,6 @@ export default function TasksContainer({
       const update = subGroupType(type)[1]
       return (
          <>
-            <motion.div
-               className='subGroupTitle'
-               transition={{ duration: firstRender.current ? 0 : 0.25 }}
-            >
-               {type[0].toUpperCase() + type.substring(1)}
-            </motion.div>
             <SubGroup
                tasksCopy={tasksCopy}
                subTasks={subGroupTasks}
@@ -140,8 +134,29 @@ export default function TasksContainer({
                   subGroup('today')
                ) : (
                   <>
+                     <motion.div
+                        layout
+                        className='subGroupTitle'
+                        transition={{ duration: firstRender.current ? 0 : 0.25 }}
+                     >
+                        today
+                     </motion.div>
                      {subGroup('today')}
+                     <motion.div
+                        layout
+                        className='subGroupTitle'
+                        transition={{ duration: firstRender.current ? 0 : 0.25 }}
+                     >
+                        Tomorrow
+                     </motion.div>
                      {subGroup('tomorrow')}
+                     <motion.div
+                        layout
+                        className='subGroupTitle'
+                        transition={{ duration: firstRender.current ? 0 : 0.25 }}
+                     >
+                        Upcoming
+                     </motion.div>
                      {subGroup('upcoming')}
                   </>
                )}

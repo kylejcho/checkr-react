@@ -4,15 +4,7 @@ import { ReactComponent as Delete } from '../../icons/delete.svg'
 import { RaisedShadow } from './RaisedShadow'
 import CheckCircle from './CheckCircle'
 
-function Task({
-   task,
-   tasksCopy,
-   subTasks,
-   updateSubTasks,
-   updateTasks,
-   viewTask,
-   deleteTask,
-}) {
+function Task({ task, tasksCopy, subTasks, updateSubTasks, updateTasks, viewTask }) {
    const [showTask, setShowTask] = useState(true)
 
    const [selectTask, setSelectTask] = useState(false)
@@ -31,8 +23,7 @@ function Task({
       }
 
       const newTasks = [...tasksCopy]
-      const a = newTasks.filter(() => newTasks.includes(newSubTasks))
-
+      const a = newTasks.filter(task => !newSubTasks.includes(task))
       updateTasks([...a, ...newSubTasks])
       updateSubTasks(newSubTasks)
    }
@@ -45,19 +36,17 @@ function Task({
 
    const reorderTask = () => {
       const prevTasks = [...tasksCopy]
-      const a = prevTasks.filter(task => {
-         if (!subTasks.includes(task)) {
-            return task
-         }
-      })
+      const a = prevTasks.filter(task => !subTasks.includes(task))
       updateTasks([...a, ...subTasks])
    }
 
    function handleDeleteClick() {
-      if (taskContainer.current.className.includes('viewing')) {
-         setTimeout(() => viewTask(null), 0)
-      }
-      setTimeout(() => setShowTask(false), 0)
+      setTimeout(() => {
+         setShowTask(false)
+         if (taskContainer.current.className.includes('viewing')) {
+            viewTask(null)
+         }
+      }, 0)
       setTimeout(() => removeTask(), 250)
    }
 
