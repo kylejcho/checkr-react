@@ -10,7 +10,7 @@ export default function SidebarContentContainer() {
    //Master list of users tasks
    const [tasks, setTasks] = useState(null)
 
-   //Open/close task view
+   //Open or close task view
    const [taskOpened, setTaskOpened] = useState(null)
 
    const [contentType, setContentType] = useState('home')
@@ -41,9 +41,9 @@ export default function SidebarContentContainer() {
       getUserData()
    }, [])
 
+   //Loading screen until user is signed in and tasks is set
    return (
       <>
-         //Loading screen until user is signed in and tasks is set
          <AnimatePresence>{!tasks && <LoadingScreen />}</AnimatePresence>
          {tasks && (
             <div id='sidebarContentContainer'>
@@ -68,11 +68,13 @@ export default function SidebarContentContainer() {
 
 //User's data collection is requested from Firebase
 const getData = async () => {
+   //Get user's document from database
    const docRef = await getDoc(doc(db, `${auth.currentUser.uid}`, 'tasks'))
-   //User's data pushed into a new array of objects
 
-   const userData = docRef.data()?.tasks.map(task => {
-      return {
+   //User's data pushed into a new array of objects
+   const userData = []
+   docRef.data()?.tasks.forEach(task => {
+      const t = {
          name: task.name,
          description: task.description,
          dueDate: task.dueDate.toDate(),
@@ -80,7 +82,7 @@ const getData = async () => {
          complete: task.complete,
          id: task.id,
       }
+      userData.push(t)
    })
-   //setTasks(userData)
    return userData
 }
