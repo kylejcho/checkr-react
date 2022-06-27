@@ -1,10 +1,12 @@
 import React, { useRef, useState, useCallback, useEffect } from 'react'
 import { useMotionValue, Reorder, AnimatePresence } from 'framer-motion'
 import { ReactComponent as Delete } from '../../icons/delete.svg'
+import { setDoc, doc } from 'firebase/firestore'
+import { auth, db } from '../../firebase'
 import { RaisedShadow } from './RaisedShadow'
 import CheckCircle from './CheckCircle'
 
-function Task({ task, tasksCopy, subTasks, updateSubTasks, updateTasks, viewTask }) {
+function Task({ task, tasksCopy, subTasks, updateSubTasks, viewTask }) {
    const [showTask, setShowTask] = useState(true)
 
    const [selectTask, setSelectTask] = useState(false)
@@ -24,20 +26,20 @@ function Task({ task, tasksCopy, subTasks, updateSubTasks, updateTasks, viewTask
 
       const newTasks = [...tasksCopy]
       const a = newTasks.filter(task => !newSubTasks.includes(task))
-      updateTasks([...a, ...newSubTasks])
+      writeUserData([...a, ...newSubTasks])
       updateSubTasks(newSubTasks)
    }
 
    const removeTask = () => {
       const newTasks = [...tasksCopy]
       updateSubTasks(subTasks.filter(item => item.id !== task.id))
-      updateTasks(newTasks.filter(item => item.id !== task.id))
+      writeUserData(newTasks.filter(item => item.id !== task.id))
    }
 
    const reorderTask = () => {
       const prevTasks = [...tasksCopy]
       const a = prevTasks.filter(task => !subTasks.includes(task))
-      updateTasks([...a, ...subTasks])
+      writeUserData([...a, ...subTasks])
    }
 
    function handleDeleteClick() {
@@ -103,6 +105,12 @@ function Task({ task, tasksCopy, subTasks, updateSubTasks, updateTasks, viewTask
          )}
       </AnimatePresence>
    )
+}
+
+const writeUserData = updatedTasks => {
+   setDoc(doc(db, `${auth.currentUser.uid}`, 'tasks'), {
+      tasks: [...updatedTasks],
+   })
 }
 
 export default React.memo(Task)

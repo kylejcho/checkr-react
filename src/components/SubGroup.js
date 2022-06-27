@@ -5,11 +5,9 @@ import { addDays, endOfDay, isBefore } from 'date-fns'
 
 function SubGroup({
    updateSubTasks,
-   updateTasks,
    tasksCopy,
    contentType,
    removeTask,
-   deleteTask,
    subTasks,
    viewTask,
 }) {
@@ -49,8 +47,6 @@ function SubGroup({
             subTasks={subTasks}
             viewTask={viewTask}
             removeTask={removeTask}
-            deleteTask={deleteTask}
-            updateTasks={updateTasks}
             updateSubTasks={updateSubTasks}
          />
       )

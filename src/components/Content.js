@@ -1,16 +1,16 @@
 import React, { useCallback, useState } from 'react'
-import Navbar from './Navbar'
-import TasksContainer from './Task/TasksContainer'
+import { setDoc, doc } from 'firebase/firestore'
+import { auth, db } from '../firebase'
 import { motion } from 'framer-motion'
 import TaskView from './Task/TaskView'
+import Navbar from './Navbar'
+import TasksContainer from './Task/TasksContainer'
 
 export default function Content({
    changeContent,
    contentType,
-   updateTasks,
    tasks,
    addTask,
-   deleteTask,
    taskOpened,
    viewTask,
 }) {
@@ -49,8 +49,6 @@ export default function Content({
                contentType={contentType}
                tasksCopy={[...tasks]}
                addedTask={addedTask}
-               updateTasks={updateTasks}
-               deleteTask={deleteTask}
                viewTask={viewTask}
                taskOpened={taskOpened}
             />

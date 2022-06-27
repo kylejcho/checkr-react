@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState, useCallback, useTransition } from 'react'
 import { collection, getDocs, setDoc, doc } from 'firebase/firestore'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth, db } from '../firebase'
@@ -10,6 +10,7 @@ import Sidebar from './Sidebar'
 export default function SidebarContentContainer() {
    //Master list of users tasks and is updated whenever an update needs to be sent to FireStore database
    const [tasks, setTasks] = useState(null)
+   const [isPending, startTransition] = useTransition()
 
    //Determines whether a task is open in taskView mode within the content container
    const [taskOpened, setTaskOpened] = useState(null)
@@ -21,20 +22,12 @@ export default function SidebarContentContainer() {
       setTaskOpened(task)
    }, [])
 
-   const addTask = task => {
-      setTasks(prevTasks => [task, ...prevTasks])
-   }
-
-   const deleteTask = useCallback(
+   const addTask = useCallback(
       task => {
-         setTasks(tasks.filter(prevTask => prevTask.id !== task.id))
+         setTasks(prevTasks => [task, ...prevTasks])
       },
-      [tasks]
+      [setTasks]
    )
-
-   const updateTasks = updatedTasks => {
-      setTasks([...updatedTasks])
-   }
 
    //taskOpened state set to null to remove taskViewContainer during content change
    const changeContent = useCallback(type => {
@@ -73,16 +66,6 @@ export default function SidebarContentContainer() {
       return unsubscribe()
    }, [])
 
-   const writeUserData = () => {
-      setDoc(doc(db, `${auth.currentUser.uid}`, 'tasks'), {
-         tasks: [...tasks],
-      })
-   }
-
-   useEffect(() => {
-      if (tasks) writeUserData()
-   }, [tasks])
-
    //Render LoadingScreen until user is logged in and tasks state is set
    return (
       <>
@@ -97,10 +80,8 @@ export default function SidebarContentContainer() {
                <Content
                   changeContent={changeContent}
                   contentType={contentType}
-                  updateTasks={updateTasks}
                   tasks={tasks}
                   addTask={addTask}
-                  deleteTask={deleteTask}
                   taskOpened={taskOpened}
                   viewTask={viewTask}
                />

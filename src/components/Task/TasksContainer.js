@@ -9,10 +9,8 @@ import { updateProfile, onAuthStateChanged } from 'firebase/auth'
 export default function TasksContainer({
    contentType,
    tasksCopy,
-   updateTasks,
    addedTask,
    removeTask,
-   deleteTask,
    viewTask,
    taskOpened,
 }) {
@@ -55,14 +53,19 @@ export default function TasksContainer({
       const update = subGroupType(type)[1]
       return (
          <>
+            <motion.div
+               layout
+               className='subGroupTitle'
+               transition={{ duration: firstRender.current ? 0 : 0.25 }}
+            >
+               Today
+            </motion.div>
             <SubGroup
                tasksCopy={tasksCopy}
                subTasks={subGroupTasks}
                updateSubTasks={update}
-               updateTasks={updateTasks}
                contentType={contentType}
                removeTask={removeTask}
-               deleteTask={deleteTask}
                viewTask={viewTask}
             />
          </>
@@ -134,29 +137,8 @@ export default function TasksContainer({
                   subGroup('today')
                ) : (
                   <>
-                     <motion.div
-                        layout
-                        className='subGroupTitle'
-                        transition={{ duration: firstRender.current ? 0 : 0.25 }}
-                     >
-                        today
-                     </motion.div>
                      {subGroup('today')}
-                     <motion.div
-                        layout
-                        className='subGroupTitle'
-                        transition={{ duration: firstRender.current ? 0 : 0.25 }}
-                     >
-                        Tomorrow
-                     </motion.div>
                      {subGroup('tomorrow')}
-                     <motion.div
-                        layout
-                        className='subGroupTitle'
-                        transition={{ duration: firstRender.current ? 0 : 0.25 }}
-                     >
-                        Upcoming
-                     </motion.div>
                      {subGroup('upcoming')}
                   </>
                )}
