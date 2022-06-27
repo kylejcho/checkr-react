@@ -1,6 +1,4 @@
 import React, { useCallback, useState } from 'react'
-import { setDoc, doc } from 'firebase/firestore'
-import { auth, db } from '../firebase'
 import { motion } from 'framer-motion'
 import TaskView from './Task/TaskView'
 import Navbar from './Navbar'

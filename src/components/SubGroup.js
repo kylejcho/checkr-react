@@ -13,15 +13,6 @@ function SubGroup({
 }) {
    const [tasks, setTasks] = useState(null)
 
-   const firstRender = useRef(true)
-   useEffect(() => {
-      setTimeout(() => {
-         if (firstRender.current) {
-            firstRender.current = false
-         }
-      }, 450)
-   })
-
    useEffect(() => {
       if (contentType === 'week') {
          setTasks(
@@ -37,6 +28,15 @@ function SubGroup({
          setTasks(subTasks.filter(task => task.list === contentType))
       }
    }, [contentType, subTasks])
+
+   const firstRender = useRef(true)
+   useEffect(() => {
+      setTimeout(() => {
+         if (firstRender.current) {
+            firstRender.current = false
+         }
+      }, 450)
+   })
 
    const group = task => {
       return (

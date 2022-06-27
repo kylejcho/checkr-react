@@ -1,4 +1,4 @@
-import React, { useRef, useState, useCallback, useEffect } from 'react'
+import React, { useRef, useState } from 'react'
 import { useMotionValue, Reorder, AnimatePresence } from 'framer-motion'
 import { ReactComponent as Delete } from '../../icons/delete.svg'
 import { setDoc, doc } from 'firebase/firestore'
@@ -108,6 +108,7 @@ function Task({ task, tasksCopy, subTasks, updateSubTasks, viewTask }) {
 }
 
 const writeUserData = updatedTasks => {
+   console.log(updatedTasks)
    setDoc(doc(db, `${auth.currentUser.uid}`, 'tasks'), {
       tasks: [...updatedTasks],
    })

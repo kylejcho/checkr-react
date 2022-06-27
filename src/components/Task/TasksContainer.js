@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef, useTransition } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
 import SubGroup from '../SubGroup'
 import { LayoutGroup, motion, AnimatePresence } from 'framer-motion'
 import { isToday, isTomorrow, isAfter, addDays, endOfDay, getHours } from 'date-fns'
@@ -14,8 +14,6 @@ export default function TasksContainer({
    viewTask,
    taskOpened,
 }) {
-   const [isPending, startTransition] = useTransition()
-
    const [todayTasks, setTodayTasks] = useState(
       tasksCopy.filter(task => isToday(task.dueDate))
    )

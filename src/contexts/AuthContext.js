@@ -11,7 +11,7 @@ const UserContext = React.createContext()
 
 export function AuthContextProvider({ children }) {
    const [user, setUser] = useState({})
-
+   const [loading, setLoading] = useState(true)
    function createUser(email, password) {
       return createUserWithEmailAndPassword(auth, email, password)
    }
@@ -27,6 +27,7 @@ export function AuthContextProvider({ children }) {
    useEffect(() => {
       const unsubscribe = onAuthStateChanged(auth, currentUser => {
          console.log(currentUser)
+         setLoading(false)
          setUser(currentUser)
       })
       return () => {
@@ -36,7 +37,7 @@ export function AuthContextProvider({ children }) {
 
    return (
       <UserContext.Provider value={{ createUser, user, signIn, logout }}>
-         {children}
+         {!loading && children}
       </UserContext.Provider>
    )
 }

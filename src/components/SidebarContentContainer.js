@@ -1,6 +1,5 @@
-import React, { useEffect, useState, useCallback, useTransition } from 'react'
-import { collection, getDocs, setDoc, doc } from 'firebase/firestore'
-import { onAuthStateChanged } from 'firebase/auth'
+import React, { useEffect, useState, useCallback } from 'react'
+import { getDoc, doc } from 'firebase/firestore'
 import { auth, db } from '../firebase'
 import { AnimatePresence } from 'framer-motion'
 import LoadingScreen from './LoadingScreen'
@@ -8,14 +7,12 @@ import Content from './Content'
 import Sidebar from './Sidebar'
 
 export default function SidebarContentContainer() {
-   //Master list of users tasks and is updated whenever an update needs to be sent to FireStore database
+   //Master list of users tasks
    const [tasks, setTasks] = useState(null)
-   const [isPending, startTransition] = useTransition()
 
-   //Determines whether a task is open in taskView mode within the content container
+   //Open/close task view
    const [taskOpened, setTaskOpened] = useState(null)
 
-   //State is set to current content path
    const [contentType, setContentType] = useState('home')
 
    const viewTask = useCallback(task => {
@@ -35,40 +32,18 @@ export default function SidebarContentContainer() {
       setTaskOpened(null)
    }, [])
 
-   //On first mount, user's data collection is requested from Firebase
-   const data = async () => {
-      const querySnapshot = await getDocs(collection(db, `${auth.currentUser.uid}`))
-
-      //User's data pushed into a new array of objects
-      const arr = []
-      querySnapshot.forEach(doc => {
-         doc.data().tasks?.forEach(task => {
-            const a = {
-               name: task.name,
-               description: task.description,
-               dueDate: task.dueDate.toDate(),
-               list: task.list,
-               complete: task.complete,
-               id: task.id,
-            }
-            arr.push(a)
-         })
-      })
-      //'Tasks' state is set to be the new array of tasks.
-      setTasks([...arr])
-   }
-
-   //Only get data from firebase once user authentification state has changed
+   //On first mount, get user data once
    useEffect(() => {
-      const unsubscribe = onAuthStateChanged(auth, currentUser => {
-         if (currentUser) setTimeout(() => data(), 200)
-      })
-      return unsubscribe()
+      const getUserData = async () => {
+         const data = await getData()
+         setTasks(data)
+      }
+      getUserData()
    }, [])
 
-   //Render LoadingScreen until user is logged in and tasks state is set
    return (
       <>
+         //Loading screen until user is signed in and tasks is set
          <AnimatePresence>{!tasks && <LoadingScreen />}</AnimatePresence>
          {tasks && (
             <div id='sidebarContentContainer'>
@@ -89,4 +64,23 @@ export default function SidebarContentContainer() {
          )}
       </>
    )
+}
+
+//User's data collection is requested from Firebase
+const getData = async () => {
+   const docRef = await getDoc(doc(db, `${auth.currentUser.uid}`, 'tasks'))
+   //User's data pushed into a new array of objects
+
+   const userData = docRef.data()?.tasks.map(task => {
+      return {
+         name: task.name,
+         description: task.description,
+         dueDate: task.dueDate.toDate(),
+         list: task.list,
+         complete: task.complete,
+         id: task.id,
+      }
+   })
+   //setTasks(userData)
+   return userData
 }
