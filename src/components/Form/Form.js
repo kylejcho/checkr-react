@@ -24,7 +24,7 @@ export default function Form({ tasks, handleClose, addDataTask }) {
    const [uniqueLists, setUniqueLists] = useState([])
 
    useEffect(() => {
-      setUniqueLists([...new Set(tasks.map((task) => task.list))])
+      setUniqueLists([...new Set(tasks.map(task => task.list))])
    }, [tasks])
 
    function createList(list) {
@@ -59,7 +59,7 @@ export default function Form({ tasks, handleClose, addDataTask }) {
       handleClose()
    }
 
-   const writeUserData = async (task) => {
+   const writeUserData = async task => {
       try {
          await setDoc(doc(db, `${auth.currentUser.uid}`, 'tasks'), {
             tasks: [task, ...tasks],
@@ -91,7 +91,7 @@ export default function Form({ tasks, handleClose, addDataTask }) {
             initial='initial'
             animate='animate'
             exit='exit'
-            onClick={(e) => {
+            onClick={e => {
                e.stopPropagation()
                setOpenCalendar(false)
                setOpenList(false)
@@ -262,16 +262,13 @@ export default function Form({ tasks, handleClose, addDataTask }) {
                   id='inputCalendarContainer'
                   className={markCalendarInput ? 'selected' : undefined}
                   transition={{ duration: 0.25 }}
-                  onClick={(e) => {
+                  onClick={e => {
                      e.stopPropagation()
                      setOpenCalendar(!openCalendar)
                   }}
                >
                   <div id='inputCalendar'>
-                     <svg
-                        xmlns='http://www.w3.org/2000/svg'
-                        viewBox='0 0 512 512'
-                     >
+                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'>
                         \
                         <rect
                            fill='none'
@@ -315,9 +312,7 @@ export default function Form({ tasks, handleClose, addDataTask }) {
                         />
                      </svg>
                      <p id='dateSelection'>
-                        {markCalendarInput
-                           ? format(dateSelection, 'MMM d')
-                           : 'Pick date'}
+                        {markCalendarInput ? format(dateSelection, 'MMM d') : 'Pick date'}
                      </p>
                   </div>
                   <InputCalendarOptions
@@ -327,7 +322,7 @@ export default function Form({ tasks, handleClose, addDataTask }) {
                </motion.div>
                <motion.div
                   id='inputListContainer'
-                  onClick={(e) => {
+                  onClick={e => {
                      e.stopPropagation()
                      setOpenList(!openList)
                   }}

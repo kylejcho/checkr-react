@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { getDaysInMonth, getDay, addDays, endOfDay, isBefore } from 'date-fns'
+import { getDaysInMonth, getDay, addDays, endOfDay, isBefore, getDate } from 'date-fns'
 
 export default function Calendar({ month, selectCalendarDate }) {
    const calendar = useRef()
@@ -14,18 +14,15 @@ export default function Calendar({ month, selectCalendarDate }) {
 
    return (
       <div id='calendar' ref={calendar}>
-         {calendarArr.map((day) => {
+         {calendarArr.map(day => {
             return (
                <div
-                  className={`calendar${day >= 1 ? 'Day' : 'Blank'}${
-                     isBefore(endOfDay(addDays(month, day - 1)), new Date())
-                        ? 'Past'
-                        : ''
-                  }`}
+                  className={`calendar${day >= 1 ? 'Day' : 'Blank'}${checkDate(
+                     day,
+                     month
+                  )}`}
                   key={day}
-                  onClick={() =>
-                     selectCalendarDate(endOfDay(addDays(month, day - 1)))
-                  }
+                  onClick={() => selectCalendarDate(endOfDay(addDays(month, day - 1)))}
                >
                   {day}
                </div>
@@ -34,3 +31,14 @@ export default function Calendar({ month, selectCalendarDate }) {
       </div>
    )
 }
+
+function checkDate(day, month) {
+   if (isBefore(endOfDay(addDays(month, day - 1)), new Date())) {
+      return 'Past'
+   } else if (day === getDate(new Date())) {
+      return 'Today'
+   } else {
+      return ''
+   }
+}
+//isBefore(endOfDay(addDays(month, day - 1)), new Date()) ? 'Past' : ''

@@ -1264,6 +1264,7 @@ textarea:hover {
    color: rgba(0, 0, 0, 0);
 }
 
+.calendarDayToday,
 .calendarDayPast {
    pointer-events: none;
    display: flex;
@@ -1273,6 +1274,15 @@ textarea:hover {
    height: 100%;
    font-size: 0.8rem;
    font-weight: 400;
+}
+
+.calendarDayToday {
+   border-radius: 5px;
+   background-color: var(--bkg3);
+   color: var(--blue1);
+}
+
+.calendarDayPast {
    color: var(--text3);
 }
 
