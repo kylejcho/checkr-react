@@ -7,7 +7,7 @@ import Signin from './components/Signin'
 import React from 'react'
 
 export default function App() {
-   //Context providing props from firebase auth functions
+   //AuthContext provides props from firebase auth
    //Once user is signed in, navigate to protected home path
    return (
       <AuthContextProvider>

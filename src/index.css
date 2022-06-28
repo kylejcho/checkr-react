@@ -39,6 +39,7 @@
    --border1: rgb(229, 229, 235);
    --border2: rgb(232, 234, 238);
    --border3: #bec7d562;
+   --bkgError: #ffdbdb;
 
    --text1-dark: rgb(213, 213, 233);
    --text2-dark: rgb(152, 160, 179);
@@ -63,6 +64,7 @@
    --border1-dark: rgb(43, 48, 59);
    --border2-dark: rgb(43, 48, 59);
    --border3-dark: rgba(76, 79, 85, 0.384);
+   --bkgError-dark: #cb7b7b;
 }
 
 body.dark {
@@ -89,6 +91,7 @@ body.dark {
    --border1: var(--border1-dark);
    --border2: var(--border2-dark);
    --border3: var(--border3-dark);
+   --bkgError: var(--bkgError-dark);
 }
 
 body {
@@ -440,6 +443,23 @@ nav {
    height: 10%;
 }
 
+#settingsContainerBackground {
+   position: absolute;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   color: var(--text1);
+   width: 100vw;
+   height: 100vh;
+}
+
+#settingsContainer {
+   background-color: var(--bkg4);
+   padding: 40px;
+   border-radius: 10px;
+   border: 1.5px solid var(--border1);
+}
+
 #sidebarContentContainer {
    display: flex;
    position: fixed;
@@ -667,9 +687,8 @@ nav {
    transition: background-color ease 0.4s, border ease 0.4s;
 }
 
-.subGroupTitle.overdue {
-   color: #f07070;
-   background-color: #ffdbdb;
+.subGroupTitle.late {
+   color: #d75858;
 }
 
 /* TASK CONTAINER */
@@ -1566,8 +1585,8 @@ textarea:hover {
    display: flex;
    align-items: center;
    flex-direction: column;
-   width: 22vw;
-   padding-left: 3%;
+   width: 25vw;
+   padding-inline: 3%;
    min-width: 350px;
    height: max-content;
 }
@@ -1599,7 +1618,7 @@ textarea:hover {
    align-items: center;
    height: clamp(40px, 4vh, 50px);
    border-radius: 5px;
-   background-color: rgb(231, 153, 153);
+   background-color: var(--bkgError);
    color: rgb(187, 70, 70);
    border: 1.5px solid var(--border1);
    font-size: clamp(13px, 0.8vw, 18px);

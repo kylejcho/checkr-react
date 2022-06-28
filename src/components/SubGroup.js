@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
-import Task from './Task/Task'
-import { Reorder } from 'framer-motion'
 import { addDays, endOfDay, isBefore } from 'date-fns'
+import { Reorder } from 'framer-motion'
+import Task from './Task/Task'
 
 function SubGroup({
    updateSubTasks,
@@ -60,4 +60,5 @@ function SubGroup({
       </div>
    )
 }
+
 export default React.memo(SubGroup)

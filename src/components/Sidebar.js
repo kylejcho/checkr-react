@@ -8,7 +8,7 @@ function Sidebar({ changeContent, contentType, tasks }) {
    const [listDropDown, setListDropDown] = useState(true)
 
    useEffect(() => {
-      setUniqueLists([...new Set(tasks.map((task) => task.list))])
+      setUniqueLists([...new Set(tasks.map(task => task.list))])
    }, [tasks])
 
    return (
@@ -325,11 +325,9 @@ function Sidebar({ changeContent, contentType, tasks }) {
                </p>
                <div
                   id='sidebarLists'
-                  className={`sidebarTabsContainer ${
-                     !listDropDown && 'hidden'
-                  }`}
+                  className={`sidebarTabsContainer ${!listDropDown && 'hidden'}`}
                >
-                  {uniqueLists.map((list) => {
+                  {uniqueLists.map(list => {
                      if (list) {
                         return (
                            <div

@@ -1,7 +1,15 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import SubGroup from '../SubGroup'
 import { LayoutGroup, motion, AnimatePresence } from 'framer-motion'
-import { isToday, isTomorrow, isAfter, addDays, endOfDay, getHours } from 'date-fns'
+import {
+   isToday,
+   isTomorrow,
+   isAfter,
+   isBefore,
+   addDays,
+   endOfDay,
+   getHours,
+} from 'date-fns'
 import { UserAuth } from '../../contexts/AuthContext'
 import { auth } from '../../firebase'
 import { updateProfile, onAuthStateChanged } from 'firebase/auth'
@@ -24,6 +32,10 @@ export default function TasksContainer({
       tasksCopy.filter(task => isAfter(task.dueDate, addDays(endOfDay(new Date()), 1)))
    )
 
+   const [lateTasks, setLateTasks] = useState(
+      tasksCopy.filter(task => isBefore(task.dueDate, new Date()))
+   )
+
    const updateTodayTasks = useCallback(subTasks => {
       setTodayTasks(subTasks)
    }, [])
@@ -36,11 +48,17 @@ export default function TasksContainer({
       setUpcomingTasks(subTasks)
    }, [])
 
+   const updateLateTasks = useCallback(subTasks => {
+      setLateTasks(subTasks)
+   }, [])
+
    function subGroupType(type) {
       if (type === 'today') {
          return [todayTasks, updateTodayTasks]
       } else if (type === 'tomorrow') {
          return [tomorrowTasks, updateTomorrowTasks]
+      } else if (type === 'late') {
+         return [lateTasks, updateLateTasks]
       } else {
          return [upcomingTasks, updateUpcomingTasks]
       }
@@ -53,10 +71,10 @@ export default function TasksContainer({
          <>
             <motion.div
                layout
-               className='subGroupTitle'
+               className={type !== 'late' ? 'subGroupTitle' : 'subGroupTitle late'}
                transition={{ duration: firstRender.current ? 0 : 0.25 }}
             >
-               Today
+               {type[0].toUpperCase() + type.substring(1)}
             </motion.div>
             <SubGroup
                tasksCopy={tasksCopy}
@@ -68,6 +86,29 @@ export default function TasksContainer({
             />
          </>
       )
+   }
+
+   function subGroups() {
+      if (contentType === 'today') {
+         return subGroup('today')
+      } else if (contentType === 'week') {
+         return (
+            <>
+               {subGroup('today')}
+               {subGroup('tomorrow')}
+               {subGroup('upcoming')}
+            </>
+         )
+      } else {
+         return (
+            <>
+               {subGroup('late')}
+               {subGroup('today')}
+               {subGroup('tomorrow')}
+               {subGroup('upcoming')}
+            </>
+         )
+      }
    }
 
    useEffect(() => {
@@ -131,15 +172,7 @@ export default function TasksContainer({
                <div id='titleContainer' className='tasksTitle'>
                   {taskTitle(contentType, auth.currentUser.displayName)}
                </div>
-               {contentType === 'today' ? (
-                  subGroup('today')
-               ) : (
-                  <>
-                     {subGroup('today')}
-                     {subGroup('tomorrow')}
-                     {subGroup('upcoming')}
-                  </>
-               )}
+               {subGroups()}
             </LayoutGroup>
          </motion.div>
       </AnimatePresence>
