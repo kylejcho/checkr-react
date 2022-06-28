@@ -45,6 +45,7 @@ export default function UpdateProfile({ setProfileOpen }) {
 
       window.location.reload()
    }
+
    return (
       <form
          id='signupContainer'

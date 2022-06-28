@@ -69,13 +69,7 @@ export default function TasksContainer({
       const update = subGroupType(type)[1]
       return (
          <>
-            <motion.div
-               layout
-               className={type !== 'late' ? 'subGroupTitle' : 'subGroupTitle late'}
-               transition={{ duration: firstRender.current ? 0 : 0.25 }}
-            >
-               {type[0].toUpperCase() + type.substring(1)}
-            </motion.div>
+            {title(type, subGroupTasks)}
             <SubGroup
                tasksCopy={tasksCopy}
                subTasks={subGroupTasks}
@@ -86,6 +80,21 @@ export default function TasksContainer({
             />
          </>
       )
+   }
+
+   function title(type, subGroupTasks) {
+      if (subGroupTasks.length !== 0 || type !== 'late') {
+         return (
+            <motion.div
+               layout
+               className={'subGroupTitle'}
+               id={type === 'late' ? 'late' : ''}
+               transition={{ duration: firstRender.current ? 0 : 0.25 }}
+            >
+               {type[0].toUpperCase() + type.substring(1)}
+            </motion.div>
+         )
+      }
    }
 
    function subGroups() {

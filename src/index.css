@@ -687,8 +687,12 @@ nav {
    transition: background-color ease 0.4s, border ease 0.4s;
 }
 
-.subGroupTitle.late {
+.subGroupTitle#late {
    color: #d75858;
+}
+
+.subGroupTitle.empty {
+   display: none;
 }
 
 /* TASK CONTAINER */
