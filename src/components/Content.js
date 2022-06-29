@@ -15,6 +15,7 @@ export default function Content({
    //Added task state is updated when new task is made by user
    const [addedTask, setAddedTask] = useState()
 
+   //Set Sidebar/Nav tasks state + SubGroup tasks state
    const addDataTask = useCallback(
       task => {
          addTask(task)

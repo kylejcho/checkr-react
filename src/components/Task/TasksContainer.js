@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import SubGroup from '../SubGroup'
 import { LayoutGroup, motion, AnimatePresence } from 'framer-motion'
+import { UserAuth } from '../../contexts/AuthContext'
 import {
    isToday,
    isTomorrow,
@@ -10,9 +11,6 @@ import {
    endOfDay,
    getHours,
 } from 'date-fns'
-import { UserAuth } from '../../contexts/AuthContext'
-import { auth } from '../../firebase'
-import { updateProfile, onAuthStateChanged } from 'firebase/auth'
 
 export default function TasksContainer({
    contentType,
@@ -22,6 +20,7 @@ export default function TasksContainer({
    viewTask,
    taskOpened,
 }) {
+   //On first render, set SubGroup tasks based on dueDate of each task
    const [todayTasks, setTodayTasks] = useState(
       tasksCopy.filter(task => isToday(task.dueDate))
    )
@@ -31,45 +30,31 @@ export default function TasksContainer({
    const [upcomingTasks, setUpcomingTasks] = useState(
       tasksCopy.filter(task => isAfter(task.dueDate, addDays(endOfDay(new Date()), 1)))
    )
-
    const [lateTasks, setLateTasks] = useState(
       tasksCopy.filter(task => isBefore(task.dueDate, new Date()))
    )
 
+   //Set new SubGroup tasks state from updated array of subTasks
    const updateTodayTasks = useCallback(subTasks => {
       setTodayTasks(subTasks)
    }, [])
-
    const updateTomorrowTasks = useCallback(subTasks => {
       setTomorrowTasks(subTasks)
    }, [])
-
    const updateUpcomingTasks = useCallback(subTasks => {
       setUpcomingTasks(subTasks)
    }, [])
-
    const updateLateTasks = useCallback(subTasks => {
       setLateTasks(subTasks)
    }, [])
 
-   function subGroupType(type) {
-      if (type === 'today') {
-         return [todayTasks, updateTodayTasks]
-      } else if (type === 'tomorrow') {
-         return [tomorrowTasks, updateTomorrowTasks]
-      } else if (type === 'late') {
-         return [lateTasks, updateLateTasks]
-      } else {
-         return [upcomingTasks, updateUpcomingTasks]
-      }
-   }
-
-   const subGroup = type => {
+   //Return a unique SubGroup component
+   function subGroup(type) {
       const subGroupTasks = subGroupType(type)[0]
       const update = subGroupType(type)[1]
       return (
          <>
-            {title(type, subGroupTasks)}
+            {subGroupTitle(type, subGroupTasks)}
             <SubGroup
                tasksCopy={tasksCopy}
                subTasks={subGroupTasks}
@@ -82,7 +67,21 @@ export default function TasksContainer({
       )
    }
 
-   function title(type, subGroupTasks) {
+   //Determine which array of subTasks is passed as props into a SubGroup component
+   function subGroupType(type) {
+      if (type === 'today') {
+         return [todayTasks, updateTodayTasks]
+      } else if (type === 'tomorrow') {
+         return [tomorrowTasks, updateTomorrowTasks]
+      } else if (type === 'late') {
+         return [lateTasks, updateLateTasks]
+      } else {
+         return [upcomingTasks, updateUpcomingTasks]
+      }
+   }
+
+   //Return Title only if it's not for an empty "late" SubGroup component
+   function subGroupTitle(type, subGroupTasks) {
       if (subGroupTasks.length !== 0 || type !== 'late') {
          return (
             <motion.div
@@ -97,6 +96,7 @@ export default function TasksContainer({
       }
    }
 
+   //Returns a combonation of SubGroups based on the ContentType state
    function subGroups() {
       if (contentType === 'today') {
          return subGroup('today')
@@ -120,6 +120,7 @@ export default function TasksContainer({
       }
    }
 
+   //New addedTask state changes subTasks state
    useEffect(() => {
       if (addedTask) {
          if (isToday(addedTask.dueDate)) {
@@ -132,16 +133,9 @@ export default function TasksContainer({
       }
    }, [addedTask])
 
-   const { name } = UserAuth()
-   useEffect(() => {
-      const unsubscribe = onAuthStateChanged(auth, currentUser => {
-         if (currentUser) {
-            updateProfile(auth.currentUser, { displayName: name })
-         }
-      })
-      return () => unsubscribe()
-   }, [name])
+   const { user } = UserAuth()
 
+   //Prevent layout animation of subGroup titles right after first render
    const firstRender = useRef(true)
    useEffect(() => {
       setTimeout(() => (firstRender.current = false), 450)
@@ -179,7 +173,7 @@ export default function TasksContainer({
          >
             <LayoutGroup>
                <div id='titleContainer' className='tasksTitle'>
-                  {taskTitle(contentType, auth.currentUser.displayName)}
+                  {taskTitle(contentType, user.displayName)}
                </div>
                {subGroups()}
             </LayoutGroup>
@@ -188,10 +182,7 @@ export default function TasksContainer({
    )
 }
 
-const isMorning = () => getHours(new Date()) < 12
-
-const isAfternoon = () => getHours(new Date()) >= 12 && getHours(new Date()) < 18
-
+//Return greeting for homepage
 function homeGreeting() {
    if (isMorning()) {
       return 'Good Morning, '
@@ -201,6 +192,10 @@ function homeGreeting() {
       return 'Good Evening, '
    }
 }
+
+//Determine morning, afternoon, evening based on current time
+const isMorning = () => getHours(new Date()) < 12
+const isAfternoon = () => getHours(new Date()) >= 12 && getHours(new Date()) < 18
 
 const taskTitle = (contentType, name) => {
    if (contentType === 'home') {
