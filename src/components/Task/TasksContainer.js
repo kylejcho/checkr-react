@@ -36,7 +36,9 @@ export default function TasksContainer({
       tasksCopy.filter(task => isBefore(task.dueDate, new Date()))
    )
 
+   //Write user data for every change in any subtasks array
    useEffect(() => {
+      //Spread each subtasks array into a single array
       writeUserData([...todayTasks, ...tomorrowTasks, ...upcomingTasks, ...lateTasks])
    }, [todayTasks, tomorrowTasks, upcomingTasks, lateTasks])
 

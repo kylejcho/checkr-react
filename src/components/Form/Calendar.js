@@ -13,9 +13,11 @@ export default function Calendar({ month, selectCalendarDate }) {
    const calendar = useRef()
    const calendarArr = []
 
+   //Add 'past' days before current date
    for (let i = 0; i < getDay(month); i++) {
       calendarArr.push('x' + i)
    }
+   //For each day after current date and within the chosen month, add a day to the calendar
    for (let i = 1; i <= getDaysInMonth(month); i++) {
       calendarArr.push(i)
    }
@@ -40,6 +42,7 @@ export default function Calendar({ month, selectCalendarDate }) {
    )
 }
 
+//Determine className for calendar date element
 function checkDate(day, month) {
    if (isBefore(endOfDay(addDays(month, day - 1)), new Date())) {
       return 'Past'

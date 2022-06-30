@@ -11,12 +11,12 @@ function SubGroup({
    subTasks,
    viewTask,
 }) {
-   const [tasks, setTasks] = useState(null)
+   const [altTasks, setAltTasks] = useState(null)
 
    //On first render, filter out all subTasks based on ContentType stae
    useEffect(() => {
       if (contentType === 'week') {
-         setTasks(
+         setAltTasks(
             subTasks.filter(task => {
                return isBefore(task.dueDate, addDays(endOfDay(new Date()), 7))
             })
@@ -26,7 +26,7 @@ function SubGroup({
          contentType !== 'today' &&
          contentType !== 'home'
       ) {
-         setTasks(subTasks.filter(task => task.list === contentType))
+         setAltTasks(subTasks.filter(task => task.list === contentType))
       }
    }, [contentType, subTasks])
 
@@ -48,7 +48,9 @@ function SubGroup({
    return (
       <div className='subGroup' id={contentType}>
          <Reorder.Group values={subTasks} onReorder={updateSubTasks}>
-            {tasks ? tasks.map(task => group(task)) : subTasks.map(task => group(task))}
+            {altTasks
+               ? altTasks.map(task => group(task))
+               : subTasks.map(task => group(task))}
          </Reorder.Group>
       </div>
    )

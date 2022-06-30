@@ -15,6 +15,7 @@ function Navbar({
    contentType,
    viewTask,
 }) {
+   //Manages task form open/close states
    const [formOpen, setFormOpen] = useState(false)
    const [searchValue, setSearchValue] = useState('')
 
@@ -45,6 +46,7 @@ function Navbar({
 
    useOutsideDetection(searchResultsContainer)
 
+   //Actions based on user's search selection
    const result = async e => {
       const taskId = e.target.id.slice(6)
       const resultTask = tasks.filter(task => {
@@ -55,15 +57,19 @@ function Navbar({
       if (contentType !== 'all' && contentType !== 'home') {
          await changeContent('all')
          setTimeout(() => {
+            //wait for contentChange animation to view task
             setTimeout(() => {
                viewTask(...resultTask)
             }, 200)
+
+            //Remove any previous viewing class and add one to the selected task
             document.querySelectorAll('.taskContainer').forEach(taskContainer => {
                taskContainer.classList.remove('viewing')
             })
             document.querySelector(`#${taskId}`).classList.add('viewing')
          }, 375)
       } else {
+         //Start view task immediatly if already at 'all' or 'home' content page
          setTimeout(() => {
             viewTask(...resultTask)
             document.querySelectorAll('.taskContainer').forEach(taskContainer => {
@@ -74,6 +80,7 @@ function Navbar({
       }
    }
 
+   //Line tracing animation properties for add button
    const pathVariants = {
       initial: {
          opacity: 1,

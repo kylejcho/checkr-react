@@ -4,6 +4,7 @@ import { subMonths, addMonths, format, startOfMonth } from 'date-fns'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export default function InputCalendarOptions({ openCalendar, selectCalendarDate }) {
+   //Manages month selection state from user input
    const [month, setMonth] = useState(startOfMonth(new Date()))
 
    return (
