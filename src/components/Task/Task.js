@@ -12,8 +12,7 @@ function Task({ task, tasksCopy, subTasks, updateSubTasks, deleteTask, viewTask 
 
    const taskContainer = useRef()
 
-   //Update subTasks and write new user data after the user:
-   //checks, deletes, or reoders Task
+   //Update subTasks after the user checks task
    const checkTask = () => {
       let newSubTasks = [...subTasks]
       const checkedSubTask = newSubTasks.find(item => item.id === task.id)
@@ -25,15 +24,18 @@ function Task({ task, tasksCopy, subTasks, updateSubTasks, deleteTask, viewTask 
       } else {
          newSubTasks.unshift(newSubTasks.splice(subIndex, 1)[0])
       }
-
       updateSubTasks(newSubTasks)
    }
 
+   //Update subTasks after user deletes
    const removeTask = () => {
       updateSubTasks(subTasks.filter(item => item.id !== task.id))
+
+      //Task deletion must be reflected in master 'Tasks' state.
       deleteTask(task)
    }
 
+   //If task is being viewed during delete click, remove taskView
    function handleDeleteClick() {
       setTimeout(() => {
          setShowTask(false)
