@@ -26,6 +26,13 @@ export default function SidebarContentContainer() {
       [setTasks]
    )
 
+   const deleteTask = useCallback(
+      task => {
+         setTasks(prevTasks => prevTasks.filter(item => item !== task))
+      },
+      [setTasks]
+   )
+
    //taskOpened state set to null to remove taskViewContainer during content change
    const changeContent = useCallback(type => {
       setContentType(type)
@@ -56,6 +63,7 @@ export default function SidebarContentContainer() {
                   changeContent={changeContent}
                   contentType={contentType}
                   tasks={tasks}
+                  deleteTask={deleteTask}
                   addTask={addTask}
                   taskOpened={taskOpened}
                   viewTask={viewTask}

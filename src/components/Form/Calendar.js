@@ -1,5 +1,13 @@
 import React, { useRef } from 'react'
-import { getDaysInMonth, getDay, addDays, endOfDay, isBefore, getDate } from 'date-fns'
+import {
+   getDaysInMonth,
+   getDay,
+   addDays,
+   endOfDay,
+   isBefore,
+   getDate,
+   startOfMonth,
+} from 'date-fns'
 
 export default function Calendar({ month, selectCalendarDate }) {
    const calendar = useRef()
@@ -35,10 +43,12 @@ export default function Calendar({ month, selectCalendarDate }) {
 function checkDate(day, month) {
    if (isBefore(endOfDay(addDays(month, day - 1)), new Date())) {
       return 'Past'
-   } else if (day === getDate(new Date())) {
+   } else if (
+      day === getDate(new Date()) &&
+      month.toString() === startOfMonth(new Date()).toString()
+   ) {
       return 'Today'
    } else {
       return ''
    }
 }
-//isBefore(endOfDay(addDays(month, day - 1)), new Date()) ? 'Past' : ''

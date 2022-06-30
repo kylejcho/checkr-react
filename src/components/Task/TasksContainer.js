@@ -18,7 +18,7 @@ export default function TasksContainer({
    contentType,
    tasksCopy,
    addedTask,
-   removeTask,
+   deleteTask,
    viewTask,
    taskOpened,
 }) {
@@ -65,8 +65,8 @@ export default function TasksContainer({
                tasksCopy={tasksCopy}
                subTasks={subGroupTasks}
                updateSubTasks={update}
+               deleteTask={deleteTask}
                contentType={contentType}
-               removeTask={removeTask}
                viewTask={viewTask}
             />
          </>

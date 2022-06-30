@@ -3,10 +3,7 @@ import Calendar from './Calendar'
 import { subMonths, addMonths, format, startOfMonth } from 'date-fns'
 import { motion, AnimatePresence } from 'framer-motion'
 
-export default function InputCalendarOptions({
-   openCalendar,
-   selectCalendarDate,
-}) {
+export default function InputCalendarOptions({ openCalendar, selectCalendarDate }) {
    const [month, setMonth] = useState(startOfMonth(new Date()))
 
    return (
@@ -21,10 +18,7 @@ export default function InputCalendarOptions({
             >
                <div id='calendarHeader'>
                   <div id='calendarMonth'>{format(month, 'MMM y')}</div>
-                  <div
-                     id='calendarArrowContainer'
-                     onClick={(e) => e.stopPropagation()}
-                  >
+                  <div id='calendarArrowContainer' onClick={e => e.stopPropagation()}>
                      <ion-icon
                         id='backMonthIcon'
                         name='chevron-back-outline'
@@ -52,10 +46,7 @@ export default function InputCalendarOptions({
                   <div>F</div>
                   <div>S</div>
                </div>
-               <Calendar
-                  month={month}
-                  selectCalendarDate={selectCalendarDate}
-               />
+               <Calendar month={month} selectCalendarDate={selectCalendarDate} />
             </motion.div>
          )}
       </AnimatePresence>

@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { addDays, endOfDay, format, getDate } from 'date-fns'
 import InputListOptions from './InputListOptions'
 
-export default function Form({ tasks, handleClose, addDataTask }) {
+export default function Form({ tasks, handleClose, addDataTask, deleteTask }) {
    const nameRef = useRef()
    const descRef = useRef()
    const todayInput = useRef()

@@ -8,6 +8,7 @@ export default function Content({
    changeContent,
    contentType,
    tasks,
+   deleteTask,
    addTask,
    taskOpened,
    viewTask,
@@ -48,6 +49,7 @@ export default function Content({
                contentType={contentType}
                tasksCopy={[...tasks]}
                addedTask={addedTask}
+               deleteTask={deleteTask}
                viewTask={viewTask}
                taskOpened={taskOpened}
             />

@@ -4,7 +4,7 @@ import { ReactComponent as Delete } from '../../icons/delete.svg'
 import { RaisedShadow } from './RaisedShadow'
 import CheckCircle from './CheckCircle'
 
-function Task({ task, tasksCopy, subTasks, updateSubTasks, viewTask }) {
+function Task({ task, tasksCopy, subTasks, updateSubTasks, deleteTask, viewTask }) {
    //Render or remove Task component to trigger AnimatePresence animation
    const [showTask, setShowTask] = useState(true)
    //State to pass to TaskView component
@@ -31,11 +31,7 @@ function Task({ task, tasksCopy, subTasks, updateSubTasks, viewTask }) {
 
    const removeTask = () => {
       updateSubTasks(subTasks.filter(item => item.id !== task.id))
-   }
-
-   const reorderTask = () => {
-      const prevTasks = [...tasksCopy]
-      const a = prevTasks.filter(task => !subTasks.includes(task))
+      deleteTask(task)
    }
 
    function handleDeleteClick() {
@@ -69,7 +65,6 @@ function Task({ task, tasksCopy, subTasks, updateSubTasks, viewTask }) {
                }}
                onDragEnd={() => {
                   taskContainer.current.classList.remove('dragging')
-                  reorderTask()
                }}
                exit={{ opacity: 0, transition: { duration: 0.3 } }}
                dragTransition={{ bounceStiffness: 1000, bounceDamping: 70 }}
