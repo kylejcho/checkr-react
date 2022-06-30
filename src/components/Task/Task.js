@@ -1,45 +1,41 @@
 import React, { useRef, useState } from 'react'
 import { useMotionValue, Reorder, AnimatePresence } from 'framer-motion'
 import { ReactComponent as Delete } from '../../icons/delete.svg'
-import { setDoc, doc } from 'firebase/firestore'
-import { auth, db } from '../../firebase'
 import { RaisedShadow } from './RaisedShadow'
 import CheckCircle from './CheckCircle'
 
 function Task({ task, tasksCopy, subTasks, updateSubTasks, viewTask }) {
+   //Render or remove Task component to trigger AnimatePresence animation
    const [showTask, setShowTask] = useState(true)
-
+   //State to pass to TaskView component
    const [selectTask, setSelectTask] = useState(false)
 
    const taskContainer = useRef()
 
+   //Update subTasks and write new user data after the user:
+   //checks, deletes, or reoders Task
    const checkTask = () => {
       let newSubTasks = [...subTasks]
       const checkedSubTask = newSubTasks.find(item => item.id === task.id)
       checkedSubTask.complete = !checkedSubTask.complete
       const subIndex = newSubTasks.indexOf(checkedSubTask)
+
       if (checkedSubTask.complete) {
          newSubTasks.push(newSubTasks.splice(subIndex, 1)[0])
       } else {
          newSubTasks.unshift(newSubTasks.splice(subIndex, 1)[0])
       }
 
-      const newTasks = [...tasksCopy]
-      const a = newTasks.filter(task => !newSubTasks.includes(task))
-      writeUserData([...a, ...newSubTasks])
       updateSubTasks(newSubTasks)
    }
 
    const removeTask = () => {
-      const newTasks = [...tasksCopy]
       updateSubTasks(subTasks.filter(item => item.id !== task.id))
-      writeUserData(newTasks.filter(item => item.id !== task.id))
    }
 
    const reorderTask = () => {
       const prevTasks = [...tasksCopy]
       const a = prevTasks.filter(task => !subTasks.includes(task))
-      writeUserData([...a, ...subTasks])
    }
 
    function handleDeleteClick() {
@@ -52,6 +48,8 @@ function Task({ task, tasksCopy, subTasks, updateSubTasks, viewTask }) {
       setTimeout(() => removeTask(), 250)
    }
 
+   //Motion values to determine when task has stopped moving after dragging
+   //BoxShadow remains until animation has finished
    const y = useMotionValue(0)
    const boxShadow = RaisedShadow(y)
 
@@ -105,13 +103,6 @@ function Task({ task, tasksCopy, subTasks, updateSubTasks, viewTask }) {
          )}
       </AnimatePresence>
    )
-}
-
-const writeUserData = updatedTasks => {
-   console.log(updatedTasks)
-   setDoc(doc(db, `${auth.currentUser.uid}`, 'tasks'), {
-      tasks: [...updatedTasks],
-   })
 }
 
 export default React.memo(Task)

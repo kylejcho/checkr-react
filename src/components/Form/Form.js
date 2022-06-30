@@ -4,9 +4,6 @@ import { motion } from 'framer-motion'
 import { v4 as uuidv4 } from 'uuid'
 import { addDays, endOfDay, format, getDate } from 'date-fns'
 import InputListOptions from './InputListOptions'
-import { db } from '../../firebase'
-import { doc, setDoc } from 'firebase/firestore'
-import { auth } from '../../firebase'
 
 export default function Form({ tasks, handleClose, addDataTask }) {
    const nameRef = useRef()
@@ -54,19 +51,8 @@ export default function Form({ tasks, handleClose, addDataTask }) {
       }
 
       console.log(task)
-      writeUserData(task)
       addDataTask(task)
       handleClose()
-   }
-
-   const writeUserData = async task => {
-      try {
-         await setDoc(doc(db, `${auth.currentUser.uid}`, 'tasks'), {
-            tasks: [task, ...tasks],
-         })
-      } catch (e) {
-         console.error('Error adding document: ', e)
-      }
    }
 
    return (

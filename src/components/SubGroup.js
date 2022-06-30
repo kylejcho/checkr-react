@@ -13,6 +13,7 @@ function SubGroup({
 }) {
    const [tasks, setTasks] = useState(null)
 
+   //On first render, filter out all subTasks based on ContentType stae
    useEffect(() => {
       if (contentType === 'week') {
          setTasks(
@@ -29,16 +30,7 @@ function SubGroup({
       }
    }, [contentType, subTasks])
 
-   const firstRender = useRef(true)
-   useEffect(() => {
-      setTimeout(() => {
-         if (firstRender.current) {
-            firstRender.current = false
-         }
-      }, 450)
-   })
-
-   const group = task => {
+   function group(task) {
       return (
          <Task
             key={task.id}
@@ -52,6 +44,7 @@ function SubGroup({
       )
    }
 
+   //Render from either tasks or subTasks
    return (
       <div className='subGroup' id={contentType}>
          <Reorder.Group values={subTasks} onReorder={updateSubTasks}>

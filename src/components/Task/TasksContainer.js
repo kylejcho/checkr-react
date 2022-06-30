@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import SubGroup from '../SubGroup'
+import { setDoc, doc } from 'firebase/firestore'
+import { auth, db } from '../../firebase'
 import { LayoutGroup, motion, AnimatePresence } from 'framer-motion'
 import { UserAuth } from '../../contexts/AuthContext'
 import {
@@ -33,6 +35,10 @@ export default function TasksContainer({
    const [lateTasks, setLateTasks] = useState(
       tasksCopy.filter(task => isBefore(task.dueDate, new Date()))
    )
+
+   useEffect(() => {
+      writeUserData([...todayTasks, ...tomorrowTasks, ...upcomingTasks, ...lateTasks])
+   }, [todayTasks, tomorrowTasks, upcomingTasks, lateTasks])
 
    //Set new SubGroup tasks state from updated array of subTasks
    const updateTodayTasks = useCallback(subTasks => {
@@ -209,4 +215,11 @@ const taskTitle = (contentType, name) => {
    } else {
       return contentType
    }
+}
+
+const writeUserData = updatedTasks => {
+   console.log(updatedTasks)
+   setDoc(doc(db, `${auth.currentUser.uid}`, 'tasks'), {
+      tasks: [...updatedTasks],
+   })
 }

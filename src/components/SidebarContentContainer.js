@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react'
-import { getDoc, doc } from 'firebase/firestore'
+import { getDoc, doc, setDoc } from 'firebase/firestore'
 import { auth, db } from '../firebase'
 import { AnimatePresence } from 'framer-motion'
 import LoadingScreen from './LoadingScreen'

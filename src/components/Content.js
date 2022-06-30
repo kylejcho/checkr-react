@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react'
 import { motion } from 'framer-motion'
+import TasksContainer from './Task/TasksContainer'
 import TaskView from './Task/TaskView'
 import Navbar from './Navbar'
-import TasksContainer from './Task/TasksContainer'
 
 export default function Content({
    changeContent,
