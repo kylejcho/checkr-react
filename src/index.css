@@ -6,12 +6,6 @@
    box-sizing: border-box;
    font-family: 'Inter', Helvetica, sans-serif;
    font-weight: 500;
-   -webkit-touch-callout: none;
-   -webkit-user-select: none;
-   -khtml-user-select: none;
-   -moz-user-select: none;
-   -ms-user-select: none;
-   user-select: none;
 }
 
 :root {
@@ -64,7 +58,7 @@
    --border1-dark: rgb(43, 48, 59);
    --border2-dark: rgb(43, 48, 59);
    --border3-dark: rgba(76, 79, 85, 0.384);
-   --bkgError-dark: #cb7b7b;
+   --bkgError-dark: rgb(203, 123, 123);
 }
 
 body.dark {
@@ -1743,7 +1737,7 @@ textarea:hover {
       display: flex;
       justify-content: center;
       position: sticky;
-      height: 10vh;
+      height: 20vh;
       width: 100vw;
       overflow-x: visible;
       white-space: nowrap;
@@ -1805,10 +1799,16 @@ textarea:hover {
 
    nav {
       padding-inline: 20px;
+      height: clamp(50px, 8vh, 60px);
+      justify-content: center;
+   }
+
+   #searchAddContainer {
+      margin: 0;
    }
 
    #searchBar {
-      width: 45vw;
+      width: 35vw;
       min-width: 0;
       border: none;
       padding-left: 8px;
@@ -1829,6 +1829,14 @@ textarea:hover {
       margin-right: 20px;
    }
 
+   .tasksContainer {
+      position: absolute;
+      height: max-content;
+      width: 10vw;
+      padding-top: clamp(40px, 6vh, 50px);
+      padding-bottom: 25px;
+   }
+
    .checkContainer {
       justify-self: center;
       padding: 5px;
@@ -1838,5 +1846,9 @@ textarea:hover {
       height: 17px;
       background-color: var(--bkg1);
       overflow: visible;
+   }
+
+   #signupArtContainer {
+      display: none;
    }
 }

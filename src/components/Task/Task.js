@@ -4,7 +4,7 @@ import { ReactComponent as Delete } from '../../icons/delete.svg'
 import { RaisedShadow } from './RaisedShadow'
 import CheckCircle from './CheckCircle'
 
-function Task({ task, tasksCopy, subTasks, updateSubTasks, deleteTask, viewTask }) {
+function Task({ task, subTasks, updateSubTasks, deleteTask, viewTask }) {
    //Render or remove Task component to trigger AnimatePresence animation
    const [showTask, setShowTask] = useState(true)
    //State to pass to TaskView component
