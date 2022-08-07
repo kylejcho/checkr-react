@@ -30,31 +30,28 @@ Firebase is used to handle user-authentication and data storage/manipulation. Th
 React Router was used to navigate through sign-in, sign-up, and home pages. The home page is protected so that the path is only accessible when a user is signed in. Otherwise, it'll jump back to the sign-in page. 
 
 ## Optimizations
-One of the biggest issues regarding this application was perfomance. It occured to me that using animations with react states, while easier to code, was very heavy on the CPU due to Framer Motion's API requiring state changes for many of it's uses in this application. Therefore, many of the optimizations I made were centered around eliminating unecessary rerendering using React's useCallback and memoization functions. That way, certain functions would not cause a rerenders if their dependencies have not changed. 
+One of the biggest issues regarding this application was perfomance. It occured to me that using animations with react states, while easier to code, was very heavy on the CPU due to Framer Motion's API requiring state changes for many of it's uses in this application. Therefore, many of the optimizations I made were centered around eliminating unecessary re-rendering using React's useCallback and memoization functions. That way, certain functions would not cause a re-renders if their dependencies have not changed. 
 
-Another notable performance issue I ran into was the rerendering of all task components whenever one task was checked off, deleted, and reordered. Due to the heavy use of animations for each interaction, any change to a task, also would affect the layout of all other tasks and cause uncessary rerenders. In order to mitigate this issue, I took the master tasks state and split it into 3 seperate subtasks states for each subgroup. That way whenever Framer Motion's API needed to change the state of the tasks list, it would only affect the tasks within the subgroup and not all tasks. 
+Another notable performance issue I ran into was the re-rendering of all task components whenever one task was checked off, deleted, and reordered. Due to the heavy use of animations for each interaction, any change to a task, also would affect the layout of all other tasks and cause uncessary re-renders. In order to mitigate this issue, I took the master tasks state and split it into 3 seperate subtasks states for each subgroup. That way whenever Framer Motion's API needed to change the state of the tasks list, it would only affect the tasks within the subgroup and not all tasks. 
 
 ## Lessons Learned:
-This project required a lot of learning and struggling in order to achieve the standard that I wanted for this project. Learning React while also learning to use an animation library and a back-end service was especially difficult. While it was very difficult, I came out being much more confortable with the idea of using tools that would help me achieve whatever I needed, rather than brute-forcing my way using pure javascript. 
+This project required a lot of learning and struggling in order to achieve the standard that I wanted for this project. Learning to use an animation library and a back-end service was especially difficult. While it was very difficult, I came out being much more confortable with the idea of using tools that would help me achieve whatever I needed, rather than brute-forcing my way using pure javascript and css. 
 
 ### Optimizing performance with React
-The problems I faced regarding performance forced me to really get a good grasp of how React works, and how to structure the component hierarchy to prevent uneccessary rerendering. Using the react profiler extension, as well as the performance tab, allowed me to become more familiar with debugging any percieved jankiness. 
+The problems I faced regarding performance forced me to really get a good grasp of how React works, and how to structure the component hierarchy to prevent uneccessary re-rendering. Using the react profiler extension, as well as the performance tab, allowed me to become more familiar with debugging any percieved jankiness. 
 
-### Over-abitiousness 
+### Over-use of animations
 The most important lesson I have learned from building this application is to prioritize goals wisely. I wanted to build an interface that had beautiful animations for every interaction, but I quickly realized it was extremely difficult to do with a large app with many moving parts, and I found myself rewriting or restructuring code just to accomodate a new animation. 
 
-Having looked at many other apps, animation were incorporated when it would be visually jarring without them. For example, switching to a tab does not necessitate an animation, but making an element larger when you click on it or creating a modal may require a transition animation. 
+Having looked at many other apps, animations usually were incorporated when it would be visually jarring without them. For example, switching to a tab does not necessitate an animation, but making an element larger when you click on it or creating a modal may require a transition animation. 
 
 ### Back-end Services
 This was also my first time working with a back-end service. It required some initial setup and referencing of the Firebase documentation but I certainly would love to incorporate it in future projects as well. It also gave me an oppurtunity to dip my toes into the world of back-end as a front-end dev. 
 
 # To Do:
-- Allow user's the ability to change their display name
 
 - Allow user's the ability to delete their accounts
 
 - Add "Forgot Password" functionality
-
-- Responsiveness for mobile screens
 
 - Add an "edit" functionality when opening up the task-view of a certain task. 
